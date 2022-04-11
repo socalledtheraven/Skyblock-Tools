@@ -1,0 +1,29 @@
+.heading {
+    color: red;
+}
+
+.headbar {
+    color: white;
+}
+
+body {
+    background-color: #3147d6;
+    color: white;
+}
+
+table, th, td {
+    border:1px solid white;
+    color: white;
+}
+
+a:link {
+  color: red;
+}
+
+a:visited {
+  color: lawngreen;
+}
+
+a:active {
+  color: purple;
+}

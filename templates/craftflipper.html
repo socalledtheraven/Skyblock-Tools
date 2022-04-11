@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block title %}Skyblock Tools - Craft Flipper{% endblock %}
+
+
+{% block content %}
+  <header>
+    <h1 class="headbar">Skyblock Tools</h1>
+    <nav>
+      <a href="{{ url_for('index') }}">Home</a>
+      <br>
+    </nav>
+  </header>
+    <main>
+      <br>
+        {% include "craft_flipper_data.html" %}
+      <br>
+      </div>
+    </main>
+
+
+{% endblock %}
