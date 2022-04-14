@@ -23,9 +23,6 @@ def static_database_updater():
     current_item_data["ingredients"] = {}
     total_ingredients = []
     file = "./neu-repo/items/" + current_item_name + ".json"
-
-    if current_item_name in db:
-      continue
     
     try:
       auction_data = json.loads(requests.get(f"https://auction-api.up.railway.app/query?key=placeholder&item_id={current_item_name}&bin=false&limit=5000").text) # lowest auctions
@@ -184,22 +181,33 @@ def static_database_updater():
       # iterates through the ingredients and actually properly formats them and the recipe
       
       for item in splits:
-        try:
-          if isAuctionable(item[0]):
-            current_item_data["ingredients"][item[0]] = {"count": item[1], "cost": get_lowest_bin(item[0], item[1])}
-            if len(splits) > 1 and item != splits[-1]:
-              current_item_data["recipe"] += f"{item[1]}x {id_to_name(item[0])} (costing {get_lowest_bin(item[0], item[1])}), "
-            else:
-              current_item_data["recipe"] += f"{item[1]}x {id_to_name(item[0])} (costing {get_lowest_bin(item[0], item[1])})"
-          elif isBazaarable(item[0]):
-            current_item_data["ingredients"][item[0]] = {"count": item[1], "cost": get_bazaar_price(item[0])["Buy Price"]*item[1]}
-            if len(splits) > 1 and item != splits[-1]:
-              current_item_data["recipe"] += f"{item[1]}x {id_to_name(item[0])} (costing {round(get_bazaar_price(item[0])['Buy Price']*item[1], 1)}), "
-            else:
-              current_item_data["recipe"] += f"{item[1]}x {id_to_name(item)} (costing {round(get_bazaar_price(item[0])['Buy Price']*item[1], 1)})"
-        except IndexError:
+        if item == ["50,000 Coins"]:
+          current_item_data["forge_cost"] += 50000
           current_item_data["ingredients"]["50,000 Coins"] = {"count": 50000, "cost": 50000}
-          current_item_data["recipe"] += "50,000 coins"
+          current_item_data["recipe"] += item[0]
+          continue
+        elif item == ["50,000,000 Coins"]:
+          current_item_data["forge_cost"] += 50000000
+          current_item_data["ingredients"]["50,000,000 Coins"] = {"count": 50000000, "cost": 50000000}
+          current_item_data["recipe"] += item[0]
+          continue
+        elif item == ["25,000 Coins"]:
+          current_item_data["forge_cost"] += 25000
+          current_item_data["ingredients"]["25,000 Coins"] = {"count": 25000, "cost": 25000}
+          current_item_data["recipe"] += item[0]
+          continue
+        if isAuctionable(item[0]):
+          current_item_data["ingredients"][item[0]] = {"count": item[1], "cost": get_lowest_bin(item[0], item[1])}
+          if len(splits) > 1 and item != splits[-1]:
+            current_item_data["recipe"] += f"{item[1]}x {id_to_name(item[0])} (costing {get_lowest_bin(item[0], item[1])}), "
+          else:
+            current_item_data["recipe"] += f"{item[1]}x {id_to_name(item[0])} (costing {get_lowest_bin(item[0], item[1])})"
+        elif isBazaarable(item[0]):
+          current_item_data["ingredients"][item[0]] = {"count": item[1], "cost": get_bazaar_price(item[0])["Buy Price"]*item[1]}
+          if len(splits) > 1 and item != splits[-1]:
+            current_item_data["recipe"] += f"{item[1]}x {id_to_name(item[0])} (costing {round(get_bazaar_price(item[0])['Buy Price']*item[1], 1)}), "
+          else:
+            current_item_data["recipe"] += f"{item[1]}x {id_to_name(item)} (costing {round(get_bazaar_price(item[0])['Buy Price']*item[1], 1)})"
 
     # sets the database values
     db[current_item_name] = current_item_data
@@ -296,6 +304,15 @@ def dynamic_database_updater():
           if ingredient == "50,000 Coins":
             current_item_data["forge_cost"] += 50000
             current_item_data["recipe"] += ingredient
+            continue
+          elif ingredient == "50,000,000 Coins":
+            current_item_data["forge_cost"] += 50000000
+            current_item_data["recipe"] += ingredient
+            continue
+          elif ingredient == "25,000 Coins":
+            current_item_data["forge_cost"] += 25000
+            current_item_data["recipe"] += ingredient
+            continue
           if db[ingredient]["auctionable"]:
             current_item_data["ingredients"][ingredient]["cost"] = current_item_data["ingredients"][ingredient]["count"] * db[ingredient]["lowest_bin"]
             if len(current_item_data["ingredients"]) > 1 and ingredient != current_item_data["ingredients"][-1]:
@@ -323,17 +340,9 @@ def dynamic_database_updater():
   print(f"Complete time: {time.strftime('%H:%M:%S', time.gmtime(final_end-final_start))}")
 
 def deletion_time():
-  items = sorted(json.loads(requests.get("https://api.hypixel.net/resources/skyblock/items").text)["items"], key=lambda d: d['id'])
-  database = db
-  for item in items:
-    print(item["id"])
-    current_item_data = database[item["id"]]
-    if item["id"] == item["material"]:
-      current_item_data["vanilla"] = True
-    elif item.get("category") == "COSMETIC":
-      current_item_data["cosmetic"] = True
-    db[item["id"]] = current_item_data
-   
+  pass
+
+         
 def catch(func, *args, handle=lambda e : e, **kwargs):
   try:
     return func(*args, **kwargs)
@@ -430,7 +439,7 @@ def isBazaarable(itemname):
 
 
 def get_lowest_bin(itemname, count):
-  if db[itemname]["auctionable"]:
+  if db[itemname]["auctionable"] and "lowest_bin" in db[itemname]:
     return db[itemname]["lowest_bin"] * count
   else:
     return "N/A"
@@ -513,4 +522,4 @@ def commaify(num):
 
 # database_updater
 # dynamic_database_updater()
-# deletion_time()
+deletion_time()
