@@ -1,4 +1,4 @@
-import requests, json, os, collections, functools, operator, re, time, replit
+import requests, json, os, collections, functools, operator, re, time, replit, asyncio, asyncpixel, aiohttp
 from replit import db
 import pandas as pd
 from git import Repo
@@ -215,134 +215,207 @@ def static_database_updater():
       
     # https://railway.app/project/3a3efefb-a388-4fef-97d2-bee55909b58e/service/98472656-cca9-4757-9dac-95f98f0c7abc/domains
   
-def dynamic_database_updater():
+async def dynamic_database_updater():
+  hypixel = asyncpixel.Hypixel(apiKey)
   final_start = time.perf_counter()
-  auction_pages = json.loads(requests.get(f"https://api.hypixel.net/skyblock/auctions").text)["totalPages"]
-  auctions = [json.loads(requests.get(f"https://api.hypixel.net/skyblock/auctions?page={i}").text)["auctions"] for i in range(auction_pages)][0]
-  bins = list(filter(lambda d: d["bin"] == True, auctions))
-  bazaar_data = json.loads(requests.get("https://api.slothpixel.me/api/skyblock/bazaar/").text)
+  bazaar_data = await hypixel.bazaar()
+  bazaar_data = bazaar_data.bazaar_items
+  bazaar_items = [item.product_id for item in bazaar_data]
+  auctions = await hypixel.auctions()
+  auction_pages = auctions.total_pages
+  auction_data = []
+  for i in range(auction_pages):
+    page = await hypixel.auctions(page=i)
+    auction_data.extend(page)
   database = db
-  print("auctions done")
-  
-  for item in database:
+  with open("./constants/auctionables.json") as auctionables:
+    auctionables = sorted(json.load(auctionables))
+  with open("./constants/bazaarables.json") as bazaarables:
+    bazaarables = json.load(bazaarables)
+  with open("./constants/craftables.json") as craftables:
+    craftables = sorted(json.load(craftables))
+  with open("./constants/forgables.json") as forgables:
+    forgables = sorted(json.load(forgables))
+
+  start = time.perf_counter()
+  for item in bazaarables:
+    continue
     print(item)
     current_item_data = database[item]
-    if not current_item_data.get("vanilla") or not current_item_data["minion"] or not current_item_data["cosmetic"]:
-      if current_item_data["auctionable"]:
-        bin_data = sorted(list(filter(lambda d: d["item_name"] == name_to_id(item), bins)), key=lambda d: d["starting_bid"])[:2] # lowest two bins
-        auction_data = sorted(list(filter(lambda d: d["item_name"] == name_to_id(item), auctions)), key=lambda d: d["starting_bid"]) # lowest auctions
-        zero_bid_auction_data = list(filter(lambda d: d["bids"] == [], auction_data)) # lowest 0 bid auctions
-        ending_soon_zero_bid_auction_data = sorted(zero_bid_auction_data, key=lambda d: d["end"])# ending soon 0 bid auction
-        print("sorting done")
-          # gets bin values
-        if len(bin_data) > 1:
-          current_item_data["lowest_bin"] = bin_data[0]["starting_bid"]
-          current_item_data["second_lowest_bin"] = bin_data[1]["starting_bid"]
-        elif len(bin_data) == 1:
-          current_item_data["lowest_bin"] = bin_data[0]["starting_bid"]
-        else:
-          # case for if it's unbinnable
-          current_item_data["lowest_bin"] = 0
-          current_item_data["second_lowest_bin"] = 0
-        
-        if len(auction_data) != 0:
-          # adds standard auctions
-          current_item_data["lowest_auction"] = auction_data[0]["starting_bid"]
-          if zero_bid_auction_data != []:
-            current_item_data["lowest_0_bid_auction"] = zero_bid_auction_data[0]["starting_bid"]
-            current_item_data["lowest_0_bid_ending_soon_auction"] = ending_soon_zero_bid_auction_data[0]["starting_bid"]
-        else:
-          # exception for unauctionables
-          current_item_data["lowest_auction"] = 0
-          current_item_data["lowest_0_bid_auction"] = 0
-  
-      if current_item_data["bazaarable"]:
-        current_item_data["bazaar_buy_price"] = bazaar_data[item]["buy_summary"][0]["pricePerUnit"]
-        current_item_data["bazaar_sell_price"] = bazaar_data[item]["sell_summary"][0]["pricePerUnit"]
-        current_item_data["bazaar_profit"] = float(round(current_item_data["bazaar_sell_price"]-current_item_data["bazaar_buy_price"], 1))
-        current_item_data["bazaar_percentage_profit"] = round(current_item_data["bazaar_profit"]/current_item_data["bazaar_buy_price"], 2)
-  
-      if current_item_data["craftable"]:
-        current_item_data["recipe"] = ""
-        current_item_data["craft_cost"] = 0
-        ingredients = json.loads(replit.database.dumps(current_item_data["ingredients"]))
-        for ingredient in ingredients:
-          ingredient = log_formatter(ingredient)
-          if db[ingredient]["auctionable"]:
-            current_item_data["ingredients"][ingredient]["cost"] = current_item_data["ingredients"][ingredient]["count"] * db[ingredient]["lowest_bin"]
-            if len(ingredients) > 1 and ingredient != list(ingredients.keys())[-1]:
-              current_item_data["recipe"] += f"{current_item_data['ingredients'][ingredient]['count']}x {id_to_name(ingredient)} (costing {current_item_data['ingredients'][ingredient]['cost']}), "
-            else:
-              current_item_data["recipe"] += f"{current_item_data['ingredients'][ingredient]['count']}x {id_to_name(ingredient)} (costing {current_item_data['ingredients'][ingredient]['cost']})"
-            current_item_data["craft_cost"] += current_item_data["ingredients"][ingredient]["cost"]
-          elif db[ingredient]["bazaarable"]:
-            current_item_data["ingredients"][ingredient]["cost"] = current_item_data["ingredients"][ingredient]["count"] * db[ingredient]["bazaar_buy_price"]
-            if len(ingredients) > 1 and ingredient != list(ingredients.keys())[-1]:
-              current_item_data["recipe"] += f"{current_item_data['ingredients'][ingredient]['count']}x {id_to_name(ingredient)} (costing {current_item_data['ingredients'][ingredient]['cost']}), "
-            else:
-              current_item_data["recipe"] += f"{current_item_data['ingredients'][ingredient]['count']}x {id_to_name(ingredient)} (costing {current_item_data['ingredients'][ingredient]['cost']})"
-            current_item_data["craft_cost"] += current_item_data["ingredients"][ingredient]["cost"]
-          else:
-            current_item_data["ingredients"][ingredient]["cost"] = 0
-            if len(ingredients) > 1 and ingredient != list(ingredients.keys())[-1]:
-              current_item_data["recipe"] += f"{current_item_data['ingredients'][ingredient]['count']}x {id_to_name(ingredient)}, "
-            else:
-              current_item_data["recipe"] += f"{current_item_data['ingredients'][ingredient]['count']}x {id_to_name(ingredient)}"
-        current_item_data["ingredients"] = ingredients
-              
-        if current_item_data["bazaarable"]:
-          current_item_data["craft_profit"] = float(round(current_item_data["bazaar_buy_price"] - current_item_data["craft_cost"], 1))
-          current_item_data["craft_percentage_profit"] = round(current_item_data["craft_profit"]/current_item_data["craft_cost"], 2)
-        elif current_item_data["auctionable"]:
-          current_item_data["craft_profit"] = float(round(current_item_data["lowest_bin"] - current_item_data["craft_cost"], 1))
-          current_item_data["craft_percentage_profit"] = round(current_item_data["craft_profit"]/current_item_data["craft_cost"], 2)
-      
-      if current_item_data["forgable"]:
-        current_item_data["recipe"] = ""
-        current_item_data["forge_cost"] = 0
-        for ingredient in current_item_data["ingredients"]:
-          if ingredient == "50,000 Coins":
-            current_item_data["forge_cost"] += 50000
-            current_item_data["recipe"] += ingredient
-            continue
-          elif ingredient == "50,000,000 Coins":
-            current_item_data["forge_cost"] += 50000000
-            current_item_data["recipe"] += ingredient
-            continue
-          elif ingredient == "25,000 Coins":
-            current_item_data["forge_cost"] += 25000
-            current_item_data["recipe"] += ingredient
-            continue
-          if db[ingredient]["auctionable"]:
-            current_item_data["ingredients"][ingredient]["cost"] = current_item_data["ingredients"][ingredient]["count"] * db[ingredient]["lowest_bin"]
-            if len(current_item_data["ingredients"]) > 1 and ingredient != current_item_data["ingredients"][-1]:
-              current_item_data["recipe"] += f"{current_item_data['ingredients'][ingredient]['count']}x {id_to_name(ingredient)} (costing {current_item_data['ingredients'][ingredient]['cost']}), "
-            else:
-              current_item_data["recipe"] += f"{current_item_data['ingredients'][ingredient]['count']}x {id_to_name(ingredient)} (costing {current_item_data['ingredients'][ingredient]['cost']})"
-            current_item_data["forge_cost"] += current_item_data["ingredients"][ingredient]["cost"]
-          elif db[ingredient]["bazaarable"]:
-            current_item_data["ingredients"][ingredient]["cost"] = current_item_data["ingredients"][ingredient]["count"] * db[ingredient]["bazaar_buy_price"]
-            if len(current_item_data["ingredients"]) > 1 and ingredient != current_item_data["ingredients"][-1]:
-              current_item_data["recipe"] += f"{current_item_data['ingredients'][ingredient]['count']}x {id_to_name(ingredient)} (costing {current_item_data['ingredients'][ingredient]['cost']}), "
-            else:
-              current_item_data["recipe"] += f"{current_item_data['ingredients'][ingredient]['count']}x {id_to_name(ingredient)} (costing {current_item_data['ingredients'][ingredient]['cost']})"
-            current_item_data["forge_cost"] += current_item_data["ingredients"][ingredient]["cost"]
-          else:
-            current_item_data["ingredients"][ingredient]["cost"] = 0
-            if len(current_item_data["ingredients"]) > 1 and ingredient != current_item_data["ingredients"][-1]:
-              current_item_data["recipe"] += f"{current_item_data['ingredients'][ingredient]['count']}x {id_to_name(ingredient)}, "
-            else:
-              current_item_data["recipe"] += f"{current_item_data['ingredients'][ingredient]['count']}x {id_to_name(ingredient)}"
-  
-      db[item] = current_item_data
+    current_item_bazaar_data = bazaar_data[bazaar_items.index(item)].quick_status
+    current_item_data["bazaar_buy_price"] = round(current_item_bazaar_data.buy_price, 1)
+    current_item_data["bazaar_sell_price"] = round(current_item_bazaar_data.sell_price, 1)
+    current_item_data["bazaar_profit"] = float(round(current_item_data["bazaar_sell_price"]-current_item_data["bazaar_buy_price"], 1))
+    current_item_data["bazaar_percentage_profit"] = round(current_item_data["bazaar_profit"]/current_item_data["bazaar_buy_price"], 1)
+    db[item] = current_item_data
+  end = time.perf_counter()
+  t = end-start
+  print(f"bazaar done in {t:.2f} seconds")
 
+  for item in craftables:
+    print(item)
+    current_item_data = database[item]
+    current_item_data["recipe"] = ""
+    current_item_data["craft_cost"] = 0
+    ingredients = json.loads(replit.database.dumps(current_item_data["ingredients"]))
+    for ingredient in ingredients:
+      ingredient = log_formatter(ingredient)
+      if db[ingredient]["auctionable"]:
+        current_item_data["ingredients"][ingredient]["cost"] = current_item_data["ingredients"][ingredient]["count"] * db[ingredient]["lowest_bin"]
+        if len(ingredients) > 1 and ingredient != list(ingredients.keys())[-1]:
+          current_item_data["recipe"] += f"{current_item_data['ingredients'][ingredient]['count']}x {id_to_name(ingredient)} (costing {current_item_data['ingredients'][ingredient]['cost']}), "
+        else:
+          current_item_data["recipe"] += f"{current_item_data['ingredients'][ingredient]['count']}x {id_to_name(ingredient)} (costing {current_item_data['ingredients'][ingredient]['cost']})"
+        current_item_data["craft_cost"] += current_item_data["ingredients"][ingredient]["cost"]
+      elif db[ingredient]["bazaarable"]:
+        current_item_data["ingredients"][ingredient]["cost"] = current_item_data["ingredients"][ingredient]["count"] * db[ingredient]["bazaar_buy_price"]
+        if len(ingredients) > 1 and ingredient != list(ingredients.keys())[-1]:
+          current_item_data["recipe"] += f"{current_item_data['ingredients'][ingredient]['count']}x {id_to_name(ingredient)} (costing {current_item_data['ingredients'][ingredient]['cost']}), "
+        else:
+          current_item_data["recipe"] += f"{current_item_data['ingredients'][ingredient]['count']}x {id_to_name(ingredient)} (costing {current_item_data['ingredients'][ingredient]['cost']})"
+        current_item_data["craft_cost"] += current_item_data["ingredients"][ingredient]["cost"]
+      else:
+        current_item_data["ingredients"][ingredient]["cost"] = 0
+        if len(ingredients) > 1 and ingredient != list(ingredients.keys())[-1]:
+          current_item_data["recipe"] += f"{current_item_data['ingredients'][ingredient]['count']}x {id_to_name(ingredient)}, "
+        else:
+          current_item_data["recipe"] += f"{current_item_data['ingredients'][ingredient]['count']}x {id_to_name(ingredient)}"
+    current_item_data["ingredients"] = ingredients
+          
+    if current_item_data["bazaarable"]:
+      if current_item_data["craft_cost"] != 0:
+        current_item_data["craft_profit"] = float(round(current_item_data["bazaar_buy_price"] - current_item_data["craft_cost"], 1))
+        current_item_data["craft_percentage_profit"] = round(current_item_data["craft_profit"]/current_item_data["craft_cost"], 2)
+      else:
+        current_item_data["craft_profit"] = 0
+        current_item_data["craft_percentage_profit"] = 0
+    elif current_item_data["auctionable"]:
+      if current_item_data["craft_cost"] != 0:
+        current_item_data["craft_profit"] = float(round(current_item_data["lowest_bin"] - current_item_data["craft_cost"], 1))
+        current_item_data["craft_percentage_profit"] = round(current_item_data["craft_profit"]/current_item_data["craft_cost"], 2)
+      else:
+        current_item_data["craft_profit"] = 0
+        current_item_data["craft_percentage_profit"] = 0
+    
+    db[item] = current_item_data
+  end = time.perf_counter()
+  t = end-start
+  print(f"crafts done in {t:.2f} seconds")
+
+  for item in forgables:
+    print(item)
+    current_item_data = database[item]
+    current_item_data["recipe"] = ""
+    current_item_data["forge_cost"] = 0
+    for ingredient in current_item_data["ingredients"]:
+      if ingredient == "50,000 Coins":
+        current_item_data["forge_cost"] += 50000
+        current_item_data["recipe"] += ingredient
+        continue
+      elif ingredient == "50,000,000 Coins":
+        current_item_data["forge_cost"] += 50000000
+        current_item_data["recipe"] += ingredient
+        continue
+      elif ingredient == "25,000 Coins":
+        current_item_data["forge_cost"] += 25000
+        current_item_data["recipe"] += ingredient
+        continue
+      if db[ingredient]["auctionable"]:
+        current_item_data["ingredients"][ingredient]["cost"] = current_item_data["ingredients"][ingredient]["count"] * db[ingredient]["lowest_bin"]
+        if len(current_item_data["ingredients"]) > 1 and ingredient != current_item_data["ingredients"][-1]:
+          current_item_data["recipe"] += f"{current_item_data['ingredients'][ingredient]['count']}x {id_to_name(ingredient)} (costing {current_item_data['ingredients'][ingredient]['cost']}), "
+        else:
+          current_item_data["recipe"] += f"{current_item_data['ingredients'][ingredient]['count']}x {id_to_name(ingredient)} (costing {current_item_data['ingredients'][ingredient]['cost']})"
+        current_item_data["forge_cost"] += current_item_data["ingredients"][ingredient]["cost"]
+      elif db[ingredient]["bazaarable"]:
+        current_item_data["ingredients"][ingredient]["cost"] = current_item_data["ingredients"][ingredient]["count"] * db[ingredient]["bazaar_buy_price"]
+        if len(current_item_data["ingredients"]) > 1 and ingredient != current_item_data["ingredients"][-1]:
+          current_item_data["recipe"] += f"{current_item_data['ingredients'][ingredient]['count']}x {id_to_name(ingredient)} (costing {current_item_data['ingredients'][ingredient]['cost']}), "
+        else:
+          current_item_data["recipe"] += f"{current_item_data['ingredients'][ingredient]['count']}x {id_to_name(ingredient)} (costing {current_item_data['ingredients'][ingredient]['cost']})"
+        current_item_data["forge_cost"] += current_item_data["ingredients"][ingredient]["cost"]
+      else:
+        current_item_data["ingredients"][ingredient]["cost"] = 0
+        if len(current_item_data["ingredients"]) > 1 and ingredient != current_item_data["ingredients"][-1]:
+          current_item_data["recipe"] += f"{current_item_data['ingredients'][ingredient]['count']}x {id_to_name(ingredient)}, "
+        else:
+          current_item_data["recipe"] += f"{current_item_data['ingredients'][ingredient]['count']}x {id_to_name(ingredient)}"
+    
+    db[item] = current_item_data
+  
+  start = time.perf_counter()
+  for item in auctionables:
+    print(item)
+    current_item_data = database[item]
+    if current_item_data["auctionable"]:
+      bin_data = json.loads(requests.get(f"https://sky.coflnet.com/api/item/price/{item}/bin").text) # lowest two bins
+      auction_data = sorted(json.loads(requests.get(f"https://api.mystichat.xyz/apihandle.php?req=search&query={item}").text), key=lambda d: d["starting_bid"]) # lowest auctions
+      ending_soon_zero_bid_auction_data = list(filter(lambda d: d["bid_num"] == 0, auction_data)) # ending soon 0 bid auction
+      zero_bid_auction_data = sorted(ending_soon_zero_bid_auction_data, key=lambda d: d["starting_bid"]) # lowest 0 bid auctions
+        # gets bin values
+      try:
+        current_item_data["lowest_bin"] = bin_data["lowest"]
+        current_item_data["second_lowest_bin"] = bin_data["secondLowest"]
+      except:
+        current_item_data["lowest_bin"] = 0
+        current_item_data["second_lowest_bin"] = 0
+        
+      if len(auction_data) != 0:
+        # adds standard auctions
+        current_item_data["lowest_auction"] = auction_data[0]["starting_bid"]
+        if zero_bid_auction_data != []:
+          current_item_data["lowest_0_bid_auction"] = zero_bid_auction_data[0]["starting_bid"]
+          current_item_data["lowest_0_bid_ending_soon_auction"] = ending_soon_zero_bid_auction_data[0]["starting_bid"]
+      else:
+        # exception for unauctionables
+        current_item_data["lowest_auction"] = 0
+        current_item_data["lowest_0_bid_auction"] = 0
+          
+    db[item] = current_item_data
+    end = time.perf_counter()
+    t = end-start
+    print(f"{item} done in cumulative {t:.2f} seconds")
+
+      
   final_end = time.perf_counter()
   print(f"Complete time: {time.strftime('%H:%M:%S', time.gmtime(final_end-final_start))}")
-
+  await hypixel.close()
+  
 def deletion_time():
-  pass
+  database = db
+  for item in database:
+    try:
+      if database[item]["vanilla"]:
+        print(item)
+        database[item]["auctionable"] = False
+        database[item]["bazaarable"] = False
+        database[item]["forgable"] = False
+    except KeyError:
+      database[item]["vanilla"] = True
 
-         
+  auctionables = []
+  bazaarables = []
+  craftables = []
+  forgables = []
+  with open("./constants/auctionables.json", "w") as auctionables_file:
+    with open("./constants/bazaarables.json", "w") as bazaarables_file:
+      with open("./constants/craftables.json", "w") as craftables_file:
+        with open("./constants/forgables.json", "w") as forgables_file:
+          for item in database:
+            if database[item]["auctionable"]:
+              auctionables.append(item)
+            if database[item]["bazaarable"]:
+              bazaarables.append(item)
+            if database[item]["craftable"]:
+              craftables.append(item)
+            if database[item]["forgable"]:
+              forgables.append(item)
+          json.dump(auctionables, auctionables_file, ensure_ascii=True, indent=2)
+          json.dump(bazaarables, bazaarables_file, ensure_ascii=True, indent=2)
+          json.dump(craftables, craftables_file, ensure_ascii=True, indent=2)
+          json.dump(forgables, forgables_file, ensure_ascii=True, indent=2)
+      
+           
 def catch(func, *args, handle=lambda e : e, **kwargs):
   try:
     return func(*args, **kwargs)
@@ -519,7 +592,10 @@ def remove_formatting(string):
 def commaify(num):
   return "{:,}".format(num)
 
-
+#---------------------------------------------------------------------------------------------------------
+#SUBPROGRAMS
+#---------------------------------------------------------------------------------------------------------
+  
 # database_updater
-# dynamic_database_updater()
+# asyncio.run(dynamic_database_updater())
 deletion_time()
