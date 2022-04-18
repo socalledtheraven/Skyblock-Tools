@@ -226,7 +226,10 @@ async def dynamic_database_updater():
   auction_data = []
   for i in range(auction_pages):
     page = await hypixel.auctions(page=i)
+    page = page.auctions
     auction_data.extend(page)
+
+  auctions = auction_data
   database = db
   with open("./constants/auctionables.json") as auctionables:
     auctionables = sorted(json.load(auctionables))
@@ -239,8 +242,7 @@ async def dynamic_database_updater():
 
   start = time.perf_counter()
   for item in bazaarables:
-    continue
-    print(item)
+    print("bazaar", item)
     current_item_data = database[item]
     current_item_bazaar_data = bazaar_data[bazaar_items.index(item)].quick_status
     current_item_data["bazaar_buy_price"] = round(current_item_bazaar_data.buy_price, 1)
@@ -252,9 +254,9 @@ async def dynamic_database_updater():
   t = end-start
   print(f"bazaar done in {t:.2f} seconds")
 
+  start = time.perf_counter()
   for item in craftables:
-    continue
-    print(item)
+    print("craft", item)
     current_item_data = database[item]
     current_item_data["recipe"] = ""
     current_item_data["craft_cost"] = 0
@@ -303,9 +305,9 @@ async def dynamic_database_updater():
   t = end-start
   print(f"crafts done in {t:.2f} seconds")
 
+  start = time.perf_counter()
   for item in forgables:
-    continue
-    print(item)
+    print("forge", item)
     current_item_data = database[item]
     current_item_data["recipe"] = ""
     current_item_data["forge_cost"] = 0
@@ -324,68 +326,72 @@ async def dynamic_database_updater():
         continue
       if db[ingredient]["auctionable"]:
         current_item_data["ingredients"][ingredient]["cost"] = current_item_data["ingredients"][ingredient]["count"] * db[ingredient]["lowest_bin"]
-        if len(current_item_data["ingredients"]) > 1 and ingredient != current_item_data["ingredients"][-1]:
+        try:
+          if len(current_item_data["ingredients"]) > 1 and ingredient != current_item_data["ingredients"][-1]:
+            current_item_data["recipe"] += f"{current_item_data['ingredients'][ingredient]['count']}x {id_to_name(ingredient)} (costing {current_item_data['ingredients'][ingredient]['cost']}), "
+          else:
+            current_item_data["recipe"] += f"{current_item_data['ingredients'][ingredient]['count']}x {id_to_name(ingredient)} (costing {current_item_data['ingredients'][ingredient]['cost']})"
+        except:
           current_item_data["recipe"] += f"{current_item_data['ingredients'][ingredient]['count']}x {id_to_name(ingredient)} (costing {current_item_data['ingredients'][ingredient]['cost']}), "
-        else:
-          current_item_data["recipe"] += f"{current_item_data['ingredients'][ingredient]['count']}x {id_to_name(ingredient)} (costing {current_item_data['ingredients'][ingredient]['cost']})"
         current_item_data["forge_cost"] += current_item_data["ingredients"][ingredient]["cost"]
       elif db[ingredient]["bazaarable"]:
         current_item_data["ingredients"][ingredient]["cost"] = current_item_data["ingredients"][ingredient]["count"] * db[ingredient]["bazaar_buy_price"]
-        if len(current_item_data["ingredients"]) > 1 and ingredient != current_item_data["ingredients"][-1]:
+        try:
+          if len(current_item_data["ingredients"]) > 1 and ingredient != current_item_data["ingredients"][-1]:
+            current_item_data["recipe"] += f"{current_item_data['ingredients'][ingredient]['count']}x {id_to_name(ingredient)} (costing {current_item_data['ingredients'][ingredient]['cost']}), "
+          else:
+            current_item_data["recipe"] += f"{current_item_data['ingredients'][ingredient]['count']}x {id_to_name(ingredient)} (costing {current_item_data['ingredients'][ingredient]['cost']})"
+        except:
           current_item_data["recipe"] += f"{current_item_data['ingredients'][ingredient]['count']}x {id_to_name(ingredient)} (costing {current_item_data['ingredients'][ingredient]['cost']}), "
-        else:
-          current_item_data["recipe"] += f"{current_item_data['ingredients'][ingredient]['count']}x {id_to_name(ingredient)} (costing {current_item_data['ingredients'][ingredient]['cost']})"
         current_item_data["forge_cost"] += current_item_data["ingredients"][ingredient]["cost"]
       else:
         current_item_data["ingredients"][ingredient]["cost"] = 0
-        if len(current_item_data["ingredients"]) > 1 and ingredient != current_item_data["ingredients"][-1]:
+        try:
+          if len(current_item_data["ingredients"]) > 1 and ingredient != current_item_data["ingredients"][-1]:
+            current_item_data["recipe"] += f"{current_item_data['ingredients'][ingredient]['count']}x {id_to_name(ingredient)}, "
+          else:
+            current_item_data["recipe"] += f"{current_item_data['ingredients'][ingredient]['count']}x {id_to_name(ingredient)}"
+        except:
           current_item_data["recipe"] += f"{current_item_data['ingredients'][ingredient]['count']}x {id_to_name(ingredient)}, "
-        else:
-          current_item_data["recipe"] += f"{current_item_data['ingredients'][ingredient]['count']}x {id_to_name(ingredient)}"
+    
     
     db[item] = current_item_data
-  
+  end = time.perf_counter()
+  t = end-start
+  print(f"forge done in {t:.2f} seconds")
+
   start = time.perf_counter()
   for item in auctionables:
-    print(item)
+    print("auction", item)
     current_item_data = database[item]
-    if current_item_data["auctionable"]:
-      start = time.perf_counter()
-      async with aiohttp.ClientSession() as session:
-        bin_data = await get_json(f"https://sky.coflnet.com/api/item/price/{item}/bin", session)
-        auction_data = await get_json(f"https://api.mystichat.xyz/apihandle.php?req=search&query={item}", session)
-      end = time.perf_counter()      
-      print(f"urls done, {end-start}")
+    bins = list(filter(lambda d: d.bin == True, auctions))
+    bin_data = sorted(list(filter(lambda d: d.item_name == item, bins)), key=lambda d: d.starting_bid)[:2] # lowest two bins
+    auction_data = sorted(list(filter(lambda d: d.item_name == item, auctions)), key=lambda d: d.starting_bid) # lowest auctions
+    zero_bid_auction_data = list(filter(lambda d: d.bids == [], auction_data)) # lowest 0 bid auctions
+    ending_soon_zero_bid_auction_data = sorted(zero_bid_auction_data, key=lambda d: d.end)# ending soon 0 bid auction
       
-      start = time.perf_counter()
-      auction_data = sorted(auction_data, key=lambda d: d["starting_bid"]) # lowest auctions
-      ending_soon_zero_bid_auction_data = list(filter(lambda d: d["bid_num"] == 0, auction_data)) # ending soon 0 bid auction
-      zero_bid_auction_data = sorted(ending_soon_zero_bid_auction_data, key=lambda d: d["starting_bid"]) # lowest 0 bid auctions
-      end = time.perf_counter()      
-      print(f"sorting done, {end-start}")
+    try:
+      current_item_data["lowest_bin"] = bin_data["lowest"]
+      current_item_data["second_lowest_bin"] = bin_data["secondLowest"]
+    except:
+      current_item_data["lowest_bin"] = 0
+      current_item_data["second_lowest_bin"] = 0
       
-      try:
-        current_item_data["lowest_bin"] = bin_data["lowest"]
-        current_item_data["second_lowest_bin"] = bin_data["secondLowest"]
-      except:
-        current_item_data["lowest_bin"] = 0
-        current_item_data["second_lowest_bin"] = 0
-        
-      if len(auction_data) != 0:
-        # adds standard auctions
-        current_item_data["lowest_auction"] = auction_data[0]["starting_bid"]
-        if zero_bid_auction_data != []:
-          current_item_data["lowest_0_bid_auction"] = zero_bid_auction_data[0]["starting_bid"]
-          current_item_data["lowest_0_bid_ending_soon_auction"] = ending_soon_zero_bid_auction_data[0]["starting_bid"]
-      else:
-        # exception for unauctionables
-        current_item_data["lowest_auction"] = 0
-        current_item_data["lowest_0_bid_auction"] = 0
+    if len(auction_data) != 0:
+      # adds standard auctions
+      current_item_data["lowest_auction"] = auction_data[0]["starting_bid"]
+      if zero_bid_auction_data != []:
+        current_item_data["lowest_0_bid_auction"] = zero_bid_auction_data[0]["starting_bid"]
+        current_item_data["lowest_0_bid_ending_soon_auction"] = ending_soon_zero_bid_auction_data[0]["starting_bid"]
+    else:
+      # exception for unauctionables
+      current_item_data["lowest_auction"] = 0
+      current_item_data["lowest_0_bid_auction"] = 0
           
     db[item] = current_item_data
-    end = time.perf_counter()
-    t = end-start
-    print(f"{item} done in cumulative {t:.2f} seconds")
+  end = time.perf_counter()
+  t = end-start
+  print(f"auction done in {t:.2f} seconds")
 
       
   final_end = time.perf_counter()
@@ -394,11 +400,14 @@ async def dynamic_database_updater():
   
 def deletion_time():
   database = db
+  bazaarables = []
   for item in database:
     print(item)
-    if database[item]["auctionable"] and "lowest_bin" not in database[item]:
-      database[item]["lowest_bin"] = 0
-      database[item]["second_lowest_bin"] = 0
+    if database[item]["bazaarable"]:
+      bazaarables.append(item)
+
+  with open("./constants/bazaarables.json", "w") as bazaarables_file:
+    json.dump(bazaarables, bazaarables_file, ensure_ascii=True, indent=2)
       
            
 def catch(func, *args, handle=lambda e : e, **kwargs):
@@ -429,17 +438,20 @@ def bazaar_flipper():
   final_products["sell_order_price"] = {}
   final_products["product_margins"] = {}
   final_products["profit_percentage"] = {}
+  i = 0
+  database = db
+  with open("./constants/bazaarables.json", "r") as bazaarables:
+    bazaarables = json.load(bazaarables)
   # initialising variables
 
-  for i in range(len(db)):
-    print(next(iter(db)))
-    current_product = replit.database.dumps(next(iter(db.values())))["id"]
-    if db[current_product]["bazaarable"]:
-      final_products["item_name"][i] = db[current_product]["name"]
-      final_products["buy_order_price"][i] = commaify(db[current_product]["bazaar_buy_price"])
-      final_products["sell_order_price"][i] = commaify(db[current_product]["bazaar_sell_price"])
-      final_products["product_margins"][i] = commaify(db[current_product]["bazaar_profit"])
-      final_products["profit_percentage"][i] = commaify(db[current_product]["bazaar_percentage_profit"])
+  for item in bazaarables:
+    current_item_data = database[item]
+    final_products["item_name"][i] = current_item_data["name"]
+    final_products["buy_order_price"][i] = commaify(current_item_data["bazaar_buy_price"])
+    final_products["sell_order_price"][i] = commaify(current_item_data["bazaar_sell_price"])
+    final_products["product_margins"][i] = commaify(current_item_data["bazaar_profit"])
+    final_products["profit_percentage"][i] = commaify(current_item_data["bazaar_percentage_profit"])
+    i += 1
   
   final_products = pd.DataFrame({"Item": final_products["item_name"], "Product Margin": final_products["product_margins"], "Profit %": final_products["profit_percentage"], "Buy Price": final_products["buy_order_price"], "Sell Price": final_products["sell_order_price"]})
   
@@ -454,19 +466,12 @@ def build_table(table_data, HTMLFILE):
   f.close()
 
 
-def isVanilla(pItem):
+def isVanilla(itemname):
   vanilla_items = ["WOOD_AXE", "WOOD_HOE", "WOOD_PICKAXE", "WOOD_SPADE", "WOOD_SWORD", "GOLD_AXE", "GOLD_HOE","GOLD_PICKAXE", "GOLD_SPADE", "GOLD_SWORD", "ROOKIE_HOE"]
-  filename = pItem + ".json"
-  for root, dir, files in os.walk(".\\neu-repo\\items"):
-    if filename in files:
-      current_item = open(".\\neu-repo\\items\\"+filename, "r", encoding="utf-8", )
-      current_item = json.loads(current_item.read())
-      if pItem in vanilla_items:
-        return True
-      elif 'vanilla' in current_item:
-        return True
-      else:
-        return False
+  if itemname in vanilla_items or db[itemname]["vanilla"] == True:
+    return True
+  else:
+    return False 
 
 
 def is_file_empty(file_name):
@@ -528,22 +533,32 @@ def forge_flipper():
   final_flips["formatted_ingredients"] = {}
   final_flips["profit"] = {}
   final_flips["%profit"] = {}
-  final_flips["time"] = {} #declares so many goddamn variables
+  final_flips["time"] = {} 
+  i = 0
+  database = db
+  with open("./constants/forgables.json") as forgables:
+    forgables = json.load(forgables)
+  #declares so many goddamn variables
 
-  for i in range(len(db)):
-    item = dict(list(db.items())[i])["id"]
+  for item in forgables:
+    current_item_data = database[item]
     final_flips["id"][i] = item
-    if current_item_data["forgable"]:
-      final_flips["image"][i] = f"<img src={current_item_data['image']}>"
-      final_flips["name"][i] = current_item_data["name"]
-      if current_item_data["bazaarable"]:
-        final_flips["sell_price"][i] = current_item_data["bazaar_sell_price"]
-      elif current_item_data["auctionable"]:
-        final_flips["sell_price"][i] = current_item_data["lowest_bin"]
-      else:
-        final_flips["sell_price"][i] = 0
-      final_flips["craft_cost"][i] = current_item_data["forge_cost"]
-      
+    final_flips["image"][i] = f"<img src={current_item_data['image']}>"
+    final_flips["name"][i] = current_item_data["name"]
+    if current_item_data["bazaarable"]:
+      final_flips["sell_price"][i] = commaify(current_item_data["bazaar_sell_price"])
+    elif current_item_data["auctionable"]:
+      final_flips["sell_price"][i] = commaify(current_item_data["lowest_bin"])
+    else:
+      final_flips["sell_price"][i] = 0
+    final_flips["craft_cost"][i] = commaify(current_item_data["forge_cost"])
+    final_flips["requirements"][i] = current_item_data["craft_requirements"]
+    final_flips["formatted_ingredients"][i] = current_item_data["recipe"]
+    final_flips["profit"][i] = commaify(current_item_data["forge_profit"])
+    final_flips["%profit"][i] = commaify(current_item_data["forge_percentage_profit"])
+    final_flips["time"][i] = current_item_data["duration"]
+
+  return pd.DataFrame({"Image": final_flips["image"], "Name": final_flips["name"], "Profit": final_flips["profit"], "% Profit": final_flips["%profit"], "Requirements": final_flips["requirements"], "Recipe": final_flips["formatted_ingredients"], "Duration": final_flips["time"]})    
       
   
 def name_to_id(itemname):  
@@ -582,44 +597,10 @@ async def get_json(url, session):
   async with session.get(url) as resp:
     return await resp.json()
 
-async def test(item):
-  start = time.perf_counter()
-  auctions = []
-  async with aiohttp.ClientSession() as session:
-    auction_pages = await get_json(f"https://api.hypixel.net/skyblock/auctions", session)
-    auction_pages = auction_pages["totalPages"]
-    for i in range(auction_pages):
-      auction = await get_json(f"https://api.hypixel.net/skyblock/auctions?page={i}", session)
-      auction = auction["auctions"]
-      auctions.extend(auction)
-    end = time.perf_counter()
-    t = end-start
-    print(f"just stuff was {t:.2f}s")
-    start = time.perf_counter()
-    bins = list(filter(lambda d: d["bin"] == True, auctions))
-    bin_data = sorted(list(filter(lambda d: d["item_name"] == item, bins)), key=lambda d: d["starting_bid"])[:2] # lowest two bins
-    auction_data = sorted(list(filter(lambda d: d["item_name"] == item, auctions)), key=lambda d: d["starting_bid"]) # lowest auctions
-    zero_bid_auction_data = list(filter(lambda d: d["bids"] == [], auction_data)) # lowest 0 bid auctions
-    ending_soon_zero_bid_auction_data = sorted(zero_bid_auction_data, key=lambda d: d["end"])# ending soon 0 bid auction
-    end = time.perf_counter()
-    t = end - start
-    print(f"test 1 done in {t:.2f}s")
-  
-    start = time.perf_counter()
-    bin_data = await get_json(f"https://sky.coflnet.com/api/item/price/{item}/bin", session)
-    auction_data = await get_json(f"https://api.mystichat.xyz/apihandle.php?req=search&query={item}", session)
-    auction_data = sorted(auction_data, key=lambda d: d["starting_bid"]) # lowest auctions
-    ending_soon_zero_bid_auction_data = list(filter(lambda d: d["bid_num"] == 0, auction_data)) # ending soon 0 bid auction
-    zero_bid_auction_data = sorted(ending_soon_zero_bid_auction_data, key=lambda d: d["starting_bid"]) # lowest 0 bid auctions
-    end = time.perf_counter()      
-    t = end-start
-    print(f"urls done, {t:.2f}s")
-
 #---------------------------------------------------------------------------------------------------------
 #SUBPROGRAMS
 #---------------------------------------------------------------------------------------------------------
-  
+
 # database_updater
-# asyncio.run(dynamic_database_updater())
+asyncio.run(dynamic_database_updater())
 # deletion_time()
-asyncio.run(test("TERMINATOR"))
