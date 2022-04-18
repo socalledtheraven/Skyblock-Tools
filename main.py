@@ -253,6 +253,7 @@ async def dynamic_database_updater():
   print(f"bazaar done in {t:.2f} seconds")
 
   for item in craftables:
+    continue
     print(item)
     current_item_data = database[item]
     current_item_data["recipe"] = ""
@@ -260,14 +261,14 @@ async def dynamic_database_updater():
     ingredients = json.loads(replit.database.dumps(current_item_data["ingredients"]))
     for ingredient in ingredients:
       ingredient = log_formatter(ingredient)
-      if db[ingredient]["auctionable"]:
+      if isAuctionable(ingredient):
         current_item_data["ingredients"][ingredient]["cost"] = current_item_data["ingredients"][ingredient]["count"] * db[ingredient]["lowest_bin"]
         if len(ingredients) > 1 and ingredient != list(ingredients.keys())[-1]:
           current_item_data["recipe"] += f"{current_item_data['ingredients'][ingredient]['count']}x {id_to_name(ingredient)} (costing {current_item_data['ingredients'][ingredient]['cost']}), "
         else:
           current_item_data["recipe"] += f"{current_item_data['ingredients'][ingredient]['count']}x {id_to_name(ingredient)} (costing {current_item_data['ingredients'][ingredient]['cost']})"
         current_item_data["craft_cost"] += current_item_data["ingredients"][ingredient]["cost"]
-      elif db[ingredient]["bazaarable"]:
+      elif isBazaarable(ingredient):
         current_item_data["ingredients"][ingredient]["cost"] = current_item_data["ingredients"][ingredient]["count"] * db[ingredient]["bazaar_buy_price"]
         if len(ingredients) > 1 and ingredient != list(ingredients.keys())[-1]:
           current_item_data["recipe"] += f"{current_item_data['ingredients'][ingredient]['count']}x {id_to_name(ingredient)} (costing {current_item_data['ingredients'][ingredient]['cost']}), "
@@ -303,6 +304,7 @@ async def dynamic_database_updater():
   print(f"crafts done in {t:.2f} seconds")
 
   for item in forgables:
+    continue
     print(item)
     current_item_data = database[item]
     current_item_data["recipe"] = ""
@@ -348,11 +350,20 @@ async def dynamic_database_updater():
     print(item)
     current_item_data = database[item]
     if current_item_data["auctionable"]:
-      bin_data = json.loads(requests.get(f"https://sky.coflnet.com/api/item/price/{item}/bin").text) # lowest two bins
-      auction_data = sorted(json.loads(requests.get(f"https://api.mystichat.xyz/apihandle.php?req=search&query={item}").text), key=lambda d: d["starting_bid"]) # lowest auctions
+      start = time.perf_counter()
+      async with aiohttp.ClientSession() as session:
+        bin_data = await get_json(f"https://sky.coflnet.com/api/item/price/{item}/bin", session)
+        auction_data = await get_json(f"https://api.mystichat.xyz/apihandle.php?req=search&query={item}", session)
+      end = time.perf_counter()      
+      print(f"urls done, {end-start}")
+      
+      start = time.perf_counter()
+      auction_data = sorted(auction_data, key=lambda d: d["starting_bid"]) # lowest auctions
       ending_soon_zero_bid_auction_data = list(filter(lambda d: d["bid_num"] == 0, auction_data)) # ending soon 0 bid auction
       zero_bid_auction_data = sorted(ending_soon_zero_bid_auction_data, key=lambda d: d["starting_bid"]) # lowest 0 bid auctions
-        # gets bin values
+      end = time.perf_counter()      
+      print(f"sorting done, {end-start}")
+      
       try:
         current_item_data["lowest_bin"] = bin_data["lowest"]
         current_item_data["second_lowest_bin"] = bin_data["secondLowest"]
@@ -384,36 +395,10 @@ async def dynamic_database_updater():
 def deletion_time():
   database = db
   for item in database:
-    try:
-      if database[item]["vanilla"]:
-        print(item)
-        database[item]["auctionable"] = False
-        database[item]["bazaarable"] = False
-        database[item]["forgable"] = False
-    except KeyError:
-      database[item]["vanilla"] = True
-
-  auctionables = []
-  bazaarables = []
-  craftables = []
-  forgables = []
-  with open("./constants/auctionables.json", "w") as auctionables_file:
-    with open("./constants/bazaarables.json", "w") as bazaarables_file:
-      with open("./constants/craftables.json", "w") as craftables_file:
-        with open("./constants/forgables.json", "w") as forgables_file:
-          for item in database:
-            if database[item]["auctionable"]:
-              auctionables.append(item)
-            if database[item]["bazaarable"]:
-              bazaarables.append(item)
-            if database[item]["craftable"]:
-              craftables.append(item)
-            if database[item]["forgable"]:
-              forgables.append(item)
-          json.dump(auctionables, auctionables_file, ensure_ascii=True, indent=2)
-          json.dump(bazaarables, bazaarables_file, ensure_ascii=True, indent=2)
-          json.dump(craftables, craftables_file, ensure_ascii=True, indent=2)
-          json.dump(forgables, forgables_file, ensure_ascii=True, indent=2)
+    print(item)
+    if database[item]["auctionable"] and "lowest_bin" not in database[item]:
+      database[item]["lowest_bin"] = 0
+      database[item]["second_lowest_bin"] = 0
       
            
 def catch(func, *args, handle=lambda e : e, **kwargs):
@@ -500,6 +485,7 @@ def is_file_empty(file_name):
 
 
 def isAuctionable(itemname):
+  print(itemname)
   return db[itemname]["auctionable"]
 
 
@@ -592,10 +578,48 @@ def remove_formatting(string):
 def commaify(num):
   return "{:,}".format(num)
 
+async def get_json(url, session):
+  async with session.get(url) as resp:
+    return await resp.json()
+
+async def test(item):
+  start = time.perf_counter()
+  auctions = []
+  async with aiohttp.ClientSession() as session:
+    auction_pages = await get_json(f"https://api.hypixel.net/skyblock/auctions", session)
+    auction_pages = auction_pages["totalPages"]
+    for i in range(auction_pages):
+      auction = await get_json(f"https://api.hypixel.net/skyblock/auctions?page={i}", session)
+      auction = auction["auctions"]
+      auctions.extend(auction)
+    end = time.perf_counter()
+    t = end-start
+    print(f"just stuff was {t:.2f}s")
+    start = time.perf_counter()
+    bins = list(filter(lambda d: d["bin"] == True, auctions))
+    bin_data = sorted(list(filter(lambda d: d["item_name"] == item, bins)), key=lambda d: d["starting_bid"])[:2] # lowest two bins
+    auction_data = sorted(list(filter(lambda d: d["item_name"] == item, auctions)), key=lambda d: d["starting_bid"]) # lowest auctions
+    zero_bid_auction_data = list(filter(lambda d: d["bids"] == [], auction_data)) # lowest 0 bid auctions
+    ending_soon_zero_bid_auction_data = sorted(zero_bid_auction_data, key=lambda d: d["end"])# ending soon 0 bid auction
+    end = time.perf_counter()
+    t = end - start
+    print(f"test 1 done in {t:.2f}s")
+  
+    start = time.perf_counter()
+    bin_data = await get_json(f"https://sky.coflnet.com/api/item/price/{item}/bin", session)
+    auction_data = await get_json(f"https://api.mystichat.xyz/apihandle.php?req=search&query={item}", session)
+    auction_data = sorted(auction_data, key=lambda d: d["starting_bid"]) # lowest auctions
+    ending_soon_zero_bid_auction_data = list(filter(lambda d: d["bid_num"] == 0, auction_data)) # ending soon 0 bid auction
+    zero_bid_auction_data = sorted(ending_soon_zero_bid_auction_data, key=lambda d: d["starting_bid"]) # lowest 0 bid auctions
+    end = time.perf_counter()      
+    t = end-start
+    print(f"urls done, {t:.2f}s")
+
 #---------------------------------------------------------------------------------------------------------
 #SUBPROGRAMS
 #---------------------------------------------------------------------------------------------------------
   
 # database_updater
 # asyncio.run(dynamic_database_updater())
-deletion_time()
+# deletion_time()
+asyncio.run(test("TERMINATOR"))
