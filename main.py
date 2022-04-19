@@ -247,8 +247,8 @@ async def dynamic_database_updater():
     current_item_bazaar_data = bazaar_data[bazaar_items.index(item)].quick_status
     current_item_data["bazaar_buy_price"] = round(current_item_bazaar_data.buy_price, 1)
     current_item_data["bazaar_sell_price"] = round(current_item_bazaar_data.sell_price, 1)
-    current_item_data["bazaar_profit"] = float(round(current_item_data["bazaar_sell_price"]-current_item_data["bazaar_buy_price"], 1))
-    current_item_data["bazaar_percentage_profit"] = round(current_item_data["bazaar_profit"]/current_item_data["bazaar_buy_price"], 1)
+    current_item_data["bazaar_profit"] = float(round(current_item_data["bazaar_buy_price"] - current_item_data["bazaar_sell_price"], 1))
+    current_item_data["bazaar_percentage_profit"] = round(current_item_data["bazaar_profit"]/current_item_data["bazaar_buy_price"], 2)
     db[item] = current_item_data
   end = time.perf_counter()
   t = end-start
@@ -399,15 +399,7 @@ async def dynamic_database_updater():
   await hypixel.close()
   
 def deletion_time():
-  database = db
-  bazaarables = []
-  for item in database:
-    print(item)
-    if database[item]["bazaarable"]:
-      bazaarables.append(item)
-
-  with open("./constants/bazaarables.json", "w") as bazaarables_file:
-    json.dump(bazaarables, bazaarables_file, ensure_ascii=True, indent=2)
+  pass
       
            
 def catch(func, *args, handle=lambda e : e, **kwargs):
@@ -445,18 +437,51 @@ def bazaar_flipper():
   # initialising variables
 
   for item in bazaarables:
-    current_item_data = database[item]
-    final_products["item_name"][i] = current_item_data["name"]
-    final_products["buy_order_price"][i] = commaify(current_item_data["bazaar_buy_price"])
-    final_products["sell_order_price"][i] = commaify(current_item_data["bazaar_sell_price"])
-    final_products["product_margins"][i] = commaify(current_item_data["bazaar_profit"])
-    final_products["profit_percentage"][i] = commaify(current_item_data["bazaar_percentage_profit"])
-    i += 1
+    if database[item]["bazaar_profit"] > 0:
+      current_item_data = database[item]
+      final_products["item_name"][i] = current_item_data["name"]
+      final_products["buy_order_price"][i] = commaify(current_item_data["bazaar_buy_price"])
+      final_products["sell_order_price"][i] = commaify(current_item_data["bazaar_sell_price"])
+      final_products["product_margins"][i] = commaify(current_item_data["bazaar_profit"])
+      final_products["profit_percentage"][i] = str(current_item_data["bazaar_percentage_profit"]) + "%"
+      i += 1
   
   final_products = pd.DataFrame({"Item": final_products["item_name"], "Product Margin": final_products["product_margins"], "Profit %": final_products["profit_percentage"], "Buy Price": final_products["buy_order_price"], "Sell Price": final_products["sell_order_price"]})
   
   return final_products
 
+def craft_flipper():
+  final_flips = {}
+  final_flips["image"] = {}
+  final_flips["name"] = {}
+  final_flips["sell_price"] = {}
+  final_flips["craft_cost"] = {}
+  final_flips["requirements"] = {}
+  final_flips["profit"] = {}
+  final_flips["%profit"] = {}
+  i = 0
+  database = db
+  with open("./constants/craftables.json") as craftables:
+    craftables = json.load(craftables)
+
+  for item in craftables:
+    if database[item].get("craft_profit") != None or database[item]["craft_profit"] > 0:
+      current_item_data = database[item]
+      final_flips["image"][i] = f"<img src={current_item_data['link']}>"
+      final_flips["name"][i] = current_item_data["name"]
+      if current_item_data["bazaarable"]:
+        final_flips["sell_price"][i] = commaify(current_item_data["bazaar_sell_price"])
+      elif current_item_data["auctionable"]:
+        final_flips["sell_price"][i] = commaify(current_item_data["lowest_bin"])
+      else:
+        final_flips["sell_price"][i] = 0
+      final_flips["craft_cost"][i] = commaify(current_item_data["craft_cost"])
+      final_flips["requirements"][i] = current_item_data["craft_requirements"]
+      final_flips["profit"][i] = commaify(current_item_data["craft_profit"])
+      final_flips["%profit"][i] = commaify(current_item_data["craft_percentage_profit"])
+      final_flips["formatted_ingredients"][i] = current_item_data["recipe"]
+
+  return pd.DataFrame({"Image": final_flips["image"], "Name": final_flips["name"], "Profit": final_flips["profit"], "% Profit": final_flips["%profit"], "Requirements": final_flips["requirements"], "Recipe": final_flips["formatted_ingredients"]})
 
 def build_table(table_data, HTMLFILE):
   f = open(HTMLFILE, 'w+')  # opens the file
@@ -543,7 +568,7 @@ def forge_flipper():
   for item in forgables:
     current_item_data = database[item]
     final_flips["id"][i] = item
-    final_flips["image"][i] = f"<img src={current_item_data['image']}>"
+    final_flips["image"][i] = f"<img src={current_item_data['link']}>"
     final_flips["name"][i] = current_item_data["name"]
     if current_item_data["bazaarable"]:
       final_flips["sell_price"][i] = commaify(current_item_data["bazaar_sell_price"])
@@ -602,5 +627,5 @@ async def get_json(url, session):
 #---------------------------------------------------------------------------------------------------------
 
 # database_updater
-asyncio.run(dynamic_database_updater())
+# asyncio.run(dynamic_database_updater())
 # deletion_time()
