@@ -19,6 +19,9 @@ pprofile = "^2.1.0"
 line-profiler = "^3.5.1"
 pyinstrument = "^4.1.1"
 aiofiles = "^0.8.0"
+pytimeparse = "^1.1.8"
+uvicorn = "^0.17.6"
+fastapi = "^0.78.0"
 
 [tool.poetry.dev-dependencies]
 

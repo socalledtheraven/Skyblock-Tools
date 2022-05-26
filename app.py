@@ -1,28 +1,56 @@
-from flask import Flask, render_template
+from fastapi import FastAPI
 import main
+db = main.db
 
-app = Flask(__name__, template_folder="templates")
+app = FastAPI()
 
-#Repo.clone_from("https://github.com/Moulberry/NotEnoughUpdates-REPO.git", "./neu-repo/")
+@app.get("/api/items")
+async def items():
+  return db
+  
+@app.get("/api/item/{item}")
+async def item(item):
+  return db[item]
+  
+@app.get("/api/item/{item}/name")
+async def name(item):
+  return db[item]["name"]
 
-@app.route("/")
-def index():
-  return render_template("index.html")
+@app.get("/api/item/{item}/recipe")
+async def recipe(item):
+  if db[item]["craftable"] or db[item]["forgable"]:
+    return {**db[item]["recipe"], **db[item]["ingredients"]}
+  else:
+    return {**db[item]["craftable"], **db[item]["forgable"]}
+  
+@app.get("/api/item/{item}/lowest_bin")
+async def lowest_bin(item):
+  if db[item]["auctionable"]:
+    return {**db[item]["lowest_bin"], **db[item]["second_lowest_bin"]}
+  else:
+    return {**db[item]["auctionable"]}
 
-@app.route("/bazaar_flipper", methods=["GET", "POST"])
-def bazaar_flipper():
-  main.build_table(main.bazaar_flipper(), "./templates/bazaar_flipper_data.html")
-  return render_template("bazaarflipper.html")
+@app.get("/api/item/{item}/bazaar")
+async def bazaar(item):
+  if db[item]["bazaarable"]:
+    return {**db[item]["bazaar_buy_price"], **db[item]["bazaar_sell_price"], **db[item]["bazaar_profit"], **db[item]["bazaar_percentage_profit"]}
+  else:
+    return {**db[item]["bazaarable"]}
+    
+@app.get("/api/item/{item}/price")
+async def price(item):
+  if db[item]["bazaarable"]:
+    return {**db[item]["bazaar_buy_price"], **db[item]["bazaar_sell_price"], **db[item]["bazaar_profit"], **db[item]["bazaar_percentage_profit"]}
+  elif db[item]["auctionable"]:
+    return {**db[item]["lowest_bin"], **db[item]["second_lowest_bin"], **db[item]["lowest_auction"], **db[item]["second_lowest_auction"], **db[item]["lowest_zero_bid_auction"], **db[item]["lowest_zero_bid_ending_soon_auction"]}
+  elif db[item]["npc_salable"]:
+    return {**db[item]["npc_sell_price"]}
+  else:
+    return ["N/A"]
 
-@app.route("/craft_flipper", methods=["GET", "POST"])
-def craft_flipper():
-  main.build_table(main.craft_flipper(), "./templates/craft_flipper_data.html")
-  return render_template("craftflipper.html")
-
-@app.route("/forge_flipper", methods=["GET", "POST"])
-def forge_flipper():
-  main.build_table(main.forge_flipper(), "./templates/forge_flipper_data.html")
-  return render_template("forgeflipper.html")
-
-if __name__ == "__main__":
-  app.run(host='0.0.0.0', debug=True, port=8080)
+@app.get("/api/item/{item}/forge")
+async def forge(item):
+  if db[item]["forgable"]:
+    return {**db[item]["forge_cost"], **db[item]["forge_profit"], **db[item]["duration"], **db[item]["forge_profit_per_hour"], **db[item]["forge_percentage_profit"], **db[item]["recipe"], **db[item]["ingredients"]}
+  else:
+    return {**db[item]["forgable"]}
