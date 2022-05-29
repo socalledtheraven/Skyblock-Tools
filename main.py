@@ -775,14 +775,14 @@ async def get_json(url, session):
 #                                           SUBPROGRAMS
 #---------------------------------------------------------------------------------------------------------
 
-p = Profiler()
-p.start()
+# p = Profiler()
+# p.start()
 # asyncio.run(static_database_updater())
-asyncio.run(dynamic_database_updater())
+# asyncio.run(dynamic_database_updater())
 # asyncio.run(deletion_time())
-craft_flipper()
-p.stop()
-p.print()
+# craft_flipper()
+# p.stop()
+# p.print()
 
 '''TODO:
 better reqs testing

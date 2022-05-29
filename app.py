@@ -1,8 +1,13 @@
 from fastapi import FastAPI
-import main
+from typing import Optional
+from pydantic import BaseModel
+import main, uvicorn
 db = main.db
 
 app = FastAPI()
+
+class Item(BaseModel):
+  name: str
 
 @app.get("/api/items")
 async def items():
@@ -54,3 +59,6 @@ async def forge(item):
     return {**db[item]["forge_cost"], **db[item]["forge_profit"], **db[item]["duration"], **db[item]["forge_profit_per_hour"], **db[item]["forge_percentage_profit"], **db[item]["recipe"], **db[item]["ingredients"]}
   else:
     return {**db[item]["forgable"]}
+
+if __name__ == "__main__":
+  uvicorn.run(app, host='0.0.0.0', debug=True, port=8080)
