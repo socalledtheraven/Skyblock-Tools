@@ -1,5 +1,5 @@
 # SETUP
-import json, os, re, time, asyncio, asyncpixel, aiohttp, logging, git, datetime, pytimeparse
+import json, os, re, asyncio, asyncpixel, aiohttp, logging, git, datetime, pytimeparse
 from pyinstrument import Profiler
 import pandas as pd
 
@@ -52,16 +52,22 @@ async def static_database_updater():
     current_item_data["id"] = current_item_name
     current_item_data["image_link"] = f"https://sky.shiiyu.moe/item/{current_item_name}" 
     # note - update this with local assets at some point 
-    current_item_data["stats"] = current_item["stats"]
+    if "stats" in current_item:
+      current_item_data["stats"] = current_item["stats"]
+      
     if "npc_sell_price" in current_item:
       current_item_data["npc_salable"] = True
       current_item_data["npc_sell_price"] = current_item["npc_sell_price"]
+    else:
+      current_item_data["npc_salable"] = False
     
     if "requirements" in current_item:
       current_item_data["use_requirements"] = current_item["requirements"]
       current_item_data["pretty_use_requirements"] = ""
-      for x in current_item["requirements"]:
-        current_item_data["pretty_use_requirements"] += x["type"].title() + " " + x["level"]
+      if "slayer" in current_item["requirements"]:
+        current_item_data["pretty_use_requirements"] += f'{current_item["requirements"]["slayer"]["slayer_boss_type"].title()} {current_item["requirements"]["slayer"]["level"]}'
+      elif "skill" in current_item["requirements"]:
+        current_item_data["pretty_use_requirements"] += f'{current_item["requirements"]["skill"]["type"].title()} {current_item["requirements"]["skill"]["level"]}'
     
     # simple easy declarations
     if current_item_name in bazaar_products:
@@ -130,10 +136,10 @@ async def static_database_updater():
     if "slayer_req" in item_file:
       # special case for slayers - crafting and use requirements are always the same
       current_item_data["pretty_use_requirements"] = f"{item_file['slayer_req'][:-1].replace('_', '').title()} {item_file['slayer_req'][-1]}"
-      current_item_data["pretty_craft_requirements"] = current_item_data["use_requirements"]
+      current_item_data["pretty_craft_requirements"] = current_item_data["pretty_use_requirements"]
     elif "crafttext" in item_file:
       # add the normal craft requirements
-      current_item_data["craft_requirements"] = item_file["crafttext"]
+      current_item_data["pretty_craft_requirements"] = item_file["crafttext"]
 
     # crafting
     if "recipe" in item_file:
@@ -310,7 +316,7 @@ async def static_database_updater():
           else:
             current_item_data["recipe"] += f"{item_count}x {id_to_name(item)} (costing {item_cost})"
             
-        elif db[item]["npc_salable"]:
+        elif db[item].get("npc_salable"):
           item_count = splits[item]
           item_cost = db[item]["npc_sell_price"] * item_count
           current_item_data["ingredients"][item] = {"count": item_count, "cost": item_cost}
@@ -777,7 +783,7 @@ async def get_json(url, session):
 
 # p = Profiler()
 # p.start()
-# asyncio.run(static_database_updater())
+asyncio.run(static_database_updater())
 # asyncio.run(dynamic_database_updater())
 # asyncio.run(deletion_time())
 # craft_flipper()
