@@ -9,7 +9,6 @@ logging.basicConfig(filename='latest.log', filemode='w+', format='%(asctime)s: [
  
 with open("./database.json", "r+") as database:
   db = json.load(database) #database setup - always needs to run
-  start_db = db
 
 repo = git.Repo("./neu-repo")
 repo.remotes.origin.pull()
@@ -18,7 +17,7 @@ logging.info("NEU update")
 
 # ALL SUBROUTINES
 
-async def static_database_updater():
+async def static_database_updater(db):
   async with aiohttp.ClientSession() as session:
     items = await get_json("https://api.hypixel.net/resources/skyblock/items", session) # gets the items from the resources endpoint via aiohttp
   items = sorted(items["items"], key=lambda d: d["id"])
@@ -50,7 +49,8 @@ async def static_database_updater():
     file = "./neu-repo/items/" + current_item_name + ".json"
     current_item_data["name"] = remove_formatting(current_item["name"])
     current_item_data["id"] = current_item_name
-    current_item_data["image_link"] = f"https://sky.shiiyu.moe/item/{current_item_name}" 
+    current_item_data["image_link"] = f"https://sky.shiiyu.moe/item/{current_item_name}"
+    current_item_data["image_file"] = f"./assets/{current_item_name}.png"
     # note - update this with local assets at some point 
     if "stats" in current_item:
       current_item_data["stats"] = current_item["stats"]
@@ -87,12 +87,14 @@ async def static_database_updater():
       bins = list(filter(lambda d: d.bin == True, auctions))
       bin_data = sorted(list(filter(lambda d: d.item_name == current_item_name, bins)), key=lambda d: d.starting_bid)[:2] # lowest two bins
       auction_data = sorted(list(filter(lambda d: d.item_name == current_item_name, auctions)), key=lambda d: d.starting_bid) # lowest auctions
-      zero_bid_auction_data = list(filter(lambda d: d.bids == [], auction_data)) # lowest 0 bid auctions
-      ending_soon_zero_bid_auction_data = sorted(zero_bid_auction_data, key=lambda d: d.end) # ending soon 0 bid auction
       
       if auction_data != [] or bin_data != []:
         current_item_data["auctionable"] = True
-        # gets bin values
+        
+        zero_bid_auction_data = list(filter(lambda d: d.bids == [], auction_data)) # lowest 0 bid auctions
+        ending_soon_zero_bid_auction_data = sorted(zero_bid_auction_data, key=lambda d: d.end) # ending soon 0 bid auction
+        
+          # gets bin values
         if len(bin_data) > 1:
           current_item_data["lowest_bin"] = bin_data[0].starting_bid
           current_item_data["second_lowest_bin"] = bin_data[1].starting_bid
@@ -104,7 +106,7 @@ async def static_database_updater():
           # case for if it's unbinnable
           current_item_data["lowest_bin"] = 0
           current_item_data["second_lowest_bin"] = 0
-
+  
         if len(auction_data) == 1:
           # adds standard auctions
           current_item_data["lowest_auction"] = auction_data[0].starting_bid
@@ -178,8 +180,12 @@ async def static_database_updater():
         # better ingredients and recipe formatting
         try:
           item = item.replace("-", ":")
-          if isBazaarable(item):
-            item_cost = get_bazaar_price(item,"Buy Price")*ingredients[item]
+          bins = list(filter(lambda d: d.bin == True, auctions))
+          bin_data = sorted(list(filter(lambda d: d.item_name == item, bins)), key=lambda d: d.starting_bid)[:2]
+          api_item = list(filter(lambda d: d["id"] == item, items))
+          if item in bazaar_products:
+            ingredient_bz_data = bazaar_data[bazaar_products.index(item)].quick_status
+            item_cost = round(ingredient_bz_data.buy_price*ingredients[item], 1)
             current_item_data["ingredients"][item] = {"count": ingredients[item], "cost": item_cost}
             current_item_data["craft_cost"] += item_cost
             
@@ -187,9 +193,9 @@ async def static_database_updater():
               current_item_data["recipe"] += f"{ingredients[item]}x {id_to_name(item)} (costing {item_cost}), "
             else:
               current_item_data["recipe"] += f"{ingredients[item]}x {id_to_name(item)} (costing {item_cost})"
-              
-          elif isAuctionable(item):
-            item_cost = get_lowest_bin(item, ingredients[item])
+          
+          elif len(bin_data) > 0:
+            item_cost = bin_data[0]["starting_bid"]*ingredients[item]
             current_item_data["ingredients"][item] = {"count": ingredients[item], "cost": item_cost}
             if item_cost != "N/A":
               current_item_data["craft_cost"] += item_cost
@@ -199,7 +205,7 @@ async def static_database_updater():
             else:
               current_item_data["recipe"] += f"{ingredients[item]}x {id_to_name(item)} (costing {item_cost})"
           
-          elif db[item]["npc_salable"]:
+          elif "npc_sell_price" in api_item:
             item_cost = db[item]["npc_sell_price"] * ingredients[item]
             current_item_data["ingredients"][item] = {"count": ingredients[item], "cost": item_cost}
             if item_cost != "N/A":
@@ -278,6 +284,9 @@ async def static_database_updater():
       # iterates through the ingredients and actually properly formats them and the recipe
       for item in list(splits.keys()):
         print(item)
+        bins = list(filter(lambda d: d.bin == True, auctions))
+        bin_data = sorted(list(filter(lambda d: d.item_name == item, bins)), key=lambda d: d.starting_bid)[:2]
+        api_item = list(filter(lambda d: d["id"] == item, items))
         if item == "50,000 Coins":
           current_item_data["forge_cost"] += 50000
           current_item_data["ingredients"]["50,000 Coins"] = {"count": 50000, "cost": 50000}
@@ -294,9 +303,9 @@ async def static_database_updater():
           current_item_data["recipe"] += item
         # deals with edge cases for forging recipes involving money
           
-        elif isAuctionable(item):
+        elif len(bin_data) > 0:
           item_count = splits[item]
-          item_cost = get_lowest_bin(item, item_count)
+          item_cost = bin_data[0]["starting_bid"]*item_count
           current_item_data["ingredients"][item] = {"count": item_count, "cost": item_cost}
           current_item_data["forge_cost"] += item_cost
           
@@ -305,9 +314,10 @@ async def static_database_updater():
           else:
             current_item_data["recipe"] += f"{item_count}x {id_to_name(item)} (costing {item_cost})"
             
-        elif isBazaarable(item):
+        elif item in bazaar_products:
           item_count = splits[item]
-          item_cost = round((get_bazaar_price(item, "Buy Price") * item_count), 1)
+          ingredient_bz_data = bazaar_data[bazaar_products.index(item)].quick_status
+          item_cost = round(ingredient_bz_data.buy_price*splits[item], 1)
           current_item_data["ingredients"][item] = {"count": item_count, "cost": item_cost}
           current_item_data["forge_cost"] += item_cost
           
@@ -316,9 +326,9 @@ async def static_database_updater():
           else:
             current_item_data["recipe"] += f"{item_count}x {id_to_name(item)} (costing {item_cost})"
             
-        elif db[item].get("npc_salable"):
+        elif "npc_sell_price" in api_item:
           item_count = splits[item]
-          item_cost = db[item]["npc_sell_price"] * item_count
+          item_cost = api_item["npc_sell_price"] * item_count
           current_item_data["ingredients"][item] = {"count": item_count, "cost": item_cost}
           current_item_data["forge_cost"] += item_cost
           
@@ -369,15 +379,16 @@ async def static_database_updater():
       
     else:
       current_item_data["forgable"] = False
-    
+
     db[current_item_name] = current_item_data # adds the new data to the database
 
   await hypixel.close()
   with open("./database.json", "w+") as database:
     json.dump(db, database, indent=2) # DO NOT COMMENT OUT! UPDATES DATABASE
   print("database done")
+  return db
 
-async def dynamic_database_updater():
+async def dynamic_database_updater(db):
   hypixel = asyncpixel.Hypixel(apiKey) 
   bazaar_data = await hypixel.bazaar()
   bazaar_data = bazaar_data.bazaar_items
@@ -391,12 +402,12 @@ async def dynamic_database_updater():
     auction_data.extend(page) #runs through all the auction pages to add all the auctions together
 
   auctions = auction_data # redeclares for clarity's sake
-  print("setup finished")
+  print("database in progress")
 
   for item in db: # runs through every item in the game
     # variable defining sections
     current_item_name = item
-    print(current_item_name) # debug purposes
+    print(item)
     current_item_data = db[item]
     file = "./neu-repo/items/" + current_item_name + ".json" # note - update this with local assets at some point 
     
@@ -455,30 +466,38 @@ async def dynamic_database_updater():
       current_item_data["recipe"] = ""
       for item in current_item_data["ingredients"]:
         # better ingredients and recipe formatting
-        item_cost = current_item_data["ingredients"][item]["cost"]
         item_count = current_item_data["ingredients"][item]["count"]
-        if item_cost != "N/A":
-          current_item_data["craft_cost"] += item_cost
-          
         try:
           item = item.replace("-", ":")
           if isBazaarable(item):
+            item_cost = get_bazaar_price(item, "Buy Price") * item_count
+            current_item_data["ingredients"][item]["cost"] = item_cost
             if len(current_item_data["ingredients"]) > 1 and item != list(current_item_data["ingredients"].keys())[-1]: # checks if I should put a comma or not
               current_item_data["recipe"] += f"{item_count}x {id_to_name(item)} (costing {item_cost}), "
             else:
               current_item_data["recipe"] += f"{item_count}x {id_to_name(item)} (costing {item_cost})"
               
           elif isAuctionable(item):
+            item_cost = get_bazaar_price(item, item_count)
+            current_item_data["ingredients"][item]["cost"] = item_cost
             if len(current_item_data["ingredients"]) > 1 and item != list(current_item_data["ingredients"].keys())[-1]: # checks if I should put a comma or not
               current_item_data["recipe"] += f"{item_count}x {id_to_name(item)} (costing {item_cost}), "
             else:
               current_item_data["recipe"] += f"{item_count}x {id_to_name(item)} (costing {item_cost})"
           
-          else:
+          elif db[item]["npc_salable"]:
+            item_cost = db[item]["npc_sell_price"] * item_count
+            current_item_data["ingredients"][item]["cost"] = item_cost
+            
             if len(current_item_data["ingredients"]) > 1 and item != list(current_item_data["ingredients"].keys())[-1]: # checks if I should put a comma or not
               current_item_data["recipe"] += f"{item_count}x {id_to_name(item)} (costing {item_cost}), "
             else:
               current_item_data["recipe"] += f"{item_count}x {id_to_name(item)} (costing {item_cost})"
+          else:
+            if len(current_item_data["ingredients"]) > 1 and item != list(current_item_data["ingredients"].keys())[-1]: # checks if I should put a comma or not
+              current_item_data["recipe"] += f"{item_count}x {id_to_name(item)}, "
+            else:
+              current_item_data["recipe"] += f"{item_count}x {id_to_name(item)}"
               
         except KeyError:
           logging.error(f"{item} isn't in the database yet")
@@ -519,27 +538,30 @@ async def dynamic_database_updater():
           # deals with edge cases for forging recipes involving money
             
           elif isAuctionable(item):
-            current_item_data["forge_cost"] += item["cost"]
+            current_item_data["forge_cost"] += current_item_data["ingredients"][item]["cost"]
             if len(current_item_data["ingredients"]) > 1 and item != list(current_item_data["ingredients"].keys())[-1]:
-              current_item_data["recipe"] += f"{item['count']}x {id_to_name(item)} (costing {item['cost']}), "
+              current_item_data["recipe"] += f"{current_item_data['ingredients'][item]['count']}x {id_to_name(item)} (costing {current_item_data['ingredients'][item]['cost']}), "
             else:
-              current_item_data["recipe"] += f"{item['count']}x {id_to_name(item)} (costing {item['cost']})"
+              current_item_data["recipe"] += f"{current_item_data['ingredients'][item]['count']}x {id_to_name(item)} (costing {current_item_data['ingredients'][item]['cost']})"
               
           elif isBazaarable(item):
-            current_item_data["forge_cost"] += item["cost"]
+            current_item_data["forge_cost"] += current_item_data['ingredients'][item]["cost"]
             if len(current_item_data["ingredients"]) > 1 and item != list(current_item_data["ingredients"].keys())[-1]:
-              current_item_data["recipe"] += f"{item['count']}x {id_to_name(item)} (costing {item['cost']}), "
+              current_item_data["recipe"] += f"{current_item_data['ingredients'][item]['count']}x {id_to_name(item)} (costing {current_item_data['ingredients'][item]['cost']}), "
             else:
-              current_item_data["recipe"] += f"{item['count']}x {id_to_name(item)} (costing {item['cost']})"
+              current_item_data["recipe"] += f"{current_item_data['ingredients'][item]['count']}x {id_to_name(item)} (costing {current_item_data['ingredients'][item]['cost']})"
               
         except Exception as e:
           logging.exception(e)
 
     db[current_item_name] = current_item_data # adds the new data to the database
-    
+  
+  await hypixel.close()
+  db = sorted(db)
   with open("./database.json", "w+") as database:
     json.dump(db, database, indent=2) # DO NOT COMMENT OUT! UPDATES DATABASE
   print("database done")
+  return db
 
 async def deletion_time():
   for item in db:
@@ -738,7 +760,7 @@ def name_to_id(itemname):
     itemname = itemname.replace("Model", "").replace("  ", " ") # fixes inconsistencies because the hypixel devs hate me personally
   elif itemname == "Sapphire Crystal":
     return "SAPPHIRE_CRYSTAL" # the devs made a fucking SPELLING MISTAKE IN THE API 
-    
+  
   try:
     for item in db:
       if itemname == db[item]["name"]:
@@ -747,7 +769,7 @@ def name_to_id(itemname):
     
   except KeyError as e:
     logging.exception(e)
-    return "AMMONITE;4"
+    return itemname
     
   except ValueError as e:
     logging.exception(e)
@@ -759,12 +781,15 @@ def id_to_name(itemname):
     return db[itemname]["name"]
   except Exception as e:
     logging.error(e)
-    return "failed :("
+    return itemname
 
 def remove_formatting(string):
   formatting_codes = ["§4", "§c", "§6", "§e", "§2", "§a", "§b", "§3", "§1", "§9", "§d", "§5", "§f", "§7", "§8", "§0", "§k", "§l", "§m", "§n", "§o", "§r"]  # sets up formatting codes so I can ignore them
-  for i in range(len(formatting_codes)):
-    string = string.replace("{}".format(formatting_codes[i]), "")  # as above
+  REFORGES = [" ✦", "⚚ ", " ✪", "✪", "Stiff ", "Lucky ", "Jerry's ", "Dirty ", "Fabled ", "Suspicious ", "Gilded ", "Warped ", "Withered ", "Bulky ", "Stellar ", "Heated ", "Ambered ", "Fruitful ", "Magnetic ", "Fleet ", "Mithraic ", "Auspicious ", "Refined ", "Headstrong ", "Precise ", "Spiritual ", "Moil ", "Blessed ", "Toil ", "Bountiful ", "Candied ", "Submerged ", "Reinforced ", "Cubic ", "Warped ", "Undead ", "Ridiculous ", "Necrotic ", "Spiked ", "Jaded ", "Loving ", "Perfect ", "Renowned ", "Giant ", "Empowered ", "Ancient ", "Sweet ", "Silky ", "Bloody ", "Shaded ", "Gentle ", "Odd ", "Fast ", "Fair ", "Epic ", "Sharp ", "Heroic ", "Spicy ", "Legendary ", "Deadly ", "Fine ", "Grand ", "Hasty ", "Neat ", "Rapid ", "Unreal ", "Awkward ", "Rich ", "Clean ", "Fierce ", "Heavy ", "Light ", "Mythic ", "Pure ", "Smart ", "Titanic ", "Wise ", "Bizarre ", "Itchy ", "Ominous ", "Pleasant ", "Pretty ", "Shiny ", "Simple ", "Strange ", "Vivid ", "Godly ", "Demonic ", "Forceful ", "Hurtful ", "Keen ", "Strong ", "Superior ", "Unpleasant ", "Zealous "]
+  for code in formatting_codes:
+    string = string.replace(code, "")  # as above
+  for reforge in REFORGES:
+    string = string.replace(reforge, "")
 
   string = "".join(c for c in string if ord(c)<128)
   return string
@@ -772,21 +797,38 @@ def remove_formatting(string):
 def commaify(num):
   return "{:,}".format(num)
 
+async def get_auctions():
+  async with aiohttp.ClientSession() as session:
+    auctions = await get_json("https://api.hypixel.net/skyblock/auctions", session)
+  total_pages = auctions["totalPages"]  
+  auction_data = []
+  async with aiohttp.ClientSession() as session:
+    for i in range(total_pages):
+      auctions = await get_json(f"https://api.hypixel.net/skyblock/auctions?page={i}", session)
+      auction_data.extend(auctions["auctions"]) #runs through all the auction pages to add all the auctions together
+
+  return auction_data
+
 async def get_json(url, session):
   async with session.get(url) as resp:
     return await resp.json(content_type=None)
 
+def chunks(lst, n):
+  """Yield successive n-sized chunks from lst."""
+  for i in range(0, len(lst), n):
+    yield lst[i:i + n]
     
 #---------------------------------------------------------------------------------------------------------
 #                                           SUBPROGRAMS
 #---------------------------------------------------------------------------------------------------------
 
-# p = Profiler()
+# p = Profiler()
 # p.start()
-asyncio.run(static_database_updater())
+# asyncio.run(static_database_updater(db))
 # asyncio.run(dynamic_database_updater())
 # asyncio.run(deletion_time())
 # craft_flipper()
+# asyncio.run(get_auctions())
 # p.stop()
 # p.print()
 
