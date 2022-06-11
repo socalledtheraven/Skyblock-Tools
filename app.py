@@ -1,14 +1,16 @@
 from fastapi import FastAPI
 from fastapi.responses import RedirectResponse
 from fastapi_utils.tasks import repeat_every
-from typing import Optional
-from pydantic import BaseModel
+from typing import Optional, Dict, List, Any
+from pydantic import BaseModel, HttpUrl, create_model
 from pyinstrument import Profiler
-import main, uvicorn, asyncio, json, uuid, datetime, logging
-mylist = []
-with open("database.json", "r") as database:
-  db = json.load(database)
-  temp_db = db
+import main
+import uvicorn
+import asyncio
+import json
+import uuid
+import datetime
+import logging
   
 description = """
 The Skyblock Tools api tries to put all information a hypixel dev using the api would need at their fingertips
@@ -52,76 +54,80 @@ app = FastAPI(
   },
 )
 
-class Items(BaseModel):
-  item: dict
-
 class Item(BaseModel):
-  recipe: Optional[str] = None
-  craft_cost: Optional[float] = None
-  ingredients: Optional[dict] = None
-  name: Optional[str] = None
-  id: Optional[str] = None
-  image_link: Optional[str] = None
-  npc_salable: Optional[bool] = None
-  bazaarable: Optional[bool] = None
-  auctionable: Optional[bool] = None
-  pretty_craft_requirements: Optional[str] = None
-  craftable: Optional[bool] = None
-  lore: Optional[list] = None
-  deformatted_lore: Optional[str] = None
-  forgable: Optional[bool] = None
-  npc_sell_price: Optional[float] = None
-  bazaar_buy_price: Optional[float] = None
-  bazaar_sell_price: Optional[float] = None
-  bazaar_profit: Optional[float] = None
-  bazaar_percentage_profit: Optional[float] = None
-  craft_profit: Optional[float] = None
-  craft_percentage_profit: Optional[float] = None
-  pretty_use_requirements: Optional[str] = None
-  pretty_duration: Optional[str] = None
-  duration: Optional[int] = None
-  forge_cost: Optional[float] = None
-  forge_profit: Optional[float] = None
-  forge_percentage_profit: Optional[float] = None
-  forge_profit_per_hour: Optional[float] = None
-  
+  recipe: Optional[str] = ""
+  craft_cost: Optional[float] = 0
+  ingredients: Optional[dict] = {}
+  name: Optional[str] = ""
+  id: Optional[str] = ""
+  image_link: Optional[HttpUrl] = None
+  npc_salable: Optional[bool] = False
+  bazaarable: Optional[bool] = False
+  auctionable: Optional[bool] = False
+  pretty_craft_requirements: Optional[str] = ""
+  craftable: Optional[bool] = False
+  lore: Optional[list] = []
+  deformatted_lore: Optional[str] = ""
+  forgable: Optional[bool] = False
+  npc_sell_price: Optional[float] = 0
+  bazaar_buy_price: Optional[float] = 0
+  bazaar_sell_price: Optional[float] = 0
+  bazaar_profit: Optional[float] = 0
+  bazaar_percentage_profit: Optional[float] = 0
+  craft_profit: Optional[float] = 0
+  craft_percentage_profit: Optional[float] = 0
+  pretty_use_requirements: Optional[str] = ""
+  pretty_duration: Optional[str] = ""
+  duration: Optional[int] = 0
+  forge_cost: Optional[float] = 0
+  forge_profit: Optional[float] = 0
+  forge_percentage_profit: Optional[float] = 0
+  forge_profit_per_hour: Optional[float] = 0
+  lowest_bin: Optional[float] = 0
+  second_lowest_bin: Optional[float] = 0
+  lowest_auction: Optional[float] = 0
+  second_lowest_auction: Optional[float] = 0
+  lowest_zero_bid_auction: Optional[float] = 0
+  lowest_zero_bid_ending_soon_auction: Optional[float] = 0
+
+class Items(BaseModel):
+  __root__: Dict[str, Item]
+
+class Name(BaseModel):
+  id: str
+  name: str
+
 class Recipe(BaseModel):
-  recipe: str
-  ingredients: dict
+  recipe: Optional[str] = ""
+  ingredients: Optional[dict] = {}
 
 class Bins(BaseModel):
-  lowest: float
-  second_lowest: float
+  lowest: Optional[float] = 0
+  second_lowest: Optional[float] = 0
 
 class BazaarItem(BaseModel):
-  buy: float
-  sell: float
-  profit: float
-  percentage_profit: float
+  buy: Optional[float] = 0
+  sell: Optional[float] = 0
+  profit: Optional[float] = 0
+  percentage_profit: Optional[float] = 0
 
 class Price(BaseModel):
-  buy: Optional[float] = None
-  sell: Optional[float] = None
-  profit: Optional[float] = None
-  percentage_profit: Optional[float] = None
-  lowest_bin: Optional[float] = None
-  second_lowest_bin: Optional[float] = None
-  lowest_auction: Optional[float] = None
-  second_lowest_auction: Optional[float] = None
-  lowest_zero_bid_auction: Optional[float] = None
-  lowest_zero_bid_ending_soon_auction: Optional[float] = None
+  buy: Optional[float] = 0 
+  sell: Optional[float] = 0
+  profit: Optional[float] = 0
+  percentage_profit: Optional[float] = 0
 
 class ForgeItem(BaseModel):
-  cost: float
-  profit: float
-  duration: int
-  pretty_duration: str
-  profit_per_hour: float
-  percentage_profit: float
-  recipe: str
-  ingredients: dict
-
-class Auction:
+  cost: Optional[float] = 0
+  profit: Optional[float] = 0 
+  duration: Optional[int] = 0
+  pretty_duration: Optional[str] = ""
+  profit_per_hour: Optional[float] = 0
+  percentage_profit: Optional[float] = 0
+  recipe: Optional[str] = ""
+  ingredients: Optional[dict] = {}
+  
+class Auction(BaseModel):
   uuid: uuid.UUID
   auctioneer: uuid.UUID
   profile_id: uuid.UUID
@@ -143,88 +149,91 @@ class Auction:
   bids: list
   item_uuid: uuid.UUID
 
+class Auctions(BaseModel):
+  auctions: List[Auction]
+
 @app.get("/", include_in_schema=False)
 async def home():
   return RedirectResponse("/docs")
   
-@app.get("/api/items/", tags=["items"])
-async def items():
+@app.get("/api/items/", tags=["items"], response_model=Items)
+async def items() -> Items:
   return db
   
-@app.get("/api/item/{item}/", tags=["items"])
-async def item(item: str):
+@app.get("/api/item/{item}/", tags=["items"], response_model=Item)
+async def item(item: str) -> Item:
   return db[item]
   
-@app.get("/api/item/{item}/name/", tags=["items"])
-async def name(item: str):
-  return db[item]["name"]
+@app.get("/api/item/{item}/name/", tags=["items"], response_model=Name)
+async def name(item: str) -> Name:
+  return Name(id=item, name=db[item]["name"])
 
-@app.get("/api/item/{item}/recipe/", tags=["items"])
-async def recipe(item: str):
+@app.get("/api/item/{item}/recipe/", tags=["items"], response_model=Recipe)
+async def recipe(item: str) -> Recipe:
   if db[item]["craftable"] or db[item]["forgable"]:
-    return {"recipe": db[item]["recipe"], "ingredients": db[item]["ingredients"]}
+    return Recipe(recipe=db[item]["recipe"], ingredients=db[item]["ingredients"])
   else:
-    return {"craftable": db[item]["craftable"], "forgable": db[item]["forgable"]}
+    return {"craftable": False, "forgable": False}
   
-@app.get("/api/item/{item}/lowest_bin/", tags=["items"])
-async def lowest_bin(item: str):
-  if db[item]["auctionable"]:
-    return {"lowest": db[item]["lowest_bin"], "second_lowest": db[item]["second_lowest_bin"]}
+@app.get("/api/item/{item}/lowest_bin/", tags=["items"], response_model=Bins)
+async def lowest_bin(item: str) -> Bins:
+  if db[item].get("auctionable") == True:
+    return Bins(lowest=db[item]["lowest_bin"], second_lowest=db[item]["second_lowest_bin"])
   else:
-    return {"auctionable": db[item]["auctionable"]}
+    return {"auctionable": False}
     
-@app.get("/api/item/{item}/auctions/", tags=["items"])
+@app.get("/api/item/{item}/auctions/", tags=["items"], response_model=Auctions)
 async def item_auctions(item: str):
   auctions = await main.get_auctions()
-  auctions = [d for d in auctions if main.remove_formatting(main.name_to_id(d["item_name"])) == item]
+  auctions = [d for d in auctions if d["id"] == item]
   return auctions
 
-@app.get("/api/item/{item}/bazaar/", tags=["items"])
+@app.get("/api/item/{item}/bazaar/", tags=["items"], response_model=BazaarItem)
 async def bazaar(item: str):
-  if db[item]["bazaarable"]:
-    return {"buy": db[item]["bazaar_buy_price"], "sell": db[item]["bazaar_sell_price"], "profit": db[item]["bazaar_profit"], "%profit": db[item]["bazaar_percentage_profit"]}
+  if db[item].get("bazaarable") == True:
+    return BazaarItem(buy=db[item]["bazaar_buy_price"], sell=db[item]["bazaar_sell_price"], profit=db[item]["bazaar_profit"], percentage_profit=db[item]["bazaar_percentage_profit"])
   else:
-    return {"bazaarable": db[item]["bazaarable"]}
+    return {"bazaarable": False}
   
-@app.get("/api/item/{item}/price/", tags=["items"])
+@app.get("/api/item/{item}/price/", tags=["items"], response_model=Price)
 async def price(item: str):
-  if db[item]["bazaarable"]:
-    return {"buy": db[item]["bazaar_buy_price"], "sell": db[item]["bazaar_sell_price"], "profit": db[item]["bazaar_profit"], "%profit": db[item]["bazaar_percentage_profit"]}
-  elif db[item]["auctionable"]:
-    return {"lowest_bin": db[item]["lowest_bin"], "second_lowest_bin": db[item]["second_lowest_bin"], "lowest_auction": db[item]["lowest_auction"], "second_lowest_auction": db[item]["second_lowest_auction"], "lowest_zero_bid_auction": db[item]["lowest_zero_bid_auction"], "lowest_zero_bid_ending_soon_auction": db[item]["lowest_zero_bid_ending_soon_auction"]}
-  elif db[item]["npc_salable"]:
-    return {"sell": db[item]["npc_sell_price"]}
+  if db[item].get("bazaarable") == True:
+    return Price(buy=db[item]["bazaar_buy_price"], sell=db[item]["bazaar_sell_price"], profit=db[item]["bazaar_profit"], percentage_profit=db[item]["bazaar_percentage_profit"])
+  elif db[item].get("auctionable") == True:
+    return Price(buy=db[item]["lowest_bin"], sell=db[item]["second_lowest_bin"], profit=db[item]["bin_flip_profit"], percentage_profit=db[item]["bin_flip_percentage_profit"])
+  elif db[item].get("npc_salable") == True:
+    return Price(sell=db[item]["npc_sell_price"])
   else:
-    return {"value": "N/A"}
+    return {"unsellable": True}
 
-@app.get("/api/item/{item}/forge/", tags=["items"])
+@app.get("/api/item/{item}/forge/", tags=["items"], response_model=ForgeItem)
 async def forge(item: str):
-  if db[item]["forgable"]:
-    return {"cost": db[item]["forge_cost"], "profit": db[item]["forge_profit"], "duration": db[item]["duration"], "pretty_duration": db[item]["pretty_duration"], "profit_per_hour": db[item]["forge_profit_per_hour"], "%profit": db[item]["forge_percentage_profit"], "recipe": db[item]["recipe"], "ingredients": db[item]["ingredients"]}
+  if db[item].get("forgable") == True:
+    return ForgeItem(cost=db[item]["forge_cost"], profit=db[item]["forge_profit"], duration=db[item]["duration"], pretty_duration=db[item]["pretty_duration"], profit_per_hour=db[item]["forge_profit_per_hour"], percentage_profit=db[item]["forge_percentage_profit"], recipe=db[item]["recipe"], ingredients=db[item]["ingredients"])
   else:
-    return {"forgable": db[item]["forgable"]}
+    return {"forgable": False}
 
-@app.get("/api/bazaarables/", tags=["constants"])
+@app.get("/api/bazaarables/", tags=["constants"], response_model=list)
 async def bazaarables():
   bazaarables = [item for item in db if db[item]["bazaarable"]]
   return bazaarables
   
-@app.get("/api/auctionables/", tags=["constants"])
+@app.get("/api/auctionables/", tags=["constants"], response_model=list)
 async def auctionables():
   auctionables = [item for item in db if db[item]["auctionable"]]
   return auctionables
   
-@app.get("/api/craftables/", tags=["constants"])
+@app.get("/api/craftables/", tags=["constants"], response_model=list)
 async def craftables():
   craftables = [item for item in db if db[item]["craftable"]]
   return craftables
 
-@app.get("/api/forgables/", tags=["constants"])
+@app.get("/api/forgables/", tags=["constants"], response_model=list)
 async def forgables():
   forgables = [item for item in db if db[item]["forgable"]]
   return forgables
 
-@app.get("/api/auctions", tags=["simplified"])
+@app.get("/api/auctions", tags=["simplified"], response_model=Auctions)
 async def auctions(page: int = 0):
   auctions = await main.get_auctions()
   auctions = list(main.chunks(auctions, 5000))
@@ -234,13 +243,17 @@ async def auctions(page: int = 0):
 @repeat_every(seconds=30, logger=logging.Logger)
 async def dynamic_database_updater_task():
   print("dynamic")
-  db = await main.dynamic_database_updater(temp_db)
+  db = await main.dynamic_database_updater(temp_db, main.names)
 
 @app.on_event("startup")
 @repeat_every(seconds=60*10, wait_first=True, logger=logging.Logger)
 async def static_database_updater_task():
   print("static")
-  db = await main.static_database_updater(temp_db)
+  db = await main.static_database_updater(temp_db, main.names)
 
 if __name__ == "__main__":
-  uvicorn.run(app, host='0.0.0.0', debug=True, port=8080)
+  uvicorn.run(app, host='0.0.0.0', port=8080)
+
+with open("database.json", "r") as database:
+  db = json.load(database)
+  temp_db = db

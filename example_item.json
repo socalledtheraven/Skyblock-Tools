@@ -1,42 +1,44 @@
-"TERMINATOR": {
-  "name": "Terminator",
-  "id": "TERMINATOR",
-  "image_link": "https://sky.shiiyu.moe/item/TERMINATOR",
-  "bazaar_buy_price": "N/A",
-  "bazaar_sell_price": "N/A",
-  "lowest_bin": 0,
-  "second_lowest_bin": 0,
-  "lowest_auction": 0,
-  "lowest_0_bid_auction": 0,
-  "lowest_0_bid_ending_soon_auction": 0:
-  "craft_cost": 0,
-  "craft_profit": 0,
-  "forge_profit": "N/A",
-  "bazaar_profit": 0,
-  "craft_percentage_profit":0,
-  "forge_percentage_profit": "N/A",
-  "bazaar_percentage_profit": 0,
-  "forge_duration": "N/A",
-  "forge_profit_per_hour": "N/A",
-  "vanilla_status": 0,
-  "auctionable": 1,
-  "bazaarable": 0,
-  "craftable": 1,
-  "forgable": 0,
-  "recipe": "1x Judgment Core, 32x Braided Griffin Feathers, ect",
-  "ingredients": {
-    "JUDGMENT_CORE":{
-      "count": 1,
-      "cost": 600000000
+{
+  "TERMINATOR": {
+    "name": "Terminator",
+    "id": "TERMINATOR",
+    "image_link": "https://sky.shiiyu.moe/item/TERMINATOR",
+    "bazaar_buy_price": "N/A",
+    "bazaar_sell_price": "N/A",
+    "lowest_bin": 0,
+    "second_lowest_bin": 0,
+    "lowest_auction": 0,
+    "lowest_0_bid_auction": 0,
+    "lowest_0_bid_ending_soon_auction": 0:
+    "craft_cost": 0,
+    "craft_profit": 0,
+    "forge_profit": "N/A",
+    "bazaar_profit": 0,
+    "craft_percentage_profit":0,
+    "forge_percentage_profit": "N/A",
+    "bazaar_percentage_profit": 0,
+    "forge_duration": "N/A",
+    "forge_profit_per_hour": "N/A",
+    "vanilla_status": 0,
+    "auctionable": 1,
+    "bazaarable": 0,
+    "craftable": 1,
+    "forgable": 0,
+    "recipe": "1x Judgment Core, 32x Braided Griffin Feathers, ect",
+    "ingredients": {
+      "JUDGMENT_CORE":{
+        "count": 1,
+        "cost": 600000000
+      },
+      "BRAIDED_GRIFFIN_FEATHER":{
+        "count": 32,
+        "cost": 189471
+      }
     },
-    "BRAIDED_GRIFFIN_FEATHER":{
-      "count": 32,
-      "cost": 189471
-    }
-  },
-  "lore": "",
-  "deformatted_lore": "",
-  "craft_requirements": "Enderman Slayer 7",
-  "forging_requirements": "N/A",
-  "use_requirements": "Enderman Slayer 7"
+    "lore": "",
+    "deformatted_lore": "",
+    "craft_requirements": "Enderman Slayer 7",
+    "forging_requirements": "N/A",
+    "use_requirements": "Enderman Slayer 7"
+  }
 }

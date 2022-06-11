@@ -23,6 +23,7 @@ pytimeparse = "^1.1.8"
 uvicorn = "^0.17.6"
 fastapi = "^0.78.0"
 fastapi-utils = "^0.2.1"
+NBT = "^1.5.1"
 
 [tool.poetry.dev-dependencies]
 

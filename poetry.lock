@@ -315,6 +315,14 @@ optional = false
 python-versions = ">=3.7"
 
 [[package]]
+name = "nbt"
+version = "1.5.1"
+description = "Named Binary Tag Reader/Writer"
+category = "main"
+optional = false
+python-versions = "*"
+
+[[package]]
 name = "numpy"
 version = "1.22.3"
 description = "NumPy is the fundamental package for array computing with Python."
@@ -579,7 +587,7 @@ multidict = ">=4.0"
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.8"
-content-hash = "d7640121d3283085a187b01d518f768a9826869c04f8db194d19b99a4ad40efb"
+content-hash = "c4be52ffd4023d5a22a4c6a45ad176c5e7afc1b06d72457dbd5b0325072dc4d2"
 
 [metadata.files]
 aiofiles = [
@@ -1037,6 +1045,10 @@ multidict = [
     {file = "multidict-6.0.2-cp39-cp39-win32.whl", hash = "sha256:23b616fdc3c74c9fe01d76ce0d1ce872d2d396d8fa8e4899398ad64fb5aa214a"},
     {file = "multidict-6.0.2-cp39-cp39-win_amd64.whl", hash = "sha256:4bae31803d708f6f15fd98be6a6ac0b6958fcf68fda3c77a048a4f9073704aae"},
     {file = "multidict-6.0.2.tar.gz", hash = "sha256:5ff3bd75f38e4c43f1f470f2df7a4d430b821c4ce22be384e1459cb57d6bb013"},
+]
+nbt = [
+    {file = "NBT-1.5.1-py2.py3-none-any.whl", hash = "sha256:1503314d0374b983642f9f219890330ce19d9d85966a28bdb6bef1fb17c4c2c0"},
+    {file = "NBT-1.5.1.tar.gz", hash = "sha256:da3bb2137605cb9dfe7446f13f19b3ae7faf920d430a387fb78efde27f6636c5"},
 ]
 numpy = [
     {file = "numpy-1.22.3-cp310-cp310-macosx_10_14_x86_64.whl", hash = "sha256:92bfa69cfbdf7dfc3040978ad09a48091143cffb778ec3b03fa170c494118d75"},
