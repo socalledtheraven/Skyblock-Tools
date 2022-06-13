@@ -1,5 +1,6 @@
 from fastapi import FastAPI
 from fastapi.responses import RedirectResponse
+from fastapi.concurrency import run_in_threadpool
 from fastapi_utils.tasks import repeat_every
 from typing import Optional, Dict, List, Any
 from pydantic import BaseModel, HttpUrl, create_model
@@ -11,6 +12,7 @@ import json
 import uuid
 import datetime
 import logging
+import aiofiles
   
 description = """
 The Skyblock Tools api tries to put all information a hypixel dev using the api would need at their fingertips
@@ -240,20 +242,25 @@ async def auctions(page: int = 0):
   return auctions[page]
 
 @app.on_event("startup")
+async def load_db():
+  global db
+  async with aiofiles.open("database.json", "r") as database:
+    database = await database.read()
+    db = json.loads(database)
+
+@app.on_event("startup")
 @repeat_every(seconds=30, logger=logging.Logger)
 async def dynamic_database_updater_task():
+  global db
   print("dynamic")
-  db = await main.dynamic_database_updater(temp_db, main.names)
+  db = await run_in_threadpool(lambda: main.dynamic_database_updater(db, main.names))
 
 @app.on_event("startup")
 @repeat_every(seconds=60*10, wait_first=True, logger=logging.Logger)
 async def static_database_updater_task():
+  global db
   print("static")
-  db = await main.static_database_updater(temp_db, main.names)
+  db = await run_in_threadpool(lambda: main.static_database_updater(db, main.names))
 
 if __name__ == "__main__":
-  uvicorn.run(app, host='0.0.0.0', port=8080)
-
-with open("database.json", "r") as database:
-  db = json.load(database)
-  temp_db = db
+  uvicorn.run("app:app", host='0.0.0.0', port=8080, workers=4)
