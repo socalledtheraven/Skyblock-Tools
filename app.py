@@ -2,8 +2,8 @@ from fastapi import FastAPI
 from fastapi.responses import RedirectResponse
 from fastapi.concurrency import run_in_threadpool
 from fastapi_utils.tasks import repeat_every
-from typing import Optional, Dict, List, Any
-from pydantic import BaseModel, HttpUrl, create_model
+from typing import Optional, Dict, List
+from pydantic import BaseModel, HttpUrl
 from pyinstrument import Profiler
 import main
 import uvicorn

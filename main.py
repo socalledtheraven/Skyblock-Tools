@@ -34,7 +34,7 @@ def static_database_updater(db, names):
   items = get_json("https://api.hypixel.net/resources/skyblock/items") # gets the items from the resources endpoint via aiohttp
   items = sorted(items["items"], key=lambda d: d["id"])
   bazaar_data = get_json("https://api.hypixel.net/skyblock/bazaar")["products"]
-  bazaar_products = [item["product_id"] for item in bazaar_data] # aquires bz data from asyncpixel and formats it to also get the bazaarables
+  bazaar_products = [item for item in bazaar_data] # aquires bz data from asyncpixel and formats it to also get the bazaarables
   auctions = get_auctions()
   bins = list(filter(lambda d: d["bin"] == True, auctions))
   print("setup finished")
@@ -75,9 +75,9 @@ def static_database_updater(db, names):
     # simple easy declarations
     if current_item_name in bazaar_products:
       current_item_data["bazaarable"] = True
-      current_item_bazaar_data = bazaar_data[bazaar_products.index(current_item_name)]["quick_status"]
-      current_item_data["bazaar_buy_price"] = round(current_item_bazaar_data["buy_price"], 1)
-      current_item_data["bazaar_sell_price"] = round(current_item_bazaar_data["sell_price"], 1)
+      current_item_bazaar_data = bazaar_data[current_item_name]["quick_status"]
+      current_item_data["bazaar_buy_price"] = round(current_item_bazaar_data["buyPrice"], 1)
+      current_item_data["bazaar_sell_price"] = round(current_item_bazaar_data["sellPrice"], 1)
       current_item_data["bazaar_profit"] = float(round(current_item_data["bazaar_sell_price"] - current_item_data["bazaar_buy_price"], 1))
       try:
         current_item_data["bazaar_percentage_profit"] = round(current_item_data["bazaar_profit"]/current_item_data["bazaar_buy_price"], 2)
@@ -409,7 +409,6 @@ def static_database_updater(db, names):
 
 def dynamic_database_updater(db, names):
   bazaar_data = get_json("https://api.hypixel.net/skyblock/bazaar")["products"]
-  bazaar_products = [item["product_id"] for item in bazaar_data] # aquires bz data from asyncpixel and formats it to also get the bazaarables
   auctions = get_auctions()
   bins = list(filter(lambda d: d["bin"] == True, auctions))
   print("database in progress")
@@ -419,13 +418,13 @@ def dynamic_database_updater(db, names):
     current_item_name = item
     print("dynamic", item)
     current_item_data = db[item]
-    file = db[item]["item_file"] # note - update this with local assets at some point 
+    file = f"./neu-repo/items/{item}.json" # note - update this with local assets at some point 
     
     # simple easy declarations
     if current_item_data["bazaarable"]:
-      current_item_bazaar_data = bazaar_data[bazaar_products.index(current_item_name)]["quick_status"]
-      current_item_data["bazaar_buy_price"] = round(current_item_bazaar_data["buy_price"], 1)
-      current_item_data["bazaar_sell_price"] = round(current_item_bazaar_data["sell_price"], 1)
+      current_item_bazaar_data = bazaar_data[current_item_name]["quick_status"]
+      current_item_data["bazaar_buy_price"] = round(current_item_bazaar_data["buyPrice"], 1)
+      current_item_data["bazaar_sell_price"] = round(current_item_bazaar_data["sellPrice"], 1)
       current_item_data["bazaar_profit"] = float(round(current_item_data["bazaar_buy_price"] - current_item_data["bazaar_sell_price"], 1))
       try:
         current_item_data["bazaar_percentage_profit"] = round(current_item_data["bazaar_profit"]/current_item_data["bazaar_buy_price"], 2)
@@ -861,12 +860,12 @@ def get_auctions():
     auction_data.extend(auctions["auctions"]) #runs through all the auction pages to add all the auctions together
 
   for auction in auction_data:
-    auction["id"] = name_to_id(remove_formatting(auction["item_name"]))
+    auction["id"] = get_id(auction["item_bytes"])
     
   return auction_data
 
 def get_json(url):
-  return json.loads(requests.get(url))
+  return json.loads(requests.get(url).text)
 
 def chunks(lst, n):
   """Yield successive n-sized chunks from lst."""
@@ -875,7 +874,7 @@ def chunks(lst, n):
 
 def item_names():
   items = get_json("https://api.hypixel.net/resources/skyblock/items")
-  items = items["items"]
+  items = sorted(items["items"], key=lambda d: d["id"])
   return {item["id"]: item["name"] for item in items}
 
 def get_id(bytes):
@@ -907,15 +906,13 @@ def unpack_nbt(tag):
 #---------------------------------------------------------------------------------------------------------
 #                                           SUBPROGRAMS
 #---------------------------------------------------------------------------------------------------------
-names = asyncio.run(item_names())
+names = item_names()
 
 # p = Profiler()
 # p.start()
-# asyncio.run(static_database_updater({}, names))
-# asyncio.run(dynamic_database_updater())
+# static_database_updater({}, names)
+# dynamic_database_updater()
 # asyncio.run(deletion_time())
-# craft_flipper()
-# asyncio.run(get_auctions())
 # p.stop()
 # p.print()
 
