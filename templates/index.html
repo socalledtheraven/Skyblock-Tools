@@ -4,23 +4,26 @@
 
 
 {% block content %}
-    <header>
-        <h1 class="headbar">Skyblock Tools</h1>
-        <nav>
-            <a href="{{ url_for('index') }}">Home</a>
-        </nav>
-    </header>
-    <main>
-        <h1 class="heading">Welcome to Skyblock Tools!</h1>
-        <p>We have plenty of tools to make tons of profit!</p>
-        <a id="session-link" href="{{ url_for('bazaar_flipper') }}">Our patented bazaar flipper!</a>
-        <br>
-        <a id="session-link" href="{{ url_for('craft_flipper') }}"> A never-before-seen craft flipper!</a>
-        <br>
-        <a id="session-link" href="{{ url_for('forge_flipper') }}"> They didn't think it was possible... But here it is! A functional forge flipper!</a>
-        <br>
-        </div>
-    </main>
+  <header>
+    <h1 class="headbar">Skyblock Tools</h1>
+    <nav>
+      <a href="{{ url_for('index') }}">Home</a>
+    </nav>
+    <nav>
+      <a href="{{ url_for('api') }}">API</a>
+    </nav>
+  </header>
+  <main>
+    <h1 class="heading">Welcome to Skyblock Tools!</h1>
+    <p>We have plenty of tools to make tons of profit!</p>
+    <a id="session-link" href="{{ url_for('bazaar_flipper') }}">Our patented bazaar flipper!</a>
+    <br>
+    <a id="session-link" href="{{ url_for('craft_flipper') }}"> A never-before-seen craft flipper!</a>
+    <br>
+    <a id="session-link" href="{{ url_for('forge_flipper') }}"> They didn't think it was possible... But here it is! A functional forge flipper!</a>
+    <br>
+    </div>
+  </main>
 
 
 

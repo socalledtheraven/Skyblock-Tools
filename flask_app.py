@@ -1,13 +1,16 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, redirect
 import main
 
-app = Flask(__name__, template_folder="templates")
-
-#Repo.clone_from("https://github.com/Moulberry/NotEnoughUpdates-REPO.git", "./neu-repo/")
+app = Flask(__name__, template_folder="templates", subdomain_matching=True)
+app.config['SERVER_NAME'] = "skyblocktools.me"
 
 @app.route("/")
 def index():
   return render_template("index.html")
+
+@app.route("/api")
+def api():
+  return redirect(f"https://api.{app.config['SERVER_NAME']}/docs")
 
 @app.route("/bazaar_flipper", methods=["GET", "POST"])
 def bazaar_flipper():
