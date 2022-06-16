@@ -1,4 +1,4 @@
-# SETUP
+# SETUP - DEPLOYMENT!! NEVER EDIT CODE HERE DIRECTLY!!
 import json
 import os
 import re
