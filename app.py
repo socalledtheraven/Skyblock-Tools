@@ -5,6 +5,7 @@ from fastapi_utils.tasks import repeat_every
 from typing import Optional, Dict, List
 from pydantic import BaseModel, HttpUrl
 from pyinstrument import Profiler
+from flask import Flask, render_template, redirect
 import main
 import uvicorn
 import asyncio
@@ -55,6 +56,7 @@ app = FastAPI(
     "url": "https://choosealicense.com/licenses/gpl-3.0/",
   },
 )
+flask_app = Flask(__name__, template_folder="templates", subdomain_matching=True)
 
 class Item(BaseModel):
   recipe: Optional[str] = ""
@@ -262,5 +264,10 @@ async def static_database_updater_task():
   print("static")
   db = await run_in_threadpool(lambda: main.static_database_updater(db, main.names))
 
+@flask_app.route("/")
+def index():
+  return render_template("index.html")
+
 if __name__ == "__main__":
   uvicorn.run("app:app", host='0.0.0.0', port=8080, workers=4)
+  app.run(host='0.0.0.0', debug=True, port=8080)
