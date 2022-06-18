@@ -21,9 +21,8 @@ logging.basicConfig(filename='latest.log', filemode='w+', format='%(asctime)s: [
 with open("./database.json", "r+") as database:
   db = json.load(database) #database setup - always needs to run
 
-repo = git.Repo("./neu-repo")
-repo.remotes.origin.pull()
-logging.info("NEU update")
+# repo = git.Repo("./neu-repo")
+# repo.remotes.origin.pull()
 # updates neu repo
 
 # ALL SUBROUTINES
