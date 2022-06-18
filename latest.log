@@ -1,2 +1,7 @@
 18-Jun-22 11:09:33: [WARNING]  * Debugger is active!
 18-Jun-22 11:09:33: [INFO]  * Debugger PIN: 113-581-339
+18-Jun-22 11:49:57: [INFO] 172.18.0.1 - - [18/Jun/2022 11:49:57] "GET / HTTP/1.1" 200 -
+18-Jun-22 11:49:57: [INFO] 172.18.0.1 - - [18/Jun/2022 11:49:57] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+18-Jun-22 11:51:45: [INFO] 172.18.0.1 - - [18/Jun/2022 11:51:45] "GET / HTTP/1.1" 200 -
+18-Jun-22 11:51:45: [INFO] 172.18.0.1 - - [18/Jun/2022 11:51:45] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
+18-Jun-22 11:51:46: [INFO] 172.18.0.1 - - [18/Jun/2022 11:51:46] "[36mGET /static/style.css HTTP/1.1[0m" 304 -
