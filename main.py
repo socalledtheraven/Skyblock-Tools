@@ -17,10 +17,7 @@ from nbt.nbt import TAG_List, TAG_Compound, NBTFile
 apiKey = os.environ["apiKey"]
 
 logging.basicConfig(filename='latest.log', filemode='w+', format='%(asctime)s: [%(levelname)s] %(message)s', datefmt='%d-%b-%y %H:%M:%S') # sets up config logging
- 
-with open("./database.json", "r+") as database:
-  db = json.load(database) #database setup - always needs to run
-
+    
 # repo = git.Repo("./neu-repo")
 # repo.remotes.origin.pull()
 # updates neu repo
@@ -907,6 +904,12 @@ def unpack_nbt(tag):
 #---------------------------------------------------------------------------------------------------------
 names = item_names()
 
+try:
+  with open("./database.json", "r+") as database:
+    db = json.load(database) #database setup - always needs to run
+except:
+  db = static_database_updater({}, names)
+  
 # p = Profiler()
 # p.start()
 # static_database_updater({}, names)
