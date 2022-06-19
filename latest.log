@@ -1,760 +1,277 @@
-18-Jun-22 15:44:02: [INFO] Started server process [8636]
-18-Jun-22 15:44:02: [INFO] Waiting for application startup.
-18-Jun-22 15:44:02: [INFO] Application startup complete.
-18-Jun-22 15:46:08: [ERROR] ALL_SKILLS_SUPER_BOOST costs 0 coins to craft
-18-Jun-22 15:46:08: [ERROR] ALL_SKILLS_SUPER_BOOST costs 0 coins to craft
-18-Jun-22 15:46:08: [ERROR] AMALGAMATED_CRIMSONITE's bz price is 0
-18-Jun-22 15:46:12: [ERROR] ASPIRING_LEAP costs 0 coins to craft
-18-Jun-22 15:46:12: [ERROR] ASTRAEA costs 0 coins to craft
-18-Jun-22 15:46:12: [ERROR] ASTRAEA costs 0 coins to craft
-18-Jun-22 15:46:13: [ERROR] ATOMSPLIT_KATANA costs 0 coins to craft
-18-Jun-22 15:46:13: [ERROR] ATOMSPLIT_KATANA costs 0 coins to craft
-18-Jun-22 15:46:27: [ERROR] CATACOMBS_EXPERT_RING costs 0 coins to craft
-18-Jun-22 15:46:30: [ERROR] COAL costs 0 coins to craft
-18-Jun-22 15:46:33: [ERROR] CRYSTAL_BOOTS costs 0 coins to craft
-18-Jun-22 15:46:33: [ERROR] CRYSTAL_CHESTPLATE costs 0 coins to craft
-18-Jun-22 15:46:33: [ERROR] CRYSTAL_HELMET costs 0 coins to craft
-18-Jun-22 15:46:34: [ERROR] CRYSTAL_LEGGINGS costs 0 coins to craft
-18-Jun-22 15:46:36: [ERROR] DELIRIUM_NECKLACE costs 0 coins to craft
-18-Jun-22 15:46:36: [ERROR] DELIRIUM_NECKLACE costs 0 coins to craft
-18-Jun-22 15:46:36: [ERROR] DIAMOND costs 0 coins to craft
-18-Jun-22 15:46:38: [ERROR] DIRT_BOTTLE's bz price is 0
-18-Jun-22 15:46:39: [ERROR] DIVER_BOOTS costs 0 coins to craft
-18-Jun-22 15:46:39: [ERROR] DIVER_CHESTPLATE costs 0 coins to craft
-18-Jun-22 15:46:39: [ERROR] DIVER_HELMET costs 0 coins to craft
-18-Jun-22 15:46:39: [ERROR] DIVER_LEGGINGS costs 0 coins to craft
-18-Jun-22 15:46:45: [ERROR] EMBER_BOOTS costs 0 coins to craft
-18-Jun-22 15:46:45: [ERROR] EMBER_CHESTPLATE costs 0 coins to craft
-18-Jun-22 15:46:45: [ERROR] EMBER_HELMET costs 0 coins to craft
-18-Jun-22 15:46:45: [ERROR] EMBER_LEGGINGS costs 0 coins to craft
-18-Jun-22 15:46:45: [ERROR] EMERALD costs 0 coins to craft
-18-Jun-22 15:46:46: [ERROR] ENCHANTED_CARROT_ON_A_STICK's bz price is 0
-18-Jun-22 15:46:46: [ERROR] ENCHANTED_EGG costs 0 coins to craft
-18-Jun-22 15:46:46: [ERROR] ENCHANTED_GLISTERING_MELON costs 0 coins to craft
-18-Jun-22 15:46:47: [ERROR] ENCHANTED_WOOL costs 0 coins to craft
-18-Jun-22 15:46:51: [ERROR] EXP_BOTTLE costs 0 coins to craft
-18-Jun-22 15:46:54: [ERROR] FEL_SWORD costs 0 coins to craft
-18-Jun-22 15:46:54: [ERROR] FEL_SWORD costs 0 coins to craft
-18-Jun-22 15:46:56: [ERROR] FIRE_FREEZE_STAFF costs 0 coins to craft
-18-Jun-22 15:46:56: [ERROR] FIRE_FREEZE_STAFF costs 0 coins to craft
-18-Jun-22 15:46:56: [ERROR] FIRE_FREEZE_STAFF costs 0 coins to craft
-18-Jun-22 15:46:56: [ERROR] FIRE_FURY_STAFF costs 0 coins to craft
-18-Jun-22 15:46:56: [ERROR] FIRE_FURY_STAFF costs 0 coins to craft
-18-Jun-22 15:46:56: [ERROR] FIRE_FURY_STAFF costs 0 coins to craft
-18-Jun-22 15:46:57: [ERROR] FIRE_VEIL_WAND costs 0 coins to craft
-18-Jun-22 15:46:57: [ERROR] FIRE_VEIL_WAND costs 0 coins to craft
-18-Jun-22 15:46:57: [ERROR] FIRE_VEIL_WAND costs 0 coins to craft
-18-Jun-22 15:46:58: [ERROR] FLORID_ZOMBIE_SWORD costs 0 coins to craft
-18-Jun-22 15:46:58: [ERROR] FLORID_ZOMBIE_SWORD costs 0 coins to craft
-18-Jun-22 15:46:58: [ERROR] FLOWER_OF_TRUTH costs 0 coins to craft
-18-Jun-22 15:47:08: [ERROR] GOLD_INGOT costs 0 coins to craft
-18-Jun-22 15:47:19: [ERROR] HYPERION costs 0 coins to craft
-18-Jun-22 15:47:19: [ERROR] HYPERION costs 0 coins to craft
-18-Jun-22 15:47:21: [ERROR] INFERNO_APEX's bz price is 0
-18-Jun-22 15:47:22: [ERROR] IRON_INGOT costs 0 coins to craft
-18-Jun-22 15:47:23: [ERROR] JERRY_TALISMAN_BLUE costs 0 coins to craft
-18-Jun-22 15:47:23: [ERROR] JERRY_TALISMAN_GOLDEN costs 0 coins to craft
-18-Jun-22 15:47:23: [ERROR] JERRY_TALISMAN_PURPLE costs 0 coins to craft
-18-Jun-22 15:47:24: [ERROR] JUMBO_BACKPACK costs 0 coins to craft
-18-Jun-22 15:47:24: [ERROR] JUMBO_BACKPACK costs 0 coins to craft
-18-Jun-22 15:47:25: [ERROR] KUUDRA_MANDIBLE's bz price is 0
-18-Jun-22 15:47:26: [ERROR] LAVA_SHELL_NECKLACE costs 0 coins to craft
-18-Jun-22 15:47:26: [ERROR] LAVA_SHELL_NECKLACE costs 0 coins to craft
-18-Jun-22 15:47:27: [ERROR] LESSER_ORB_OF_HEALING costs 0 coins to craft
-18-Jun-22 15:47:28: [ERROR] MAGMA_LORD_BOOTS costs 0 coins to craft
-18-Jun-22 15:47:28: [ERROR] MAGMA_LORD_CHESTPLATE costs 0 coins to craft
-18-Jun-22 15:47:29: [ERROR] MAGMA_LORD_GAUNTLET costs 0 coins to craft
-18-Jun-22 15:47:29: [ERROR] MAGMA_LORD_HELMET costs 0 coins to craft
-18-Jun-22 15:47:29: [ERROR] MAGMA_LORD_LEGGINGS costs 0 coins to craft
-18-Jun-22 15:47:30: [ERROR] MANDRAA's bz price is 0
-18-Jun-22 15:47:30: [ERROR] MASTER_SKULL_TIER_2 costs 0 coins to craft
-18-Jun-22 15:47:30: [ERROR] MASTER_SKULL_TIER_3 costs 0 coins to craft
-18-Jun-22 15:47:30: [ERROR] MASTER_SKULL_TIER_4 costs 0 coins to craft
-18-Jun-22 15:47:31: [ERROR] MASTER_SKULL_TIER_5 costs 0 coins to craft
-18-Jun-22 15:47:31: [ERROR] MASTER_SKULL_TIER_6 costs 0 coins to craft
-18-Jun-22 15:47:31: [ERROR] MASTER_SKULL_TIER_7 costs 0 coins to craft
-18-Jun-22 15:47:37: [ERROR] MOIL_LOG's bz price is 0
-18-Jun-22 15:47:58: [ERROR] POWER_WITHER_BOOTS costs 0 coins to craft
-18-Jun-22 15:47:58: [ERROR] POWER_WITHER_BOOTS costs 0 coins to craft
-18-Jun-22 15:47:58: [ERROR] POWER_WITHER_CHESTPLATE costs 0 coins to craft
-18-Jun-22 15:47:58: [ERROR] POWER_WITHER_CHESTPLATE costs 0 coins to craft
-18-Jun-22 15:47:58: [ERROR] POWER_WITHER_HELMET costs 0 coins to craft
-18-Jun-22 15:47:58: [ERROR] POWER_WITHER_HELMET costs 0 coins to craft
-18-Jun-22 15:47:59: [ERROR] POWER_WITHER_LEGGINGS costs 0 coins to craft
-18-Jun-22 15:47:59: [ERROR] POWER_WITHER_LEGGINGS costs 0 coins to craft
-18-Jun-22 15:48:01: [ERROR] RAGNAROCK_AXE costs 0 coins to craft
-18-Jun-22 15:48:01: [ERROR] RAGNAROCK_AXE costs 0 coins to craft
-18-Jun-22 15:48:02: [ERROR] REAPER_ORB costs 0 coins to craft
-18-Jun-22 15:48:03: [ERROR] REAPER_SWORD costs 0 coins to craft
-18-Jun-22 15:48:03: [ERROR] REAPER_SWORD costs 0 coins to craft
-18-Jun-22 15:48:03: [ERROR] REAPER_SWORD costs 0 coins to craft
-18-Jun-22 15:48:03: [ERROR] REDSTONE costs 0 coins to craft
-18-Jun-22 15:48:05: [ERROR] REVENANT_SWORD costs 0 coins to craft
-18-Jun-22 15:48:05: [ERROR] REVENANT_SWORD costs 0 coins to craft
-18-Jun-22 15:48:05: [ERROR] REVENANT_SWORD costs 0 coins to craft
-18-Jun-22 15:48:05: [ERROR] REVIVED_HEART costs 0 coins to craft
-18-Jun-22 15:48:05: [ERROR] REVIVED_HEART costs 0 coins to craft
-18-Jun-22 15:48:08: [ERROR] SCARF_GRIMOIRE costs 0 coins to craft
-18-Jun-22 15:48:09: [ERROR] SCARF_THESIS costs 0 coins to craft
-18-Jun-22 15:48:09: [ERROR] SCOURGE_CLOAK costs 0 coins to craft
-18-Jun-22 15:48:09: [ERROR] SCOURGE_CLOAK costs 0 coins to craft
-18-Jun-22 15:48:09: [ERROR] SCOURGE_CLOAK costs 0 coins to craft
-18-Jun-22 15:48:09: [ERROR] SCOVILLE_BELT costs 0 coins to craft
-18-Jun-22 15:48:09: [ERROR] SCOVILLE_BELT costs 0 coins to craft
-18-Jun-22 15:48:09: [ERROR] SCYLLA costs 0 coins to craft
-18-Jun-22 15:48:09: [ERROR] SCYLLA costs 0 coins to craft
-18-Jun-22 15:48:13: [ERROR] 'CARROT'
-18-Jun-22 15:48:13: [ERROR] CARROT isn't in the database yet
-18-Jun-22 15:48:18: [ERROR] SLIME_BALL costs 0 coins to craft
-18-Jun-22 15:48:20: [ERROR] SORROW_BOOTS costs 0 coins to craft
-18-Jun-22 15:48:21: [ERROR] SORROW_CHESTPLATE costs 0 coins to craft
-18-Jun-22 15:48:21: [ERROR] SORROW_HELMET costs 0 coins to craft
-18-Jun-22 15:48:21: [ERROR] SORROW_LEGGINGS costs 0 coins to craft
-18-Jun-22 15:48:22: [ERROR] SPEED_WITHER_BOOTS costs 0 coins to craft
-18-Jun-22 15:48:22: [ERROR] SPEED_WITHER_BOOTS costs 0 coins to craft
-18-Jun-22 15:48:22: [ERROR] SPEED_WITHER_CHESTPLATE costs 0 coins to craft
-18-Jun-22 15:48:22: [ERROR] SPEED_WITHER_CHESTPLATE costs 0 coins to craft
-18-Jun-22 15:48:22: [ERROR] SPEED_WITHER_HELMET costs 0 coins to craft
-18-Jun-22 15:48:22: [ERROR] SPEED_WITHER_HELMET costs 0 coins to craft
-18-Jun-22 15:48:22: [ERROR] SPEED_WITHER_LEGGINGS costs 0 coins to craft
-18-Jun-22 15:48:22: [ERROR] SPEED_WITHER_LEGGINGS costs 0 coins to craft
-18-Jun-22 15:48:26: [ERROR] STARRED_ADAPTIVE_BOOTS costs 0 coins to craft
-18-Jun-22 15:48:26: [ERROR] STARRED_ADAPTIVE_BOOTS costs 0 coins to craft
-18-Jun-22 15:48:26: [ERROR] STARRED_ADAPTIVE_CHESTPLATE costs 0 coins to craft
-18-Jun-22 15:48:26: [ERROR] STARRED_ADAPTIVE_CHESTPLATE costs 0 coins to craft
-18-Jun-22 15:48:26: [ERROR] STARRED_ADAPTIVE_HELMET costs 0 coins to craft
-18-Jun-22 15:48:26: [ERROR] STARRED_ADAPTIVE_HELMET costs 0 coins to craft
-18-Jun-22 15:48:26: [ERROR] STARRED_ADAPTIVE_LEGGINGS costs 0 coins to craft
-18-Jun-22 15:48:26: [ERROR] STARRED_ADAPTIVE_LEGGINGS costs 0 coins to craft
-18-Jun-22 15:48:26: [ERROR] STARRED_BONZO_MASK costs 0 coins to craft
-18-Jun-22 15:48:26: [ERROR] STARRED_BONZO_MASK costs 0 coins to craft
-18-Jun-22 15:48:27: [ERROR] STARRED_BONZO_STAFF costs 0 coins to craft
-18-Jun-22 15:48:27: [ERROR] STARRED_BONZO_STAFF costs 0 coins to craft
-18-Jun-22 15:48:27: [ERROR] STARRED_LAST_BREATH costs 0 coins to craft
-18-Jun-22 15:48:27: [ERROR] STARRED_LAST_BREATH costs 0 coins to craft
-18-Jun-22 15:48:27: [ERROR] STARRED_SHADOW_ASSASSIN_BOOTS costs 0 coins to craft
-18-Jun-22 15:48:27: [ERROR] STARRED_SHADOW_ASSASSIN_BOOTS costs 0 coins to craft
-18-Jun-22 15:48:27: [ERROR] STARRED_SHADOW_ASSASSIN_CHESTPLATE costs 0 coins to craft
-18-Jun-22 15:48:27: [ERROR] STARRED_SHADOW_ASSASSIN_CHESTPLATE costs 0 coins to craft
-18-Jun-22 15:48:27: [ERROR] STARRED_SHADOW_ASSASSIN_HELMET costs 0 coins to craft
-18-Jun-22 15:48:27: [ERROR] STARRED_SHADOW_ASSASSIN_HELMET costs 0 coins to craft
-18-Jun-22 15:48:27: [ERROR] STARRED_SHADOW_ASSASSIN_LEGGINGS costs 0 coins to craft
-18-Jun-22 15:48:27: [ERROR] STARRED_SHADOW_ASSASSIN_LEGGINGS costs 0 coins to craft
-18-Jun-22 15:48:27: [ERROR] STARRED_SHADOW_FURY costs 0 coins to craft
-18-Jun-22 15:48:27: [ERROR] STARRED_SHADOW_FURY costs 0 coins to craft
-18-Jun-22 15:48:27: [ERROR] STARRED_STONE_BLADE costs 0 coins to craft
-18-Jun-22 15:48:27: [ERROR] STARRED_STONE_BLADE costs 0 coins to craft
-18-Jun-22 15:48:28: [ERROR] STEW_THE_FISH costs 0 coins to craft
-18-Jun-22 15:48:35: [ERROR] TANK_WITHER_BOOTS costs 0 coins to craft
-18-Jun-22 15:48:35: [ERROR] TANK_WITHER_BOOTS costs 0 coins to craft
-18-Jun-22 15:48:35: [ERROR] TANK_WITHER_CHESTPLATE costs 0 coins to craft
-18-Jun-22 15:48:35: [ERROR] TANK_WITHER_CHESTPLATE costs 0 coins to craft
-18-Jun-22 15:48:35: [ERROR] TANK_WITHER_HELMET costs 0 coins to craft
-18-Jun-22 15:48:35: [ERROR] TANK_WITHER_HELMET costs 0 coins to craft
-18-Jun-22 15:48:35: [ERROR] TANK_WITHER_LEGGINGS costs 0 coins to craft
-18-Jun-22 15:48:35: [ERROR] TANK_WITHER_LEGGINGS costs 0 coins to craft
-18-Jun-22 15:48:39: [ERROR] THUNDERBOLT_NECKLACE costs 0 coins to craft
-18-Jun-22 15:48:39: [ERROR] THUNDER_IN_A_BOTTLE_EMPTY costs 0 coins to craft
-18-Jun-22 15:48:39: [ERROR] THUNDER_IN_A_BOTTLE_EMPTY costs 0 coins to craft
-18-Jun-22 15:48:41: [ERROR] TOIL_LOG's bz price is 0
-18-Jun-22 15:48:42: [ERROR] TREASURE_ARTIFACT costs 0 coins to craft
-18-Jun-22 15:48:42: [ERROR] TREASURE_RING costs 0 coins to craft
-18-Jun-22 15:48:44: [ERROR] ULTIMATE_CARROT_CANDY costs 0 coins to craft
-18-Jun-22 15:48:44: [ERROR] ULTIMATE_CARROT_CANDY costs 0 coins to craft
-18-Jun-22 15:48:47: [ERROR] VALKYRIE costs 0 coins to craft
-18-Jun-22 15:48:47: [ERROR] VALKYRIE costs 0 coins to craft
-18-Jun-22 15:48:47: [ERROR] VANQUISHED_GHAST_CLOAK costs 0 coins to craft
-18-Jun-22 15:48:47: [ERROR] VANQUISHED_GHAST_CLOAK costs 0 coins to craft
-18-Jun-22 15:48:47: [ERROR] VANQUISHED_GHAST_CLOAK costs 0 coins to craft
-18-Jun-22 15:48:53: [ERROR] WISE_WITHER_BOOTS costs 0 coins to craft
-18-Jun-22 15:48:53: [ERROR] WISE_WITHER_BOOTS costs 0 coins to craft
-18-Jun-22 15:48:54: [ERROR] WISE_WITHER_CHESTPLATE costs 0 coins to craft
-18-Jun-22 15:48:54: [ERROR] WISE_WITHER_CHESTPLATE costs 0 coins to craft
-18-Jun-22 15:48:54: [ERROR] WISE_WITHER_HELMET costs 0 coins to craft
-18-Jun-22 15:48:54: [ERROR] WISE_WITHER_HELMET costs 0 coins to craft
-18-Jun-22 15:48:54: [ERROR] WISE_WITHER_LEGGINGS costs 0 coins to craft
-18-Jun-22 15:48:54: [ERROR] WISE_WITHER_LEGGINGS costs 0 coins to craft
-18-Jun-22 15:48:56: [ERROR] WITHER_RELIC costs 0 coins to craft
-18-Jun-22 15:48:56: [ERROR] WITHER_RELIC costs 0 coins to craft
-18-Jun-22 15:48:57: [ERROR] XLARGE_ENCHANTED_CHEST costs 0 coins to craft
-18-Jun-22 15:48:57: [ERROR] XLARGE_ENCHANTED_CHEST costs 0 coins to craft
-18-Jun-22 15:48:57: [ERROR] XXLARGE_ENCHANTED_CHEST costs 0 coins to craft
-18-Jun-22 15:48:57: [ERROR] XXLARGE_ENCHANTED_CHEST costs 0 coins to craft
-18-Jun-22 15:49:01: [ERROR] ZOMBIE_SWORD costs 0 coins to craft
-18-Jun-22 15:49:01: [ERROR] ZOMBIE_SWORD costs 0 coins to craft
-18-Jun-22 15:52:01: [ERROR] ALL_SKILLS_SUPER_BOOST costs 0 coins to craft
-18-Jun-22 15:52:01: [ERROR] ALL_SKILLS_SUPER_BOOST costs 0 coins to craft
-18-Jun-22 15:52:01: [ERROR] AMALGAMATED_CRIMSONITE's bz price is 0
-18-Jun-22 15:52:05: [ERROR] ASPIRING_LEAP costs 0 coins to craft
-18-Jun-22 15:52:05: [ERROR] ASTRAEA costs 0 coins to craft
-18-Jun-22 15:52:05: [ERROR] ASTRAEA costs 0 coins to craft
-18-Jun-22 15:52:06: [ERROR] ATOMSPLIT_KATANA costs 0 coins to craft
-18-Jun-22 15:52:06: [ERROR] ATOMSPLIT_KATANA costs 0 coins to craft
-18-Jun-22 15:52:18: [ERROR] CATACOMBS_EXPERT_RING costs 0 coins to craft
-18-Jun-22 15:52:21: [ERROR] COAL costs 0 coins to craft
-18-Jun-22 15:52:23: [ERROR] CRYSTAL_BOOTS costs 0 coins to craft
-18-Jun-22 15:52:23: [ERROR] CRYSTAL_CHESTPLATE costs 0 coins to craft
-18-Jun-22 15:52:24: [ERROR] CRYSTAL_HELMET costs 0 coins to craft
-18-Jun-22 15:52:24: [ERROR] CRYSTAL_LEGGINGS costs 0 coins to craft
-18-Jun-22 15:52:27: [ERROR] DELIRIUM_NECKLACE costs 0 coins to craft
-18-Jun-22 15:52:27: [ERROR] DELIRIUM_NECKLACE costs 0 coins to craft
-18-Jun-22 15:52:27: [ERROR] DIAMOND costs 0 coins to craft
-18-Jun-22 15:52:29: [ERROR] DIRT_BOTTLE's bz price is 0
-18-Jun-22 15:52:31: [ERROR] DIVER_BOOTS costs 0 coins to craft
-18-Jun-22 15:52:31: [ERROR] DIVER_CHESTPLATE costs 0 coins to craft
-18-Jun-22 15:52:31: [ERROR] DIVER_HELMET costs 0 coins to craft
-18-Jun-22 15:52:31: [ERROR] DIVER_LEGGINGS costs 0 coins to craft
-18-Jun-22 15:52:37: [ERROR] EMBER_BOOTS costs 0 coins to craft
-18-Jun-22 15:52:37: [ERROR] EMBER_CHESTPLATE costs 0 coins to craft
-18-Jun-22 15:52:38: [ERROR] EMBER_HELMET costs 0 coins to craft
-18-Jun-22 15:52:38: [ERROR] EMBER_LEGGINGS costs 0 coins to craft
-18-Jun-22 15:52:38: [ERROR] EMERALD costs 0 coins to craft
-18-Jun-22 15:52:39: [ERROR] ENCHANTED_CARROT_ON_A_STICK's bz price is 0
-18-Jun-22 15:52:39: [ERROR] ENCHANTED_EGG costs 0 coins to craft
-18-Jun-22 15:52:39: [ERROR] ENCHANTED_GLISTERING_MELON costs 0 coins to craft
-18-Jun-22 15:52:39: [ERROR] ENCHANTED_WOOL costs 0 coins to craft
-18-Jun-22 15:52:44: [ERROR] EXP_BOTTLE costs 0 coins to craft
-18-Jun-22 15:52:47: [ERROR] FEL_SWORD costs 0 coins to craft
-18-Jun-22 15:52:47: [ERROR] FEL_SWORD costs 0 coins to craft
-18-Jun-22 15:52:50: [ERROR] FIRE_FREEZE_STAFF costs 0 coins to craft
-18-Jun-22 15:52:50: [ERROR] FIRE_FREEZE_STAFF costs 0 coins to craft
-18-Jun-22 15:52:50: [ERROR] FIRE_FREEZE_STAFF costs 0 coins to craft
-18-Jun-22 15:52:50: [ERROR] FIRE_FURY_STAFF costs 0 coins to craft
-18-Jun-22 15:52:50: [ERROR] FIRE_FURY_STAFF costs 0 coins to craft
-18-Jun-22 15:52:50: [ERROR] FIRE_FURY_STAFF costs 0 coins to craft
-18-Jun-22 15:52:50: [ERROR] FIRE_VEIL_WAND costs 0 coins to craft
-18-Jun-22 15:52:50: [ERROR] FIRE_VEIL_WAND costs 0 coins to craft
-18-Jun-22 15:52:50: [ERROR] FIRE_VEIL_WAND costs 0 coins to craft
-18-Jun-22 15:52:52: [ERROR] FLORID_ZOMBIE_SWORD costs 0 coins to craft
-18-Jun-22 15:52:52: [ERROR] FLORID_ZOMBIE_SWORD costs 0 coins to craft
-18-Jun-22 15:52:52: [ERROR] FLOWER_OF_TRUTH costs 0 coins to craft
-18-Jun-22 15:53:03: [ERROR] GOLD_INGOT costs 0 coins to craft
-18-Jun-22 15:53:15: [ERROR] HYPERION costs 0 coins to craft
-18-Jun-22 15:53:15: [ERROR] HYPERION costs 0 coins to craft
-18-Jun-22 15:53:17: [ERROR] INFERNO_APEX's bz price is 0
-18-Jun-22 15:53:19: [ERROR] IRON_INGOT costs 0 coins to craft
-18-Jun-22 15:53:20: [ERROR] JERRY_TALISMAN_BLUE costs 0 coins to craft
-18-Jun-22 15:53:20: [ERROR] JERRY_TALISMAN_GOLDEN costs 0 coins to craft
-18-Jun-22 15:53:20: [ERROR] JERRY_TALISMAN_PURPLE costs 0 coins to craft
-18-Jun-22 15:53:21: [ERROR] JUMBO_BACKPACK costs 0 coins to craft
-18-Jun-22 15:53:21: [ERROR] JUMBO_BACKPACK costs 0 coins to craft
-18-Jun-22 15:53:22: [ERROR] KUUDRA_MANDIBLE's bz price is 0
-18-Jun-22 15:53:24: [ERROR] LAVA_SHELL_NECKLACE costs 0 coins to craft
-18-Jun-22 15:53:24: [ERROR] LAVA_SHELL_NECKLACE costs 0 coins to craft
-18-Jun-22 15:53:25: [ERROR] LESSER_ORB_OF_HEALING costs 0 coins to craft
-18-Jun-22 15:53:26: [ERROR] MAGMA_LORD_BOOTS costs 0 coins to craft
-18-Jun-22 15:53:26: [ERROR] MAGMA_LORD_CHESTPLATE costs 0 coins to craft
-18-Jun-22 15:53:27: [ERROR] MAGMA_LORD_GAUNTLET costs 0 coins to craft
-18-Jun-22 15:53:27: [ERROR] MAGMA_LORD_HELMET costs 0 coins to craft
-18-Jun-22 15:53:27: [ERROR] MAGMA_LORD_LEGGINGS costs 0 coins to craft
-18-Jun-22 15:53:27: [ERROR] MANDRAA's bz price is 0
-18-Jun-22 15:53:28: [ERROR] MASTER_SKULL_TIER_2 costs 0 coins to craft
-18-Jun-22 15:53:28: [ERROR] MASTER_SKULL_TIER_3 costs 0 coins to craft
-18-Jun-22 15:53:28: [ERROR] MASTER_SKULL_TIER_4 costs 0 coins to craft
-18-Jun-22 15:53:28: [ERROR] MASTER_SKULL_TIER_5 costs 0 coins to craft
-18-Jun-22 15:53:28: [ERROR] MASTER_SKULL_TIER_6 costs 0 coins to craft
-18-Jun-22 15:53:28: [ERROR] MASTER_SKULL_TIER_7 costs 0 coins to craft
-18-Jun-22 15:53:36: [ERROR] MOIL_LOG's bz price is 0
-18-Jun-22 15:54:24: [ERROR] POWER_WITHER_BOOTS costs 0 coins to craft
-18-Jun-22 15:54:24: [ERROR] POWER_WITHER_BOOTS costs 0 coins to craft
-18-Jun-22 15:54:24: [ERROR] POWER_WITHER_CHESTPLATE costs 0 coins to craft
-18-Jun-22 15:54:24: [ERROR] POWER_WITHER_CHESTPLATE costs 0 coins to craft
-18-Jun-22 15:54:25: [ERROR] POWER_WITHER_HELMET costs 0 coins to craft
-18-Jun-22 15:54:25: [ERROR] POWER_WITHER_HELMET costs 0 coins to craft
-18-Jun-22 15:54:25: [ERROR] POWER_WITHER_LEGGINGS costs 0 coins to craft
-18-Jun-22 15:54:25: [ERROR] POWER_WITHER_LEGGINGS costs 0 coins to craft
-18-Jun-22 15:54:35: [ERROR] RAGNAROCK_AXE costs 0 coins to craft
-18-Jun-22 15:54:35: [ERROR] RAGNAROCK_AXE costs 0 coins to craft
-18-Jun-22 15:54:39: [ERROR] REAPER_ORB costs 0 coins to craft
-18-Jun-22 15:54:40: [ERROR] REAPER_SWORD costs 0 coins to craft
-18-Jun-22 15:54:40: [ERROR] REAPER_SWORD costs 0 coins to craft
-18-Jun-22 15:54:40: [ERROR] REAPER_SWORD costs 0 coins to craft
-18-Jun-22 15:54:41: [ERROR] REDSTONE costs 0 coins to craft
-18-Jun-22 15:54:52: [ERROR] REVENANT_SWORD costs 0 coins to craft
-18-Jun-22 15:54:52: [ERROR] REVENANT_SWORD costs 0 coins to craft
-18-Jun-22 15:54:52: [ERROR] REVENANT_SWORD costs 0 coins to craft
-18-Jun-22 15:54:53: [ERROR] REVIVED_HEART costs 0 coins to craft
-18-Jun-22 15:54:53: [ERROR] REVIVED_HEART costs 0 coins to craft
-18-Jun-22 15:55:10: [ERROR] SCARF_GRIMOIRE costs 0 coins to craft
-18-Jun-22 15:55:11: [ERROR] SCARF_THESIS costs 0 coins to craft
-18-Jun-22 15:55:13: [ERROR] SCOURGE_CLOAK costs 0 coins to craft
-18-Jun-22 15:55:13: [ERROR] SCOURGE_CLOAK costs 0 coins to craft
-18-Jun-22 15:55:13: [ERROR] SCOURGE_CLOAK costs 0 coins to craft
-18-Jun-22 15:55:13: [ERROR] SCOVILLE_BELT costs 0 coins to craft
-18-Jun-22 15:55:13: [ERROR] SCOVILLE_BELT costs 0 coins to craft
-18-Jun-22 15:55:14: [ERROR] SCYLLA costs 0 coins to craft
-18-Jun-22 15:55:14: [ERROR] SCYLLA costs 0 coins to craft
-18-Jun-22 15:55:22: [ERROR] 'CARROT'
-18-Jun-22 15:55:22: [ERROR] CARROT isn't in the database yet
-18-Jun-22 15:55:34: [ERROR] SLIME_BALL costs 0 coins to craft
-18-Jun-22 15:55:39: [ERROR] SORROW_BOOTS costs 0 coins to craft
-18-Jun-22 15:55:39: [ERROR] SORROW_CHESTPLATE costs 0 coins to craft
-18-Jun-22 15:55:39: [ERROR] SORROW_HELMET costs 0 coins to craft
-18-Jun-22 15:55:40: [ERROR] SORROW_LEGGINGS costs 0 coins to craft
-18-Jun-22 15:55:43: [ERROR] SPEED_WITHER_BOOTS costs 0 coins to craft
-18-Jun-22 15:55:43: [ERROR] SPEED_WITHER_BOOTS costs 0 coins to craft
-18-Jun-22 15:55:44: [ERROR] SPEED_WITHER_CHESTPLATE costs 0 coins to craft
-18-Jun-22 15:55:44: [ERROR] SPEED_WITHER_CHESTPLATE costs 0 coins to craft
-18-Jun-22 15:55:44: [ERROR] SPEED_WITHER_HELMET costs 0 coins to craft
-18-Jun-22 15:55:44: [ERROR] SPEED_WITHER_HELMET costs 0 coins to craft
-18-Jun-22 15:55:44: [ERROR] SPEED_WITHER_LEGGINGS costs 0 coins to craft
-18-Jun-22 15:55:44: [ERROR] SPEED_WITHER_LEGGINGS costs 0 coins to craft
-18-Jun-22 15:55:51: [ERROR] STARRED_ADAPTIVE_BOOTS costs 0 coins to craft
-18-Jun-22 15:55:51: [ERROR] STARRED_ADAPTIVE_BOOTS costs 0 coins to craft
-18-Jun-22 15:55:51: [ERROR] STARRED_ADAPTIVE_CHESTPLATE costs 0 coins to craft
-18-Jun-22 15:55:51: [ERROR] STARRED_ADAPTIVE_CHESTPLATE costs 0 coins to craft
-18-Jun-22 15:55:52: [ERROR] STARRED_ADAPTIVE_HELMET costs 0 coins to craft
-18-Jun-22 15:55:52: [ERROR] STARRED_ADAPTIVE_HELMET costs 0 coins to craft
-18-Jun-22 15:55:52: [ERROR] STARRED_ADAPTIVE_LEGGINGS costs 0 coins to craft
-18-Jun-22 15:55:52: [ERROR] STARRED_ADAPTIVE_LEGGINGS costs 0 coins to craft
-18-Jun-22 15:55:52: [ERROR] STARRED_BONZO_MASK costs 0 coins to craft
-18-Jun-22 15:55:52: [ERROR] STARRED_BONZO_MASK costs 0 coins to craft
-18-Jun-22 15:55:52: [ERROR] STARRED_BONZO_STAFF costs 0 coins to craft
-18-Jun-22 15:55:52: [ERROR] STARRED_BONZO_STAFF costs 0 coins to craft
-18-Jun-22 15:55:53: [ERROR] STARRED_LAST_BREATH costs 0 coins to craft
-18-Jun-22 15:55:53: [ERROR] STARRED_LAST_BREATH costs 0 coins to craft
-18-Jun-22 15:55:53: [ERROR] STARRED_SHADOW_ASSASSIN_BOOTS costs 0 coins to craft
-18-Jun-22 15:55:53: [ERROR] STARRED_SHADOW_ASSASSIN_BOOTS costs 0 coins to craft
-18-Jun-22 15:55:53: [ERROR] STARRED_SHADOW_ASSASSIN_CHESTPLATE costs 0 coins to craft
-18-Jun-22 15:55:53: [ERROR] STARRED_SHADOW_ASSASSIN_CHESTPLATE costs 0 coins to craft
-18-Jun-22 15:55:54: [ERROR] STARRED_SHADOW_ASSASSIN_HELMET costs 0 coins to craft
-18-Jun-22 15:55:54: [ERROR] STARRED_SHADOW_ASSASSIN_HELMET costs 0 coins to craft
-18-Jun-22 15:55:54: [ERROR] STARRED_SHADOW_ASSASSIN_LEGGINGS costs 0 coins to craft
-18-Jun-22 15:55:54: [ERROR] STARRED_SHADOW_ASSASSIN_LEGGINGS costs 0 coins to craft
-18-Jun-22 15:55:54: [ERROR] STARRED_SHADOW_FURY costs 0 coins to craft
-18-Jun-22 15:55:54: [ERROR] STARRED_SHADOW_FURY costs 0 coins to craft
-18-Jun-22 15:55:54: [ERROR] STARRED_STONE_BLADE costs 0 coins to craft
-18-Jun-22 15:55:54: [ERROR] STARRED_STONE_BLADE costs 0 coins to craft
-18-Jun-22 15:55:55: [ERROR] STEW_THE_FISH costs 0 coins to craft
-18-Jun-22 15:56:10: [ERROR] TANK_WITHER_BOOTS costs 0 coins to craft
-18-Jun-22 15:56:10: [ERROR] TANK_WITHER_BOOTS costs 0 coins to craft
-18-Jun-22 15:56:10: [ERROR] TANK_WITHER_CHESTPLATE costs 0 coins to craft
-18-Jun-22 15:56:10: [ERROR] TANK_WITHER_CHESTPLATE costs 0 coins to craft
-18-Jun-22 15:56:11: [ERROR] TANK_WITHER_HELMET costs 0 coins to craft
-18-Jun-22 15:56:11: [ERROR] TANK_WITHER_HELMET costs 0 coins to craft
-18-Jun-22 15:56:11: [ERROR] TANK_WITHER_LEGGINGS costs 0 coins to craft
-18-Jun-22 15:56:11: [ERROR] TANK_WITHER_LEGGINGS costs 0 coins to craft
-18-Jun-22 15:56:19: [ERROR] THUNDERBOLT_NECKLACE costs 0 coins to craft
-18-Jun-22 15:56:19: [ERROR] THUNDER_IN_A_BOTTLE_EMPTY costs 0 coins to craft
-18-Jun-22 15:56:19: [ERROR] THUNDER_IN_A_BOTTLE_EMPTY costs 0 coins to craft
-18-Jun-22 15:56:23: [ERROR] TOIL_LOG's bz price is 0
-18-Jun-22 15:56:24: [ERROR] TREASURE_ARTIFACT costs 0 coins to craft
-18-Jun-22 15:56:24: [ERROR] TREASURE_RING costs 0 coins to craft
-18-Jun-22 15:56:27: [ERROR] ULTIMATE_CARROT_CANDY costs 0 coins to craft
-18-Jun-22 15:56:27: [ERROR] ULTIMATE_CARROT_CANDY costs 0 coins to craft
-18-Jun-22 15:56:30: [ERROR] VALKYRIE costs 0 coins to craft
-18-Jun-22 15:56:30: [ERROR] VALKYRIE costs 0 coins to craft
-18-Jun-22 15:56:31: [ERROR] VANQUISHED_GHAST_CLOAK costs 0 coins to craft
-18-Jun-22 15:56:31: [ERROR] VANQUISHED_GHAST_CLOAK costs 0 coins to craft
-18-Jun-22 15:56:31: [ERROR] VANQUISHED_GHAST_CLOAK costs 0 coins to craft
-18-Jun-22 15:56:43: [ERROR] WISE_WITHER_BOOTS costs 0 coins to craft
-18-Jun-22 15:56:43: [ERROR] WISE_WITHER_BOOTS costs 0 coins to craft
-18-Jun-22 15:56:43: [ERROR] WISE_WITHER_CHESTPLATE costs 0 coins to craft
-18-Jun-22 15:56:43: [ERROR] WISE_WITHER_CHESTPLATE costs 0 coins to craft
-18-Jun-22 15:56:43: [ERROR] WISE_WITHER_HELMET costs 0 coins to craft
-18-Jun-22 15:56:43: [ERROR] WISE_WITHER_HELMET costs 0 coins to craft
-18-Jun-22 15:56:43: [ERROR] WISE_WITHER_LEGGINGS costs 0 coins to craft
-18-Jun-22 15:56:43: [ERROR] WISE_WITHER_LEGGINGS costs 0 coins to craft
-18-Jun-22 15:56:47: [ERROR] WITHER_RELIC costs 0 coins to craft
-18-Jun-22 15:56:47: [ERROR] WITHER_RELIC costs 0 coins to craft
-18-Jun-22 15:56:49: [ERROR] XLARGE_ENCHANTED_CHEST costs 0 coins to craft
-18-Jun-22 15:56:49: [ERROR] XLARGE_ENCHANTED_CHEST costs 0 coins to craft
-18-Jun-22 15:56:49: [ERROR] XXLARGE_ENCHANTED_CHEST costs 0 coins to craft
-18-Jun-22 15:56:49: [ERROR] XXLARGE_ENCHANTED_CHEST costs 0 coins to craft
-18-Jun-22 15:56:58: [ERROR] ZOMBIE_SWORD costs 0 coins to craft
-18-Jun-22 15:56:58: [ERROR] ZOMBIE_SWORD costs 0 coins to craft
-18-Jun-22 15:58:41: [ERROR] 35
-Traceback (most recent call last):
-  File "/home/runner/Skyblock-Tools-Deployment-Flask/main.py", line 203, in static_database_updater
-    ingredient_bz_data = bazaar_data[bazaar_products.index(item)]["quick_status"]
-KeyError: 35
-18-Jun-22 15:58:41: [ERROR] 81
-Traceback (most recent call last):
-  File "/home/runner/Skyblock-Tools-Deployment-Flask/main.py", line 203, in static_database_updater
-    ingredient_bz_data = bazaar_data[bazaar_products.index(item)]["quick_status"]
-KeyError: 81
-18-Jun-22 15:58:41: [ERROR] 341
-Traceback (most recent call last):
-  File "/home/runner/Skyblock-Tools-Deployment-Flask/main.py", line 203, in static_database_updater
-    ingredient_bz_data = bazaar_data[bazaar_products.index(item)]["quick_status"]
-KeyError: 341
-18-Jun-22 15:58:44: [ERROR] 327
-Traceback (most recent call last):
-  File "/home/runner/Skyblock-Tools-Deployment-Flask/main.py", line 203, in static_database_updater
-    ingredient_bz_data = bazaar_data[bazaar_products.index(item)]["quick_status"]
-KeyError: 327
-18-Jun-22 15:58:44: [ERROR] ABSOLUTE_ENDER_PEARL costs 0 coins to craft
-18-Jun-22 15:58:44: [ERROR] ACACIA_DOOR_ITEM costs 0 coins to craft
-18-Jun-22 15:58:45: [ERROR] ACACIA_FENCE costs 0 coins to craft
-18-Jun-22 15:58:46: [ERROR] ACACIA_FENCE_GATE costs 0 coins to craft
-18-Jun-22 15:58:46: [ERROR] 159
-Traceback (most recent call last):
-  File "/home/runner/Skyblock-Tools-Deployment-Flask/main.py", line 203, in static_database_updater
-    ingredient_bz_data = bazaar_data[bazaar_products.index(item)]["quick_status"]
-KeyError: 159
-18-Jun-22 15:58:47: [ERROR] 57
-Traceback (most recent call last):
-  File "/home/runner/Skyblock-Tools-Deployment-Flask/main.py", line 203, in static_database_updater
-    ingredient_bz_data = bazaar_data[bazaar_products.index(item)]["quick_status"]
-KeyError: 57
-18-Jun-22 15:58:48: [ERROR] 57
-Traceback (most recent call last):
-  File "/home/runner/Skyblock-Tools-Deployment-Flask/main.py", line 203, in static_database_updater
-    ingredient_bz_data = bazaar_data[bazaar_products.index(item)]["quick_status"]
-KeyError: 57
-18-Jun-22 15:58:49: [ERROR] 159
-Traceback (most recent call last):
-  File "/home/runner/Skyblock-Tools-Deployment-Flask/main.py", line 203, in static_database_updater
-    ingredient_bz_data = bazaar_data[bazaar_products.index(item)]["quick_status"]
-KeyError: 159
-18-Jun-22 15:58:49: [ERROR] 159
-Traceback (most recent call last):
-  File "/home/runner/Skyblock-Tools-Deployment-Flask/main.py", line 203, in static_database_updater
-    ingredient_bz_data = bazaar_data[bazaar_products.index(item)]["quick_status"]
-KeyError: 159
-18-Jun-22 15:58:50: [ERROR] 159
-Traceback (most recent call last):
-  File "/home/runner/Skyblock-Tools-Deployment-Flask/main.py", line 203, in static_database_updater
-    ingredient_bz_data = bazaar_data[bazaar_products.index(item)]["quick_status"]
-KeyError: 159
-18-Jun-22 15:58:51: [ERROR] 57
-Traceback (most recent call last):
-  File "/home/runner/Skyblock-Tools-Deployment-Flask/main.py", line 203, in static_database_updater
-    ingredient_bz_data = bazaar_data[bazaar_products.index(item)]["quick_status"]
-KeyError: 57
-18-Jun-22 15:58:52: [ERROR] 57
-Traceback (most recent call last):
-  File "/home/runner/Skyblock-Tools-Deployment-Flask/main.py", line 203, in static_database_updater
-    ingredient_bz_data = bazaar_data[bazaar_products.index(item)]["quick_status"]
-KeyError: 57
-18-Jun-22 15:58:52: [ERROR] 57
-Traceback (most recent call last):
-  File "/home/runner/Skyblock-Tools-Deployment-Flask/main.py", line 203, in static_database_updater
-    ingredient_bz_data = bazaar_data[bazaar_products.index(item)]["quick_status"]
-KeyError: 57
-18-Jun-22 15:58:53: [ERROR] 57
-Traceback (most recent call last):
-  File "/home/runner/Skyblock-Tools-Deployment-Flask/main.py", line 203, in static_database_updater
-    ingredient_bz_data = bazaar_data[bazaar_products.index(item)]["quick_status"]
-KeyError: 57
-18-Jun-22 15:58:54: [ERROR] 57
-Traceback (most recent call last):
-  File "/home/runner/Skyblock-Tools-Deployment-Flask/main.py", line 203, in static_database_updater
-    ingredient_bz_data = bazaar_data[bazaar_products.index(item)]["quick_status"]
-KeyError: 57
-18-Jun-22 15:58:54: [ERROR] ACACIA_STAIRS costs 0 coins to craft
-18-Jun-22 15:58:55: [ERROR] 333
-Traceback (most recent call last):
-  File "/home/runner/Skyblock-Tools-Deployment-Flask/main.py", line 203, in static_database_updater
-    ingredient_bz_data = bazaar_data[bazaar_products.index(item)]["quick_status"]
-KeyError: 333
-18-Jun-22 15:58:55: [ERROR] ACTIVATOR_RAIL costs 0 coins to craft
-18-Jun-22 15:58:58: [ERROR] 119
-Traceback (most recent call last):
-  File "/home/runner/Skyblock-Tools-Deployment-Flask/main.py", line 203, in static_database_updater
-    ingredient_bz_data = bazaar_data[bazaar_products.index(item)]["quick_status"]
-KeyError: 119
-18-Jun-22 15:58:58: [ERROR] 217
-Traceback (most recent call last):
-  File "/home/runner/Skyblock-Tools-Deployment-Flask/main.py", line 203, in static_database_updater
-    ingredient_bz_data = bazaar_data[bazaar_products.index(item)]["quick_status"]
-KeyError: 217
-18-Jun-22 15:58:58: [ERROR] 319
-Traceback (most recent call last):
-  File "/home/runner/Skyblock-Tools-Deployment-Flask/main.py", line 203, in static_database_updater
-    ingredient_bz_data = bazaar_data[bazaar_products.index(item)]["quick_status"]
-KeyError: 319
-18-Jun-22 15:58:58: [ERROR] 393
-Traceback (most recent call last):
-  File "/home/runner/Skyblock-Tools-Deployment-Flask/main.py", line 203, in static_database_updater
-    ingredient_bz_data = bazaar_data[bazaar_products.index(item)]["quick_status"]
-KeyError: 393
-18-Jun-22 15:58:59: [ERROR] 130
-Traceback (most recent call last):
-  File "/home/runner/Skyblock-Tools-Deployment-Flask/main.py", line 203, in static_database_updater
-    ingredient_bz_data = bazaar_data[bazaar_products.index(item)]["quick_status"]
-KeyError: 130
-18-Jun-22 15:59:00: [ERROR] ALL_SKILLS_SUPER_BOOST costs 0 coins to craft
-18-Jun-22 15:59:00: [ERROR] AMALGAMATED_CRIMSONITE's bz price is 0
-18-Jun-22 15:59:00: [ERROR] 115
-Traceback (most recent call last):
-  File "/home/runner/Skyblock-Tools-Deployment-Flask/main.py", line 203, in static_database_updater
-    ingredient_bz_data = bazaar_data[bazaar_products.index(item)]["quick_status"]
-KeyError: 115
-18-Jun-22 15:59:00: [ERROR] 382
-Traceback (most recent call last):
-  File "/home/runner/Skyblock-Tools-Deployment-Flask/main.py", line 203, in static_database_updater
-    ingredient_bz_data = bazaar_data[bazaar_products.index(item)]["quick_status"]
-KeyError: 382
-18-Jun-22 15:59:01: [ERROR] 392
-Traceback (most recent call last):
-  File "/home/runner/Skyblock-Tools-Deployment-Flask/main.py", line 203, in static_database_updater
-    ingredient_bz_data = bazaar_data[bazaar_products.index(item)]["quick_status"]
-KeyError: 392
-18-Jun-22 15:59:01: [ERROR] 410
-Traceback (most recent call last):
-  File "/home/runner/Skyblock-Tools-Deployment-Flask/main.py", line 203, in static_database_updater
-    ingredient_bz_data = bazaar_data[bazaar_products.index(item)]["quick_status"]
-KeyError: 410
-18-Jun-22 15:59:01: [ERROR] 103
-Traceback (most recent call last):
-  File "/home/runner/Skyblock-Tools-Deployment-Flask/main.py", line 203, in static_database_updater
-    ingredient_bz_data = bazaar_data[bazaar_products.index(item)]["quick_status"]
-KeyError: 103
-18-Jun-22 15:59:01: [ERROR] 79
-Traceback (most recent call last):
-  File "/home/runner/Skyblock-Tools-Deployment-Flask/main.py", line 203, in static_database_updater
-    ingredient_bz_data = bazaar_data[bazaar_products.index(item)]["quick_status"]
-KeyError: 79
-18-Jun-22 15:59:01: [ERROR] AMALGAMATED_CRIMSONITE_NEW costs 0 coins to craft
-18-Jun-22 15:59:02: [ERROR] 115
-Traceback (most recent call last):
-  File "/home/runner/Skyblock-Tools-Deployment-Flask/main.py", line 203, in static_database_updater
-    ingredient_bz_data = bazaar_data[bazaar_products.index(item)]["quick_status"]
-KeyError: 115
-18-Jun-22 15:59:02: [ERROR] 382
-Traceback (most recent call last):
-  File "/home/runner/Skyblock-Tools-Deployment-Flask/main.py", line 203, in static_database_updater
-    ingredient_bz_data = bazaar_data[bazaar_products.index(item)]["quick_status"]
-KeyError: 382
-18-Jun-22 15:59:02: [ERROR] 392
-Traceback (most recent call last):
-  File "/home/runner/Skyblock-Tools-Deployment-Flask/main.py", line 203, in static_database_updater
-    ingredient_bz_data = bazaar_data[bazaar_products.index(item)]["quick_status"]
-KeyError: 392
-18-Jun-22 15:59:03: [ERROR] 410
-Traceback (most recent call last):
-  File "/home/runner/Skyblock-Tools-Deployment-Flask/main.py", line 203, in static_database_updater
-    ingredient_bz_data = bazaar_data[bazaar_products.index(item)]["quick_status"]
-KeyError: 410
-18-Jun-22 15:59:03: [ERROR] 103
-Traceback (most recent call last):
-  File "/home/runner/Skyblock-Tools-Deployment-Flask/main.py", line 203, in static_database_updater
-    ingredient_bz_data = bazaar_data[bazaar_products.index(item)]["quick_status"]
-KeyError: 103
-18-Jun-22 15:59:03: [ERROR] 79
-Traceback (most recent call last):
-  File "/home/runner/Skyblock-Tools-Deployment-Flask/main.py", line 203, in static_database_updater
-    ingredient_bz_data = bazaar_data[bazaar_products.index(item)]["quick_status"]
-KeyError: 79
-18-Jun-22 15:59:03: [ERROR] Task exception was never retrieved
-future: <Task finished name='Task-4' coro=<repeat_every.<locals>.decorator.<locals>.wrapped.<locals>.loop() done, defined at /home/runner/Skyblock-Tools-Deployment-Flask/venv/lib/python3.8/site-packages/fastapi_utils/tasks.py:57> exception=TypeError("error() missing 1 required positional argument: 'msg'")>
-Traceback (most recent call last):
-  File "/home/runner/Skyblock-Tools-Deployment-Flask/venv/lib/python3.8/site-packages/fastapi_utils/tasks.py", line 64, in loop
-    await func()  # type: ignore
-  File "/home/runner/Skyblock-Tools-Deployment-Flask/app.py", line 258, in static_database_updater_task
-    db = await run_in_threadpool(lambda: main.static_database_updater(db, main.names))
-  File "/home/runner/Skyblock-Tools-Deployment-Flask/venv/lib/python3.8/site-packages/starlette/concurrency.py", line 41, in run_in_threadpool
-    return await anyio.to_thread.run_sync(func, *args)
-  File "/home/runner/Skyblock-Tools-Deployment-Flask/venv/lib/python3.8/site-packages/anyio/to_thread.py", line 31, in run_sync
-    return await get_asynclib().run_sync_in_worker_thread(
-  File "/home/runner/Skyblock-Tools-Deployment-Flask/venv/lib/python3.8/site-packages/anyio/_backends/_asyncio.py", line 937, in run_sync_in_worker_thread
-    return await future
-  File "/home/runner/Skyblock-Tools-Deployment-Flask/venv/lib/python3.8/site-packages/anyio/_backends/_asyncio.py", line 867, in run
-    result = context.run(func, *args)
-  File "/home/runner/Skyblock-Tools-Deployment-Flask/app.py", line 258, in <lambda>
-    db = await run_in_threadpool(lambda: main.static_database_updater(db, main.names))
-  File "/home/runner/Skyblock-Tools-Deployment-Flask/main.py", line 337, in static_database_updater
-    ingredient_bz_data = bazaar_data[bazaar_products.index(item)]["quick_status"]
-KeyError: 160
-
-During handling of the above exception, another exception occurred:
-
-Traceback (most recent call last):
-  File "/home/runner/Skyblock-Tools-Deployment-Flask/venv/lib/python3.8/site-packages/fastapi_utils/tasks.py", line 71, in loop
-    logger.error(formatted_exception)
-TypeError: error() missing 1 required positional argument: 'msg'
-18-Jun-22 16:00:28: [ERROR] ALL_SKILLS_SUPER_BOOST costs 0 coins to craft
-18-Jun-22 16:00:28: [ERROR] ALL_SKILLS_SUPER_BOOST costs 0 coins to craft
-18-Jun-22 16:00:29: [ERROR] AMALGAMATED_CRIMSONITE's bz price is 0
-18-Jun-22 16:00:33: [ERROR] ASPIRING_LEAP costs 0 coins to craft
-18-Jun-22 16:00:33: [ERROR] ASTRAEA costs 0 coins to craft
-18-Jun-22 16:00:33: [ERROR] ASTRAEA costs 0 coins to craft
-18-Jun-22 16:00:33: [ERROR] ATOMSPLIT_KATANA costs 0 coins to craft
-18-Jun-22 16:00:33: [ERROR] ATOMSPLIT_KATANA costs 0 coins to craft
-18-Jun-22 16:00:48: [ERROR] CATACOMBS_EXPERT_RING costs 0 coins to craft
-18-Jun-22 16:00:49: [ERROR] COAL costs 0 coins to craft
-18-Jun-22 16:00:52: [ERROR] CRYSTAL_BOOTS costs 0 coins to craft
-18-Jun-22 16:00:52: [ERROR] CRYSTAL_CHESTPLATE costs 0 coins to craft
-18-Jun-22 16:00:53: [ERROR] CRYSTAL_HELMET costs 0 coins to craft
-18-Jun-22 16:00:53: [ERROR] CRYSTAL_LEGGINGS costs 0 coins to craft
-18-Jun-22 16:00:55: [ERROR] DELIRIUM_NECKLACE costs 0 coins to craft
-18-Jun-22 16:00:55: [ERROR] DELIRIUM_NECKLACE costs 0 coins to craft
-18-Jun-22 16:00:55: [ERROR] DIAMOND costs 0 coins to craft
-18-Jun-22 16:00:57: [ERROR] DIRT_BOTTLE's bz price is 0
-18-Jun-22 16:00:58: [ERROR] DIVER_BOOTS costs 0 coins to craft
-18-Jun-22 16:00:58: [ERROR] DIVER_CHESTPLATE costs 0 coins to craft
-18-Jun-22 16:00:58: [ERROR] DIVER_HELMET costs 0 coins to craft
-18-Jun-22 16:00:58: [ERROR] DIVER_LEGGINGS costs 0 coins to craft
-18-Jun-22 16:01:03: [ERROR] EMBER_BOOTS costs 0 coins to craft
-18-Jun-22 16:01:03: [ERROR] EMBER_CHESTPLATE costs 0 coins to craft
-18-Jun-22 16:01:03: [ERROR] EMBER_HELMET costs 0 coins to craft
-18-Jun-22 16:01:03: [ERROR] EMBER_LEGGINGS costs 0 coins to craft
-18-Jun-22 16:01:04: [ERROR] EMERALD costs 0 coins to craft
-18-Jun-22 16:01:05: [ERROR] ENCHANTED_CARROT_ON_A_STICK's bz price is 0
-18-Jun-22 16:01:05: [ERROR] ENCHANTED_EGG costs 0 coins to craft
-18-Jun-22 16:01:05: [ERROR] ENCHANTED_GLISTERING_MELON costs 0 coins to craft
-18-Jun-22 16:01:05: [ERROR] ENCHANTED_WOOL costs 0 coins to craft
-18-Jun-22 16:01:10: [ERROR] EXP_BOTTLE costs 0 coins to craft
-18-Jun-22 16:01:13: [ERROR] FEL_SWORD costs 0 coins to craft
-18-Jun-22 16:01:13: [ERROR] FEL_SWORD costs 0 coins to craft
-18-Jun-22 16:01:15: [ERROR] FIRE_FREEZE_STAFF costs 0 coins to craft
-18-Jun-22 16:01:15: [ERROR] FIRE_FREEZE_STAFF costs 0 coins to craft
-18-Jun-22 16:01:15: [ERROR] FIRE_FREEZE_STAFF costs 0 coins to craft
-18-Jun-22 16:01:16: [ERROR] FIRE_FURY_STAFF costs 0 coins to craft
-18-Jun-22 16:01:16: [ERROR] FIRE_FURY_STAFF costs 0 coins to craft
-18-Jun-22 16:01:16: [ERROR] FIRE_FURY_STAFF costs 0 coins to craft
-18-Jun-22 16:01:16: [ERROR] FIRE_VEIL_WAND costs 0 coins to craft
-18-Jun-22 16:01:16: [ERROR] FIRE_VEIL_WAND costs 0 coins to craft
-18-Jun-22 16:01:16: [ERROR] FIRE_VEIL_WAND costs 0 coins to craft
-18-Jun-22 16:01:17: [ERROR] FLORID_ZOMBIE_SWORD costs 0 coins to craft
-18-Jun-22 16:01:17: [ERROR] FLORID_ZOMBIE_SWORD costs 0 coins to craft
-18-Jun-22 16:01:17: [ERROR] FLOWER_OF_TRUTH costs 0 coins to craft
-18-Jun-22 16:01:28: [ERROR] GOLD_INGOT costs 0 coins to craft
-18-Jun-22 16:01:39: [ERROR] HYPERION costs 0 coins to craft
-18-Jun-22 16:01:39: [ERROR] HYPERION costs 0 coins to craft
-18-Jun-22 16:01:41: [ERROR] INFERNO_APEX's bz price is 0
-18-Jun-22 16:01:43: [ERROR] IRON_INGOT costs 0 coins to craft
-18-Jun-22 16:01:44: [ERROR] JERRY_TALISMAN_BLUE costs 0 coins to craft
-18-Jun-22 16:01:44: [ERROR] JERRY_TALISMAN_GOLDEN costs 0 coins to craft
-18-Jun-22 16:01:44: [ERROR] JERRY_TALISMAN_PURPLE costs 0 coins to craft
-18-Jun-22 16:01:45: [ERROR] JUMBO_BACKPACK costs 0 coins to craft
-18-Jun-22 16:01:45: [ERROR] JUMBO_BACKPACK costs 0 coins to craft
-18-Jun-22 16:01:46: [ERROR] KUUDRA_MANDIBLE's bz price is 0
-18-Jun-22 16:01:48: [ERROR] LAVA_SHELL_NECKLACE costs 0 coins to craft
-18-Jun-22 16:01:48: [ERROR] LAVA_SHELL_NECKLACE costs 0 coins to craft
-18-Jun-22 16:01:48: [ERROR] LESSER_ORB_OF_HEALING costs 0 coins to craft
-18-Jun-22 16:01:49: [ERROR] MAGMA_LORD_BOOTS costs 0 coins to craft
-18-Jun-22 16:01:50: [ERROR] MAGMA_LORD_CHESTPLATE costs 0 coins to craft
-18-Jun-22 16:01:50: [ERROR] MAGMA_LORD_GAUNTLET costs 0 coins to craft
-18-Jun-22 16:01:50: [ERROR] MAGMA_LORD_HELMET costs 0 coins to craft
-18-Jun-22 16:01:50: [ERROR] MAGMA_LORD_LEGGINGS costs 0 coins to craft
-18-Jun-22 16:01:51: [ERROR] MANDRAA's bz price is 0
-18-Jun-22 16:01:51: [ERROR] MASTER_SKULL_TIER_2 costs 0 coins to craft
-18-Jun-22 16:01:51: [ERROR] MASTER_SKULL_TIER_3 costs 0 coins to craft
-18-Jun-22 16:01:51: [ERROR] MASTER_SKULL_TIER_4 costs 0 coins to craft
-18-Jun-22 16:01:51: [ERROR] MASTER_SKULL_TIER_5 costs 0 coins to craft
-18-Jun-22 16:01:51: [ERROR] MASTER_SKULL_TIER_6 costs 0 coins to craft
-18-Jun-22 16:01:51: [ERROR] MASTER_SKULL_TIER_7 costs 0 coins to craft
-18-Jun-22 16:01:56: [ERROR] MOIL_LOG's bz price is 0
-18-Jun-22 16:02:18: [ERROR] POWER_WITHER_BOOTS costs 0 coins to craft
-18-Jun-22 16:02:18: [ERROR] POWER_WITHER_BOOTS costs 0 coins to craft
-18-Jun-22 16:02:18: [ERROR] POWER_WITHER_CHESTPLATE costs 0 coins to craft
-18-Jun-22 16:02:18: [ERROR] POWER_WITHER_CHESTPLATE costs 0 coins to craft
-18-Jun-22 16:02:18: [ERROR] POWER_WITHER_HELMET costs 0 coins to craft
-18-Jun-22 16:02:18: [ERROR] POWER_WITHER_HELMET costs 0 coins to craft
-18-Jun-22 16:02:19: [ERROR] POWER_WITHER_LEGGINGS costs 0 coins to craft
-18-Jun-22 16:02:19: [ERROR] POWER_WITHER_LEGGINGS costs 0 coins to craft
-18-Jun-22 16:02:21: [ERROR] RAGNAROCK_AXE costs 0 coins to craft
-18-Jun-22 16:02:21: [ERROR] RAGNAROCK_AXE costs 0 coins to craft
-18-Jun-22 16:02:22: [ERROR] REAPER_ORB costs 0 coins to craft
-18-Jun-22 16:02:22: [ERROR] REAPER_SWORD costs 0 coins to craft
-18-Jun-22 16:02:22: [ERROR] REAPER_SWORD costs 0 coins to craft
-18-Jun-22 16:02:22: [ERROR] REAPER_SWORD costs 0 coins to craft
-18-Jun-22 16:02:22: [ERROR] REDSTONE costs 0 coins to craft
-18-Jun-22 16:02:25: [ERROR] REVENANT_SWORD costs 0 coins to craft
-18-Jun-22 16:02:25: [ERROR] REVENANT_SWORD costs 0 coins to craft
-18-Jun-22 16:02:25: [ERROR] REVENANT_SWORD costs 0 coins to craft
-18-Jun-22 16:02:25: [ERROR] REVIVED_HEART costs 0 coins to craft
-18-Jun-22 16:02:25: [ERROR] REVIVED_HEART costs 0 coins to craft
-18-Jun-22 16:02:29: [ERROR] SCARF_GRIMOIRE costs 0 coins to craft
-18-Jun-22 16:02:29: [ERROR] SCARF_THESIS costs 0 coins to craft
-18-Jun-22 16:02:30: [ERROR] SCOURGE_CLOAK costs 0 coins to craft
-18-Jun-22 16:02:30: [ERROR] SCOURGE_CLOAK costs 0 coins to craft
-18-Jun-22 16:02:30: [ERROR] SCOURGE_CLOAK costs 0 coins to craft
-18-Jun-22 16:02:30: [ERROR] SCOVILLE_BELT costs 0 coins to craft
-18-Jun-22 16:02:30: [ERROR] SCOVILLE_BELT costs 0 coins to craft
-18-Jun-22 16:02:30: [ERROR] SCYLLA costs 0 coins to craft
-18-Jun-22 16:02:30: [ERROR] SCYLLA costs 0 coins to craft
-18-Jun-22 16:02:34: [ERROR] 'CARROT'
-18-Jun-22 16:02:34: [ERROR] CARROT isn't in the database yet
-18-Jun-22 16:02:39: [ERROR] SLIME_BALL costs 0 coins to craft
-18-Jun-22 16:02:41: [ERROR] SORROW_BOOTS costs 0 coins to craft
-18-Jun-22 16:02:41: [ERROR] SORROW_CHESTPLATE costs 0 coins to craft
-18-Jun-22 16:02:41: [ERROR] SORROW_HELMET costs 0 coins to craft
-18-Jun-22 16:02:41: [ERROR] SORROW_LEGGINGS costs 0 coins to craft
-18-Jun-22 16:02:43: [ERROR] SPEED_WITHER_BOOTS costs 0 coins to craft
-18-Jun-22 16:02:43: [ERROR] SPEED_WITHER_BOOTS costs 0 coins to craft
-18-Jun-22 16:02:43: [ERROR] SPEED_WITHER_CHESTPLATE costs 0 coins to craft
-18-Jun-22 16:02:43: [ERROR] SPEED_WITHER_CHESTPLATE costs 0 coins to craft
-18-Jun-22 16:02:43: [ERROR] SPEED_WITHER_HELMET costs 0 coins to craft
-18-Jun-22 16:02:43: [ERROR] SPEED_WITHER_HELMET costs 0 coins to craft
-18-Jun-22 16:02:43: [ERROR] SPEED_WITHER_LEGGINGS costs 0 coins to craft
-18-Jun-22 16:02:43: [ERROR] SPEED_WITHER_LEGGINGS costs 0 coins to craft
-18-Jun-22 16:02:47: [ERROR] STARRED_ADAPTIVE_BOOTS costs 0 coins to craft
-18-Jun-22 16:02:47: [ERROR] STARRED_ADAPTIVE_BOOTS costs 0 coins to craft
-18-Jun-22 16:02:48: [ERROR] STARRED_ADAPTIVE_CHESTPLATE costs 0 coins to craft
-18-Jun-22 16:02:48: [ERROR] STARRED_ADAPTIVE_CHESTPLATE costs 0 coins to craft
-18-Jun-22 16:02:48: [ERROR] STARRED_ADAPTIVE_HELMET costs 0 coins to craft
-18-Jun-22 16:02:48: [ERROR] STARRED_ADAPTIVE_HELMET costs 0 coins to craft
-18-Jun-22 16:02:48: [ERROR] STARRED_ADAPTIVE_LEGGINGS costs 0 coins to craft
-18-Jun-22 16:02:48: [ERROR] STARRED_ADAPTIVE_LEGGINGS costs 0 coins to craft
-18-Jun-22 16:02:48: [ERROR] STARRED_BONZO_MASK costs 0 coins to craft
-18-Jun-22 16:02:48: [ERROR] STARRED_BONZO_MASK costs 0 coins to craft
-18-Jun-22 16:02:48: [ERROR] STARRED_BONZO_STAFF costs 0 coins to craft
-18-Jun-22 16:02:48: [ERROR] STARRED_BONZO_STAFF costs 0 coins to craft
-18-Jun-22 16:02:49: [ERROR] STARRED_LAST_BREATH costs 0 coins to craft
-18-Jun-22 16:02:49: [ERROR] STARRED_LAST_BREATH costs 0 coins to craft
-18-Jun-22 16:02:49: [ERROR] STARRED_SHADOW_ASSASSIN_BOOTS costs 0 coins to craft
-18-Jun-22 16:02:49: [ERROR] STARRED_SHADOW_ASSASSIN_BOOTS costs 0 coins to craft
-18-Jun-22 16:02:49: [ERROR] STARRED_SHADOW_ASSASSIN_CHESTPLATE costs 0 coins to craft
-18-Jun-22 16:02:49: [ERROR] STARRED_SHADOW_ASSASSIN_CHESTPLATE costs 0 coins to craft
-18-Jun-22 16:02:49: [ERROR] STARRED_SHADOW_ASSASSIN_HELMET costs 0 coins to craft
-18-Jun-22 16:02:49: [ERROR] STARRED_SHADOW_ASSASSIN_HELMET costs 0 coins to craft
-18-Jun-22 16:02:49: [ERROR] STARRED_SHADOW_ASSASSIN_LEGGINGS costs 0 coins to craft
-18-Jun-22 16:02:49: [ERROR] STARRED_SHADOW_ASSASSIN_LEGGINGS costs 0 coins to craft
-18-Jun-22 16:02:49: [ERROR] STARRED_SHADOW_FURY costs 0 coins to craft
-18-Jun-22 16:02:49: [ERROR] STARRED_SHADOW_FURY costs 0 coins to craft
-18-Jun-22 16:02:49: [ERROR] STARRED_STONE_BLADE costs 0 coins to craft
-18-Jun-22 16:02:49: [ERROR] STARRED_STONE_BLADE costs 0 coins to craft
-18-Jun-22 16:02:50: [ERROR] STEW_THE_FISH costs 0 coins to craft
-18-Jun-22 16:02:57: [ERROR] TANK_WITHER_BOOTS costs 0 coins to craft
-18-Jun-22 16:02:57: [ERROR] TANK_WITHER_BOOTS costs 0 coins to craft
-18-Jun-22 16:02:57: [ERROR] TANK_WITHER_CHESTPLATE costs 0 coins to craft
-18-Jun-22 16:02:57: [ERROR] TANK_WITHER_CHESTPLATE costs 0 coins to craft
-18-Jun-22 16:02:57: [ERROR] TANK_WITHER_HELMET costs 0 coins to craft
-18-Jun-22 16:02:57: [ERROR] TANK_WITHER_HELMET costs 0 coins to craft
-18-Jun-22 16:02:57: [ERROR] TANK_WITHER_LEGGINGS costs 0 coins to craft
-18-Jun-22 16:02:57: [ERROR] TANK_WITHER_LEGGINGS costs 0 coins to craft
-18-Jun-22 16:03:00: [ERROR] THUNDERBOLT_NECKLACE costs 0 coins to craft
-18-Jun-22 16:03:00: [ERROR] THUNDER_IN_A_BOTTLE_EMPTY costs 0 coins to craft
-18-Jun-22 16:03:00: [ERROR] THUNDER_IN_A_BOTTLE_EMPTY costs 0 coins to craft
-18-Jun-22 16:03:02: [ERROR] TOIL_LOG's bz price is 0
-18-Jun-22 16:03:02: [ERROR] TREASURE_ARTIFACT costs 0 coins to craft
-18-Jun-22 16:03:02: [ERROR] TREASURE_RING costs 0 coins to craft
-18-Jun-22 16:03:04: [ERROR] ULTIMATE_CARROT_CANDY costs 0 coins to craft
-18-Jun-22 16:03:04: [ERROR] ULTIMATE_CARROT_CANDY costs 0 coins to craft
-18-Jun-22 16:03:06: [ERROR] VALKYRIE costs 0 coins to craft
-18-Jun-22 16:03:06: [ERROR] VALKYRIE costs 0 coins to craft
-18-Jun-22 16:03:06: [ERROR] VANQUISHED_GHAST_CLOAK costs 0 coins to craft
-18-Jun-22 16:03:06: [ERROR] VANQUISHED_GHAST_CLOAK costs 0 coins to craft
-18-Jun-22 16:03:06: [ERROR] VANQUISHED_GHAST_CLOAK costs 0 coins to craft
-18-Jun-22 16:03:12: [ERROR] WISE_WITHER_BOOTS costs 0 coins to craft
-18-Jun-22 16:03:12: [ERROR] WISE_WITHER_BOOTS costs 0 coins to craft
-18-Jun-22 16:03:12: [ERROR] WISE_WITHER_CHESTPLATE costs 0 coins to craft
-18-Jun-22 16:03:12: [ERROR] WISE_WITHER_CHESTPLATE costs 0 coins to craft
-18-Jun-22 16:03:12: [ERROR] WISE_WITHER_HELMET costs 0 coins to craft
-18-Jun-22 16:03:12: [ERROR] WISE_WITHER_HELMET costs 0 coins to craft
-18-Jun-22 16:03:12: [ERROR] WISE_WITHER_LEGGINGS costs 0 coins to craft
-18-Jun-22 16:03:12: [ERROR] WISE_WITHER_LEGGINGS costs 0 coins to craft
-18-Jun-22 16:03:13: [ERROR] WITHER_RELIC costs 0 coins to craft
-18-Jun-22 16:03:13: [ERROR] WITHER_RELIC costs 0 coins to craft
-18-Jun-22 16:03:14: [ERROR] XLARGE_ENCHANTED_CHEST costs 0 coins to craft
-18-Jun-22 16:03:14: [ERROR] XLARGE_ENCHANTED_CHEST costs 0 coins to craft
-18-Jun-22 16:03:14: [ERROR] XXLARGE_ENCHANTED_CHEST costs 0 coins to craft
-18-Jun-22 16:03:14: [ERROR] XXLARGE_ENCHANTED_CHEST costs 0 coins to craft
-18-Jun-22 16:03:18: [ERROR] ZOMBIE_SWORD costs 0 coins to craft
-18-Jun-22 16:03:18: [ERROR] ZOMBIE_SWORD costs 0 coins to craft
-18-Jun-22 16:06:08: [ERROR] ALL_SKILLS_SUPER_BOOST costs 0 coins to craft
-18-Jun-22 16:06:08: [ERROR] ALL_SKILLS_SUPER_BOOST costs 0 coins to craft
-18-Jun-22 16:06:08: [ERROR] AMALGAMATED_CRIMSONITE's bz price is 0
-18-Jun-22 16:06:11: [ERROR] ASPIRING_LEAP costs 0 coins to craft
-18-Jun-22 16:06:12: [ERROR] ASTRAEA costs 0 coins to craft
-18-Jun-22 16:06:12: [ERROR] ASTRAEA costs 0 coins to craft
-18-Jun-22 16:06:12: [ERROR] ATOMSPLIT_KATANA costs 0 coins to craft
-18-Jun-22 16:06:12: [ERROR] ATOMSPLIT_KATANA costs 0 coins to craft
-18-Jun-22 16:06:17: [ERROR] CATACOMBS_EXPERT_RING costs 0 coins to craft
-18-Jun-22 16:06:14: [ERROR] COAL costs 0 coins to craft
-18-Jun-22 16:06:17: [ERROR] CRYSTAL_BOOTS costs 0 coins to craft
-18-Jun-22 16:06:17: [ERROR] CRYSTAL_CHESTPLATE costs 0 coins to craft
-18-Jun-22 16:06:18: [ERROR] CRYSTAL_HELMET costs 0 coins to craft
+19-Jun-22 10:45:25: [INFO] Started server process [1452]
+19-Jun-22 10:45:25: [INFO] Waiting for application startup.
+19-Jun-22 10:45:25: [INFO] Application startup complete.
+19-Jun-22 10:47:28: [ERROR] ALL_SKILLS_SUPER_BOOST costs 0 coins to craft
+19-Jun-22 10:47:28: [ERROR] ALL_SKILLS_SUPER_BOOST costs 0 coins to craft
+19-Jun-22 10:47:28: [ERROR] AMALGAMATED_CRIMSONITE's bz price is 0
+19-Jun-22 10:47:33: [ERROR] ASPIRING_LEAP costs 0 coins to craft
+19-Jun-22 10:47:33: [ERROR] ASTRAEA costs 0 coins to craft
+19-Jun-22 10:47:33: [ERROR] ASTRAEA costs 0 coins to craft
+19-Jun-22 10:47:33: [ERROR] ATOMSPLIT_KATANA costs 0 coins to craft
+19-Jun-22 10:47:33: [ERROR] ATOMSPLIT_KATANA costs 0 coins to craft
+19-Jun-22 10:47:51: [ERROR] CATACOMBS_EXPERT_RING costs 0 coins to craft
+19-Jun-22 10:47:54: [ERROR] COAL costs 0 coins to craft
+19-Jun-22 10:47:58: [ERROR] CRYSTAL_BOOTS costs 0 coins to craft
+19-Jun-22 10:47:59: [ERROR] CRYSTAL_CHESTPLATE costs 0 coins to craft
+19-Jun-22 10:47:59: [ERROR] CRYSTAL_HELMET costs 0 coins to craft
+19-Jun-22 10:48:00: [ERROR] CRYSTAL_LEGGINGS costs 0 coins to craft
+19-Jun-22 10:48:02: [ERROR] DELIRIUM_NECKLACE costs 0 coins to craft
+19-Jun-22 10:48:02: [ERROR] DELIRIUM_NECKLACE costs 0 coins to craft
+19-Jun-22 10:48:02: [ERROR] DIAMOND costs 0 coins to craft
+19-Jun-22 10:48:05: [ERROR] DIRT_BOTTLE's bz price is 0
+19-Jun-22 10:48:06: [ERROR] DIVER_BOOTS costs 0 coins to craft
+19-Jun-22 10:48:06: [ERROR] DIVER_CHESTPLATE costs 0 coins to craft
+19-Jun-22 10:48:07: [ERROR] DIVER_HELMET costs 0 coins to craft
+19-Jun-22 10:48:07: [ERROR] DIVER_LEGGINGS costs 0 coins to craft
+19-Jun-22 10:48:13: [ERROR] EMBER_BOOTS costs 0 coins to craft
+19-Jun-22 10:48:13: [ERROR] EMBER_CHESTPLATE costs 0 coins to craft
+19-Jun-22 10:48:13: [ERROR] EMBER_HELMET costs 0 coins to craft
+19-Jun-22 10:48:14: [ERROR] EMBER_LEGGINGS costs 0 coins to craft
+19-Jun-22 10:48:14: [ERROR] EMERALD costs 0 coins to craft
+19-Jun-22 10:48:15: [ERROR] ENCHANTED_CARROT_ON_A_STICK's bz price is 0
+19-Jun-22 10:48:15: [ERROR] ENCHANTED_EGG costs 0 coins to craft
+19-Jun-22 10:48:15: [ERROR] ENCHANTED_GLISTERING_MELON costs 0 coins to craft
+19-Jun-22 10:48:16: [ERROR] ENCHANTED_WOOL costs 0 coins to craft
+19-Jun-22 10:48:23: [ERROR] EXP_BOTTLE costs 0 coins to craft
+19-Jun-22 10:48:25: [ERROR] FEL_SWORD costs 0 coins to craft
+19-Jun-22 10:48:25: [ERROR] FEL_SWORD costs 0 coins to craft
+19-Jun-22 10:48:28: [ERROR] FIRE_FREEZE_STAFF costs 0 coins to craft
+19-Jun-22 10:48:28: [ERROR] FIRE_FREEZE_STAFF costs 0 coins to craft
+19-Jun-22 10:48:28: [ERROR] FIRE_FREEZE_STAFF costs 0 coins to craft
+19-Jun-22 10:48:28: [ERROR] FIRE_FURY_STAFF costs 0 coins to craft
+19-Jun-22 10:48:28: [ERROR] FIRE_FURY_STAFF costs 0 coins to craft
+19-Jun-22 10:48:28: [ERROR] FIRE_FURY_STAFF costs 0 coins to craft
+19-Jun-22 10:48:28: [ERROR] FIRE_VEIL_WAND costs 0 coins to craft
+19-Jun-22 10:48:28: [ERROR] FIRE_VEIL_WAND costs 0 coins to craft
+19-Jun-22 10:48:28: [ERROR] FIRE_VEIL_WAND costs 0 coins to craft
+19-Jun-22 10:48:30: [ERROR] FLORID_ZOMBIE_SWORD costs 0 coins to craft
+19-Jun-22 10:48:30: [ERROR] FLORID_ZOMBIE_SWORD costs 0 coins to craft
+19-Jun-22 10:48:31: [ERROR] FLOWER_OF_TRUTH costs 0 coins to craft
+19-Jun-22 10:48:42: [ERROR] GOLD_INGOT costs 0 coins to craft
+19-Jun-22 10:48:54: [ERROR] HYPERION costs 0 coins to craft
+19-Jun-22 10:48:54: [ERROR] HYPERION costs 0 coins to craft
+19-Jun-22 10:48:57: [ERROR] INFERNO_APEX's bz price is 0
+19-Jun-22 10:48:58: [ERROR] IRON_INGOT costs 0 coins to craft
+19-Jun-22 10:48:59: [ERROR] JERRY_TALISMAN_BLUE costs 0 coins to craft
+19-Jun-22 10:48:59: [ERROR] JERRY_TALISMAN_GOLDEN costs 0 coins to craft
+19-Jun-22 10:49:00: [ERROR] JERRY_TALISMAN_PURPLE costs 0 coins to craft
+19-Jun-22 10:49:00: [ERROR] JUMBO_BACKPACK costs 0 coins to craft
+19-Jun-22 10:49:00: [ERROR] JUMBO_BACKPACK costs 0 coins to craft
+19-Jun-22 10:49:02: [ERROR] KUUDRA_MANDIBLE's bz price is 0
+19-Jun-22 10:49:03: [ERROR] LAVA_SHELL_NECKLACE costs 0 coins to craft
+19-Jun-22 10:49:03: [ERROR] LAVA_SHELL_NECKLACE costs 0 coins to craft
+19-Jun-22 10:49:04: [ERROR] LESSER_ORB_OF_HEALING costs 0 coins to craft
+19-Jun-22 10:49:05: [ERROR] MAGMA_LORD_BOOTS costs 0 coins to craft
+19-Jun-22 10:49:06: [ERROR] MAGMA_LORD_CHESTPLATE costs 0 coins to craft
+19-Jun-22 10:49:06: [ERROR] MAGMA_LORD_GAUNTLET costs 0 coins to craft
+19-Jun-22 10:49:06: [ERROR] MAGMA_LORD_HELMET costs 0 coins to craft
+19-Jun-22 10:49:06: [ERROR] MAGMA_LORD_LEGGINGS costs 0 coins to craft
+19-Jun-22 10:49:07: [ERROR] MANDRAA's bz price is 0
+19-Jun-22 10:49:07: [ERROR] MASTER_SKULL_TIER_2 costs 0 coins to craft
+19-Jun-22 10:49:07: [ERROR] MASTER_SKULL_TIER_3 costs 0 coins to craft
+19-Jun-22 10:49:07: [ERROR] MASTER_SKULL_TIER_4 costs 0 coins to craft
+19-Jun-22 10:49:07: [ERROR] MASTER_SKULL_TIER_5 costs 0 coins to craft
+19-Jun-22 10:49:08: [ERROR] MASTER_SKULL_TIER_6 costs 0 coins to craft
+19-Jun-22 10:49:08: [ERROR] MASTER_SKULL_TIER_7 costs 0 coins to craft
+19-Jun-22 10:49:13: [ERROR] MOIL_LOG's bz price is 0
+19-Jun-22 10:49:38: [ERROR] POWER_WITHER_BOOTS costs 0 coins to craft
+19-Jun-22 10:49:38: [ERROR] POWER_WITHER_BOOTS costs 0 coins to craft
+19-Jun-22 10:49:38: [ERROR] POWER_WITHER_CHESTPLATE costs 0 coins to craft
+19-Jun-22 10:49:38: [ERROR] POWER_WITHER_CHESTPLATE costs 0 coins to craft
+19-Jun-22 10:49:38: [ERROR] POWER_WITHER_HELMET costs 0 coins to craft
+19-Jun-22 10:49:38: [ERROR] POWER_WITHER_HELMET costs 0 coins to craft
+19-Jun-22 10:49:39: [ERROR] POWER_WITHER_LEGGINGS costs 0 coins to craft
+19-Jun-22 10:49:39: [ERROR] POWER_WITHER_LEGGINGS costs 0 coins to craft
+19-Jun-22 10:49:42: [ERROR] RAGNAROCK_AXE costs 0 coins to craft
+19-Jun-22 10:49:42: [ERROR] RAGNAROCK_AXE costs 0 coins to craft
+19-Jun-22 10:49:43: [ERROR] REAPER_ORB costs 0 coins to craft
+19-Jun-22 10:49:43: [ERROR] REAPER_SWORD costs 0 coins to craft
+19-Jun-22 10:49:43: [ERROR] REAPER_SWORD costs 0 coins to craft
+19-Jun-22 10:49:43: [ERROR] REAPER_SWORD costs 0 coins to craft
+19-Jun-22 10:49:44: [ERROR] REDSTONE costs 0 coins to craft
+19-Jun-22 10:49:47: [ERROR] REVENANT_SWORD costs 0 coins to craft
+19-Jun-22 10:49:47: [ERROR] REVENANT_SWORD costs 0 coins to craft
+19-Jun-22 10:49:47: [ERROR] REVENANT_SWORD costs 0 coins to craft
+19-Jun-22 10:49:47: [ERROR] REVIVED_HEART costs 0 coins to craft
+19-Jun-22 10:49:47: [ERROR] REVIVED_HEART costs 0 coins to craft
+19-Jun-22 10:49:51: [ERROR] SCARF_GRIMOIRE costs 0 coins to craft
+19-Jun-22 10:49:51: [ERROR] SCARF_THESIS costs 0 coins to craft
+19-Jun-22 10:49:52: [ERROR] SCOURGE_CLOAK costs 0 coins to craft
+19-Jun-22 10:49:52: [ERROR] SCOURGE_CLOAK costs 0 coins to craft
+19-Jun-22 10:49:52: [ERROR] SCOURGE_CLOAK costs 0 coins to craft
+19-Jun-22 10:49:52: [ERROR] SCOVILLE_BELT costs 0 coins to craft
+19-Jun-22 10:49:52: [ERROR] SCOVILLE_BELT costs 0 coins to craft
+19-Jun-22 10:49:52: [ERROR] SCYLLA costs 0 coins to craft
+19-Jun-22 10:49:52: [ERROR] SCYLLA costs 0 coins to craft
+19-Jun-22 10:49:56: [ERROR] 'CARROT'
+19-Jun-22 10:49:56: [ERROR] CARROT isn't in the database yet
+19-Jun-22 10:50:04: [ERROR] SLIME_BALL costs 0 coins to craft
+19-Jun-22 10:50:06: [ERROR] SORROW_BOOTS costs 0 coins to craft
+19-Jun-22 10:50:07: [ERROR] SORROW_CHESTPLATE costs 0 coins to craft
+19-Jun-22 10:50:07: [ERROR] SORROW_HELMET costs 0 coins to craft
+19-Jun-22 10:50:07: [ERROR] SORROW_LEGGINGS costs 0 coins to craft
+19-Jun-22 10:50:09: [ERROR] SPEED_WITHER_BOOTS costs 0 coins to craft
+19-Jun-22 10:50:09: [ERROR] SPEED_WITHER_BOOTS costs 0 coins to craft
+19-Jun-22 10:50:09: [ERROR] SPEED_WITHER_CHESTPLATE costs 0 coins to craft
+19-Jun-22 10:50:09: [ERROR] SPEED_WITHER_CHESTPLATE costs 0 coins to craft
+19-Jun-22 10:50:10: [ERROR] SPEED_WITHER_HELMET costs 0 coins to craft
+19-Jun-22 10:50:10: [ERROR] SPEED_WITHER_HELMET costs 0 coins to craft
+19-Jun-22 10:50:10: [ERROR] SPEED_WITHER_LEGGINGS costs 0 coins to craft
+19-Jun-22 10:50:10: [ERROR] SPEED_WITHER_LEGGINGS costs 0 coins to craft
+19-Jun-22 10:50:15: [ERROR] STARRED_ADAPTIVE_BOOTS costs 0 coins to craft
+19-Jun-22 10:50:15: [ERROR] STARRED_ADAPTIVE_BOOTS costs 0 coins to craft
+19-Jun-22 10:50:15: [ERROR] STARRED_ADAPTIVE_CHESTPLATE costs 0 coins to craft
+19-Jun-22 10:50:15: [ERROR] STARRED_ADAPTIVE_CHESTPLATE costs 0 coins to craft
+19-Jun-22 10:50:15: [ERROR] STARRED_ADAPTIVE_HELMET costs 0 coins to craft
+19-Jun-22 10:50:15: [ERROR] STARRED_ADAPTIVE_HELMET costs 0 coins to craft
+19-Jun-22 10:50:15: [ERROR] STARRED_ADAPTIVE_LEGGINGS costs 0 coins to craft
+19-Jun-22 10:50:15: [ERROR] STARRED_ADAPTIVE_LEGGINGS costs 0 coins to craft
+19-Jun-22 10:50:15: [ERROR] STARRED_BONZO_MASK costs 0 coins to craft
+19-Jun-22 10:50:15: [ERROR] STARRED_BONZO_MASK costs 0 coins to craft
+19-Jun-22 10:50:15: [ERROR] STARRED_BONZO_STAFF costs 0 coins to craft
+19-Jun-22 10:50:15: [ERROR] STARRED_BONZO_STAFF costs 0 coins to craft
+19-Jun-22 10:50:16: [ERROR] STARRED_LAST_BREATH costs 0 coins to craft
+19-Jun-22 10:50:16: [ERROR] STARRED_LAST_BREATH costs 0 coins to craft
+19-Jun-22 10:50:16: [ERROR] STARRED_SHADOW_ASSASSIN_BOOTS costs 0 coins to craft
+19-Jun-22 10:50:16: [ERROR] STARRED_SHADOW_ASSASSIN_BOOTS costs 0 coins to craft
+19-Jun-22 10:50:16: [ERROR] STARRED_SHADOW_ASSASSIN_CHESTPLATE costs 0 coins to craft
+19-Jun-22 10:50:16: [ERROR] STARRED_SHADOW_ASSASSIN_CHESTPLATE costs 0 coins to craft
+19-Jun-22 10:50:16: [ERROR] STARRED_SHADOW_ASSASSIN_HELMET costs 0 coins to craft
+19-Jun-22 10:50:16: [ERROR] STARRED_SHADOW_ASSASSIN_HELMET costs 0 coins to craft
+19-Jun-22 10:50:16: [ERROR] STARRED_SHADOW_ASSASSIN_LEGGINGS costs 0 coins to craft
+19-Jun-22 10:50:16: [ERROR] STARRED_SHADOW_ASSASSIN_LEGGINGS costs 0 coins to craft
+19-Jun-22 10:50:16: [ERROR] STARRED_SHADOW_FURY costs 0 coins to craft
+19-Jun-22 10:50:16: [ERROR] STARRED_SHADOW_FURY costs 0 coins to craft
+19-Jun-22 10:50:16: [ERROR] STARRED_STONE_BLADE costs 0 coins to craft
+19-Jun-22 10:50:16: [ERROR] STARRED_STONE_BLADE costs 0 coins to craft
+19-Jun-22 10:50:17: [ERROR] STEW_THE_FISH costs 0 coins to craft
+19-Jun-22 10:50:25: [ERROR] TANK_WITHER_BOOTS costs 0 coins to craft
+19-Jun-22 10:50:25: [ERROR] TANK_WITHER_BOOTS costs 0 coins to craft
+19-Jun-22 10:50:25: [ERROR] TANK_WITHER_CHESTPLATE costs 0 coins to craft
+19-Jun-22 10:50:25: [ERROR] TANK_WITHER_CHESTPLATE costs 0 coins to craft
+19-Jun-22 10:50:25: [ERROR] TANK_WITHER_HELMET costs 0 coins to craft
+19-Jun-22 10:50:25: [ERROR] TANK_WITHER_HELMET costs 0 coins to craft
+19-Jun-22 10:50:25: [ERROR] TANK_WITHER_LEGGINGS costs 0 coins to craft
+19-Jun-22 10:50:25: [ERROR] TANK_WITHER_LEGGINGS costs 0 coins to craft
+19-Jun-22 10:50:28: [ERROR] THUNDERBOLT_NECKLACE costs 0 coins to craft
+19-Jun-22 10:50:28: [ERROR] THUNDER_IN_A_BOTTLE_EMPTY costs 0 coins to craft
+19-Jun-22 10:50:28: [ERROR] THUNDER_IN_A_BOTTLE_EMPTY costs 0 coins to craft
+19-Jun-22 10:50:30: [ERROR] TOIL_LOG's bz price is 0
+19-Jun-22 10:50:31: [ERROR] TREASURE_ARTIFACT costs 0 coins to craft
+19-Jun-22 10:50:31: [ERROR] TREASURE_RING costs 0 coins to craft
+19-Jun-22 10:50:32: [ERROR] ULTIMATE_CARROT_CANDY costs 0 coins to craft
+19-Jun-22 10:50:32: [ERROR] ULTIMATE_CARROT_CANDY costs 0 coins to craft
+19-Jun-22 10:50:33: [ERROR] VALKYRIE costs 0 coins to craft
+19-Jun-22 10:50:33: [ERROR] VALKYRIE costs 0 coins to craft
+19-Jun-22 10:50:34: [ERROR] VANQUISHED_GHAST_CLOAK costs 0 coins to craft
+19-Jun-22 10:50:34: [ERROR] VANQUISHED_GHAST_CLOAK costs 0 coins to craft
+19-Jun-22 10:50:34: [ERROR] VANQUISHED_GHAST_CLOAK costs 0 coins to craft
+19-Jun-22 10:50:40: [ERROR] WISE_WITHER_BOOTS costs 0 coins to craft
+19-Jun-22 10:50:40: [ERROR] WISE_WITHER_BOOTS costs 0 coins to craft
+19-Jun-22 10:50:40: [ERROR] WISE_WITHER_CHESTPLATE costs 0 coins to craft
+19-Jun-22 10:50:40: [ERROR] WISE_WITHER_CHESTPLATE costs 0 coins to craft
+19-Jun-22 10:50:40: [ERROR] WISE_WITHER_HELMET costs 0 coins to craft
+19-Jun-22 10:50:40: [ERROR] WISE_WITHER_HELMET costs 0 coins to craft
+19-Jun-22 10:50:41: [ERROR] WISE_WITHER_LEGGINGS costs 0 coins to craft
+19-Jun-22 10:50:41: [ERROR] WISE_WITHER_LEGGINGS costs 0 coins to craft
+19-Jun-22 10:50:43: [ERROR] WITHER_RELIC costs 0 coins to craft
+19-Jun-22 10:50:43: [ERROR] WITHER_RELIC costs 0 coins to craft
+19-Jun-22 10:50:44: [ERROR] XLARGE_ENCHANTED_CHEST costs 0 coins to craft
+19-Jun-22 10:50:44: [ERROR] XLARGE_ENCHANTED_CHEST costs 0 coins to craft
+19-Jun-22 10:50:44: [ERROR] XXLARGE_ENCHANTED_CHEST costs 0 coins to craft
+19-Jun-22 10:50:44: [ERROR] XXLARGE_ENCHANTED_CHEST costs 0 coins to craft
+19-Jun-22 10:50:51: [ERROR] ZOMBIE_SWORD costs 0 coins to craft
+19-Jun-22 10:50:51: [ERROR] ZOMBIE_SWORD costs 0 coins to craft
+19-Jun-22 10:53:37: [ERROR] ALL_SKILLS_SUPER_BOOST costs 0 coins to craft
+19-Jun-22 10:53:37: [ERROR] ALL_SKILLS_SUPER_BOOST costs 0 coins to craft
+19-Jun-22 10:53:37: [ERROR] AMALGAMATED_CRIMSONITE's bz price is 0
+19-Jun-22 10:53:42: [ERROR] ASPIRING_LEAP costs 0 coins to craft
+19-Jun-22 10:53:43: [ERROR] ASTRAEA costs 0 coins to craft
+19-Jun-22 10:53:43: [ERROR] ASTRAEA costs 0 coins to craft
+19-Jun-22 10:53:43: [ERROR] ATOMSPLIT_KATANA costs 0 coins to craft
+19-Jun-22 10:53:43: [ERROR] ATOMSPLIT_KATANA costs 0 coins to craft
+19-Jun-22 10:54:01: [ERROR] CATACOMBS_EXPERT_RING costs 0 coins to craft
+19-Jun-22 10:54:03: [ERROR] COAL costs 0 coins to craft
+19-Jun-22 10:54:06: [ERROR] CRYSTAL_BOOTS costs 0 coins to craft
+19-Jun-22 10:54:06: [ERROR] CRYSTAL_CHESTPLATE costs 0 coins to craft
+19-Jun-22 10:54:07: [ERROR] CRYSTAL_HELMET costs 0 coins to craft
+19-Jun-22 10:54:07: [ERROR] CRYSTAL_LEGGINGS costs 0 coins to craft
+19-Jun-22 10:54:09: [ERROR] DELIRIUM_NECKLACE costs 0 coins to craft
+19-Jun-22 10:54:09: [ERROR] DELIRIUM_NECKLACE costs 0 coins to craft
+19-Jun-22 10:54:09: [ERROR] DIAMOND costs 0 coins to craft
+19-Jun-22 10:54:11: [ERROR] DIRT_BOTTLE's bz price is 0
+19-Jun-22 10:54:12: [ERROR] DIVER_BOOTS costs 0 coins to craft
+19-Jun-22 10:54:13: [ERROR] DIVER_CHESTPLATE costs 0 coins to craft
+19-Jun-22 10:54:13: [ERROR] DIVER_HELMET costs 0 coins to craft
+19-Jun-22 10:54:13: [ERROR] DIVER_LEGGINGS costs 0 coins to craft
+19-Jun-22 10:54:20: [ERROR] EMBER_BOOTS costs 0 coins to craft
+19-Jun-22 10:54:20: [ERROR] EMBER_CHESTPLATE costs 0 coins to craft
+19-Jun-22 10:54:20: [ERROR] EMBER_HELMET costs 0 coins to craft
+19-Jun-22 10:54:20: [ERROR] EMBER_LEGGINGS costs 0 coins to craft
+19-Jun-22 10:54:20: [ERROR] EMERALD costs 0 coins to craft
+19-Jun-22 10:54:21: [ERROR] ENCHANTED_CARROT_ON_A_STICK's bz price is 0
+19-Jun-22 10:54:21: [ERROR] ENCHANTED_EGG costs 0 coins to craft
+19-Jun-22 10:54:21: [ERROR] ENCHANTED_GLISTERING_MELON costs 0 coins to craft
+19-Jun-22 10:54:22: [ERROR] ENCHANTED_WOOL costs 0 coins to craft
+19-Jun-22 10:54:28: [ERROR] EXP_BOTTLE costs 0 coins to craft
+19-Jun-22 10:54:31: [ERROR] FEL_SWORD costs 0 coins to craft
+19-Jun-22 10:54:31: [ERROR] FEL_SWORD costs 0 coins to craft
+19-Jun-22 10:54:33: [ERROR] FIRE_FREEZE_STAFF costs 0 coins to craft
+19-Jun-22 10:54:33: [ERROR] FIRE_FREEZE_STAFF costs 0 coins to craft
+19-Jun-22 10:54:33: [ERROR] FIRE_FREEZE_STAFF costs 0 coins to craft
+19-Jun-22 10:54:33: [ERROR] FIRE_FURY_STAFF costs 0 coins to craft
+19-Jun-22 10:54:33: [ERROR] FIRE_FURY_STAFF costs 0 coins to craft
+19-Jun-22 10:54:33: [ERROR] FIRE_FURY_STAFF costs 0 coins to craft
+19-Jun-22 10:54:33: [ERROR] FIRE_VEIL_WAND costs 0 coins to craft
+19-Jun-22 10:54:33: [ERROR] FIRE_VEIL_WAND costs 0 coins to craft
+19-Jun-22 10:54:33: [ERROR] FIRE_VEIL_WAND costs 0 coins to craft
+19-Jun-22 10:54:36: [ERROR] FLORID_ZOMBIE_SWORD costs 0 coins to craft
+19-Jun-22 10:54:36: [ERROR] FLORID_ZOMBIE_SWORD costs 0 coins to craft
+19-Jun-22 10:54:36: [ERROR] FLOWER_OF_TRUTH costs 0 coins to craft
+19-Jun-22 10:54:47: [ERROR] GOLD_INGOT costs 0 coins to craft
+19-Jun-22 10:55:01: [ERROR] HYPERION costs 0 coins to craft
+19-Jun-22 10:55:01: [ERROR] HYPERION costs 0 coins to craft
+19-Jun-22 10:55:04: [ERROR] INFERNO_APEX's bz price is 0
+19-Jun-22 10:55:06: [ERROR] IRON_INGOT costs 0 coins to craft
+19-Jun-22 10:55:07: [ERROR] JERRY_TALISMAN_BLUE costs 0 coins to craft
+19-Jun-22 10:55:07: [ERROR] JERRY_TALISMAN_GOLDEN costs 0 coins to craft
+19-Jun-22 10:55:07: [ERROR] JERRY_TALISMAN_PURPLE costs 0 coins to craft
+19-Jun-22 10:55:08: [ERROR] JUMBO_BACKPACK costs 0 coins to craft
+19-Jun-22 10:55:08: [ERROR] JUMBO_BACKPACK costs 0 coins to craft
+19-Jun-22 10:55:10: [ERROR] KUUDRA_MANDIBLE's bz price is 0
+19-Jun-22 10:55:12: [ERROR] LAVA_SHELL_NECKLACE costs 0 coins to craft
+19-Jun-22 10:55:12: [ERROR] LAVA_SHELL_NECKLACE costs 0 coins to craft
+19-Jun-22 10:55:13: [ERROR] LESSER_ORB_OF_HEALING costs 0 coins to craft
+19-Jun-22 10:55:14: [ERROR] MAGMA_LORD_BOOTS costs 0 coins to craft
+19-Jun-22 10:55:15: [ERROR] MAGMA_LORD_CHESTPLATE costs 0 coins to craft
+19-Jun-22 10:55:15: [ERROR] MAGMA_LORD_GAUNTLET costs 0 coins to craft
+19-Jun-22 10:55:15: [ERROR] MAGMA_LORD_HELMET costs 0 coins to craft
+19-Jun-22 10:55:15: [ERROR] MAGMA_LORD_LEGGINGS costs 0 coins to craft
+19-Jun-22 10:55:16: [ERROR] MANDRAA's bz price is 0
+19-Jun-22 10:55:17: [ERROR] MASTER_SKULL_TIER_2 costs 0 coins to craft
+19-Jun-22 10:55:17: [ERROR] MASTER_SKULL_TIER_3 costs 0 coins to craft
+19-Jun-22 10:55:17: [ERROR] MASTER_SKULL_TIER_4 costs 0 coins to craft
+19-Jun-22 10:55:17: [ERROR] MASTER_SKULL_TIER_5 costs 0 coins to craft
+19-Jun-22 10:55:17: [ERROR] MASTER_SKULL_TIER_6 costs 0 coins to craft
+19-Jun-22 10:55:18: [ERROR] MASTER_SKULL_TIER_7 costs 0 coins to craft
+19-Jun-22 10:55:24: [ERROR] MOIL_LOG's bz price is 0
+19-Jun-22 10:56:16: [ERROR] POWER_WITHER_BOOTS costs 0 coins to craft
+19-Jun-22 10:56:16: [ERROR] POWER_WITHER_BOOTS costs 0 coins to craft
+19-Jun-22 10:56:17: [ERROR] POWER_WITHER_CHESTPLATE costs 0 coins to craft
+19-Jun-22 10:56:17: [ERROR] POWER_WITHER_CHESTPLATE costs 0 coins to craft
+19-Jun-22 10:56:17: [ERROR] POWER_WITHER_HELMET costs 0 coins to craft
+19-Jun-22 10:56:17: [ERROR] POWER_WITHER_HELMET costs 0 coins to craft
+19-Jun-22 10:56:17: [ERROR] POWER_WITHER_LEGGINGS costs 0 coins to craft
+19-Jun-22 10:56:17: [ERROR] POWER_WITHER_LEGGINGS costs 0 coins to craft
+19-Jun-22 10:56:25: [ERROR] RAGNAROCK_AXE costs 0 coins to craft
+19-Jun-22 10:56:25: [ERROR] RAGNAROCK_AXE costs 0 coins to craft
+19-Jun-22 10:56:22: [ERROR] REAPER_ORB costs 0 coins to craft
+19-Jun-22 10:56:24: [ERROR] REAPER_SWORD costs 0 coins to craft
+19-Jun-22 10:56:24: [ERROR] REAPER_SWORD costs 0 coins to craft
+19-Jun-22 10:56:24: [ERROR] REAPER_SWORD costs 0 coins to craft
+19-Jun-22 10:56:24: [ERROR] REDSTONE costs 0 coins to craft
+19-Jun-22 10:56:22: [ERROR] REVENANT_SWORD costs 0 coins to craft
+19-Jun-22 10:56:22: [ERROR] REVENANT_SWORD costs 0 coins to craft
+19-Jun-22 10:56:22: [ERROR] REVENANT_SWORD costs 0 coins to craft
+19-Jun-22 10:56:22: [ERROR] REVIVED_HEART costs 0 coins to craft
+19-Jun-22 10:56:22: [ERROR] REVIVED_HEART costs 0 coins to craft

@@ -17,7 +17,7 @@ description = """
 The Skyblock Tools api tries to put all information a hypixel dev using the api would need at their fingertips
 ## Items
 Provides an interface to **see all data about all items, data for a specific item or specific data generally.**
-Contact me at quintbrit#5857 if you need help or run into an error!
+Create an issue on github (https://github.com/QuintBrit/Skyblock-Tools/issues) if you need help or run into an error!
 """
 
 tags_metadata = [
@@ -30,10 +30,6 @@ tags_metadata = [
     "description": "Constant lists of things, such as what items are auctionable.",
   },
   {
-    "name": "player",
-    "description": "Adding utilities for players and profiles",
-  },
-  {
     "name": "simplified",
     "description": "Simplifying complex endpoints for dev use",
   },
@@ -44,7 +40,7 @@ logging.basicConfig(filename='latest.log', filemode='w+', format='%(asctime)s: [
 app = FastAPI(
   title="Skyblock Tools",
   description=description,
-  version="0.0.1",
+  version="1.0.1",
   openapi_tags=tags_metadata,
   license_info={
     "name": "GNU General Public License v3.0",
@@ -154,45 +150,46 @@ class Auctions(BaseModel):
 async def home():
   return RedirectResponse("/docs")
   
-@app.get("/api/items/", tags=["items"], response_model=Items)
+@app.get("/items/items/", tags=["items"], response_model=Items)
 async def items() -> Items:
   return db
   
-@app.get("/api/item/{item}/", tags=["items"], response_model=Item)
+@app.get("/items/item/{item}/", tags=["items"], response_model=Item)
 async def item(item: str) -> Item:
   return db[item]
   
-@app.get("/api/item/{item}/name/", tags=["items"], response_model=Name)
+@app.get("/items/item/{item}/name/", tags=["items"], response_model=Name)
 async def name(item: str) -> Name:
   return Name(id=item, name=db[item]["name"])
-@app.get("/api/item/{item}/recipe/", tags=["items"], response_model=Recipe)
+  
+@app.get("/items/item/{item}/recipe/", tags=["items"], response_model=Recipe)
 async def recipe(item: str) -> Recipe:
   if db[item]["craftable"] or db[item]["forgable"]:
     return Recipe(recipe=db[item]["recipe"], ingredients=db[item]["ingredients"])
   else:
     return {"craftable": False, "forgable": False}
   
-@app.get("/api/item/{item}/lowest_bin/", tags=["items"], response_model=Bins)
+@app.get("/items/item/{item}/lowest_bin/", tags=["items"], response_model=Bins)
 async def lowest_bin(item: str) -> Bins:
   if db[item].get("auctionable") == True:
     return Bins(lowest=db[item]["lowest_bin"], second_lowest=db[item]["second_lowest_bin"])
   else:
     return {"auctionable": False}
     
-@app.get("/api/item/{item}/auctions/", tags=["items"], response_model=Auctions)
+@app.get("/items/item/{item}/auctions/", tags=["items"], response_model=Auctions)
 async def item_auctions(item: str):
   auctions = await main.get_auctions()
   auctions = [d for d in auctions if d["id"] == item]
   return auctions
   
-@app.get("/api/item/{item}/bazaar/", tags=["items"], response_model=BazaarItem)
+@app.get("/items/item/{item}/bazaar/", tags=["items"], response_model=BazaarItem)
 async def bazaar(item: str):
   if db[item].get("bazaarable") == True:
     return BazaarItem(buy=db[item]["bazaar_buy_price"], sell=db[item]["bazaar_sell_price"], profit=db[item]["bazaar_profit"], percentage_profit=db[item]["bazaar_percentage_profit"])
   else:
     return {"bazaarable": False}
   
-@app.get("/api/item/{item}/price/", tags=["items"], response_model=Price)
+@app.get("/items/item/{item}/price/", tags=["items"], response_model=Price)
 async def price(item: str):
   if db[item].get("bazaarable") == True:
     return Price(buy=db[item]["bazaar_buy_price"], sell=db[item]["bazaar_sell_price"], profit=db[item]["bazaar_profit"], percentage_profit=db[item]["bazaar_percentage_profit"])
@@ -203,34 +200,34 @@ async def price(item: str):
   else:
     return {"unsellable": True}
     
-@app.get("/api/item/{item}/forge/", tags=["items"], response_model=ForgeItem)
+@app.get("/items/item/{item}/forge/", tags=["items"], response_model=ForgeItem)
 async def forge(item: str):
   if db[item].get("forgable") == True:
     return ForgeItem(cost=db[item]["forge_cost"], profit=db[item]["forge_profit"], duration=db[item]["duration"], pretty_duration=db[item]["pretty_duration"], profit_per_hour=db[item]["forge_profit_per_hour"], percentage_profit=db[item]["forge_percentage_profit"], recipe=db[item]["recipe"], ingredients=db[item]["ingredients"])
   else:
     return {"forgable": False}
     
-@app.get("/api/bazaarables/", tags=["constants"], response_model=list)
+@app.get("/constants/bazaarables/", tags=["constants"], response_model=list)
 async def bazaarables():
   bazaarables = [item for item in db if db[item]["bazaarable"]]
   return bazaarables
   
-@app.get("/api/auctionables/", tags=["constants"], response_model=list)
+@app.get("/constants/auctionables/", tags=["constants"], response_model=list)
 async def auctionables():
   auctionables = [item for item in db if db[item]["auctionable"]]
   return auctionables
   
-@app.get("/api/craftables/", tags=["constants"], response_model=list)
+@app.get("/constants/craftables/", tags=["constants"], response_model=list)
 async def craftables():
   craftables = [item for item in db if db[item]["craftable"]]
   return craftables
   
-@app.get("/api/forgables/", tags=["constants"], response_model=list)
+@app.get("/constants/forgables/", tags=["constants"], response_model=list)
 async def forgables():
   forgables = [item for item in db if db[item]["forgable"]]
   return forgables
   
-@app.get("/api/auctions", tags=["simplified"], response_model=Auctions)
+@app.get("/simplified/auctions", tags=["simplified"], response_model=Auctions)
 async def auctions(page: int = 0):
   auctions = await main.get_auctions()
   auctions = list(main.chunks(auctions, 5000))
