@@ -2,6 +2,8 @@ from fastapi import FastAPI
 from fastapi.responses import RedirectResponse
 from fastapi.concurrency import run_in_threadpool
 from fastapi_utils.tasks import repeat_every
+from scout_apm.api import Config
+from scout_apm.async_.starlette import ScoutMiddleware
 from typing import Optional, Dict, List
 from pydantic import BaseModel, HttpUrl
 import main
@@ -37,6 +39,10 @@ tags_metadata = [
 
 logging.basicConfig(filename='latest.log', filemode='w+', format='%(asctime)s: [%(levelname)s] %(message)s', datefmt='%d-%b-%y %H:%M:%S')
 
+Config.set(
+  name="Skyblock Tools - API"
+)
+
 app = FastAPI(
   title="Skyblock Tools",
   description=description,
@@ -47,6 +53,8 @@ app = FastAPI(
     "url": "https://choosealicense.com/licenses/gpl-3.0/",
   },
 )
+
+app.add_middleware(ScoutMiddleware)
 
 class Item(BaseModel):
   recipe: Optional[str] = ""
