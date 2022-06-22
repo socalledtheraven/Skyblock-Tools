@@ -22,6 +22,7 @@ Flask==2.1.2
 future==0.18.2
 gitdb==4.0.9
 GitPython==3.1.27
+greenlet==1.1.2
 gunicorn==20.0.4
 h11==0.13.0
 html5lib==1.1
@@ -48,12 +49,14 @@ platformdirs==2.4.0
 pluggy==1.0.0
 poetry==1.1.11
 poetry-core==1.0.7
+psutil==5.9.1
 ptyprocess==0.7.0
 pycparser==2.21
 pydantic==1.9.1
 pyflakes==2.1.1
 pyinstrument==4.1.1
 pylev==1.4.0
+pyOpenSSL==22.0.0
 pyparsing==3.0.5
 python-dateutil==2.8.2
 python-lsp-jsonrpc==1.0.0
@@ -63,6 +66,7 @@ pytz==2022.1
 requests==2.28.0
 requests-toolbelt==0.9.1
 rope==0.18.0
+scout-apm==2.25.1
 SecretStorage==3.3.1
 shellingham==1.4.0
 six==1.16.0
@@ -78,6 +82,7 @@ uvicorn==0.17.6
 virtualenv==20.10.0
 webencodings==0.5.1
 Werkzeug==2.1.2
+wrapt==1.14.1
 yapf==0.31.0
 yarg==0.1.9
 zipp==3.8.0

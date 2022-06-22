@@ -19,6 +19,7 @@ pyinstrument = "^4.1.1"
 uvicorn = "^0.17.6"
 GitPython = "^3.1.27"
 fastapi-utils = "^0.2.1"
+scout-apm = "^2.25.1"
 
 [tool.poetry.dev-dependencies]
 
