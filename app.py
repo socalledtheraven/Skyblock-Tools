@@ -261,6 +261,6 @@ async def static_database_updater_task():
   global db
   print("static")
   db = await run_in_threadpool(lambda: main.static_database_updater(db, main.names))
-  
+
 if __name__ == "__main__":
-  uvicorn.run("app:app", host='0.0.0.0', port=8080, workers=4)
+  uvicorn.run("app:app", port=8080, workers=4)

@@ -1,5 +1,4 @@
 # SETUP - DEPLOYMENT!! NEVER EDIT CODE HERE DIRECTLY!!
-import json
 import os
 import re
 import asyncio
@@ -10,6 +9,9 @@ import datetime
 import pytimeparse
 import base64
 import io
+import urlparse
+import aioredis
+import ujson as json
 import pandas as pd
 from pyinstrument import Profiler
 from nbt.nbt import TAG_List, TAG_Compound, NBTFile

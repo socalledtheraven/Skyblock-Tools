@@ -1,3 +1,88 @@
-22-Jun-22 09:09:21: [INFO] Started server process [2018]
-22-Jun-22 09:09:21: [INFO] Waiting for application startup.
-22-Jun-22 09:09:21: [INFO] Application startup complete.
+22-Jun-22 09:18:30: [INFO] Started server process [2986]
+22-Jun-22 09:18:30: [INFO] Waiting for application startup.
+22-Jun-22 09:18:31: [INFO] Application startup complete.
+22-Jun-22 09:19:01: [ERROR] Task exception was never retrieved
+future: <Task finished name='Task-3' coro=<repeat_every.<locals>.decorator.<locals>.wrapped.<locals>.loop() done, defined at /home/runner/Skyblock-Tools/venv/lib/python3.8/site-packages/fastapi_utils/tasks.py:57> exception=TypeError("error() missing 1 required positional argument: 'msg'")>
+Traceback (most recent call last):
+  File "/home/runner/Skyblock-Tools/venv/lib/python3.8/site-packages/urllib3/connectionpool.py", line 703, in urlopen
+    httplib_response = self._make_request(
+  File "/home/runner/Skyblock-Tools/venv/lib/python3.8/site-packages/urllib3/connectionpool.py", line 449, in _make_request
+    six.raise_from(e, None)
+  File "<string>", line 3, in raise_from
+  File "/home/runner/Skyblock-Tools/venv/lib/python3.8/site-packages/urllib3/connectionpool.py", line 444, in _make_request
+    httplib_response = conn.getresponse()
+  File "/nix/store/p21fdyxqb3yqflpim7g8s1mymgpnqiv7-python3-3.8.12/lib/python3.8/http/client.py", line 1348, in getresponse
+    response.begin()
+  File "/nix/store/p21fdyxqb3yqflpim7g8s1mymgpnqiv7-python3-3.8.12/lib/python3.8/http/client.py", line 316, in begin
+    version, status, reason = self._read_status()
+  File "/nix/store/p21fdyxqb3yqflpim7g8s1mymgpnqiv7-python3-3.8.12/lib/python3.8/http/client.py", line 285, in _read_status
+    raise RemoteDisconnected("Remote end closed connection without"
+http.client.RemoteDisconnected: Remote end closed connection without response
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/runner/Skyblock-Tools/venv/lib/python3.8/site-packages/requests/adapters.py", line 489, in send
+    resp = conn.urlopen(
+  File "/home/runner/Skyblock-Tools/venv/lib/python3.8/site-packages/urllib3/connectionpool.py", line 785, in urlopen
+    retries = retries.increment(
+  File "/home/runner/Skyblock-Tools/venv/lib/python3.8/site-packages/urllib3/util/retry.py", line 550, in increment
+    raise six.reraise(type(error), error, _stacktrace)
+  File "/home/runner/Skyblock-Tools/venv/lib/python3.8/site-packages/urllib3/packages/six.py", line 769, in reraise
+    raise value.with_traceback(tb)
+  File "/home/runner/Skyblock-Tools/venv/lib/python3.8/site-packages/urllib3/connectionpool.py", line 703, in urlopen
+    httplib_response = self._make_request(
+  File "/home/runner/Skyblock-Tools/venv/lib/python3.8/site-packages/urllib3/connectionpool.py", line 449, in _make_request
+    six.raise_from(e, None)
+  File "<string>", line 3, in raise_from
+  File "/home/runner/Skyblock-Tools/venv/lib/python3.8/site-packages/urllib3/connectionpool.py", line 444, in _make_request
+    httplib_response = conn.getresponse()
+  File "/nix/store/p21fdyxqb3yqflpim7g8s1mymgpnqiv7-python3-3.8.12/lib/python3.8/http/client.py", line 1348, in getresponse
+    response.begin()
+  File "/nix/store/p21fdyxqb3yqflpim7g8s1mymgpnqiv7-python3-3.8.12/lib/python3.8/http/client.py", line 316, in begin
+    version, status, reason = self._read_status()
+  File "/nix/store/p21fdyxqb3yqflpim7g8s1mymgpnqiv7-python3-3.8.12/lib/python3.8/http/client.py", line 285, in _read_status
+    raise RemoteDisconnected("Remote end closed connection without"
+urllib3.exceptions.ProtocolError: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/runner/Skyblock-Tools/venv/lib/python3.8/site-packages/fastapi_utils/tasks.py", line 64, in loop
+    await func()  # type: ignore
+  File "/home/runner/Skyblock-Tools/app.py", line 256, in dynamic_database_updater_task
+    db = await run_in_threadpool(lambda: main.dynamic_database_updater(db, main.names))
+  File "/home/runner/Skyblock-Tools/venv/lib/python3.8/site-packages/starlette/concurrency.py", line 41, in run_in_threadpool
+    return await anyio.to_thread.run_sync(func, *args)
+  File "/home/runner/Skyblock-Tools/venv/lib/python3.8/site-packages/anyio/to_thread.py", line 31, in run_sync
+    return await get_asynclib().run_sync_in_worker_thread(
+  File "/home/runner/Skyblock-Tools/venv/lib/python3.8/site-packages/anyio/_backends/_asyncio.py", line 937, in run_sync_in_worker_thread
+    return await future
+  File "/home/runner/Skyblock-Tools/venv/lib/python3.8/site-packages/anyio/_backends/_asyncio.py", line 867, in run
+    result = context.run(func, *args)
+  File "/home/runner/Skyblock-Tools/app.py", line 256, in <lambda>
+    db = await run_in_threadpool(lambda: main.dynamic_database_updater(db, main.names))
+  File "/home/runner/Skyblock-Tools/main.py", line 409, in dynamic_database_updater
+    auctions = get_auctions()
+  File "/home/runner/Skyblock-Tools/main.py", line 856, in get_auctions
+    auctions = get_json(f"https://api.hypixel.net/skyblock/auctions?page={i}")
+  File "/home/runner/Skyblock-Tools/main.py", line 865, in get_json
+    return json.loads(requests.get(url).text)
+  File "/home/runner/Skyblock-Tools/venv/lib/python3.8/site-packages/requests/api.py", line 73, in get
+    return request("get", url, params=params, **kwargs)
+  File "/home/runner/Skyblock-Tools/venv/lib/python3.8/site-packages/requests/api.py", line 59, in request
+    return session.request(method=method, url=url, **kwargs)
+  File "/home/runner/Skyblock-Tools/venv/lib/python3.8/site-packages/requests/sessions.py", line 587, in request
+    resp = self.send(prep, **send_kwargs)
+  File "/home/runner/Skyblock-Tools/venv/lib/python3.8/site-packages/requests/sessions.py", line 701, in send
+    r = adapter.send(request, **kwargs)
+  File "/home/runner/Skyblock-Tools/venv/lib/python3.8/site-packages/requests/adapters.py", line 547, in send
+    raise ConnectionError(err, request=request)
+requests.exceptions.ConnectionError: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/runner/Skyblock-Tools/venv/lib/python3.8/site-packages/fastapi_utils/tasks.py", line 71, in loop
+    logger.error(formatted_exception)
+TypeError: error() missing 1 required positional argument: 'msg'
