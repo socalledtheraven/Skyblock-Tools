@@ -9,7 +9,6 @@ import datetime
 import pytimeparse
 import base64
 import io
-import aioredis
 import ujson as json
 import pandas as pd
 from pyinstrument import Profiler
