@@ -9,7 +9,6 @@ import datetime
 import pytimeparse
 import base64
 import io
-import urlparse
 import aioredis
 import ujson as json
 import pandas as pd
