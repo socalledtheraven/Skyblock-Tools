@@ -5,12 +5,10 @@ import asyncio
 import requests
 import logging
 import git
-import datetime
 import pytimeparse
 import base64
 import io
 import ujson as json
-import pandas as pd
 from pyinstrument import Profiler
 from nbt.nbt import TAG_List, TAG_Compound, NBTFile
 
@@ -19,8 +17,8 @@ apiKey = os.environ["apiKey"]
 logging.basicConfig(filename='latest.log', filemode='w+', format='%(asctime)s: [%(levelname)s] %(message)s', datefmt='%d-%b-%y %H:%M:%S') # sets up config logging
 
     
-# repo = git.Repo("./neu-repo")
-# repo.remotes.origin.pull()
+repo = git.Repo("./neu-repo")
+repo.remotes.origin.pull()
 # updates neu repo
 
 # ALL SUBROUTINES
@@ -52,6 +50,35 @@ def static_database_updater(db, names):
     current_item_data["image_link"] = f"https://sky.shiiyu.moe/item/{current_item_name}"
     current_item_data["image_file"] = f"./assets/{current_item_name}.png"
     # note - update this with local assets at some point 
+    current_item_data["material"] = current_item["material"]
+    if "skin" in current_item:
+      current_item_data["skin_data"] = json.loads(base64.decode(current_item["skin"]))
+    if "dungeon_item_conversion_cost" in current_item or "upgrade_costs" in current_item or "catacombs_requirements" in current_item:
+      current_item_data["dungeons"] = {"dungeon_item_conversion_cost": current_item["dungeon_item_conversion_cost"], "upgrade_costs": {"first": current_item["upgrade_costs"][0][0], "second": current_item["upgrade_costs"][1][0], "third": current_item["upgrade_costs"][2][0], "fourth": current_item["upgrade_costs"][3][0], "fifth": current_item["upgrade_costs"][4][0]}, "cata_reqs": current_item["catacombs_requirements"]["dungeon"], "pretty_cata_reqs": f'{current_item["catacombs_requirements"]["dungeon"]["type"].title()} {current_item["catacombs_requirements"]["dungeon"]["level"]}'}
+
+    if "gemstone_slots" in current_item:
+      current_item_data["gemstones"] = []
+      simple_gemstones = ["RUBY", "AMETHYST", "JASPER", "SAPPHIRE", "TOPAZ", "AMBER", "JADE", "OPAL"]
+      
+      for gemstone in current_item["gemstone_slots"]:
+        if gemstone["slot_type"] in simple_gemstones:
+          current_item_data["gemstones"].append({"slot_type": "free", "accepts": gemstone["slot_type"]})
+          
+        elif gemstone["slot_type"] == "COMBAT":
+          current_item_data["gemstones"].append({"slot_type": gemstone["slot_type"], "accepts": ["RUBY", "SAPPHIRE", "AMETHYST", "JASPER"], "costs": [gemstone["costs"][0], gemstone["costs"][0:]]})
+          
+        elif gemstone["slot_type"] == "OFFENSIVE":
+          current_item_data["gemstones"].append({"slot_type": gemstone["slot_type"], "accepts": ["SAPPHIRE", "JASPER"], "costs": [gemstone["costs"][0], gemstone["costs"][0:]]})
+          
+        elif gemstone["slot_type"] == "DEFENSIVE":
+          current_item_data["gemstones"].append({"slot_type": gemstone["slot_type"], "accepts": ["RUBY", "AMETHYST"], "costs": [gemstone["costs"][0], gemstone["costs"][0:]]})
+          
+        elif gemstone["slot_type"] == "MINING":
+          current_item_data["gemstones"].append({"slot_type": gemstone["slot_type"], "accepts": ["JADE", "AMBER", "TOPAZ"], "costs": [gemstone["costs"][0], gemstone["costs"][0:]]})
+          
+        elif gemstone["slot_type"] == "UNIVERSAL":
+          current_item_data["gemstones"].append({"slot_type": gemstone["slot_type"], "accepts": ["JADE", "AMBER", "TOPAZ", "RUBY", "SAPPHIRE", "AMETHYST", "JASPER", "OPAL"], "costs": [gemstone["costs"][0], gemstone["costs"][0:]]})
+    
     if "stats" in current_item:
       current_item_data["stats"] = current_item["stats"]
       
@@ -64,6 +91,7 @@ def static_database_updater(db, names):
     if "requirements" in current_item:
       current_item_data["use_requirements"] = current_item["requirements"]
       current_item_data["pretty_use_requirements"] = ""
+      
       if "slayer" in current_item["requirements"]:
         current_item_data["pretty_use_requirements"] += f'{current_item["requirements"]["slayer"]["slayer_boss_type"].title()} {current_item["requirements"]["slayer"]["level"]}'
       elif "skill" in current_item["requirements"]:
@@ -80,6 +108,7 @@ def static_database_updater(db, names):
         current_item_data["bazaar_percentage_profit"] = round(current_item_data["bazaar_profit"]/current_item_data["bazaar_buy_price"], 2)
       except ZeroDivisionError:
         logging.error(f"{current_item_name}'s bz price is 0")
+        current_item_data["bazaar_percentage_profit"] = 0
     # checks bazaarability and adds any relevant bazaar data
         
     elif current_item_name not in bazaar_products:
@@ -199,7 +228,7 @@ def static_database_updater(db, names):
           item_name = id_to_name(item)
           if item in bazaar_products:
             ingredient_bz_data = bazaar_data[bazaar_products.index(item)]["quick_status"]
-            item_cost = round(ingredient_bz_data["buy_price"]*ingredients[item], 1)
+            item_cost = commaify(round(ingredient_bz_data["buy_price"]*ingredients[item], 1))
             current_item_data["ingredients"][item] = {"count": ingredients[item], "cost": item_cost}
             current_item_data["craft_cost"] += item_cost
             
@@ -209,7 +238,7 @@ def static_database_updater(db, names):
               current_item_data["recipe"] += f"{ingredients[item]}x {item_name} (costing {item_cost} coins)"
           
           elif len(bin_data) > 0:
-            item_cost = bin_data[0]["starting_bid"]*ingredients[item]
+            item_cost = commaify(round(bin_data[0]["starting_bid"]*ingredients[item]))
             current_item_data["ingredients"][item] = {"count": ingredients[item], "cost": item_cost}
             if item_cost != "N/A":
               current_item_data["craft_cost"] += item_cost
@@ -220,7 +249,7 @@ def static_database_updater(db, names):
               current_item_data["recipe"] += f"{ingredients[item]}x {item_name} (costing {item_cost} coins)"
           
           elif "npc_sell_price" in api_item:
-            item_cost = api_item["npc_sell_price"] * ingredients[item]
+            item_cost = commaify(round(api_item["npc_sell_price"] * ingredients[item]))
             current_item_data["ingredients"][item] = {"count": ingredients[item], "cost": item_cost}
             current_item_data["craft_cost"] += item_cost
               
@@ -235,6 +264,7 @@ def static_database_updater(db, names):
               current_item_data["recipe"] += f"{ingredients[item]}x {item_name}, "
             else:
               current_item_data["recipe"] += f"{ingredients[item]}x {item_name}"
+              
         except Exception as e:
           logging.exception(e)
 
@@ -273,6 +303,7 @@ def static_database_updater(db, names):
     # separates the lore into blocks
     grouped_lore = ["justsomeplaceholdertext" if line == "" else line + " " for line in lore]
     grouped_lore = "".join(grouped_lore).split("justsomeplaceholdertext")
+    current_item_data["grouped_lore"] = grouped_lore
 
     # detects forgability
     if "Required" in current_item_data["deformatted_lore"]:
@@ -321,7 +352,7 @@ def static_database_updater(db, names):
         item_name = id_to_name(item)
         if len(bin_data) > 0:
           item_count = splits[item]
-          item_cost = bin_data[0]["starting_bid"]*item_count
+          item_cost = commaify(round(bin_data[0]["starting_bid"]*item_count))
           current_item_data["ingredients"][item] = {"count": item_count, "cost": item_cost}
           current_item_data["forge_cost"] += item_cost
           
@@ -333,7 +364,7 @@ def static_database_updater(db, names):
         elif item in bazaar_products:
           item_count = splits[item]
           ingredient_bz_data = bazaar_data[bazaar_products.index(item)]["quick_status"]
-          item_cost = round(ingredient_bz_data["buy_price"]*splits[item], 1)
+          item_cost = commaify(round(ingredient_bz_data["buy_price"]*splits[item], 1))
           current_item_data["ingredients"][item] = {"count": item_count, "cost": item_cost}
           current_item_data["forge_cost"] += item_cost
           
@@ -344,7 +375,7 @@ def static_database_updater(db, names):
             
         elif "npc_sell_price" in api_item:
           item_count = splits[item]
-          item_cost = api_item["npc_sell_price"] * item_count
+          item_cost = commaify(round(api_item["npc_sell_price"] * item_count))
           current_item_data["ingredients"][item] = {"count": item_count, "cost": item_cost}
           current_item_data["forge_cost"] += item_cost
           
@@ -427,6 +458,7 @@ def dynamic_database_updater(db, names):
         current_item_data["bazaar_percentage_profit"] = round(current_item_data["bazaar_profit"]/current_item_data["bazaar_buy_price"], 2)
       except ZeroDivisionError:
         logging.error(f"{current_item_name}'s bz price is 0")
+        current_item_data["bazaar_percentage_profit"] = 0
     # checks bazaarability and adds any relevant bazaar data
         
     elif current_item_data["auctionable"]:
@@ -501,9 +533,9 @@ def dynamic_database_updater(db, names):
         item_count = current_item_data["ingredients"][item]["count"]
         try:
           item = item.replace("-", ":")
-          item_name =  id_to_name(item)
+          item_name = id_to_name(item)
           if isBazaarable(item):
-            item_cost = get_bazaar_price(item, "Buy Price") * item_count
+            item_cost = commaify(round(get_bazaar_price(item, "Buy Price") * item_count))
             current_item_data["ingredients"][item]["cost"] = item_cost
             
             if len(current_item_data["ingredients"]) > 1 and item != list(current_item_data["ingredients"].keys())[-1]: # checks if I should put a comma or not
@@ -512,7 +544,7 @@ def dynamic_database_updater(db, names):
               current_item_data["recipe"] += f"{item_count}x {item_name} (costing {item_cost} coins)"
               
           elif isAuctionable(item):
-            item_cost = get_lowest_bin(item, item_count)
+            item_cost = commaify(round(get_lowest_bin(item, item_count)))
             current_item_data["ingredients"][item]["cost"] = item_cost
             
             if len(current_item_data["ingredients"]) > 1 and item != list(current_item_data["ingredients"].keys())[-1]: # checks if I should put a comma or not
@@ -521,7 +553,7 @@ def dynamic_database_updater(db, names):
               current_item_data["recipe"] += f"{item_count}x {item_name} (costing {item_cost} coins)"
           
           elif db[item]["npc_salable"]:
-            item_cost = db[item]["npc_sell_price"] * item_count
+            item_cost = commaify(round(db[item]["npc_sell_price"] * item_count))
             current_item_data["ingredients"][item]["cost"] = item_cost
             
             if len(current_item_data["ingredients"]) > 1 and item != list(current_item_data["ingredients"].keys())[-1]: # checks if I should put a comma or not
@@ -577,22 +609,25 @@ def dynamic_database_updater(db, names):
           # deals with edge cases for forging recipes involving money
           
           item_name = id_to_name(item)
+          item_count = current_item_data['ingredients'][item]['count']
           
           if isAuctionable(item):
             current_item_data["forge_cost"] += current_item_data["ingredients"][item]["cost"]
+            item_cost = commaify(round(current_item_data['ingredients'][item]['cost']))
             
             if len(current_item_data["ingredients"]) > 1 and item != list(current_item_data["ingredients"].keys())[-1]:
-              current_item_data["recipe"] += f"{current_item_data['ingredients'][item]['count']}x {item_name} (costing {current_item_data['ingredients'][item]['cost']}), "
+              current_item_data["recipe"] += f"{item_count}x {item_name} (costing {item_cost}), "
             else:
-              current_item_data["recipe"] += f"{current_item_data['ingredients'][item]['count']}x {item_name} (costing {current_item_data['ingredients'][item]['cost']})"
+              current_item_data["recipe"] += f"{item_count}x {item_name} (costing {item_cost})"
               
           elif isBazaarable(item):
             current_item_data["forge_cost"] += current_item_data['ingredients'][item]["cost"]
+            item_cost = commaify(round(current_item_data['ingredients'][item]['cost']))
             
             if len(current_item_data["ingredients"]) > 1 and item != list(current_item_data["ingredients"].keys())[-1]:
-              current_item_data["recipe"] += f"{current_item_data['ingredients'][item]['count']}x {item_name} (costing {current_item_data['ingredients'][item]['cost']}), "
+              current_item_data["recipe"] += f"{item_count}x {item_name} (costing {item_cost}), "
             else:
-              current_item_data["recipe"] += f"{current_item_data['ingredients'][item]['count']}x {item_name} (costing {current_item_data['ingredients'][item]['cost']})"
+              current_item_data["recipe"] += f"{item_count}x {item_name} (costing {item_cost})"
               
         except Exception as e:
           logging.exception(e)
@@ -604,6 +639,7 @@ def dynamic_database_updater(db, names):
     json.dump(db, database, indent=2) # DO NOT COMMENT OUT! UPDATES DATABASE
   print("database done")
   return db
+
 
 async def deletion_time():
   for item in db:
@@ -630,79 +666,75 @@ def log_formatter(log):
   
   return log
 
+
 def bazaar_flipper():
-  final_products = {}
-  final_products["item_name"] = {}
-  final_products["buy_order_price"] = {}
-  final_products["sell_order_price"] = {}
-  final_products["product_margins"] = {}
-  final_products["profit_percentage"] = {}
-  bazaarables = []
-  
-  for item in db:
-    if db[item]["bazaarable"]:
-      if db[item]["bazaar_profit"] > 0:
-        bazaarables.append(db[item])
+  final_products = []
+  bazaarables = [item for item in db if db[item]["bazaarable"]]
   # initialising variables
 
   for i in range(len(bazaarables)):
-    current_item_data = bazaarables[i]
-    final_products["item_name"][i] = current_item_data["name"]
+    final_products.append({})
+    current_item_data = db[bazaarables[i]]
+    final_products[i]["item_name"] = current_item_data["name"]
     print(current_item_data["id"])
-    final_products["buy_order_price"][i] = commaify(current_item_data["bazaar_buy_price"])
-    final_products["sell_order_price"][i] = commaify(current_item_data["bazaar_sell_price"])
-    final_products["product_margins"][i] = commaify(current_item_data["bazaar_profit"])
-    final_products["profit_percentage"][i] = str(current_item_data["bazaar_percentage_profit"]) + "%"
+    final_products[i]["buy_order_price"] = commaify(current_item_data["bazaar_buy_price"])
+    final_products[i]["sell_order_price"] = commaify(current_item_data["bazaar_sell_price"])
+    final_products[i]["product_margins"] = commaify(current_item_data["bazaar_profit"])
+    final_products[i]["profit_percentage"] = str(current_item_data["bazaar_percentage_profit"]) + "%"
   
-  final_products = pd.DataFrame({"Item": final_products["item_name"], "Product Margin": final_products["product_margins"], "Profit %": final_products["profit_percentage"], "Buy Price": final_products["buy_order_price"], "Sell Price": final_products["sell_order_price"]})
-  
-  return final_products
+  return final_products, ["Name", "Buy Order Price", "Sell Order Price", "Profit Margin", "Profit Percentage"]
+
 
 def craft_flipper():
-  final_flips = {}
-  final_flips["image"] = {}
-  final_flips["name"] = {}
-  final_flips["sell_price"] = {}
-  final_flips["craft_cost"] = {}
-  final_flips["requirements"] = {}
-  final_flips["profit"] = {}
-  final_flips["%profit"] = {}
-  final_flips["formatted_ingredients"] = {}
-  craftables = []
-  for item in db:
-    if db[item]["craftable"]:
-      if db[item].get("craft_profit") != None and db[item].get("craft_profit") < 0:
-        craftables.append(db[item])
+  final_flips = []
+  craftables = [item for item in db if db[item]["craftable"] and db[item].get("craft_profit") != None and db[item].get("craft_profit") < 0]
 
   for i in range(len(craftables)):
-    print(craftables[i]["id"])
-    current_item_data = craftables[i]
-    final_flips["image"][i] = f"<img src={current_item_data['image_link']}>"
-    final_flips["name"][i] = current_item_data["name"]
+    final_flips.append({})
+    current_item_data = db[craftables[i]]
+    final_flips[i]["image"] = f"<img src={current_item_data['image_link']}>"
+    final_flips[i]["name"] = current_item_data["name"]
     if current_item_data["bazaarable"]:
-      final_flips["sell_price"][i] = commaify(current_item_data["bazaar_sell_price"])
+      final_flips[i]["sell_price"] = commaify(current_item_data["bazaar_sell_price"])
     elif current_item_data["auctionable"]:
-      final_flips["sell_price"][i] = commaify(current_item_data["lowest_bin"])
-    else:
-      final_flips["sell_price"][i] = 0
-    final_flips["craft_cost"][i] = commaify(current_item_data["craft_cost"])
-    final_flips["requirements"][i] = current_item_data.get("craft_requirements")
-    final_flips["profit"][i] = commaify(current_item_data["craft_profit"])
+      final_flips[i]["sell_price"] = commaify(current_item_data["lowest_bin"])
+    elif current_item_data["npc_salable"]:
+      final_flips[i]["sell_price"] = 0
+    final_flips[i]["craft_cost"] = commaify(current_item_data["craft_cost"])
+    final_flips[i]["requirements"] = current_item_data.get("craft_requirements")
+    final_flips[i]["profit"] = commaify(current_item_data["craft_profit"])
     try:
-      final_flips["%profit"][i] = commaify(current_item_data["craft_percentage_profit"])
+      final_flips[i]["%profit"] = commaify(current_item_data["craft_percentage_profit"])
     except KeyError:
-      final_flips["%profit"][i] = 0
-    final_flips["formatted_ingredients"][i] = current_item_data["recipe"]
+      final_flips[i]["%profit"] = 0
+    final_flips[i]["formatted_ingredients"] = current_item_data["recipe"]
 
-  return pd.DataFrame({"Image": final_flips["image"], "Name": final_flips["name"], "Profit": final_flips["profit"], "% Profit": final_flips["%profit"], "Requirements": final_flips["requirements"], "Recipe": final_flips["formatted_ingredients"]})
+  return final_flips, ["Image", "Name", "Sell Price", "Craft Cost", "Requirements", "Profit", "Percentage Profit", "Ingredients"]
+  
 
-def build_table(table_data, HTMLFILE):
+def build_table(table_data, headers, HTMLFILE, straight_html=False, html=""):
   f = open(HTMLFILE, 'w+')  # opens the file
-  htmlcode = table_data.to_html(index=False, classes='table table-striped') # transforms it into a table with module magic
-  htmlcode = htmlcode.replace('<table border="1" class="dataframe table table-striped">','<table class="table table-striped" border="1" style="border: 1px solid #000000; border-collapse: collapse;" cellpadding="4" id="data">')
+  if not straight_html:
+    htmlcode = to_html(data=table_data, setup='<table class="table table-striped" border="1" style="border: 1px solid #000000; border-collapse: collapse;" cellpadding="4" id="data">', headers=headers) # transforms it into a table
+  else:
+    htmlcode = html
   f.write(htmlcode)  # writes the table to the file
   f.close()
+  return htmlcode
 
+
+def to_html(data, setup, headers):
+  code = f"{setup}\n  <thead>\n    <tr style='text-align: right;'>"
+  for header in headers:
+    code += f"      <th>{header}</th>\n"
+  code += f"    </tr>\n  </thead>\n  <tbody>\n"
+  for item in data:
+    code += f"    <tr>\n"
+    for v in item.values():
+      code += f"      <td>{v}</td>\n"
+    code += f"    </tr>\n"
+
+  return code
 
 
 def isVanilla(itemname):
@@ -761,41 +793,29 @@ def get_recipe(itemname):
   return db[itemname].get("recipe")
 
 def forge_flipper():
-  final_flips = {}
-  final_flips["image"] = {}
-  final_flips["name"] = {}
-  final_flips["id"] = {}
-  final_flips["sell_price"] = {}
-  final_flips["craft_cost"] = {}
-  final_flips["requirements"] = {}
-  final_flips["formatted_ingredients"] = {}
-  final_flips["profit"] = {}
-  final_flips["%profit"] = {}
-  final_flips["time"] = {} 
-  i = 0
-  with open("./constants/forgables.json") as forgables:
-    forgables = json.load(forgables)
-  #declares so many goddamn variables
-
-  for item in forgables:
-    current_item_data = db[item]
-    final_flips["id"][i] = item
-    final_flips["image"][i] = f"<img src={current_item_data['image_link']}>"
-    final_flips["name"][i] = current_item_data["name"]
+  final_flips = []
+  forgables = [item for item in db if db[item]["forgable"]]
+  
+  for i in range(len(forgables)):
+    final_flips.append({})
+    current_item_data = db[forgables[i]]
+    final_flips[i]["id"] = forgables[i]
+    final_flips[i]["image"] = f"<img src={current_item_data['image_link']}>"
+    final_flips[i]["name"] = current_item_data["name"]
     if current_item_data["bazaarable"]:
-      final_flips["sell_price"][i] = commaify(current_item_data["bazaar_sell_price"])
+      final_flips[i]["sell_price"] = commaify(current_item_data["bazaar_sell_price"])
     elif current_item_data["auctionable"]:
-      final_flips["sell_price"][i] = commaify(current_item_data["lowest_bin"])
+      final_flips[i]["sell_price"] = commaify(current_item_data["lowest_bin"])
     else:
-      final_flips["sell_price"][i] = 0
-    final_flips["craft_cost"][i] = commaify(current_item_data["forge_cost"])
-    final_flips["requirements"][i] = current_item_data["craft_requirements"]
-    final_flips["formatted_ingredients"][i] = current_item_data["recipe"]
-    final_flips["profit"][i] = commaify(current_item_data["forge_profit"])
-    final_flips["%profit"][i] = commaify(current_item_data["forge_percentage_profit"])
-    final_flips["time"][i] = current_item_data["duration"]
+      final_flips[i]["sell_price"] = 0
+    final_flips[i]["craft_cost"] = commaify(current_item_data["forge_cost"])
+    final_flips[i]["requirements"] = current_item_data["craft_requirements"]
+    final_flips[i]["formatted_ingredients"] = current_item_data["recipe"]
+    final_flips[i]["profit"] = commaify(current_item_data["forge_profit"])
+    final_flips[i]["%profit"] = commaify(current_item_data["forge_percentage_profit"])
+    final_flips[i]["time"] = current_item_data["duration"]
 
-  return pd.DataFrame({"Image": final_flips["image"], "Name": final_flips["name"], "Profit": final_flips["profit"], "% Profit": final_flips["%profit"], "Requirements": final_flips["requirements"], "Recipe": final_flips["formatted_ingredients"], "Duration": final_flips["time"]})    
+  return final_flips, ["ID", "Image", "Name", "Sell Price", "Craft Cost", "Requirements", "Ingredients", "Profit", "Percentage Profit", "Forge Time"]
       
   
 def name_to_id(itemname):
@@ -920,5 +940,5 @@ except:
 # p.print()
 
 '''TODO:
-better reqs testing
+more flippers!
 '''
