@@ -687,7 +687,7 @@ def bazaar_flipper():
 
 def craft_flipper():
   final_flips = []
-  craftables = [item for item in db if db[item]["craftable"] and db[item].get("craft_profit") != None and db[item].get("craft_profit") < 0]
+  craftables = [item for item in db if db[item]["craftable"] and db[item].get("craft_profit") != None and db[item].get("craft_profit") > 0 and not db[item].get("vanilla")]
 
   for i in range(len(craftables)):
     final_flips.append({})
@@ -792,6 +792,7 @@ def get_bazaar_price(itemname, value):
 def get_recipe(itemname):
   return db[itemname].get("recipe")
 
+
 def forge_flipper():
   final_flips = []
   forgables = [item for item in db if db[item]["forgable"]]
@@ -816,7 +817,24 @@ def forge_flipper():
     final_flips[i]["time"] = current_item_data["duration"]
 
   return final_flips, ["ID", "Image", "Name", "Sell Price", "Craft Cost", "Requirements", "Ingredients", "Profit", "Percentage Profit", "Forge Time"]
-      
+
+
+def bin_flipper():
+  flips = []
+  bins = [item for item in db if db[item]["auctionable"] and db[item].get("bin_flip_profit") > 0]
+
+  for i in range(len(bins)):
+    flips.append({})
+	  current_item_data = db[bins[i]]
+    flips[i]["id"] = bins[i]
+    flips[i]["image"] = f"<img src={current_item_data['image_link']}>"
+    flips[i]["name"] = current_item_data["name"]
+    flips[i]["lowest"] = commaify(current_item_data["lowest_bin"])
+    flips[i]["second_lowest"] = commaify(current_item_data["second_lowest_bin"])
+    flips[i]["profit"] = commaify(current_item_data["forge_profit"])
+    flips[i]["%profit"] = commaify(current_item_data["forge_percentage_profit"])
+
+  return flips, ["ID", "Image", "Name", "Buy Price", "Sell Price", "Profit", "Percentage Profit"]
   
 def name_to_id(itemname):
   if "Drill" in itemname:

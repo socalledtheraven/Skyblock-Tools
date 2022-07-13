@@ -1,6 +1,7 @@
 from fastapi import FastAPI
 from fastapi.responses import RedirectResponse
 from fastapi.concurrency import run_in_threadpool
+from fastapi.openapi.docs import get_swagger_ui_html
 from fastapi_utils.tasks import repeat_every
 from scout_apm.api import Config
 from scout_apm.async_.starlette import ScoutMiddleware
@@ -59,7 +60,8 @@ app = FastAPI(
 
 app.add_middleware(ScoutMiddleware)
 favicon_path = 'favicon.ico'
-  
+
+
 @app.get("/", include_in_schema=False)
 async def home():
   return RedirectResponse("/docs")
@@ -69,7 +71,7 @@ async def home():
 async def favicon():
     return FileResponse(favicon_path)
 
-  
+                             
 @app.get("/items/items/", tags=["items"], response_model=models.Items)
 async def items() -> models.Items:
   return db
@@ -182,43 +184,53 @@ async def forgables():
   return forgables
 
   
-@app.get("/simplified/auctions", tags=["simplified"], response_model=models.Auctions)
+@app.get("/simplified/auctions/", tags=["simplified"], response_model=models.Auctions)
 async def auctions(page: int = 0):
   auctions = await main.get_auctions()
   auctions = list(main.chunks(auctions, 5000))
   return auctions[page]
 
 
-@app.get("/flippers/bazaar", tags=["flippers"], response_model=list)
+@app.get("/flippers/bazaar/", tags=["flippers"], response_model=list)
 async def bazaar_flipper():
   return  main.bazaar_flipper()
 
 
-@app.get("/flippers/bazaar/html", tags=["flippers"], response_model=str)
+@app.get("/flippers/bazaar/html/", tags=["flippers"], response_model=str)
 async def bazaar_flipper_html():
   return main.build_table(main.bazaar_flipper()[0], main.bazaar_flipper()[1], "./templates/bazaar_flipper_data.html")
 
 
-@app.get("/flippers/craft", tags=["flippers"], response_model=list)
+@app.get("/flippers/craft/", tags=["flippers"], response_model=list)
 async def craft_flipper():
   return main.craft_flipper()
 
 
-@app.get("/flippers/craft/html", tags=["flippers"], response_model=str)
+@app.get("/flippers/craft/html/", tags=["flippers"], response_model=str)
 async def craft_flipper_html():
   return main.build_table(main.craft_flipper()[0], main.craft_flipper()[1], "./templates/craft_flipper_data.html")
 
 
-@app.get("/flippers/forge", tags=["flippers"], response_model=list)
+@app.get("/flippers/forge/", tags=["flippers"], response_model=list)
 async def forge_flipper():
   return main.forge_flipper()
 
 
-@app.get("/flippers/forge/html", tags=["flippers"], response_model=str)
+@app.get("/flippers/forge/html/", tags=["flippers"], response_model=str)
 async def forge_flipper_html():
   return main.build_table(main.forge_flipper()[0], main.forge_flipper()[1], "./templates/forge_flipper_data.html")
 
-  
+
+@app.get("/flippers/bin/", tags=["flippers"], response_model=list)
+async def bin_flipper():
+  return main.bin_flipper()
+
+
+@app.get("/flippers/bin/html/", tags=["flippers"], response_model=str)
+async def bin_flipper_html():
+  return main.build_table(main.bin_flipper()[0], main.bin_flipper()[1], "./templates/bin_flipper_data.html")
+
+
 @app.on_event("startup")
 async def load_db():
   global db
