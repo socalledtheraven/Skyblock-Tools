@@ -1,4 +1,3 @@
-# SETUP - DEPLOYMENT!! NEVER EDIT CODE HERE DIRECTLY!!
 import os
 import re
 import asyncio
@@ -8,6 +7,7 @@ import git
 import pytimeparse
 import base64
 import io
+# import pymongo
 import ujson as json
 from pyinstrument import Profiler
 from nbt.nbt import TAG_List, TAG_Compound, NBTFile
@@ -48,14 +48,13 @@ def static_database_updater(db, names):
     current_item_data["name"] = remove_formatting(current_item["name"])
     current_item_data["id"] = current_item_name
     current_item_data["image_link"] = f"https://sky.shiiyu.moe/item/{current_item_name}"
-    current_item_data["image_file"] = f"./assets/{current_item_name}.png"
-    # note - update this with local assets at some point 
+    current_item_data["image_file"] = f"./static/assets/{current_item_name}.png"
     current_item_data["material"] = current_item["material"]
     if "skin" in current_item:
       current_item_data["skin_data"] = json.loads(base64.decode(current_item["skin"]))
     if "dungeon_item_conversion_cost" in current_item or "upgrade_costs" in current_item or "catacombs_requirements" in current_item:
-      current_item_data["dungeons"] = {"dungeon_item_conversion_cost": current_item["dungeon_item_conversion_cost"], "upgrade_costs": {"first": current_item["upgrade_costs"][0][0], "second": current_item["upgrade_costs"][1][0], "third": current_item["upgrade_costs"][2][0], "fourth": current_item["upgrade_costs"][3][0], "fifth": current_item["upgrade_costs"][4][0]}, "cata_reqs": current_item["catacombs_requirements"]["dungeon"], "pretty_cata_reqs": f'{current_item["catacombs_requirements"]["dungeon"]["type"].title()} {current_item["catacombs_requirements"]["dungeon"]["level"]}'}
-
+      current_item_data["dungeons"] = {"dungeon_item_conversion_cost": current_item["dungeon_item_conversion_cost"], "upgrade_costs": {"first": current_item["upgrade_costs"][0][0], "second": current_item["upgrade_costs"][1][0], "third": current_item["upgrade_costs"][2][0], "fourth": current_item["upgrade_costs"][3][0], "fifth": current_item["upgrade_costs"][4][0]}, "cata_reqs": current_item["catacombs_requirements"][0], "pretty_cata_reqs": f'{current_item["catacombs_requirements"][0]["dungeon_type"].title()} {current_item["catacombs_requirements"][0]["level"]}'}
+      
     if "gemstone_slots" in current_item:
       current_item_data["gemstones"] = []
       simple_gemstones = ["RUBY", "AMETHYST", "JASPER", "SAPPHIRE", "TOPAZ", "AMBER", "JADE", "OPAL"]
@@ -89,13 +88,15 @@ def static_database_updater(db, names):
       current_item_data["npc_salable"] = False
     
     if "requirements" in current_item:
-      current_item_data["use_requirements"] = current_item["requirements"]
-      current_item_data["pretty_use_requirements"] = ""
-      
-      if "slayer" in current_item["requirements"]:
-        current_item_data["pretty_use_requirements"] += f'{current_item["requirements"]["slayer"]["slayer_boss_type"].title()} {current_item["requirements"]["slayer"]["level"]}'
-      elif "skill" in current_item["requirements"]:
-        current_item_data["pretty_use_requirements"] += f'{current_item["requirements"]["skill"]["type"].title()} {current_item["requirements"]["skill"]["level"]}'
+      current_item_data["requirements"] = current_item["requirements"][0]
+      current_item_data["pretty_requirements"] = ""
+
+      if current_item_data["requirements"]["type"] == "SLAYER":
+        current_item_data["pretty_requirements"] += f'{current_item["requirements"]["slayer_boss_type"].title()} {current_item["requirements"]["slayer"]["level"]}'
+      elif current_item_data["requirements"]["type"] == "SKILL":
+        current_item_data["pretty_requirements"] += f'{current_item_data["requirements"]["skill"].title()} {current_item_data["requirements"]["level"]}'
+      elif current_item_data["requirements"]["type"] == "DUNGEON_TIER":
+        current_item_data["pretty_requirements"] = f'{current_item_data["requirements"]["dungeon_type"].title()} Floor {current_item_data["requirements"]["tier"]}'
     
     # simple easy declarations
     if current_item_name in bazaar_products:
@@ -176,11 +177,7 @@ def static_database_updater(db, names):
     except FileNotFoundError:
       pass
 
-    if "slayer_req" in item_file:
-      # special case for slayers - crafting and use requirements are always the same
-      current_item_data["pretty_use_requirements"] = f"{item_file['slayer_req'][:-1].replace('_', '').title()} {item_file['slayer_req'][-1]}"
-      current_item_data["pretty_craft_requirements"] = current_item_data["pretty_use_requirements"]
-    elif "crafttext" in item_file:
+    if "crafttext" in item_file:
       # add the normal craft requirements
       current_item_data["pretty_craft_requirements"] = item_file["crafttext"]
 
@@ -616,21 +613,52 @@ def dynamic_database_updater(db, names):
             item_cost = commaify(round(current_item_data['ingredients'][item]['cost']))
             
             if len(current_item_data["ingredients"]) > 1 and item != list(current_item_data["ingredients"].keys())[-1]:
-              current_item_data["recipe"] += f"{item_count}x {item_name} (costing {item_cost}), "
+              current_item_data["recipe"] += f"{item_count}x {item_name} (costing {item_cost} coins), "
             else:
-              current_item_data["recipe"] += f"{item_count}x {item_name} (costing {item_cost})"
+              current_item_data["recipe"] += f"{item_count}x {item_name} (costing {item_cost} coins)"
               
           elif isBazaarable(item):
             current_item_data["forge_cost"] += current_item_data['ingredients'][item]["cost"]
             item_cost = commaify(round(current_item_data['ingredients'][item]['cost']))
             
             if len(current_item_data["ingredients"]) > 1 and item != list(current_item_data["ingredients"].keys())[-1]:
-              current_item_data["recipe"] += f"{item_count}x {item_name} (costing {item_cost}), "
+              current_item_data["recipe"] += f"{item_count}x {item_name} (costing {item_cost} coins), "
             else:
-              current_item_data["recipe"] += f"{item_count}x {item_name} (costing {item_cost})"
+              current_item_data["recipe"] += f"{item_count}x {item_name} (costing {item_cost} coins)"
               
         except Exception as e:
           logging.exception(e)
+          
+      if current_item_data["bazaarable"]:
+        current_item_data["forge_profit"] = current_item_data["bazaar_sell_price"] - current_item_data["forge_cost"]
+        
+        try:
+          current_item_data["forge_percentage_profit"] = round(current_item_data["forge_profit"]/current_item_data["bazaar_sell_price"], 1)
+        except ZeroDivisionError:
+          current_item_data["forge_percentage_profit"] = 0
+        
+        current_item_data["forge_profit_per_hour"] = round(current_item_data["forge_profit"]/(current_item_data["duration"]/3600), 1)
+        
+      elif current_item_data["auctionable"]:
+        current_item_data["forge_profit"] = current_item_data["lowest_bin"] - current_item_data["forge_cost"]
+        
+        try:
+          current_item_data["forge_percentage_profit"] = round(current_item_data["forge_profit"]/current_item_data["lowest_bin"], 1)
+        except ZeroDivisionError:
+          current_item_data["forge_percentage_profit"] = 0
+          
+        current_item_data["forge_profit_per_hour"] = round(current_item_data["forge_profit"]/(current_item_data["duration"]/3600), 1)
+        
+      elif current_item_data["npc_salable"]:
+        current_item_data["forge_profit"] = current_item_data["npc_sell_price"] - current_item_data["forge_cost"]
+        
+        try:
+          current_item_data["forge_percentage_profit"] = round(current_item_data["forge_profit"]/current_item_data["npc_sell_price"], 1)
+        except ZeroDivisionError:
+          current_item_data["forge_percentage_profit"] = 0
+          
+        current_item_data["forge_profit_per_hour"] = round(current_item_data["forge_profit"]/(current_item_data["duration"]/3600), 1)
+        
 
     db[current_item_name] = current_item_data # adds the new data to the database
   
@@ -641,13 +669,18 @@ def dynamic_database_updater(db, names):
   return db
 
 
-async def deletion_time():
+def deletion_time(db):
   for item in db:
     try:
-      if db[item]["forgable"]:
+      if db[item]["auctionable"]:
         pass
     except KeyError:
-      db[item]["forgable"] = False
+      db[item]["auctionable"] = False
+
+  db = dict(sorted(db.items()))
+  with open("./database.json", "w+") as database:
+    json.dump(db, database, indent=2) # DO NOT COMMENT OUT! UPDATES DATABASE
+  print("database done")
   
            
 
@@ -669,7 +702,7 @@ def log_formatter(log):
 
 def bazaar_flipper():
   final_products = []
-  bazaarables = [item for item in db if db[item]["bazaarable"]]
+  bazaarables = [item for item in db if db[item]["bazaarable"] and db[item].get("bazaar_profit") is not None and db[item].get("bazaar_profit") > 0]
   # initialising variables
 
   for i in range(len(bazaarables)):
@@ -687,7 +720,7 @@ def bazaar_flipper():
 
 def craft_flipper():
   final_flips = []
-  craftables = [item for item in db if db[item]["craftable"] and db[item].get("craft_profit") != None and db[item].get("craft_profit") > 0 and not db[item].get("vanilla")]
+  craftables = [item for item in db if db[item]["craftable"] and db[item].get("craft_profit") is not None and db[item].get("craft_profit") > 0 and not db[item].get("vanilla")]
 
   for i in range(len(craftables)):
     final_flips.append({})
@@ -795,7 +828,7 @@ def get_recipe(itemname):
 
 def forge_flipper():
   final_flips = []
-  forgables = [item for item in db if db[item]["forgable"]]
+  forgables = [item for item in db if db[item]["forgable"]  and db[item].get("forge_profit") is not None and db[item].get("forge_profit") > 0]
   
   for i in range(len(forgables)):
     final_flips.append({})
@@ -810,7 +843,10 @@ def forge_flipper():
     else:
       final_flips[i]["sell_price"] = 0
     final_flips[i]["craft_cost"] = commaify(current_item_data["forge_cost"])
-    final_flips[i]["requirements"] = current_item_data["craft_requirements"]
+    if current_item_data.get("craft_requirements"):
+      final_flips[i]["requirements"] = current_item_data["craft_requirements"]
+    else:
+      final_flips[i]["requirements"] = "None"
     final_flips[i]["formatted_ingredients"] = current_item_data["recipe"]
     final_flips[i]["profit"] = commaify(current_item_data["forge_profit"])
     final_flips[i]["%profit"] = commaify(current_item_data["forge_percentage_profit"])
@@ -821,20 +857,21 @@ def forge_flipper():
 
 def bin_flipper():
   flips = []
-  bins = [item for item in db if db[item]["auctionable"] and db[item].get("bin_flip_profit") > 0]
+  bins = [item for item in db if db[item]["auctionable"] and db[item].get("bin_flip_profit") is not None and db[item].get("bin_flip_profit") > 0]
 
   for i in range(len(bins)):
     flips.append({})
-	  current_item_data = db[bins[i]]
+    current_item_data = db[bins[i]]
     flips[i]["id"] = bins[i]
     flips[i]["image"] = f"<img src={current_item_data['image_link']}>"
     flips[i]["name"] = current_item_data["name"]
     flips[i]["lowest"] = commaify(current_item_data["lowest_bin"])
     flips[i]["second_lowest"] = commaify(current_item_data["second_lowest_bin"])
-    flips[i]["profit"] = commaify(current_item_data["forge_profit"])
-    flips[i]["%profit"] = commaify(current_item_data["forge_percentage_profit"])
+    flips[i]["profit"] = commaify(current_item_data["bin_profit"])
+    flips[i]["%profit"] = commaify(current_item_data["bin_percentage_profit"])
 
   return flips, ["ID", "Image", "Name", "Buy Price", "Sell Price", "Profit", "Percentage Profit"]
+
   
 def name_to_id(itemname):
   if "Drill" in itemname:
@@ -943,6 +980,12 @@ def unpack_nbt(tag):
 #---------------------------------------------------------------------------------------------------------
 names = item_names()
 
+# Define a new client.
+# client = pymongo.MongoClient(f"{os.environ('mongodb_password')}")
+
+# Get the database (database name by default is "test")
+# mongodb = client.db_name # OR db = client.test
+
 try:
   with open("./database.json", "r+") as database:
     db = json.load(database) #database setup - always needs to run
@@ -953,7 +996,7 @@ except:
 # p.start()
 # static_database_updater({}, names)
 # dynamic_database_updater()
-# asyncio.run(deletion_time())
+deletion_time(db)
 # p.stop()
 # p.print()
 

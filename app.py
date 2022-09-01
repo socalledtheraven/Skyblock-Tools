@@ -1,19 +1,18 @@
 from fastapi import FastAPI
-from fastapi.responses import RedirectResponse
+from fastapi.responses import RedirectResponse, FileResponse
 from fastapi.concurrency import run_in_threadpool
 from fastapi.openapi.docs import get_swagger_ui_html
 from fastapi_utils.tasks import repeat_every
 from scout_apm.api import Config
 from scout_apm.async_.starlette import ScoutMiddleware
-from starlette.responses import FileResponse
 import main
 import models
 import uvicorn
 import uvloop
 import asyncio
+import aiofiles
 import json
 import logging
-import aiofiles
   
 description = """
 The Skyblock Tools api tries to put all information a hypixel dev using the api would need at their fingertips
@@ -86,6 +85,11 @@ async def item(item: str) -> models.Item:
 async def name(item: str) -> models.Name:
   return models.Name(id=item,
                      name=db[item]["name"])
+
+
+@app.get("/items/item/{item}/image/", tags=["items"])
+async def image(item: str):
+  return FileResponse(db[item]["image_file"])
 
   
 @app.get("/items/item/{item}/recipe/", tags=["items"], response_model=models.Recipe)
@@ -240,7 +244,7 @@ async def load_db():
 
     
 @app.on_event("startup")
-@repeat_every(seconds=30, logger=logging.Logger)
+@repeat_every(seconds=300, wait_first=True, logger=logging.Logger)
 async def dynamic_database_updater_task():
   global db
   print("dynamic")
