@@ -47,11 +47,10 @@ def static_database_updater(db, names):
     file = "./neu-repo/items/" + current_item_name + ".json"
     current_item_data["name"] = remove_formatting(current_item["name"])
     current_item_data["id"] = current_item_name
-    current_item_data["image_link"] = f"https://sky.shiiyu.moe/item/{current_item_name}"
-    current_item_data["image_file"] = f"./static/assets/{current_item_name}.png"
+    current_item_data["image_link"] = f"https://gitcdn.link/cdn/QuintBrit/Skyblock-Tools/fastAPI/static/assets/{current_item_name}.png"
     current_item_data["material"] = current_item["material"]
     if "skin" in current_item:
-      current_item_data["skin_data"] = json.loads(base64.decode(current_item["skin"]))
+      current_item_data["skin_data"] = json.loads(base64.b64decode(current_item["skin"]))
     if "dungeon_item_conversion_cost" in current_item or "upgrade_costs" in current_item or "catacombs_requirements" in current_item:
       current_item_data["dungeons"] = {"dungeon_item_conversion_cost": current_item["dungeon_item_conversion_cost"], "upgrade_costs": {"first": current_item["upgrade_costs"][0][0], "second": current_item["upgrade_costs"][1][0], "third": current_item["upgrade_costs"][2][0], "fourth": current_item["upgrade_costs"][3][0], "fifth": current_item["upgrade_costs"][4][0]}, "cata_reqs": current_item["catacombs_requirements"][0], "pretty_cata_reqs": f'{current_item["catacombs_requirements"][0]["dungeon_type"].title()} {current_item["catacombs_requirements"][0]["level"]}'}
       
@@ -672,10 +671,10 @@ def dynamic_database_updater(db, names):
 def deletion_time(db):
   for item in db:
     try:
-      if db[item]["auctionable"]:
-        pass
-    except KeyError:
-      db[item]["auctionable"] = False
+      del db[item]["image_file"]
+    except:
+      pass
+    db[item]["image_link"] = f"https://gitcdn.link/cdn/QuintBrit/Skyblock-Tools/fastAPI/static/assets/{item}.png"
 
   db = dict(sorted(db.items()))
   with open("./database.json", "w+") as database:
@@ -980,11 +979,6 @@ def unpack_nbt(tag):
 #---------------------------------------------------------------------------------------------------------
 names = item_names()
 
-# Define a new client.
-# client = pymongo.MongoClient(f"{os.environ('mongodb_password')}")
-
-# Get the database (database name by default is "test")
-# mongodb = client.db_name # OR db = client.test
 
 try:
   with open("./database.json", "r+") as database:
@@ -996,7 +990,7 @@ except:
 # p.start()
 # static_database_updater({}, names)
 # dynamic_database_updater()
-deletion_time(db)
+# deletion_time(db)
 # p.stop()
 # p.print()
 

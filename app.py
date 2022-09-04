@@ -13,6 +13,7 @@ import asyncio
 import aiofiles
 import json
 import logging
+import urllib.request
   
 description = """
 The Skyblock Tools api tries to put all information a hypixel dev using the api would need at their fingertips
@@ -89,7 +90,15 @@ async def name(item: str) -> models.Name:
 
 @app.get("/items/item/{item}/image/", tags=["items"])
 async def image(item: str):
-  return FileResponse(db[item]["image_file"])
+  """
+    Get an item's image.
+
+    :param item: The item's id.
+    :return: The item's image.
+    """
+  
+  return FileResponse(urllib.request.urlretrieve(db[item]["image_link"], "./static/assets/image.png")[0])
+
 
   
 @app.get("/items/item/{item}/recipe/", tags=["items"], response_model=models.Recipe)
