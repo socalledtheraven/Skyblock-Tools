@@ -96,8 +96,11 @@ async def image(item: str):
     :param item: The item's id.
     :return: The item's image.
     """
-  
-  return FileResponse(urllib.request.urlretrieve(db[item]["image_link"], "./static/assets/image.png")[0])
+  try:
+    image, _ = urllib.request.urlretrieve(db[item]["image_link"], "./static/assets/image.png")
+  except urllib.error.HTTPError:
+    image, _ = urllib.request.urlretrieve(db[item]["alt_image_link"], "./static/assets/image.png")
+  return FileResponse(image)
 
 
   

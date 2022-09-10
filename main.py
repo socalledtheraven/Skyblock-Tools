@@ -5,8 +5,9 @@ import requests
 import logging
 import git
 import pytimeparse
-import base64
+import zlib
 import io
+import codecs
 # import pymongo
 import ujson as json
 from pyinstrument import Profiler
@@ -50,9 +51,19 @@ def static_database_updater(db, names):
     current_item_data["image_link"] = f"https://gitcdn.link/cdn/QuintBrit/Skyblock-Tools/fastAPI/static/assets/{current_item_name}.png"
     current_item_data["material"] = current_item["material"]
     if "skin" in current_item:
-      current_item_data["skin_data"] = json.loads(base64.b64decode(current_item["skin"]))
+      current_item_data["skin_data"] = json.loads(codecs.decode(current_item["skin"]))
     if "dungeon_item_conversion_cost" in current_item or "upgrade_costs" in current_item or "catacombs_requirements" in current_item:
-      current_item_data["dungeons"] = {"dungeon_item_conversion_cost": current_item["dungeon_item_conversion_cost"], "upgrade_costs": {"first": current_item["upgrade_costs"][0][0], "second": current_item["upgrade_costs"][1][0], "third": current_item["upgrade_costs"][2][0], "fourth": current_item["upgrade_costs"][3][0], "fifth": current_item["upgrade_costs"][4][0]}, "cata_reqs": current_item["catacombs_requirements"][0], "pretty_cata_reqs": f'{current_item["catacombs_requirements"][0]["dungeon_type"].title()} {current_item["catacombs_requirements"][0]["level"]}'}
+      current_item_data["dungeons"] = {"dungeon_item_conversion_cost": 
+                                       current_item["dungeon_item_conversion_cost"],
+                                       "upgrade_costs": 
+                                         {"first": current_item["upgrade_costs"][0][0],
+                                          "second": current_item["upgrade_costs"][1][0],
+                                          "third": current_item["upgrade_costs"][2][0],
+                                          "fourth": current_item["upgrade_costs"][3][0],
+                                          "fifth": current_item["upgrade_costs"][4][0]
+                                         },
+                                       "cata_reqs": current_item["catacombs_requirements"][0],
+                                       "pretty_cata_reqs": f'{current_item["catacombs_requirements"][0]["dungeon_type"].title()} {current_item["catacombs_requirements"][0]["level"]}'}
       
     if "gemstone_slots" in current_item:
       current_item_data["gemstones"] = []
@@ -91,7 +102,7 @@ def static_database_updater(db, names):
       current_item_data["pretty_requirements"] = ""
 
       if current_item_data["requirements"]["type"] == "SLAYER":
-        current_item_data["pretty_requirements"] += f'{current_item["requirements"]["slayer_boss_type"].title()} {current_item["requirements"]["slayer"]["level"]}'
+        current_item_data["pretty_requirements"] += f'{current_item["requirements"][0]["slayer_boss_type"].title()} {current_item["requirements"][0]["level"]}'
       elif current_item_data["requirements"]["type"] == "SKILL":
         current_item_data["pretty_requirements"] += f'{current_item_data["requirements"]["skill"].title()} {current_item_data["requirements"]["level"]}'
       elif current_item_data["requirements"]["type"] == "DUNGEON_TIER":
@@ -670,11 +681,7 @@ def dynamic_database_updater(db, names):
 
 def deletion_time(db):
   for item in db:
-    try:
-      del db[item]["image_file"]
-    except:
-      pass
-    db[item]["image_link"] = f"https://gitcdn.link/cdn/QuintBrit/Skyblock-Tools/fastAPI/static/assets/{item}.png"
+    db[item]["alt_image_link"] = f"https://sky.shiiyu.moe/item/{item}"
 
   db = dict(sorted(db.items()))
   with open("./database.json", "w+") as database:
@@ -931,7 +938,7 @@ def get_auctions():
     auction_data.extend(auctions["auctions"]) #runs through all the auction pages to add all the auctions together
 
   for auction in auction_data:
-    auction["id"] = get_id(auction["item_bytes"])
+    auction["id"] = get_id(bytes(auction["item_bytes"], "utf-8"))
     
   return auction_data
 
@@ -957,8 +964,8 @@ def decode_nbt(raw):
   """
   Decode a gziped and base64 decoded string to an NBT object
   """
-
-  return NBTFile(fileobj=io.BytesIO(base64.b64decode(raw)))
+  decompressed_data = zlib.decompress(raw.read(), 16+zlib.MAX_WBITS)
+  return NBTFile(fileobj=decompressed_data)
 
 
 def unpack_nbt(tag):
@@ -984,7 +991,8 @@ try:
   with open("./database.json", "r+") as database:
     db = json.load(database) #database setup - always needs to run
 except:
-  db = static_database_updater({}, names)
+  #db = static_database_updater({}, names)
+  pass
 
 # p = Profiler()
 # p.start()
