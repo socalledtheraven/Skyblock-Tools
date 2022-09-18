@@ -2,12 +2,15 @@ import os
 import re
 import asyncio
 import requests
+import logging_setup
 import logging
 import git
 import pytimeparse
+import gzip
 import zlib
 import io
-import codecs
+# import codecs
+import base64
 # import pymongo
 import ujson as json
 from pyinstrument import Profiler
@@ -15,7 +18,7 @@ from nbt.nbt import TAG_List, TAG_Compound, NBTFile
 
 apiKey = os.environ["apiKey"]
 
-logging.basicConfig(filename='latest.log', filemode='w+', format='%(asctime)s: [%(levelname)s] %(message)s', datefmt='%d-%b-%y %H:%M:%S') # sets up config logging
+logger = logging_setup.setup() # sets up config logging
 
     
 repo = git.Repo("./neu-repo")
@@ -33,13 +36,13 @@ def static_database_updater(db, names):
   bazaar_products = [item for item in bazaar_data] # aquires bz data from asyncpixel and formats it to also get the bazaarables
   auctions = get_auctions()
   bins = list(filter(lambda d: d["bin"] == True, auctions))
-  print("setup finished")
+  logger.info("Setup finished")
 
   for i in range(len(items)): # runs through every item in the game
     # variable defining sections
     current_item = items[i]
     current_item_name = current_item["id"]
-    print("static", current_item_name) # debug purposes
+    logger.info("Start of static database") # debug purposes
     current_item_data = {}
     current_item_data["recipe"] = ""
     current_item_data["craft_cost"] = 0
@@ -118,7 +121,7 @@ def static_database_updater(db, names):
       try:
         current_item_data["bazaar_percentage_profit"] = round(current_item_data["bazaar_profit"]/current_item_data["bazaar_buy_price"], 2)
       except ZeroDivisionError:
-        logging.error(f"{current_item_name}'s bz price is 0")
+        logger.error(f"{current_item_name}'s bz price is 0")
         current_item_data["bazaar_percentage_profit"] = 0
     # checks bazaarability and adds any relevant bazaar data
         
@@ -273,7 +276,7 @@ def static_database_updater(db, names):
               current_item_data["recipe"] += f"{ingredients[item]}x {item_name}"
               
         except Exception as e:
-          logging.exception(e)
+          logger.exception(e)
 
               
       # calculates any craft profits
@@ -282,21 +285,21 @@ def static_database_updater(db, names):
         try:
           current_item_data["craft_percentage_profit"] = round(current_item_data["craft_profit"]/current_item_data["craft_cost"], 2)
         except ZeroDivisionError:
-          logging.error(f"{current_item_name} costs 0 coins to craft")
+          logger.error(f"{current_item_name} costs 0 coins to craft")
           
       elif current_item_data["auctionable"]:
         current_item_data["craft_profit"] = float(round(current_item_data["lowest_bin"] - current_item_data["craft_cost"], 1))
         try:
           current_item_data["craft_percentage_profit"] = round(current_item_data["craft_profit"]/current_item_data["craft_cost"], 2)
         except ZeroDivisionError:
-          logging.error(f"{current_item_name} costs 0 coins to craft")
+          logger.error(f"{current_item_name} costs 0 coins to craft")
           
       elif current_item_data["npc_salable"]:
         current_item_data["craft_profit"] = float(round(current_item_data["npc_sell_price"] - current_item_data["craft_cost"], 1))
         try:
           current_item_data["craft_percentage_profit"] = round(current_item_data["craft_profit"]/current_item_data["craft_cost"], 2)
         except ZeroDivisionError:
-          logging.error(f"{current_item_name} costs 0 coins to craft")
+          logger.error(f"{current_item_name} costs 0 coins to craft")
           
     else:
       current_item_data["craftable"] = False
@@ -333,7 +336,7 @@ def static_database_updater(db, names):
       current_item_data["forge_cost"] = 0
       # iterates through the ingredients and actually properly formats them and the recipe
       for item in list(splits.keys()):
-        print(item)
+        logger.info("Processing ingredient: " + str(item))
         bins = list(filter(lambda d: d["bin"] == True, auctions))
         bin_data = sorted(list(filter(lambda d: d["item_name"] == item, bins)), key=lambda d: d["starting_bid"])[:2]
         api_item = list(filter(lambda d: d["id"] == item, items))
@@ -439,19 +442,19 @@ def static_database_updater(db, names):
   db = dict(sorted(db.items()))
   with open("./database.json", "w+") as database:
     json.dump(db, database, indent=2) # DO NOT COMMENT OUT! UPDATES DATABASE
-  print("database done")
+  logging.info("Database updated.")
   return db
 
 def dynamic_database_updater(db, names):
   bazaar_data = get_json("https://api.hypixel.net/skyblock/bazaar")["products"]
   auctions = get_auctions()
   bins = list(filter(lambda d: d["bin"] == True, auctions))
-  print("database in progress")
+  logger.info("End of setup. Dynamic update starting.")
 
   for item in db: # runs through every item in the game
     # variable defining sections
     current_item_name = item
-    print("dynamic", item)
+    logger.info("Updating item: " + current_item_name)
     current_item_data = db[item]
     file = f"./neu-repo/items/{item}.json" # note - update this with local assets at some point 
     
@@ -464,7 +467,7 @@ def dynamic_database_updater(db, names):
       try:
         current_item_data["bazaar_percentage_profit"] = round(current_item_data["bazaar_profit"]/current_item_data["bazaar_buy_price"], 2)
       except ZeroDivisionError:
-        logging.error(f"{current_item_name}'s bz price is 0")
+        logger.error(f"{current_item_name}'s bz price is 0")
         current_item_data["bazaar_percentage_profit"] = 0
     # checks bazaarability and adds any relevant bazaar data
         
@@ -575,7 +578,7 @@ def dynamic_database_updater(db, names):
               current_item_data["recipe"] += f"{item_count}x {item_name}"
               
         except KeyError:
-          logging.error(f"{item} isn't in the database yet")
+          logger.error(f"{item} isn't in the database yet")
   
         # calculates any craft profits
         if current_item_data["bazaarable"]:
@@ -583,14 +586,14 @@ def dynamic_database_updater(db, names):
           try:
             current_item_data["craft_percentage_profit"] = round(current_item_data["craft_profit"]/current_item_data["craft_cost"], 2)
           except ZeroDivisionError:
-            logging.error(f"{current_item_name} costs 0 coins to craft")
+            logger.error(f"{current_item_name} costs 0 coins to craft")
             
         elif current_item_data["auctionable"]:
           current_item_data["craft_profit"] = float(round(current_item_data["lowest_bin"] - current_item_data["craft_cost"], 1))
           try:
             current_item_data["craft_percentage_profit"] = round(current_item_data["craft_profit"]/current_item_data["craft_cost"], 2)
           except ZeroDivisionError:
-            logging.error(f"{current_item_name} costs 0 coins to craft")
+            logger.error(f"{current_item_name} costs 0 coins to craft")
             
       
     # FORGE STARTS HERE
@@ -637,7 +640,7 @@ def dynamic_database_updater(db, names):
               current_item_data["recipe"] += f"{item_count}x {item_name} (costing {item_cost} coins)"
               
         except Exception as e:
-          logging.exception(e)
+          logger.exception(e)
           
       if current_item_data["bazaarable"]:
         current_item_data["forge_profit"] = current_item_data["bazaar_sell_price"] - current_item_data["forge_cost"]
@@ -675,7 +678,7 @@ def dynamic_database_updater(db, names):
   db = dict(sorted(db.items()))
   with open("./database.json", "w+") as database:
     json.dump(db, database, indent=2) # DO NOT COMMENT OUT! UPDATES DATABASE
-  print("database done")
+  logger.info("Database updated.")
   return db
 
 
@@ -686,7 +689,7 @@ def deletion_time(db):
   db = dict(sorted(db.items()))
   with open("./database.json", "w+") as database:
     json.dump(db, database, indent=2) # DO NOT COMMENT OUT! UPDATES DATABASE
-  print("database done")
+  logger.info("Database updated.")
   
            
 
@@ -715,7 +718,7 @@ def bazaar_flipper():
     final_products.append({})
     current_item_data = db[bazaarables[i]]
     final_products[i]["item_name"] = current_item_data["name"]
-    print(current_item_data["id"])
+    logger.info("Item: " + final_products[i]["item_name"])
     final_products[i]["buy_order_price"] = commaify(current_item_data["bazaar_buy_price"])
     final_products[i]["sell_order_price"] = commaify(current_item_data["bazaar_sell_price"])
     final_products[i]["product_margins"] = commaify(current_item_data["bazaar_profit"])
@@ -889,7 +892,7 @@ def name_to_id(itemname):
     return list(names.keys())[list(names.values()).index(itemname)]
     
   except KeyError as e:
-    logging.exception(e)
+    logger.exception(e)
     try:
       for item in db:
         if db[item]["name"] == itemname:
@@ -898,7 +901,7 @@ def name_to_id(itemname):
       return itemname
     
   except ValueError as e:
-    logging.exception(e)
+    logger.exception(e)
     try:
       for item in db:
         if db[item]["name"] == itemname:
@@ -911,7 +914,7 @@ def id_to_name(itemname):
   try:
     return names[itemname]
   except Exception as e:
-    logging.error(e)
+    logger.error(e)
     try:
       return db[itemname]["name"]
     except:
@@ -962,10 +965,11 @@ def get_id(bytes):
 
 def decode_nbt(raw):
   """
-  Decode a gziped and base64 decoded string to an NBT object
+  Decode a base64 string to an NBT object
   """
-  decompressed_data = zlib.decompress(raw.read(), 16+zlib.MAX_WBITS)
-  return NBTFile(fileobj=decompressed_data)
+  decompressed_data = io.BytesIO(base64.b64decode(raw))
+  nbt = NBTFile(fileobj=decompressed_data)
+  return nbt
 
 
 def unpack_nbt(tag):
@@ -991,8 +995,9 @@ try:
   with open("./database.json", "r+") as database:
     db = json.load(database) #database setup - always needs to run
 except:
-  #db = static_database_updater({}, names)
+  # db = static_database_updater({}, names)
   pass
+  
 
 # p = Profiler()
 # p.start()

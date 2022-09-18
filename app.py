@@ -1,10 +1,9 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, Request
 from fastapi.responses import RedirectResponse, FileResponse
 from fastapi.concurrency import run_in_threadpool
 from fastapi.openapi.docs import get_swagger_ui_html
 from fastapi_utils.tasks import repeat_every
-from scout_apm.api import Config
-from scout_apm.async_.starlette import ScoutMiddleware
+from loguru import logger
 import main
 import models
 import uvicorn
@@ -12,7 +11,7 @@ import uvloop
 import asyncio
 import aiofiles
 import json
-import logging
+import logging_setup
 import urllib.request
   
 description = """
@@ -41,11 +40,7 @@ tags_metadata = [
   }
 ]
 
-logging.basicConfig(filename='latest.log', filemode='w+', format='%(asctime)s: [%(levelname)s] %(message)s', datefmt='%d-%b-%y %H:%M:%S')
-
-Config.set(
-  name="Skyblock Tools - API"
-)
+logger = logging_setup.setup()
 
 app = FastAPI(
   title="Skyblock Tools",
@@ -58,18 +53,17 @@ app = FastAPI(
   },
 )
 
-app.add_middleware(ScoutMiddleware)
 favicon_path = 'favicon.ico'
-
+  
 
 @app.get("/", include_in_schema=False)
 async def home():
   return RedirectResponse("/docs")
 
 
-@app.get('/favicon.ico', include_in_schema=False)
-async def favicon():
-    return FileResponse(favicon_path)
+@app.get("/favicon.ico", include_in_schema=False)
+async def favicon(request: Request):
+  return FileResponse(favicon_path, content_type="image/x-icon")
 
                              
 @app.get("/items/items/", tags=["items"], response_model=models.Items)
@@ -100,6 +94,7 @@ async def image(item: str):
     image, _ = urllib.request.urlretrieve(db[item]["image_link"], "./static/assets/image.png")
   except urllib.error.HTTPError:
     image, _ = urllib.request.urlretrieve(db[item]["alt_image_link"], "./static/assets/image.png")
+    logger.warning("Failed to download image for item %s", item)
   return FileResponse(image)
 
 
@@ -110,6 +105,7 @@ async def recipe(item: str) -> models.Recipe:
     return models.Recipe(recipe=db[item]["recipe"],
                          ingredients=db[item]["ingredients"])
   else:
+    logger.warning("Item %s is not craftable or forgable", item)
     return {"craftable": False, "forgable": False}
 
   
@@ -119,6 +115,7 @@ async def lowest_bin(item: str) -> models.Bins:
     return models.Bins(lowest=db[item]["lowest_bin"],
                        second_lowest=db[item]["second_lowest_bin"])
   else:
+    logger.warning("Item %s is not auctionable", item)
     return {"auctionable": False}
 
     
@@ -137,6 +134,7 @@ async def bazaar(item: str):
                              profit=db[item]["bazaar_profit"],
                              percentage_profit=db[item]["bazaar_percentage_profit"])
   else:
+    logger.warning("Item %s is not bazaarable", item)
     return {"bazaarable": False}
 
   
@@ -158,6 +156,7 @@ async def price(item: str):
     return models.Price(sell=db[item]["npc_sell_price"])
     
   else:
+    logger.warning("Item %s is not sellable", item)
     return {"unsellable": True}
 
     
@@ -173,6 +172,7 @@ async def forge(item: str):
                             recipe=db[item]["recipe"],
                             ingredients=db[item]["ingredients"])
   else:
+    logger.warning("Item %s is not forgable", item)
     return {"forgable": False}
 
     
@@ -204,6 +204,7 @@ async def forgables():
 async def auctions(page: int = 0):
   auctions = await main.get_auctions()
   auctions = list(main.chunks(auctions, 5000))
+  logger.info("Got auctions page %d", page)
   return auctions[page]
 
 
@@ -256,7 +257,7 @@ async def load_db():
 
     
 @app.on_event("startup")
-@repeat_every(seconds=300, wait_first=True, logger=logging.Logger)
+@repeat_every(seconds=300, wait_first=True, logger=logger)
 async def dynamic_database_updater_task():
   global db
   print("dynamic")
@@ -264,7 +265,7 @@ async def dynamic_database_updater_task():
 
   
 @app.on_event("startup")
-@repeat_every(seconds=60*10, wait_first=True, logger=logging.Logger)
+@repeat_every(seconds=60*10, wait_first=True, logger=logger)
 async def static_database_updater_task():
   global db
   print("static")

@@ -263,6 +263,21 @@ MarkupSafe = ">=2.0"
 i18n = ["Babel (>=2.7)"]
 
 [[package]]
+name = "loguru"
+version = "0.6.0"
+description = "Python logging made (stupidly) simple"
+category = "main"
+optional = false
+python-versions = ">=3.5"
+
+[package.dependencies]
+colorama = {version = ">=0.3.4", markers = "sys_platform == \"win32\""}
+win32-setctime = {version = ">=1.0.0", markers = "sys_platform == \"win32\""}
+
+[package.extras]
+dev = ["sphinx-rtd-theme (>=0.4.3)", "sphinx-autobuild (>=0.7.1)", "Sphinx (>=4.1.1)", "isort (>=5.1.1)", "black (>=19.10b0)", "pytest-cov (>=2.7.1)", "pytest (>=4.6.2)", "tox (>=3.9.0)", "flake8 (>=3.7.7)", "docutils (==0.16)", "colorama (>=0.3.4)"]
+
+[[package]]
 name = "markupsafe"
 version = "2.1.1"
 description = "Safely add untrusted strings to HTML/XML markup."
@@ -572,6 +587,17 @@ python-versions = ">=3.7"
 watchdog = ["watchdog"]
 
 [[package]]
+name = "win32-setctime"
+version = "1.1.0"
+description = "A small Python utility to set file creation time on Windows"
+category = "main"
+optional = false
+python-versions = ">=3.5"
+
+[package.extras]
+dev = ["black (>=19.3b0)", "pytest (>=4.6.2)"]
+
+[[package]]
 name = "wrapt"
 version = "1.14.1"
 description = "Module for decorators, wrappers and monkey patching."
@@ -594,7 +620,7 @@ testing = ["pytest (>=6)", "pytest-checkdocs (>=2.4)", "pytest-flake8", "pytest-
 [metadata]
 lock-version = "1.1"
 python-versions = ">=3.8.0,<3.9"
-content-hash = "047e11c3a77354fe839de6cc8f4be702c649f674b1b55f513953920146a42fc2"
+content-hash = "3525001ee6c30d76f4cae8374617fb7a6cb6ae7edd72ad1dd426fce51b61b0f0"
 
 [metadata.files]
 aiofiles = []
@@ -619,6 +645,7 @@ idna = []
 importlib-metadata = []
 itsdangerous = []
 jinja2 = []
+loguru = []
 markupsafe = []
 nbt = []
 numpy = []
@@ -644,5 +671,6 @@ urllib3 = []
 uvicorn = []
 uvloop = []
 werkzeug = []
+win32-setctime = []
 wrapt = []
 zipp = []

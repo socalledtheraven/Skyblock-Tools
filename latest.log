@@ -1,69 +1,145 @@
-10-Sep-22 07:53:27: [INFO] Started server process [55]
-10-Sep-22 07:53:27: [INFO] Waiting for application startup.
-10-Sep-22 07:53:28: [INFO] Application startup complete.
-10-Sep-22 07:58:36: [ERROR] Task exception was never retrieved
-future: <Task finished name='Task-3' coro=<repeat_every.<locals>.decorator.<locals>.wrapped.<locals>.loop() done, defined at /home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/fastapi_utils/tasks.py:57> exception=TypeError("error() missing 1 required positional argument: 'msg'")>
-Traceback (most recent call last):
-  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/fastapi_utils/tasks.py", line 64, in loop
-    await func()  # type: ignore
-  File "/home/runner/Skyblock-Tools-FastAPI/app.py", line 263, in dynamic_database_updater_task
-    db = await run_in_threadpool(lambda: main.dynamic_database_updater(db, main.names))
-  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/starlette/concurrency.py", line 41, in run_in_threadpool
-    return await anyio.to_thread.run_sync(func, *args)
-  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/anyio/to_thread.py", line 31, in run_sync
-    return await get_asynclib().run_sync_in_worker_thread(
-  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/anyio/_backends/_asyncio.py", line 937, in run_sync_in_worker_thread
-    return await future
-  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/anyio/_backends/_asyncio.py", line 867, in run
-    result = context.run(func, *args)
-  File "/home/runner/Skyblock-Tools-FastAPI/app.py", line 263, in <lambda>
-    db = await run_in_threadpool(lambda: main.dynamic_database_updater(db, main.names))
-  File "/home/runner/Skyblock-Tools-FastAPI/main.py", line 447, in dynamic_database_updater
-    auctions = get_auctions()
-  File "/home/runner/Skyblock-Tools-FastAPI/main.py", line 941, in get_auctions
-    auction["id"] = get_id(bytes(auction["item_bytes"], "utf-8"))
-  File "/home/runner/Skyblock-Tools-FastAPI/main.py", line 959, in get_id
-    data = unpack_nbt(decode_nbt(bytes))
-  File "/home/runner/Skyblock-Tools-FastAPI/main.py", line 967, in decode_nbt
-    decompressed_data = zlib.decompress(raw.read(), 16+zlib.MAX_WBITS)
-AttributeError: 'bytes' object has no attribute 'read'
-
-During handling of the above exception, another exception occurred:
-
-Traceback (most recent call last):
-  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/fastapi_utils/tasks.py", line 71, in loop
-    logger.error(formatted_exception)
-TypeError: error() missing 1 required positional argument: 'msg'
-10-Sep-22 08:03:37: [ERROR] Task exception was never retrieved
-future: <Task finished name='Task-4' coro=<repeat_every.<locals>.decorator.<locals>.wrapped.<locals>.loop() done, defined at /home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/fastapi_utils/tasks.py:57> exception=TypeError("error() missing 1 required positional argument: 'msg'")>
-Traceback (most recent call last):
-  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/fastapi_utils/tasks.py", line 64, in loop
-    await func()  # type: ignore
-  File "/home/runner/Skyblock-Tools-FastAPI/app.py", line 271, in static_database_updater_task
-    db = await run_in_threadpool(lambda: main.static_database_updater(db, main.names))
-  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/starlette/concurrency.py", line 41, in run_in_threadpool
-    return await anyio.to_thread.run_sync(func, *args)
-  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/anyio/to_thread.py", line 31, in run_sync
-    return await get_asynclib().run_sync_in_worker_thread(
-  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/anyio/_backends/_asyncio.py", line 937, in run_sync_in_worker_thread
-    return await future
-  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/anyio/_backends/_asyncio.py", line 867, in run
-    result = context.run(func, *args)
-  File "/home/runner/Skyblock-Tools-FastAPI/app.py", line 271, in <lambda>
-    db = await run_in_threadpool(lambda: main.static_database_updater(db, main.names))
-  File "/home/runner/Skyblock-Tools-FastAPI/main.py", line 34, in static_database_updater
-    auctions = get_auctions()
-  File "/home/runner/Skyblock-Tools-FastAPI/main.py", line 941, in get_auctions
-    auction["id"] = get_id(bytes(auction["item_bytes"], "utf-8"))
-  File "/home/runner/Skyblock-Tools-FastAPI/main.py", line 959, in get_id
-    data = unpack_nbt(decode_nbt(bytes))
-  File "/home/runner/Skyblock-Tools-FastAPI/main.py", line 967, in decode_nbt
-    decompressed_data = zlib.decompress(raw.read(), 16+zlib.MAX_WBITS)
-AttributeError: 'bytes' object has no attribute 'read'
-
-During handling of the above exception, another exception occurred:
-
-Traceback (most recent call last):
-  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/fastapi_utils/tasks.py", line 71, in loop
-    logger.error(formatted_exception)
-TypeError: error() missing 1 required positional argument: 'msg'
+[34m[1m2022-09-16 at 10:38:01[0m[34m[0m - [32mlogging_setup.py[0m - [37mINFO[0m: Test colour
+[34m[1m2022-09-16 at 10:38:01[0m[34m[0m - [32mlogging_setup.py[0m - [32mDEBUG[0m: Test colour
+[34m[1m2022-09-16 at 10:38:01[0m[34m[0m - [32mlogging_setup.py[0m - [33mWARNING[0m: Test colour
+[34m[1m2022-09-16 at 10:38:01[0m[34m[0m - [32mlogging_setup.py[0m - [31mERROR[0m: Test colour
+[34m[1m2022-09-16 at 10:38:01[0m[34m[0m - [32mlogging_setup.py[0m - [1m[5m[31mCRITICAL[0m: Test colour
+[34m[1m2022-09-16 at 10:38:02[0m[34m[0m - [32mlogging_setup.py[0m - [37mINFO[0m: Test colour
+[34m[1m2022-09-16 at 10:38:02[0m[34m[0m - [32mlogging_setup.py[0m - [32mDEBUG[0m: Test colour
+[34m[1m2022-09-16 at 10:38:02[0m[34m[0m - [32mlogging_setup.py[0m - [33mWARNING[0m: Test colour
+[34m[1m2022-09-16 at 10:38:02[0m[34m[0m - [32mlogging_setup.py[0m - [31mERROR[0m: Test colour
+[34m[1m2022-09-16 at 10:38:02[0m[34m[0m - [32mlogging_setup.py[0m - [1m[5m[31mCRITICAL[0m: Test colour
+[34m[1m2022-09-16 at 10:38:04[0m[34m[0m - [32mlogging_setup.py[0m - [37mINFO[0m: Test colour
+[34m[1m2022-09-16 at 10:38:04[0m[34m[0m - [32mlogging_setup.py[0m - [32mDEBUG[0m: Test colour
+[34m[1m2022-09-16 at 10:38:04[0m[34m[0m - [32mlogging_setup.py[0m - [33mWARNING[0m: Test colour
+[34m[1m2022-09-16 at 10:38:04[0m[34m[0m - [32mlogging_setup.py[0m - [31mERROR[0m: Test colour
+[34m[1m2022-09-16 at 10:38:04[0m[34m[0m - [32mlogging_setup.py[0m - [1m[5m[31mCRITICAL[0m: Test colour
+[34m[1m2022-09-16 at 10:38:04[0m[34m[0m - [32mlogging_setup.py[0m - [37mINFO[0m: Test colour
+[34m[1m2022-09-16 at 10:38:04[0m[34m[0m - [32mlogging_setup.py[0m - [32mDEBUG[0m: Test colour
+[34m[1m2022-09-16 at 10:38:04[0m[34m[0m - [32mlogging_setup.py[0m - [33mWARNING[0m: Test colour
+[34m[1m2022-09-16 at 10:38:04[0m[34m[0m - [32mlogging_setup.py[0m - [31mERROR[0m: Test colour
+[34m[1m2022-09-16 at 10:38:04[0m[34m[0m - [32mlogging_setup.py[0m - [1m[5m[31mCRITICAL[0m: Test colour
+[34m[1m2022-09-16 at 10:38:04[0m[34m[0m - [32mlogging_setup.py[0m - [37mINFO[0m: Test colour
+[34m[1m2022-09-16 at 10:38:04[0m[34m[0m - [32mlogging_setup.py[0m - [32mDEBUG[0m: Test colour
+[34m[1m2022-09-16 at 10:38:04[0m[34m[0m - [32mlogging_setup.py[0m - [33mWARNING[0m: Test colour
+[34m[1m2022-09-16 at 10:38:04[0m[34m[0m - [32mlogging_setup.py[0m - [31mERROR[0m: Test colour
+[34m[1m2022-09-16 at 10:38:04[0m[34m[0m - [32mlogging_setup.py[0m - [1m[5m[31mCRITICAL[0m: Test colour
+[34m[1m2022-09-16 at 10:38:04[0m[34m[0m - [32mlogging_setup.py[0m - [37mINFO[0m: Test colour
+[34m[1m2022-09-16 at 10:38:04[0m[34m[0m - [32mlogging_setup.py[0m - [32mDEBUG[0m: Test colour
+[34m[1m2022-09-16 at 10:38:04[0m[34m[0m - [32mlogging_setup.py[0m - [33mWARNING[0m: Test colour
+[34m[1m2022-09-16 at 10:38:04[0m[34m[0m - [32mlogging_setup.py[0m - [31mERROR[0m: Test colour
+[34m[1m2022-09-16 at 10:38:04[0m[34m[0m - [32mlogging_setup.py[0m - [1m[5m[31mCRITICAL[0m: Test colour
+[34m[1m2022-09-16 at 10:38:06[0m[34m[0m - [32mlogging_setup.py[0m - [37mINFO[0m: Test colour
+[34m[1m2022-09-16 at 10:38:06[0m[34m[0m - [32mlogging_setup.py[0m - [32mDEBUG[0m: Test colour
+[34m[1m2022-09-16 at 10:38:06[0m[34m[0m - [32mlogging_setup.py[0m - [33mWARNING[0m: Test colour
+[34m[1m2022-09-16 at 10:38:06[0m[34m[0m - [32mlogging_setup.py[0m - [31mERROR[0m: Test colour
+[34m[1m2022-09-16 at 10:38:06[0m[34m[0m - [32mlogging_setup.py[0m - [1m[5m[31mCRITICAL[0m: Test colour
+[34m[1m2022-09-16 at 10:38:06[0m[34m[0m - [32mlogging_setup.py[0m - [37mINFO[0m: Test colour
+[34m[1m2022-09-16 at 10:38:06[0m[34m[0m - [32mlogging_setup.py[0m - [32mDEBUG[0m: Test colour
+[34m[1m2022-09-16 at 10:38:06[0m[34m[0m - [32mlogging_setup.py[0m - [33mWARNING[0m: Test colour
+[34m[1m2022-09-16 at 10:38:06[0m[34m[0m - [32mlogging_setup.py[0m - [31mERROR[0m: Test colour
+[34m[1m2022-09-16 at 10:38:06[0m[34m[0m - [32mlogging_setup.py[0m - [1m[5m[31mCRITICAL[0m: Test colour
+[34m[1m2022-09-16 at 10:38:06[0m[34m[0m - [32mlogging_setup.py[0m - [37mINFO[0m: Test colour
+[34m[1m2022-09-16 at 10:38:06[0m[34m[0m - [32mlogging_setup.py[0m - [32mDEBUG[0m: Test colour
+[34m[1m2022-09-16 at 10:38:06[0m[34m[0m - [32mlogging_setup.py[0m - [33mWARNING[0m: Test colour
+[34m[1m2022-09-16 at 10:38:06[0m[34m[0m - [32mlogging_setup.py[0m - [31mERROR[0m: Test colour
+[34m[1m2022-09-16 at 10:38:06[0m[34m[0m - [32mlogging_setup.py[0m - [1m[5m[31mCRITICAL[0m: Test colour
+[34m[1m2022-09-16 at 10:38:06[0m[34m[0m - [32mlogging_setup.py[0m - [37mINFO[0m: Test colour
+[34m[1m2022-09-16 at 10:38:06[0m[34m[0m - [32mlogging_setup.py[0m - [32mDEBUG[0m: Test colour
+[34m[1m2022-09-16 at 10:38:06[0m[34m[0m - [32mlogging_setup.py[0m - [33mWARNING[0m: Test colour
+[34m[1m2022-09-16 at 10:38:06[0m[34m[0m - [32mlogging_setup.py[0m - [31mERROR[0m: Test colour
+[34m[1m2022-09-16 at 10:38:06[0m[34m[0m - [32mlogging_setup.py[0m - [1m[5m[31mCRITICAL[0m: Test colour
+[34m[1m2022-09-16 at 10:38:06[0m[34m[0m - [32mlogging_setup.py[0m - [37mINFO[0m: Test colour
+[34m[1m2022-09-16 at 10:38:06[0m[34m[0m - [32mlogging_setup.py[0m - [32mDEBUG[0m: Test colour
+[34m[1m2022-09-16 at 10:38:06[0m[34m[0m - [32mlogging_setup.py[0m - [33mWARNING[0m: Test colour
+[34m[1m2022-09-16 at 10:38:06[0m[34m[0m - [32mlogging_setup.py[0m - [31mERROR[0m: Test colour
+[34m[1m2022-09-16 at 10:38:06[0m[34m[0m - [32mlogging_setup.py[0m - [1m[5m[31mCRITICAL[0m: Test colour
+[34m[1m2022-09-16 at 10:38:06[0m[34m[0m - [32mlogging_setup.py[0m - [37mINFO[0m: Test colour
+[34m[1m2022-09-16 at 10:38:06[0m[34m[0m - [32mlogging_setup.py[0m - [32mDEBUG[0m: Test colour
+[34m[1m2022-09-16 at 10:38:06[0m[34m[0m - [32mlogging_setup.py[0m - [33mWARNING[0m: Test colour
+[34m[1m2022-09-16 at 10:38:06[0m[34m[0m - [32mlogging_setup.py[0m - [31mERROR[0m: Test colour
+[34m[1m2022-09-16 at 10:38:06[0m[34m[0m - [32mlogging_setup.py[0m - [1m[5m[31mCRITICAL[0m: Test colour
+[34m[1m2022-09-16 at 10:38:06[0m[34m[0m - [32mlogging_setup.py[0m - [37mINFO[0m: Test colour
+[34m[1m2022-09-16 at 10:38:06[0m[34m[0m - [32mlogging_setup.py[0m - [32mDEBUG[0m: Test colour
+[34m[1m2022-09-16 at 10:38:06[0m[34m[0m - [32mlogging_setup.py[0m - [33mWARNING[0m: Test colour
+[34m[1m2022-09-16 at 10:38:06[0m[34m[0m - [32mlogging_setup.py[0m - [31mERROR[0m: Test colour
+[34m[1m2022-09-16 at 10:38:06[0m[34m[0m - [32mlogging_setup.py[0m - [1m[5m[31mCRITICAL[0m: Test colour
+[34m[1m2022-09-16 at 10:38:06[0m[34m[0m - [32mlogging_setup.py[0m - [37mINFO[0m: Test colour
+[34m[1m2022-09-16 at 10:38:06[0m[34m[0m - [32mlogging_setup.py[0m - [32mDEBUG[0m: Test colour
+[34m[1m2022-09-16 at 10:38:06[0m[34m[0m - [32mlogging_setup.py[0m - [33mWARNING[0m: Test colour
+[34m[1m2022-09-16 at 10:38:06[0m[34m[0m - [32mlogging_setup.py[0m - [31mERROR[0m: Test colour
+[34m[1m2022-09-16 at 10:38:06[0m[34m[0m - [32mlogging_setup.py[0m - [1m[5m[31mCRITICAL[0m: Test colour
+[34m[1m2022-09-16 at 10:38:11[0m[34m[0m - [32mapp.py[0m - [32mDEBUG[0m: GET http://028afb63-9182-44be-83f8-be4dfc188782.id.repl.co/
+[34m[1m2022-09-16 at 10:38:11[0m[34m[0m - [32mapp.py[0m - [32mDEBUG[0m: Params:
+[34m[1m2022-09-16 at 10:38:11[0m[34m[0m - [32mapp.py[0m - [32mDEBUG[0m: Headers:
+[34m[1m2022-09-16 at 10:38:11[0m[34m[0m - [32mapp.py[0m - [32mDEBUG[0m: 	host: 028afb63-9182-44be-83f8-be4dfc188782.id.repl.co
+[34m[1m2022-09-16 at 10:38:11[0m[34m[0m - [32mapp.py[0m - [32mDEBUG[0m: 	user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36
+[34m[1m2022-09-16 at 10:38:11[0m[34m[0m - [32mapp.py[0m - [32mDEBUG[0m: 	accept: */*
+[34m[1m2022-09-16 at 10:38:11[0m[34m[0m - [32mapp.py[0m - [32mDEBUG[0m: 	accept-encoding: gzip, deflate, br
+[34m[1m2022-09-16 at 10:38:11[0m[34m[0m - [32mapp.py[0m - [32mDEBUG[0m: 	accept-language: en-US,en;q=0.9
+[34m[1m2022-09-16 at 10:38:11[0m[34m[0m - [32mapp.py[0m - [32mDEBUG[0m: 	dnt: 1
+[34m[1m2022-09-16 at 10:38:11[0m[34m[0m - [32mapp.py[0m - [32mDEBUG[0m: 	referer: https://028afb63-9182-44be-83f8-be4dfc188782.id.repl.co/__devtools_wrapper.html
+[34m[1m2022-09-16 at 10:38:11[0m[34m[0m - [32mapp.py[0m - [32mDEBUG[0m: 	sec-ch-ua: "Google Chrome";v="105", "Not)A;Brand";v="8", "Chromium";v="105"
+[34m[1m2022-09-16 at 10:38:11[0m[34m[0m - [32mapp.py[0m - [32mDEBUG[0m: 	sec-ch-ua-mobile: ?0
+[34m[1m2022-09-16 at 10:38:11[0m[34m[0m - [32mapp.py[0m - [32mDEBUG[0m: 	sec-ch-ua-platform: "Windows"
+[34m[1m2022-09-16 at 10:38:11[0m[34m[0m - [32mapp.py[0m - [32mDEBUG[0m: 	sec-fetch-dest: empty
+[34m[1m2022-09-16 at 10:38:11[0m[34m[0m - [32mapp.py[0m - [32mDEBUG[0m: 	sec-fetch-mode: cors
+[34m[1m2022-09-16 at 10:38:11[0m[34m[0m - [32mapp.py[0m - [32mDEBUG[0m: 	sec-fetch-site: same-origin
+[34m[1m2022-09-16 at 10:38:11[0m[34m[0m - [32mapp.py[0m - [32mDEBUG[0m: 	x-forwarded-for: 171.33.196.39
+[34m[1m2022-09-16 at 10:38:11[0m[34m[0m - [32mapp.py[0m - [32mDEBUG[0m: 	x-forwarded-proto: https
+[34m[1m2022-09-16 at 10:38:11[0m[34m[0m - [32mapp.py[0m - [32mDEBUG[0m: 	x-replit-user-bio: 
+[34m[1m2022-09-16 at 10:38:11[0m[34m[0m - [32mapp.py[0m - [32mDEBUG[0m: 	x-replit-user-id: 
+[34m[1m2022-09-16 at 10:38:11[0m[34m[0m - [32mapp.py[0m - [32mDEBUG[0m: 	x-replit-user-name: 
+[34m[1m2022-09-16 at 10:38:11[0m[34m[0m - [32mapp.py[0m - [32mDEBUG[0m: 	x-replit-user-profile-image: 
+[34m[1m2022-09-16 at 10:38:11[0m[34m[0m - [32mapp.py[0m - [32mDEBUG[0m: 	x-replit-user-roles: 
+[34m[1m2022-09-16 at 10:38:11[0m[34m[0m - [32mapp.py[0m - [32mDEBUG[0m: 	x-replit-user-teams: 
+[34m[1m2022-09-16 at 10:38:11[0m[34m[0m - [32mapp.py[0m - [32mDEBUG[0m: 	x-replit-user-url: 
+[34m[1m2022-09-16 at 10:38:11[0m[34m[0m - [32mapp.py[0m - [32mDEBUG[0m: GET http://028afb63-9182-44be-83f8-be4dfc188782.id.repl.co/docs
+[34m[1m2022-09-16 at 10:38:11[0m[34m[0m - [32mapp.py[0m - [32mDEBUG[0m: Params:
+[34m[1m2022-09-16 at 10:38:11[0m[34m[0m - [32mapp.py[0m - [32mDEBUG[0m: Headers:
+[34m[1m2022-09-16 at 10:38:11[0m[34m[0m - [32mapp.py[0m - [32mDEBUG[0m: 	host: 028afb63-9182-44be-83f8-be4dfc188782.id.repl.co
+[34m[1m2022-09-16 at 10:38:11[0m[34m[0m - [32mapp.py[0m - [32mDEBUG[0m: 	user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36
+[34m[1m2022-09-16 at 10:38:11[0m[34m[0m - [32mapp.py[0m - [32mDEBUG[0m: 	accept: */*
+[34m[1m2022-09-16 at 10:38:11[0m[34m[0m - [32mapp.py[0m - [32mDEBUG[0m: 	accept-encoding: gzip, deflate, br
+[34m[1m2022-09-16 at 10:38:11[0m[34m[0m - [32mapp.py[0m - [32mDEBUG[0m: 	accept-language: en-US,en;q=0.9
+[34m[1m2022-09-16 at 10:38:11[0m[34m[0m - [32mapp.py[0m - [32mDEBUG[0m: 	dnt: 1
+[34m[1m2022-09-16 at 10:38:11[0m[34m[0m - [32mapp.py[0m - [32mDEBUG[0m: 	referer: https://028afb63-9182-44be-83f8-be4dfc188782.id.repl.co/__devtools_wrapper.html
+[34m[1m2022-09-16 at 10:38:11[0m[34m[0m - [32mapp.py[0m - [32mDEBUG[0m: 	sec-ch-ua: "Google Chrome";v="105", "Not)A;Brand";v="8", "Chromium";v="105"
+[34m[1m2022-09-16 at 10:38:11[0m[34m[0m - [32mapp.py[0m - [32mDEBUG[0m: 	sec-ch-ua-mobile: ?0
+[34m[1m2022-09-16 at 10:38:11[0m[34m[0m - [32mapp.py[0m - [32mDEBUG[0m: 	sec-ch-ua-platform: "Windows"
+[34m[1m2022-09-16 at 10:38:11[0m[34m[0m - [32mapp.py[0m - [32mDEBUG[0m: 	sec-fetch-dest: empty
+[34m[1m2022-09-16 at 10:38:11[0m[34m[0m - [32mapp.py[0m - [32mDEBUG[0m: 	sec-fetch-mode: cors
+[34m[1m2022-09-16 at 10:38:11[0m[34m[0m - [32mapp.py[0m - [32mDEBUG[0m: 	sec-fetch-site: same-origin
+[34m[1m2022-09-16 at 10:38:11[0m[34m[0m - [32mapp.py[0m - [32mDEBUG[0m: 	x-forwarded-for: 171.33.196.39
+[34m[1m2022-09-16 at 10:38:11[0m[34m[0m - [32mapp.py[0m - [32mDEBUG[0m: 	x-forwarded-proto: https
+[34m[1m2022-09-16 at 10:38:11[0m[34m[0m - [32mapp.py[0m - [32mDEBUG[0m: 	x-replit-user-bio: 
+[34m[1m2022-09-16 at 10:38:11[0m[34m[0m - [32mapp.py[0m - [32mDEBUG[0m: 	x-replit-user-id: 
+[34m[1m2022-09-16 at 10:38:11[0m[34m[0m - [32mapp.py[0m - [32mDEBUG[0m: 	x-replit-user-name: 
+[34m[1m2022-09-16 at 10:38:11[0m[34m[0m - [32mapp.py[0m - [32mDEBUG[0m: 	x-replit-user-profile-image: 
+[34m[1m2022-09-16 at 10:38:11[0m[34m[0m - [32mapp.py[0m - [32mDEBUG[0m: 	x-replit-user-roles: 
+[34m[1m2022-09-16 at 10:38:11[0m[34m[0m - [32mapp.py[0m - [32mDEBUG[0m: 	x-replit-user-teams: 
+[34m[1m2022-09-16 at 10:38:11[0m[34m[0m - [32mapp.py[0m - [32mDEBUG[0m: 	x-replit-user-url: 
+[34m[1m2022-09-16 at 10:38:11[0m[34m[0m - [32mapp.py[0m - [32mDEBUG[0m: GET http://028afb63-9182-44be-83f8-be4dfc188782.id.repl.co/openapi.json
+[34m[1m2022-09-16 at 10:38:11[0m[34m[0m - [32mapp.py[0m - [32mDEBUG[0m: Params:
+[34m[1m2022-09-16 at 10:38:11[0m[34m[0m - [32mapp.py[0m - [32mDEBUG[0m: Headers:
+[34m[1m2022-09-16 at 10:38:11[0m[34m[0m - [32mapp.py[0m - [32mDEBUG[0m: 	host: 028afb63-9182-44be-83f8-be4dfc188782.id.repl.co
+[34m[1m2022-09-16 at 10:38:11[0m[34m[0m - [32mapp.py[0m - [32mDEBUG[0m: 	user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36
+[34m[1m2022-09-16 at 10:38:11[0m[34m[0m - [32mapp.py[0m - [32mDEBUG[0m: 	accept: application/json,*/*
+[34m[1m2022-09-16 at 10:38:11[0m[34m[0m - [32mapp.py[0m - [32mDEBUG[0m: 	accept-encoding: gzip, deflate, br
+[34m[1m2022-09-16 at 10:38:11[0m[34m[0m - [32mapp.py[0m - [32mDEBUG[0m: 	accept-language: en-US,en;q=0.9
+[34m[1m2022-09-16 at 10:38:11[0m[34m[0m - [32mapp.py[0m - [32mDEBUG[0m: 	dnt: 1
+[34m[1m2022-09-16 at 10:38:11[0m[34m[0m - [32mapp.py[0m - [32mDEBUG[0m: 	referer: https://028afb63-9182-44be-83f8-be4dfc188782.id.repl.co/
+[34m[1m2022-09-16 at 10:38:11[0m[34m[0m - [32mapp.py[0m - [32mDEBUG[0m: 	sec-ch-ua: "Google Chrome";v="105", "Not)A;Brand";v="8", "Chromium";v="105"
+[34m[1m2022-09-16 at 10:38:11[0m[34m[0m - [32mapp.py[0m - [32mDEBUG[0m: 	sec-ch-ua-mobile: ?0
+[34m[1m2022-09-16 at 10:38:11[0m[34m[0m - [32mapp.py[0m - [32mDEBUG[0m: 	sec-ch-ua-platform: "Windows"
+[34m[1m2022-09-16 at 10:38:11[0m[34m[0m - [32mapp.py[0m - [32mDEBUG[0m: 	sec-fetch-dest: empty
+[34m[1m2022-09-16 at 10:38:11[0m[34m[0m - [32mapp.py[0m - [32mDEBUG[0m: 	sec-fetch-mode: cors
+[34m[1m2022-09-16 at 10:38:11[0m[34m[0m - [32mapp.py[0m - [32mDEBUG[0m: 	sec-fetch-site: same-origin
+[34m[1m2022-09-16 at 10:38:11[0m[34m[0m - [32mapp.py[0m - [32mDEBUG[0m: 	x-forwarded-for: 171.33.196.39
+[34m[1m2022-09-16 at 10:38:11[0m[34m[0m - [32mapp.py[0m - [32mDEBUG[0m: 	x-forwarded-proto: https
+[34m[1m2022-09-16 at 10:38:11[0m[34m[0m - [32mapp.py[0m - [32mDEBUG[0m: 	x-replit-user-bio: 
+[34m[1m2022-09-16 at 10:38:11[0m[34m[0m - [32mapp.py[0m - [32mDEBUG[0m: 	x-replit-user-id: 
+[34m[1m2022-09-16 at 10:38:11[0m[34m[0m - [32mapp.py[0m - [32mDEBUG[0m: 	x-replit-user-name: 
+[34m[1m2022-09-16 at 10:38:11[0m[34m[0m - [32mapp.py[0m - [32mDEBUG[0m: 	x-replit-user-profile-image: 
+[34m[1m2022-09-16 at 10:38:11[0m[34m[0m - [32mapp.py[0m - [32mDEBUG[0m: 	x-replit-user-roles: 
+[34m[1m2022-09-16 at 10:38:11[0m[34m[0m - [32mapp.py[0m - [32mDEBUG[0m: 	x-replit-user-teams: 
+[34m[1m2022-09-16 at 10:38:11[0m[34m[0m - [32mapp.py[0m - [32mDEBUG[0m: 	x-replit-user-url: 
