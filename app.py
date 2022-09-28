@@ -1,9 +1,8 @@
-from fastapi import FastAPI, Request
+from fastapi import FastAPI
 from fastapi.responses import RedirectResponse, FileResponse
 from fastapi.concurrency import run_in_threadpool
 from fastapi.openapi.docs import get_swagger_ui_html
 from fastapi_utils.tasks import repeat_every
-from loguru import logger
 import main
 import models
 import uvicorn
@@ -40,7 +39,7 @@ tags_metadata = [
   }
 ]
 
-logger = logging_setup.setup()
+logger = logging_setup.setup() # sets up config logging
 
 app = FastAPI(
   title="Skyblock Tools",
@@ -53,8 +52,8 @@ app = FastAPI(
   },
 )
 
-favicon_path = 'favicon.ico'
-  
+favicon_path = './favicon.ico'
+
 
 @app.get("/", include_in_schema=False)
 async def home():
@@ -62,10 +61,10 @@ async def home():
 
 
 @app.get("/favicon.ico", include_in_schema=False)
-async def favicon(request: Request):
-  return FileResponse(favicon_path, content_type="image/x-icon")
+async def favicon():
+  return FileResponse(favicon_path)
 
-                             
+
 @app.get("/items/items/", tags=["items"], response_model=models.Items)
 async def items() -> models.Items:
   return db
@@ -94,7 +93,7 @@ async def image(item: str):
     image, _ = urllib.request.urlretrieve(db[item]["image_link"], "./static/assets/image.png")
   except urllib.error.HTTPError:
     image, _ = urllib.request.urlretrieve(db[item]["alt_image_link"], "./static/assets/image.png")
-    logger.warning("Failed to download image for item %s", item)
+    logger.warning(f"Failed to download image for item {item}")
   return FileResponse(image)
 
 
@@ -105,7 +104,7 @@ async def recipe(item: str) -> models.Recipe:
     return models.Recipe(recipe=db[item]["recipe"],
                          ingredients=db[item]["ingredients"])
   else:
-    logger.warning("Item %s is not craftable or forgable", item)
+    logger.warning(f"Item {item} is not craftable or forgable")
     return {"craftable": False, "forgable": False}
 
   
@@ -115,7 +114,7 @@ async def lowest_bin(item: str) -> models.Bins:
     return models.Bins(lowest=db[item]["lowest_bin"],
                        second_lowest=db[item]["second_lowest_bin"])
   else:
-    logger.warning("Item %s is not auctionable", item)
+    logger.warning(f"Item {item} is not auctionable")
     return {"auctionable": False}
 
     
@@ -134,7 +133,7 @@ async def bazaar(item: str):
                              profit=db[item]["bazaar_profit"],
                              percentage_profit=db[item]["bazaar_percentage_profit"])
   else:
-    logger.warning("Item %s is not bazaarable", item)
+    logger.warning(f"Item {item} is not bazaarable")
     return {"bazaarable": False}
 
   
@@ -156,7 +155,7 @@ async def price(item: str):
     return models.Price(sell=db[item]["npc_sell_price"])
     
   else:
-    logger.warning("Item %s is not sellable", item)
+    logger.warning(f"Item {item} is not sellable")
     return {"unsellable": True}
 
     
@@ -172,7 +171,7 @@ async def forge(item: str):
                             recipe=db[item]["recipe"],
                             ingredients=db[item]["ingredients"])
   else:
-    logger.warning("Item %s is not forgable", item)
+    logger.warning(f"Item {item} is not forgable")
     return {"forgable": False}
 
     
@@ -204,7 +203,7 @@ async def forgables():
 async def auctions(page: int = 0):
   auctions = await main.get_auctions()
   auctions = list(main.chunks(auctions, 5000))
-  logger.info("Got auctions page %d", page)
+  logger.info(f"Got auctions page {page}")
   return auctions[page]
 
 
@@ -260,7 +259,7 @@ async def load_db():
 @repeat_every(seconds=300, wait_first=True, logger=logger)
 async def dynamic_database_updater_task():
   global db
-  print("dynamic")
+  logger.info("Dynamic database update")
   db = await run_in_threadpool(lambda: main.dynamic_database_updater(db, main.names))
 
   
@@ -268,7 +267,7 @@ async def dynamic_database_updater_task():
 @repeat_every(seconds=60*10, wait_first=True, logger=logger)
 async def static_database_updater_task():
   global db
-  print("static")
+  logger.info("Static database update")
   db = await run_in_threadpool(lambda: main.static_database_updater(db, main.names))
 
 uvloop.install()

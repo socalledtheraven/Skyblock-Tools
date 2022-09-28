@@ -3,15 +3,10 @@ import re
 import asyncio
 import requests
 import logging_setup
-import logging
 import git
 import pytimeparse
-import gzip
-import zlib
 import io
-# import codecs
 import base64
-# import pymongo
 import ujson as json
 from pyinstrument import Profiler
 from nbt.nbt import TAG_List, TAG_Compound, NBTFile
@@ -19,7 +14,6 @@ from nbt.nbt import TAG_List, TAG_Compound, NBTFile
 apiKey = os.environ["apiKey"]
 
 logger = logging_setup.setup() # sets up config logging
-
     
 repo = git.Repo("./neu-repo")
 repo.remotes.origin.pull()
@@ -52,9 +46,10 @@ def static_database_updater(db, names):
     current_item_data["name"] = remove_formatting(current_item["name"])
     current_item_data["id"] = current_item_name
     current_item_data["image_link"] = f"https://gitcdn.link/cdn/QuintBrit/Skyblock-Tools/fastAPI/static/assets/{current_item_name}.png"
+    current_item_data["alt_image_link"] = f"https://sky.shiiyu.moe/item/{current_item_name}"
     current_item_data["material"] = current_item["material"]
     if "skin" in current_item:
-      current_item_data["skin_data"] = json.loads(codecs.decode(current_item["skin"]))
+      current_item_data["skin_data"] = json.loads(base64.b64decode(current_item["skin"]))
     if "dungeon_item_conversion_cost" in current_item or "upgrade_costs" in current_item or "catacombs_requirements" in current_item:
       current_item_data["dungeons"] = {"dungeon_item_conversion_cost": 
                                        current_item["dungeon_item_conversion_cost"],
@@ -237,7 +232,7 @@ def static_database_updater(db, names):
           api_item = list(filter(lambda d: d["id"] == item, items))
           item_name = id_to_name(item)
           if item in bazaar_products:
-            ingredient_bz_data = bazaar_data[bazaar_products.index(item)]["quick_status"]
+            ingredient_bz_data = bazaar_data[bazaar_products[bazaar_products.index(item)]]["quick_status"]
             item_cost = commaify(round(ingredient_bz_data["buy_price"]*ingredients[item], 1))
             current_item_data["ingredients"][item] = {"count": ingredients[item], "cost": item_cost}
             current_item_data["craft_cost"] += item_cost
@@ -373,7 +368,7 @@ def static_database_updater(db, names):
             
         elif item in bazaar_products:
           item_count = splits[item]
-          ingredient_bz_data = bazaar_data[bazaar_products.index(item)]["quick_status"]
+          ingredient_bz_data = bazaar_data[bazaar_products[bazaar_products.index(item)]]["quick_status"]
           item_cost = commaify(round(ingredient_bz_data["buy_price"]*splits[item], 1))
           current_item_data["ingredients"][item] = {"count": item_count, "cost": item_cost}
           current_item_data["forge_cost"] += item_cost
@@ -442,7 +437,7 @@ def static_database_updater(db, names):
   db = dict(sorted(db.items()))
   with open("./database.json", "w+") as database:
     json.dump(db, database, indent=2) # DO NOT COMMENT OUT! UPDATES DATABASE
-  logging.info("Database updated.")
+  logger.info("Database updated.")
   return db
 
 def dynamic_database_updater(db, names):
@@ -683,8 +678,9 @@ def dynamic_database_updater(db, names):
 
 
 def deletion_time(db):
-  for item in db:
-    db[item]["alt_image_link"] = f"https://sky.shiiyu.moe/item/{item}"
+  items = get_json("https://api.hypixel.net/resources/skyblock/items")
+  with open("./dump.json", "w+") as dump:
+    json.dump(items, dump, indent=2) # DO NOT COMMENT OUT! UPDATES DATABASE
 
   db = dict(sorted(db.items()))
   with open("./database.json", "w+") as database:
@@ -767,9 +763,11 @@ def build_table(table_data, headers, HTMLFILE, straight_html=False, html=""):
 
 def to_html(data, setup, headers):
   code = f"{setup}\n  <thead>\n    <tr style='text-align: right;'>"
+  
   for header in headers:
     code += f"      <th>{header}</th>\n"
   code += f"    </tr>\n  </thead>\n  <tbody>\n"
+  
   for item in data:
     code += f"    <tr>\n"
     for v in item.values():
@@ -914,7 +912,7 @@ def id_to_name(itemname):
   try:
     return names[itemname]
   except Exception as e:
-    logger.error(e)
+    logger.exception(e)
     try:
       return db[itemname]["name"]
     except:
@@ -988,15 +986,14 @@ def unpack_nbt(tag):
 #---------------------------------------------------------------------------------------------------------
 #                                           SUBPROGRAMS
 #---------------------------------------------------------------------------------------------------------
-names = item_names()
 
+names = item_names()
 
 try:
   with open("./database.json", "r+") as database:
     db = json.load(database) #database setup - always needs to run
 except:
-  # db = static_database_updater({}, names)
-  pass
+  db = static_database_updater({}, names)
   
 
 # p = Profiler()
@@ -1007,6 +1004,8 @@ except:
 # p.stop()
 # p.print()
 
+
 '''TODO:
-more flippers!
+Fix various exceptions
+start using OOP
 '''
