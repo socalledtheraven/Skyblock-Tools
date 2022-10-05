@@ -1,4 +1,4 @@
-# import logging
+import logging
 import sys
 from enum import Enum
 from pathlib import Path
@@ -37,11 +37,9 @@ class LoggingSettings(BaseSettings):
 
   level: LoggingLevel = "INFO"
   format: str = "<blue><bold>{time:YYYY-MM-DD at HH:mm:ss}</></> - <level>{level}</level> - <green>{name}.py</>: {message}"
-  
-  filepath: Optional[Path] = "./logs/{time:YYYY-MM-DD}.log"
+  filepath: Optional[Path] = None
   rotation: str = "1 week"
   retention: str = "1 months"
-  logging_file_levels: list = ["WARNING", "ERROR", "CRITICAL"]
 
   class Config:
     env_prefix = "logging_"
@@ -71,8 +69,7 @@ def setup_logger(
   format: str,
   filepath: Optional[Path] = None,
   rotation: Optional[str] = None,
-  retention: Optional[str] = None,
-  logging_file_levels: Optional[list] = None,
+  retention: Optional[str] = None
 ) -> Logger:
   """Define the global logger to be used by your entire service.
 
@@ -119,9 +116,6 @@ def setup_logger(
       level=level.upper(),
       format=format,
     )
-    
-    for level in logging_file_levels:
-      logger.add(str(filepath), filter=lambda record: record["level"].name == level)
       
   # Overwrite config of standard library root logger
   logging.basicConfig(handlers=[InterceptHandler()], level=0)
@@ -154,12 +148,14 @@ def setup_logger_from_settings(settings: Optional[LoggingSettings] = None) -> Lo
     settings.filepath,
     settings.rotation,
     settings.retention,
-    settings.logging_file_levels,
   )
 
 
 def setup():
-  print("Test")
   logger = setup_logger_from_settings()
+  # logger.add("./logs/{time:YYYY-MM-DD}.log", filter=lambda record: record["level"] == "WARNING")
+  # logger.add("./logs/{time:YYYY-MM-DD}.log", filter=lambda record: record["level"] == "ERROR")
+  # logger.add("./logs/{time:YYYY-MM-DD}.log", filter=lambda record: record["level"] == "CRITICAL")
+  logger.add("./logs/{time:YYYY-MM-DD}.log")
   
   return logger

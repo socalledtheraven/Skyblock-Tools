@@ -53,6 +53,7 @@ app = FastAPI(
 )
 
 favicon_path = './favicon.ico'
+  
 
 
 @app.get("/", include_in_schema=False)
@@ -63,6 +64,16 @@ async def home():
 @app.get("/favicon.ico", include_in_schema=False)
 async def favicon():
   return FileResponse(favicon_path)
+
+
+@app.get("/api", include_in_schema=False)
+async def api():
+  return main.get_json("https://api.hypixel.net/resources/skyblock/items")
+
+
+@app.get("/auction_api?page={page}", include_in_schema=False)
+async def auction_api():
+  return main.get_json("https://api.hypixel.net/skyblock/auctions?page={page}")
 
 
 @app.get("/items/items/", tags=["items"], response_model=models.Items)
@@ -274,3 +285,4 @@ uvloop.install()
 
 if __name__ == "__main__":
   uvicorn.run("app:app", host='0.0.0.0', port=8080, workers=4)
+  # 
