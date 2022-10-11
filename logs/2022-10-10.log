@@ -1,0 +1,1555 @@
+2022-10-10 04:21:30.687 | DEBUG    | git.cmd:execute:870 - Popen(['git', 'pull', '-v', 'origin'], cwd=/home/runner/Skyblock-Tools-FastAPI/neu-repo, universal_newlines=True, shell=None, istream=None)
+2022-10-10 04:21:30.892 | DEBUG    | urllib3.connectionpool:_new_conn:1001 - Starting new HTTPS connection (1): api.hypixel.net:443
+2022-10-10 04:21:30.962 | DEBUG    | urllib3.connectionpool:_make_request:456 - https://api.hypixel.net:443 "GET /resources/skyblock/items HTTP/1.1" 200 None
+2022-10-10 04:21:31.541 | INFO     | uvicorn.server:serve:75 - Started server process [22]
+2022-10-10 04:21:31.542 | INFO     | uvicorn.lifespan.on:startup:45 - Waiting for application startup.
+2022-10-10 04:21:31.609 | INFO     | uvicorn.lifespan.on:startup:59 - Application startup complete.
+2022-10-10 04:21:31.612 | INFO     | uvicorn.server:_log_started_message:206 - Uvicorn running on http://0.0.0.0:8080 (Press CTRL+C to quit)
+2022-10-10 04:21:32.049 | INFO     | uvicorn.protocols.http.httptools_impl:send:437 - 172.18.0.1:34434 - "GET / HTTP/1.1" 307
+2022-10-10 04:21:32.115 | INFO     | uvicorn.protocols.http.httptools_impl:send:437 - 172.18.0.1:34434 - "GET /docs HTTP/1.1" 200
+2022-10-10 04:21:32.262 | INFO     | uvicorn.protocols.http.httptools_impl:send:437 - 172.18.0.1:34450 - "GET /favicon.ico HTTP/1.1" 500
+2022-10-10 04:21:32.263 | ERROR    | uvicorn.protocols.http.httptools_impl:run_asgi:375 - Exception in ASGI application
+
+Traceback (most recent call last):
+
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/starlette/responses.py", line 318, in __call__
+    stat_result = await anyio.to_thread.run_sync(os.stat, self.path)
+                        │     │         │        │  │     │    └ './favicon.ico'
+                        │     │         │        │  │     └ <starlette.responses.FileResponse object at 0x7f974d94d880>
+                        │     │         │        │  └ <built-in function stat>
+                        │     │         │        └ <module 'os' from '/nix/store/p21fdyxqb3yqflpim7g8s1mymgpnqiv7-python3-3.8.12/lib/python3.8/os.py'>
+                        │     │         └ <function run_sync at 0x7f9765c745e0>
+                        │     └ <module 'anyio.to_thread' from '/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/anyio/to_thread.py'>
+                        └ <module 'anyio' from '/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/anyio/__init__.py'>
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/anyio/to_thread.py", line 31, in run_sync
+    return await get_asynclib().run_sync_in_worker_thread(
+                 └ <function get_asynclib at 0x7f9765c69e50>
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/anyio/_backends/_asyncio.py", line 937, in run_sync_in_worker_thread
+    return await future
+                 └ <Future finished exception=FileNotFoundError(2, 'No such file or directory')>
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/anyio/_backends/_asyncio.py", line 867, in run
+    result = context.run(func, *args)
+             │       │   │      └ ('./favicon.ico',)
+             │       │   └ <built-in function stat>
+             │       └ <method 'run' of 'Context' objects>
+             └ <Context object at 0x7f974c0a5c40>
+
+FileNotFoundError: [Errno 2] No such file or directory: './favicon.ico'
+
+
+During handling of the above exception, another exception occurred:
+
+
+Traceback (most recent call last):
+
+  File "app.py", line 287, in <module>
+    uvicorn.run("app:app", host='0.0.0.0', port=8080)
+    │       └ <function run at 0x7f974f6fbd30>
+    └ <module 'uvicorn' from '/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/uvicorn/__init__.py'>
+
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/uvicorn/main.py", line 463, in run
+    server.run()
+    │      └ <function Server.run at 0x7f974f6fb820>
+    └ <uvicorn.server.Server object at 0x7f97651152e0>
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/uvicorn/server.py", line 60, in run
+    return asyncio.run(self.serve(sockets=sockets))
+           │       │   │    │             └ None
+           │       │   │    └ <function Server.serve at 0x7f974f6fb8b0>
+           │       │   └ <uvicorn.server.Server object at 0x7f97651152e0>
+           │       └ <function run at 0x7f9766d68b80>
+           └ <module 'asyncio' from '/nix/store/p21fdyxqb3yqflpim7g8s1mymgpnqiv7-python3-3.8.12/lib/python3.8/asyncio/__init__.py'>
+  File "/nix/store/p21fdyxqb3yqflpim7g8s1mymgpnqiv7-python3-3.8.12/lib/python3.8/asyncio/runners.py", line 44, in run
+    return loop.run_until_complete(main)
+           │    │                  └ <coroutine object Server.serve at 0x7f974e92cb40>
+           │    └ <method 'run_until_complete' of 'uvloop.loop.Loop' objects>
+           └ <uvloop.Loop running=True closed=False debug=False>
+> File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/uvicorn/protocols/http/httptools_impl.py", line 372, in run_asgi
+    result = await app(self.scope, self.receive, self.send)
+                   │   │    │      │    │        │    └ <function RequestResponseCycle.send at 0x7f974e643940>
+                   │   │    │      │    │        └ <uvicorn.protocols.http.httptools_impl.RequestResponseCycle object at 0x7f974d94d550>
+                   │   │    │      │    └ <function RequestResponseCycle.receive at 0x7f974e6439d0>
+                   │   │    │      └ <uvicorn.protocols.http.httptools_impl.RequestResponseCycle object at 0x7f974d94d550>
+                   │   │    └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('172.18.0.196', 8080), ...
+                   │   └ <uvicorn.protocols.http.httptools_impl.RequestResponseCycle object at 0x7f974d94d550>
+                   └ <uvicorn.middleware.proxy_headers.ProxyHeadersMiddleware object at 0x7f9765115370>
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/uvicorn/middleware/proxy_headers.py", line 75, in __call__
+    return await self.app(scope, receive, send)
+                 │    │   │      │        └ <bound method RequestResponseCycle.send of <uvicorn.protocols.http.httptools_impl.RequestResponseCycle object at 0x7f974d94d5...
+                 │    │   │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.httptools_impl.RequestResponseCycle object at 0x7f974d9...
+                 │    │   └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('172.18.0.196', 8080), ...
+                 │    └ <fastapi.applications.FastAPI object at 0x7f9765110370>
+                 └ <uvicorn.middleware.proxy_headers.ProxyHeadersMiddleware object at 0x7f9765115370>
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/fastapi/applications.py", line 269, in __call__
+    await super().__call__(scope, receive, send)
+                           │      │        └ <bound method RequestResponseCycle.send of <uvicorn.protocols.http.httptools_impl.RequestResponseCycle object at 0x7f974d94d5...
+                           │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.httptools_impl.RequestResponseCycle object at 0x7f974d9...
+                           └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('172.18.0.196', 8080), ...
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/starlette/applications.py", line 124, in __call__
+    await self.middleware_stack(scope, receive, send)
+          │    │                │      │        └ <bound method RequestResponseCycle.send of <uvicorn.protocols.http.httptools_impl.RequestResponseCycle object at 0x7f974d94d5...
+          │    │                │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.httptools_impl.RequestResponseCycle object at 0x7f974d9...
+          │    │                └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('172.18.0.196', 8080), ...
+          │    └ <starlette.middleware.errors.ServerErrorMiddleware object at 0x7f974e1b4df0>
+          └ <fastapi.applications.FastAPI object at 0x7f9765110370>
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/starlette/middleware/errors.py", line 184, in __call__
+    raise exc
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/starlette/middleware/errors.py", line 162, in __call__
+    await self.app(scope, receive, _send)
+          │    │   │      │        └ <function ServerErrorMiddleware.__call__.<locals>._send at 0x7f974e1610d0>
+          │    │   │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.httptools_impl.RequestResponseCycle object at 0x7f974d9...
+          │    │   └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('172.18.0.196', 8080), ...
+          │    └ <starlette.exceptions.ExceptionMiddleware object at 0x7f974e1b4d90>
+          └ <starlette.middleware.errors.ServerErrorMiddleware object at 0x7f974e1b4df0>
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/starlette/exceptions.py", line 93, in __call__
+    raise exc
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/starlette/exceptions.py", line 82, in __call__
+    await self.app(scope, receive, sender)
+          │    │   │      │        └ <function ExceptionMiddleware.__call__.<locals>.sender at 0x7f974e161040>
+          │    │   │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.httptools_impl.RequestResponseCycle object at 0x7f974d9...
+          │    │   └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('172.18.0.196', 8080), ...
+          │    └ <fastapi.middleware.asyncexitstack.AsyncExitStackMiddleware object at 0x7f974e1b4d30>
+          └ <starlette.exceptions.ExceptionMiddleware object at 0x7f974e1b4d90>
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/fastapi/middleware/asyncexitstack.py", line 21, in __call__
+    raise e
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/fastapi/middleware/asyncexitstack.py", line 18, in __call__
+    await self.app(scope, receive, send)
+          │    │   │      │        └ <function ExceptionMiddleware.__call__.<locals>.sender at 0x7f974e161040>
+          │    │   │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.httptools_impl.RequestResponseCycle object at 0x7f974d9...
+          │    │   └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('172.18.0.196', 8080), ...
+          │    └ <fastapi.routing.APIRouter object at 0x7f97651100a0>
+          └ <fastapi.middleware.asyncexitstack.AsyncExitStackMiddleware object at 0x7f974e1b4d30>
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/starlette/routing.py", line 670, in __call__
+    await route.handle(scope, receive, send)
+          │     │      │      │        └ <function ExceptionMiddleware.__call__.<locals>.sender at 0x7f974e161040>
+          │     │      │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.httptools_impl.RequestResponseCycle object at 0x7f974d9...
+          │     │      └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('172.18.0.196', 8080), ...
+          │     └ <function Route.handle at 0x7f9765a48310>
+          └ <fastapi.routing.APIRoute object at 0x7f974e1bc7c0>
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/starlette/routing.py", line 266, in handle
+    await self.app(scope, receive, send)
+          │    │   │      │        └ <function ExceptionMiddleware.__call__.<locals>.sender at 0x7f974e161040>
+          │    │   │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.httptools_impl.RequestResponseCycle object at 0x7f974d9...
+          │    │   └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('172.18.0.196', 8080), ...
+          │    └ <function request_response.<locals>.app at 0x7f974e663f70>
+          └ <fastapi.routing.APIRoute object at 0x7f974e1bc7c0>
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/starlette/routing.py", line 68, in app
+    await response(scope, receive, send)
+          │        │      │        └ <function ExceptionMiddleware.__call__.<locals>.sender at 0x7f974e161040>
+          │        │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.httptools_impl.RequestResponseCycle object at 0x7f974d9...
+          │        └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('172.18.0.196', 8080), ...
+          └ <starlette.responses.FileResponse object at 0x7f974d94d880>
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/starlette/responses.py", line 321, in __call__
+    raise RuntimeError(f"File at path {self.path} does not exist.")
+
+RuntimeError: File at path ./favicon.ico does not exist.
+2022-10-10 04:22:01.744 | INFO     | uvicorn.protocols.http.httptools_impl:send:437 - 172.18.0.1:42268 - "GET / HTTP/1.1" 307
+2022-10-10 04:22:01.974 | INFO     | uvicorn.protocols.http.httptools_impl:send:437 - 172.18.0.1:42268 - "GET /docs HTTP/1.1" 200
+2022-10-10 04:22:02.589 | INFO     | uvicorn.protocols.http.httptools_impl:send:437 - 172.18.0.1:42268 - "GET /openapi.json HTTP/1.1" 200
+2022-10-10 10:07:53.782 | INFO     | uvicorn.protocols.http.httptools_impl:send:437 - 172.18.0.1:54444 - "GET / HTTP/1.1" 307
+2022-10-10 10:07:53.939 | INFO     | uvicorn.protocols.http.httptools_impl:send:437 - 172.18.0.1:54444 - "GET /docs HTTP/1.1" 200
+2022-10-10 10:07:55.832 | INFO     | uvicorn.protocols.http.httptools_impl:send:437 - 172.18.0.1:54444 - "GET /openapi.json HTTP/1.1" 200
+2022-10-10 10:08:03.609 | INFO     | uvicorn.protocols.http.httptools_impl:send:437 - 172.18.0.1:57410 - "GET / HTTP/1.1" 307
+2022-10-10 10:08:03.812 | INFO     | uvicorn.protocols.http.httptools_impl:send:437 - 172.18.0.1:57410 - "GET /docs HTTP/1.1" 200
+2022-10-10 10:08:04.474 | INFO     | uvicorn.protocols.http.httptools_impl:send:437 - 172.18.0.1:57410 - "GET /openapi.json HTTP/1.1" 200
+2022-10-10 10:08:09.662 | INFO     | uvicorn.protocols.http.httptools_impl:send:437 - 172.18.0.1:37114 - "GET / HTTP/1.1" 307
+2022-10-10 10:08:09.896 | INFO     | uvicorn.protocols.http.httptools_impl:send:437 - 172.18.0.1:37114 - "GET /docs HTTP/1.1" 200
+2022-10-10 10:08:11.252 | INFO     | uvicorn.protocols.http.httptools_impl:send:437 - 172.18.0.1:37114 - "GET /openapi.json HTTP/1.1" 200
+2022-10-10 10:08:17.614 | INFO     | uvicorn.protocols.http.httptools_impl:send:437 - 172.18.0.1:40078 - "GET / HTTP/1.1" 307
+2022-10-10 10:08:17.749 | INFO     | uvicorn.protocols.http.httptools_impl:send:437 - 172.18.0.1:40078 - "GET /docs HTTP/1.1" 200
+2022-10-10 10:08:18.393 | INFO     | uvicorn.protocols.http.httptools_impl:send:437 - 172.18.0.1:40078 - "GET /openapi.json HTTP/1.1" 200
+2022-10-10 10:08:37.276 | DEBUG    | urllib3.connectionpool:_new_conn:1001 - Starting new HTTPS connection (1): api.hypixel.net:443
+2022-10-10 10:08:37.374 | DEBUG    | urllib3.connectionpool:_make_request:456 - https://api.hypixel.net:443 "GET /skyblock/auctions HTTP/1.1" 200 None
+2022-10-10 10:08:37.446 | DEBUG    | urllib3.connectionpool:_new_conn:1001 - Starting new HTTPS connection (1): api.hypixel.net:443
+2022-10-10 10:08:37.512 | DEBUG    | urllib3.connectionpool:_make_request:456 - https://api.hypixel.net:443 "GET /skyblock/auctions?page=0 HTTP/1.1" 200 None
+2022-10-10 10:08:37.589 | DEBUG    | urllib3.connectionpool:_new_conn:1001 - Starting new HTTPS connection (1): api.hypixel.net:443
+2022-10-10 10:08:37.669 | DEBUG    | urllib3.connectionpool:_make_request:456 - https://api.hypixel.net:443 "GET /skyblock/auctions?page=1 HTTP/1.1" 200 None
+2022-10-10 10:08:37.737 | DEBUG    | urllib3.connectionpool:_new_conn:1001 - Starting new HTTPS connection (1): api.hypixel.net:443
+2022-10-10 10:08:37.819 | DEBUG    | urllib3.connectionpool:_make_request:456 - https://api.hypixel.net:443 "GET /skyblock/auctions?page=2 HTTP/1.1" 200 None
+2022-10-10 10:08:37.889 | DEBUG    | urllib3.connectionpool:_new_conn:1001 - Starting new HTTPS connection (1): api.hypixel.net:443
+2022-10-10 10:08:37.960 | DEBUG    | urllib3.connectionpool:_make_request:456 - https://api.hypixel.net:443 "GET /skyblock/auctions?page=3 HTTP/1.1" 200 None
+2022-10-10 10:08:38.030 | DEBUG    | urllib3.connectionpool:_new_conn:1001 - Starting new HTTPS connection (1): api.hypixel.net:443
+2022-10-10 10:08:38.099 | DEBUG    | urllib3.connectionpool:_make_request:456 - https://api.hypixel.net:443 "GET /skyblock/auctions?page=4 HTTP/1.1" 200 None
+2022-10-10 10:08:38.273 | DEBUG    | urllib3.connectionpool:_new_conn:1001 - Starting new HTTPS connection (1): api.hypixel.net:443
+2022-10-10 10:08:38.355 | DEBUG    | urllib3.connectionpool:_make_request:456 - https://api.hypixel.net:443 "GET /skyblock/auctions?page=5 HTTP/1.1" 200 None
+2022-10-10 10:08:38.437 | DEBUG    | urllib3.connectionpool:_new_conn:1001 - Starting new HTTPS connection (1): api.hypixel.net:443
+2022-10-10 10:08:38.508 | DEBUG    | urllib3.connectionpool:_make_request:456 - https://api.hypixel.net:443 "GET /skyblock/auctions?page=6 HTTP/1.1" 200 None
+2022-10-10 10:08:38.587 | DEBUG    | urllib3.connectionpool:_new_conn:1001 - Starting new HTTPS connection (1): api.hypixel.net:443
+2022-10-10 10:08:38.697 | DEBUG    | urllib3.connectionpool:_make_request:456 - https://api.hypixel.net:443 "GET /skyblock/auctions?page=7 HTTP/1.1" 200 None
+2022-10-10 10:08:38.794 | DEBUG    | urllib3.connectionpool:_new_conn:1001 - Starting new HTTPS connection (1): api.hypixel.net:443
+2022-10-10 10:08:38.912 | DEBUG    | urllib3.connectionpool:_make_request:456 - https://api.hypixel.net:443 "GET /skyblock/auctions?page=8 HTTP/1.1" 200 None
+2022-10-10 10:08:39.007 | DEBUG    | urllib3.connectionpool:_new_conn:1001 - Starting new HTTPS connection (1): api.hypixel.net:443
+2022-10-10 10:08:39.133 | DEBUG    | urllib3.connectionpool:_make_request:456 - https://api.hypixel.net:443 "GET /skyblock/auctions?page=9 HTTP/1.1" 200 None
+2022-10-10 10:08:39.288 | DEBUG    | urllib3.connectionpool:_new_conn:1001 - Starting new HTTPS connection (1): api.hypixel.net:443
+2022-10-10 10:08:39.501 | DEBUG    | urllib3.connectionpool:_make_request:456 - https://api.hypixel.net:443 "GET /skyblock/auctions?page=10 HTTP/1.1" 200 None
+2022-10-10 10:08:40.031 | DEBUG    | urllib3.connectionpool:_new_conn:1001 - Starting new HTTPS connection (1): api.hypixel.net:443
+2022-10-10 10:08:40.135 | DEBUG    | urllib3.connectionpool:_make_request:456 - https://api.hypixel.net:443 "GET /skyblock/auctions?page=11 HTTP/1.1" 200 None
+2022-10-10 10:08:40.225 | DEBUG    | urllib3.connectionpool:_new_conn:1001 - Starting new HTTPS connection (1): api.hypixel.net:443
+2022-10-10 10:08:40.329 | DEBUG    | urllib3.connectionpool:_make_request:456 - https://api.hypixel.net:443 "GET /skyblock/auctions?page=12 HTTP/1.1" 200 None
+2022-10-10 10:08:40.395 | DEBUG    | urllib3.connectionpool:_new_conn:1001 - Starting new HTTPS connection (1): api.hypixel.net:443
+2022-10-10 10:08:40.510 | DEBUG    | urllib3.connectionpool:_make_request:456 - https://api.hypixel.net:443 "GET /skyblock/auctions?page=13 HTTP/1.1" 200 None
+2022-10-10 10:08:40.583 | DEBUG    | urllib3.connectionpool:_new_conn:1001 - Starting new HTTPS connection (1): api.hypixel.net:443
+2022-10-10 10:08:40.689 | DEBUG    | urllib3.connectionpool:_make_request:456 - https://api.hypixel.net:443 "GET /skyblock/auctions?page=14 HTTP/1.1" 200 None
+2022-10-10 10:08:40.765 | DEBUG    | urllib3.connectionpool:_new_conn:1001 - Starting new HTTPS connection (1): api.hypixel.net:443
+2022-10-10 10:08:40.868 | DEBUG    | urllib3.connectionpool:_make_request:456 - https://api.hypixel.net:443 "GET /skyblock/auctions?page=15 HTTP/1.1" 200 None
+2022-10-10 10:08:40.943 | DEBUG    | urllib3.connectionpool:_new_conn:1001 - Starting new HTTPS connection (1): api.hypixel.net:443
+2022-10-10 10:08:41.042 | DEBUG    | urllib3.connectionpool:_make_request:456 - https://api.hypixel.net:443 "GET /skyblock/auctions?page=16 HTTP/1.1" 200 None
+2022-10-10 10:08:41.113 | DEBUG    | urllib3.connectionpool:_new_conn:1001 - Starting new HTTPS connection (1): api.hypixel.net:443
+2022-10-10 10:08:41.181 | DEBUG    | urllib3.connectionpool:_make_request:456 - https://api.hypixel.net:443 "GET /skyblock/auctions?page=17 HTTP/1.1" 200 None
+2022-10-10 10:08:41.250 | DEBUG    | urllib3.connectionpool:_new_conn:1001 - Starting new HTTPS connection (1): api.hypixel.net:443
+2022-10-10 10:08:41.357 | DEBUG    | urllib3.connectionpool:_make_request:456 - https://api.hypixel.net:443 "GET /skyblock/auctions?page=18 HTTP/1.1" 200 None
+2022-10-10 10:08:41.426 | DEBUG    | urllib3.connectionpool:_new_conn:1001 - Starting new HTTPS connection (1): api.hypixel.net:443
+2022-10-10 10:08:41.539 | DEBUG    | urllib3.connectionpool:_make_request:456 - https://api.hypixel.net:443 "GET /skyblock/auctions?page=19 HTTP/1.1" 200 None
+2022-10-10 10:08:41.638 | DEBUG    | urllib3.connectionpool:_new_conn:1001 - Starting new HTTPS connection (1): api.hypixel.net:443
+2022-10-10 10:08:41.719 | DEBUG    | urllib3.connectionpool:_make_request:456 - https://api.hypixel.net:443 "GET /skyblock/auctions?page=20 HTTP/1.1" 200 None
+2022-10-10 10:08:41.783 | DEBUG    | urllib3.connectionpool:_new_conn:1001 - Starting new HTTPS connection (1): api.hypixel.net:443
+2022-10-10 10:08:41.905 | DEBUG    | urllib3.connectionpool:_make_request:456 - https://api.hypixel.net:443 "GET /skyblock/auctions?page=21 HTTP/1.1" 200 None
+2022-10-10 10:08:41.986 | DEBUG    | urllib3.connectionpool:_new_conn:1001 - Starting new HTTPS connection (1): api.hypixel.net:443
+2022-10-10 10:08:42.099 | DEBUG    | urllib3.connectionpool:_make_request:456 - https://api.hypixel.net:443 "GET /skyblock/auctions?page=22 HTTP/1.1" 200 None
+2022-10-10 10:08:42.170 | DEBUG    | urllib3.connectionpool:_new_conn:1001 - Starting new HTTPS connection (1): api.hypixel.net:443
+2022-10-10 10:08:42.242 | DEBUG    | urllib3.connectionpool:_make_request:456 - https://api.hypixel.net:443 "GET /skyblock/auctions?page=23 HTTP/1.1" 200 None
+2022-10-10 10:08:42.313 | DEBUG    | urllib3.connectionpool:_new_conn:1001 - Starting new HTTPS connection (1): api.hypixel.net:443
+2022-10-10 10:08:42.387 | DEBUG    | urllib3.connectionpool:_make_request:456 - https://api.hypixel.net:443 "GET /skyblock/auctions?page=24 HTTP/1.1" 200 None
+2022-10-10 10:08:42.456 | DEBUG    | urllib3.connectionpool:_new_conn:1001 - Starting new HTTPS connection (1): api.hypixel.net:443
+2022-10-10 10:08:42.553 | DEBUG    | urllib3.connectionpool:_make_request:456 - https://api.hypixel.net:443 "GET /skyblock/auctions?page=25 HTTP/1.1" 200 None
+2022-10-10 10:08:42.815 | DEBUG    | urllib3.connectionpool:_new_conn:1001 - Starting new HTTPS connection (1): api.hypixel.net:443
+2022-10-10 10:08:42.913 | DEBUG    | urllib3.connectionpool:_make_request:456 - https://api.hypixel.net:443 "GET /skyblock/auctions?page=26 HTTP/1.1" 200 None
+2022-10-10 10:08:42.985 | DEBUG    | urllib3.connectionpool:_new_conn:1001 - Starting new HTTPS connection (1): api.hypixel.net:443
+2022-10-10 10:08:43.056 | DEBUG    | urllib3.connectionpool:_make_request:456 - https://api.hypixel.net:443 "GET /skyblock/auctions?page=27 HTTP/1.1" 200 None
+2022-10-10 10:08:43.135 | DEBUG    | urllib3.connectionpool:_new_conn:1001 - Starting new HTTPS connection (1): api.hypixel.net:443
+2022-10-10 10:08:43.210 | DEBUG    | urllib3.connectionpool:_make_request:456 - https://api.hypixel.net:443 "GET /skyblock/auctions?page=28 HTTP/1.1" 200 None
+2022-10-10 10:08:43.285 | DEBUG    | urllib3.connectionpool:_new_conn:1001 - Starting new HTTPS connection (1): api.hypixel.net:443
+2022-10-10 10:08:43.392 | DEBUG    | urllib3.connectionpool:_make_request:456 - https://api.hypixel.net:443 "GET /skyblock/auctions?page=29 HTTP/1.1" 200 None
+2022-10-10 10:08:43.523 | DEBUG    | urllib3.connectionpool:_new_conn:1001 - Starting new HTTPS connection (1): api.hypixel.net:443
+2022-10-10 10:08:43.617 | DEBUG    | urllib3.connectionpool:_make_request:456 - https://api.hypixel.net:443 "GET /skyblock/auctions?page=30 HTTP/1.1" 200 None
+2022-10-10 10:08:43.730 | DEBUG    | urllib3.connectionpool:_new_conn:1001 - Starting new HTTPS connection (1): api.hypixel.net:443
+2022-10-10 10:08:43.827 | DEBUG    | urllib3.connectionpool:_make_request:456 - https://api.hypixel.net:443 "GET /skyblock/auctions?page=31 HTTP/1.1" 200 None
+2022-10-10 10:08:43.898 | DEBUG    | urllib3.connectionpool:_new_conn:1001 - Starting new HTTPS connection (1): api.hypixel.net:443
+2022-10-10 10:08:44.003 | DEBUG    | urllib3.connectionpool:_make_request:456 - https://api.hypixel.net:443 "GET /skyblock/auctions?page=32 HTTP/1.1" 200 None
+2022-10-10 10:08:44.098 | DEBUG    | urllib3.connectionpool:_new_conn:1001 - Starting new HTTPS connection (1): api.hypixel.net:443
+2022-10-10 10:08:44.193 | DEBUG    | urllib3.connectionpool:_make_request:456 - https://api.hypixel.net:443 "GET /skyblock/auctions?page=33 HTTP/1.1" 200 None
+2022-10-10 10:08:44.268 | DEBUG    | urllib3.connectionpool:_new_conn:1001 - Starting new HTTPS connection (1): api.hypixel.net:443
+2022-10-10 10:08:44.680 | DEBUG    | urllib3.connectionpool:_make_request:456 - https://api.hypixel.net:443 "GET /skyblock/auctions?page=34 HTTP/1.1" 200 None
+2022-10-10 10:08:44.754 | DEBUG    | urllib3.connectionpool:_new_conn:1001 - Starting new HTTPS connection (1): api.hypixel.net:443
+2022-10-10 10:08:44.826 | DEBUG    | urllib3.connectionpool:_make_request:456 - https://api.hypixel.net:443 "GET /skyblock/auctions?page=35 HTTP/1.1" 200 None
+2022-10-10 10:08:44.905 | DEBUG    | urllib3.connectionpool:_new_conn:1001 - Starting new HTTPS connection (1): api.hypixel.net:443
+2022-10-10 10:08:45.005 | DEBUG    | urllib3.connectionpool:_make_request:456 - https://api.hypixel.net:443 "GET /skyblock/auctions?page=36 HTTP/1.1" 200 None
+2022-10-10 10:08:45.112 | DEBUG    | urllib3.connectionpool:_new_conn:1001 - Starting new HTTPS connection (1): api.hypixel.net:443
+2022-10-10 10:08:45.223 | DEBUG    | urllib3.connectionpool:_make_request:456 - https://api.hypixel.net:443 "GET /skyblock/auctions?page=37 HTTP/1.1" 200 None
+2022-10-10 10:08:45.295 | DEBUG    | urllib3.connectionpool:_new_conn:1001 - Starting new HTTPS connection (1): api.hypixel.net:443
+2022-10-10 10:08:45.413 | DEBUG    | urllib3.connectionpool:_make_request:456 - https://api.hypixel.net:443 "GET /skyblock/auctions?page=38 HTTP/1.1" 200 None
+2022-10-10 10:08:45.497 | DEBUG    | urllib3.connectionpool:_new_conn:1001 - Starting new HTTPS connection (1): api.hypixel.net:443
+2022-10-10 10:08:45.613 | DEBUG    | urllib3.connectionpool:_make_request:456 - https://api.hypixel.net:443 "GET /skyblock/auctions?page=39 HTTP/1.1" 200 None
+2022-10-10 10:08:45.737 | DEBUG    | urllib3.connectionpool:_new_conn:1001 - Starting new HTTPS connection (1): api.hypixel.net:443
+2022-10-10 10:08:45.846 | DEBUG    | urllib3.connectionpool:_make_request:456 - https://api.hypixel.net:443 "GET /skyblock/auctions?page=40 HTTP/1.1" 200 None
+2022-10-10 10:08:45.922 | DEBUG    | urllib3.connectionpool:_new_conn:1001 - Starting new HTTPS connection (1): api.hypixel.net:443
+2022-10-10 10:08:46.020 | DEBUG    | urllib3.connectionpool:_make_request:456 - https://api.hypixel.net:443 "GET /skyblock/auctions?page=41 HTTP/1.1" 200 None
+2022-10-10 10:08:46.092 | DEBUG    | urllib3.connectionpool:_new_conn:1001 - Starting new HTTPS connection (1): api.hypixel.net:443
+2022-10-10 10:08:46.169 | DEBUG    | urllib3.connectionpool:_make_request:456 - https://api.hypixel.net:443 "GET /skyblock/auctions?page=42 HTTP/1.1" 200 None
+2022-10-10 10:08:46.247 | DEBUG    | urllib3.connectionpool:_new_conn:1001 - Starting new HTTPS connection (1): api.hypixel.net:443
+2022-10-10 10:08:46.326 | DEBUG    | urllib3.connectionpool:_make_request:456 - https://api.hypixel.net:443 "GET /skyblock/auctions?page=43 HTTP/1.1" 200 None
+2022-10-10 10:08:46.399 | DEBUG    | urllib3.connectionpool:_new_conn:1001 - Starting new HTTPS connection (1): api.hypixel.net:443
+2022-10-10 10:08:46.508 | DEBUG    | urllib3.connectionpool:_make_request:456 - https://api.hypixel.net:443 "GET /skyblock/auctions?page=44 HTTP/1.1" 200 None
+2022-10-10 10:08:46.613 | DEBUG    | urllib3.connectionpool:_new_conn:1001 - Starting new HTTPS connection (1): api.hypixel.net:443
+2022-10-10 10:08:46.712 | DEBUG    | urllib3.connectionpool:_make_request:456 - https://api.hypixel.net:443 "GET /skyblock/auctions?page=45 HTTP/1.1" 200 None
+2022-10-10 10:08:46.789 | DEBUG    | urllib3.connectionpool:_new_conn:1001 - Starting new HTTPS connection (1): api.hypixel.net:443
+2022-10-10 10:08:46.889 | DEBUG    | urllib3.connectionpool:_make_request:456 - https://api.hypixel.net:443 "GET /skyblock/auctions?page=46 HTTP/1.1" 200 None
+2022-10-10 10:08:47.197 | DEBUG    | urllib3.connectionpool:_new_conn:1001 - Starting new HTTPS connection (1): api.hypixel.net:443
+2022-10-10 10:08:47.298 | DEBUG    | urllib3.connectionpool:_make_request:456 - https://api.hypixel.net:443 "GET /skyblock/auctions?page=47 HTTP/1.1" 200 None
+2022-10-10 10:08:47.369 | DEBUG    | urllib3.connectionpool:_new_conn:1001 - Starting new HTTPS connection (1): api.hypixel.net:443
+2022-10-10 10:08:47.503 | DEBUG    | urllib3.connectionpool:_make_request:456 - https://api.hypixel.net:443 "GET /skyblock/auctions?page=48 HTTP/1.1" 200 None
+2022-10-10 10:08:47.583 | DEBUG    | urllib3.connectionpool:_new_conn:1001 - Starting new HTTPS connection (1): api.hypixel.net:443
+2022-10-10 10:08:47.977 | DEBUG    | urllib3.connectionpool:_make_request:456 - https://api.hypixel.net:443 "GET /skyblock/auctions?page=49 HTTP/1.1" 200 None
+2022-10-10 10:08:48.178 | DEBUG    | urllib3.connectionpool:_new_conn:1001 - Starting new HTTPS connection (1): api.hypixel.net:443
+2022-10-10 10:08:48.293 | DEBUG    | urllib3.connectionpool:_make_request:456 - https://api.hypixel.net:443 "GET /skyblock/auctions?page=50 HTTP/1.1" 200 None
+2022-10-10 10:08:48.382 | DEBUG    | urllib3.connectionpool:_new_conn:1001 - Starting new HTTPS connection (1): api.hypixel.net:443
+2022-10-10 10:08:48.488 | DEBUG    | urllib3.connectionpool:_make_request:456 - https://api.hypixel.net:443 "GET /skyblock/auctions?page=51 HTTP/1.1" 200 None
+2022-10-10 10:08:48.560 | DEBUG    | urllib3.connectionpool:_new_conn:1001 - Starting new HTTPS connection (1): api.hypixel.net:443
+2022-10-10 10:08:48.658 | DEBUG    | urllib3.connectionpool:_make_request:456 - https://api.hypixel.net:443 "GET /skyblock/auctions?page=52 HTTP/1.1" 200 None
+2022-10-10 10:09:22.564 | INFO     | uvicorn.protocols.http.httptools_impl:send:437 - 172.18.0.1:53496 - "GET /items/item/Book/auctions/ HTTP/1.1" 500
+2022-10-10 10:09:22.565 | ERROR    | uvicorn.protocols.http.httptools_impl:run_asgi:375 - Exception in ASGI application
+
+Traceback (most recent call last):
+
+  File "app.py", line 287, in <module>
+    uvicorn.run("app:app", host='0.0.0.0', port=8080)
+    │       └ <function run at 0x7f974f6fbd30>
+    └ <module 'uvicorn' from '/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/uvicorn/__init__.py'>
+
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/uvicorn/main.py", line 463, in run
+    server.run()
+    │      └ <function Server.run at 0x7f974f6fb820>
+    └ <uvicorn.server.Server object at 0x7f97651152e0>
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/uvicorn/server.py", line 60, in run
+    return asyncio.run(self.serve(sockets=sockets))
+           │       │   │    │             └ None
+           │       │   │    └ <function Server.serve at 0x7f974f6fb8b0>
+           │       │   └ <uvicorn.server.Server object at 0x7f97651152e0>
+           │       └ <function run at 0x7f9766d68b80>
+           └ <module 'asyncio' from '/nix/store/p21fdyxqb3yqflpim7g8s1mymgpnqiv7-python3-3.8.12/lib/python3.8/asyncio/__init__.py'>
+  File "/nix/store/p21fdyxqb3yqflpim7g8s1mymgpnqiv7-python3-3.8.12/lib/python3.8/asyncio/runners.py", line 44, in run
+    return loop.run_until_complete(main)
+           │    │                  └ <coroutine object Server.serve at 0x7f974e92cb40>
+           │    └ <method 'run_until_complete' of 'uvloop.loop.Loop' objects>
+           └ <uvloop.Loop running=True closed=False debug=False>
+> File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/uvicorn/protocols/http/httptools_impl.py", line 372, in run_asgi
+    result = await app(self.scope, self.receive, self.send)
+                   │   │    │      │    │        │    └ <function RequestResponseCycle.send at 0x7f974e643940>
+                   │   │    │      │    │        └ <uvicorn.protocols.http.httptools_impl.RequestResponseCycle object at 0x7f9746fe66d0>
+                   │   │    │      │    └ <function RequestResponseCycle.receive at 0x7f974e6439d0>
+                   │   │    │      └ <uvicorn.protocols.http.httptools_impl.RequestResponseCycle object at 0x7f9746fe66d0>
+                   │   │    └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('172.18.0.196', 8080), ...
+                   │   └ <uvicorn.protocols.http.httptools_impl.RequestResponseCycle object at 0x7f9746fe66d0>
+                   └ <uvicorn.middleware.proxy_headers.ProxyHeadersMiddleware object at 0x7f9765115370>
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/uvicorn/middleware/proxy_headers.py", line 75, in __call__
+    return await self.app(scope, receive, send)
+                 │    │   │      │        └ <bound method RequestResponseCycle.send of <uvicorn.protocols.http.httptools_impl.RequestResponseCycle object at 0x7f9746fe66...
+                 │    │   │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.httptools_impl.RequestResponseCycle object at 0x7f9746f...
+                 │    │   └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('172.18.0.196', 8080), ...
+                 │    └ <fastapi.applications.FastAPI object at 0x7f9765110370>
+                 └ <uvicorn.middleware.proxy_headers.ProxyHeadersMiddleware object at 0x7f9765115370>
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/fastapi/applications.py", line 269, in __call__
+    await super().__call__(scope, receive, send)
+                           │      │        └ <bound method RequestResponseCycle.send of <uvicorn.protocols.http.httptools_impl.RequestResponseCycle object at 0x7f9746fe66...
+                           │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.httptools_impl.RequestResponseCycle object at 0x7f9746f...
+                           └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('172.18.0.196', 8080), ...
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/starlette/applications.py", line 124, in __call__
+    await self.middleware_stack(scope, receive, send)
+          │    │                │      │        └ <bound method RequestResponseCycle.send of <uvicorn.protocols.http.httptools_impl.RequestResponseCycle object at 0x7f9746fe66...
+          │    │                │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.httptools_impl.RequestResponseCycle object at 0x7f9746f...
+          │    │                └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('172.18.0.196', 8080), ...
+          │    └ <starlette.middleware.errors.ServerErrorMiddleware object at 0x7f974e1b4df0>
+          └ <fastapi.applications.FastAPI object at 0x7f9765110370>
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/starlette/middleware/errors.py", line 184, in __call__
+    raise exc
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/starlette/middleware/errors.py", line 162, in __call__
+    await self.app(scope, receive, _send)
+          │    │   │      │        └ <function ServerErrorMiddleware.__call__.<locals>._send at 0x7f9746fe9040>
+          │    │   │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.httptools_impl.RequestResponseCycle object at 0x7f9746f...
+          │    │   └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('172.18.0.196', 8080), ...
+          │    └ <starlette.exceptions.ExceptionMiddleware object at 0x7f974e1b4d90>
+          └ <starlette.middleware.errors.ServerErrorMiddleware object at 0x7f974e1b4df0>
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/starlette/exceptions.py", line 93, in __call__
+    raise exc
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/starlette/exceptions.py", line 82, in __call__
+    await self.app(scope, receive, sender)
+          │    │   │      │        └ <function ExceptionMiddleware.__call__.<locals>.sender at 0x7f9746fe90d0>
+          │    │   │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.httptools_impl.RequestResponseCycle object at 0x7f9746f...
+          │    │   └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('172.18.0.196', 8080), ...
+          │    └ <fastapi.middleware.asyncexitstack.AsyncExitStackMiddleware object at 0x7f974e1b4d30>
+          └ <starlette.exceptions.ExceptionMiddleware object at 0x7f974e1b4d90>
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/fastapi/middleware/asyncexitstack.py", line 21, in __call__
+    raise e
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/fastapi/middleware/asyncexitstack.py", line 18, in __call__
+    await self.app(scope, receive, send)
+          │    │   │      │        └ <function ExceptionMiddleware.__call__.<locals>.sender at 0x7f9746fe90d0>
+          │    │   │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.httptools_impl.RequestResponseCycle object at 0x7f9746f...
+          │    │   └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('172.18.0.196', 8080), ...
+          │    └ <fastapi.routing.APIRouter object at 0x7f97651100a0>
+          └ <fastapi.middleware.asyncexitstack.AsyncExitStackMiddleware object at 0x7f974e1b4d30>
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/starlette/routing.py", line 670, in __call__
+    await route.handle(scope, receive, send)
+          │     │      │      │        └ <function ExceptionMiddleware.__call__.<locals>.sender at 0x7f9746fe90d0>
+          │     │      │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.httptools_impl.RequestResponseCycle object at 0x7f9746f...
+          │     │      └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('172.18.0.196', 8080), ...
+          │     └ <function Route.handle at 0x7f9765a48310>
+          └ <fastapi.routing.APIRoute object at 0x7f974e1d1c10>
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/starlette/routing.py", line 266, in handle
+    await self.app(scope, receive, send)
+          │    │   │      │        └ <function ExceptionMiddleware.__call__.<locals>.sender at 0x7f9746fe90d0>
+          │    │   │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.httptools_impl.RequestResponseCycle object at 0x7f9746f...
+          │    │   └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('172.18.0.196', 8080), ...
+          │    └ <function request_response.<locals>.app at 0x7f974e1b3ee0>
+          └ <fastapi.routing.APIRoute object at 0x7f974e1d1c10>
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/starlette/routing.py", line 65, in app
+    response = await func(request)
+                     │    └ <starlette.requests.Request object at 0x7f9746fe6250>
+                     └ <function get_request_handler.<locals>.app at 0x7f974e1b3e50>
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/fastapi/routing.py", line 227, in app
+    raw_response = await run_endpoint_function(
+                         └ <function run_endpoint_function at 0x7f9765a3c1f0>
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/fastapi/routing.py", line 160, in run_endpoint_function
+    return await dependant.call(**values)
+                 │         │      └ {'item': 'Book'}
+                 │         └ <function item_auctions at 0x7f974e1b3dc0>
+                 └ <fastapi.dependencies.models.Dependant object at 0x7f974e1d1c40>
+
+  File "/home/runner/Skyblock-Tools-FastAPI/app.py", line 134, in item_auctions
+    auctions = await main.get_auctions()
+                     │    └ <function get_auctions at 0x7f9765131550>
+                     └ <module 'main' from '/home/runner/Skyblock-Tools-FastAPI/main.py'>
+
+TypeError: object list can't be used in 'await' expression
+2022-10-10 10:09:22.577 | INFO     | uvicorn.protocols.http.httptools_impl:send:437 - 172.18.0.1:49728 - "GET / HTTP/1.1" 307
+2022-10-10 10:09:22.579 | INFO     | uvicorn.protocols.http.httptools_impl:send:437 - 172.18.0.1:49742 - "GET / HTTP/1.1" 307
+2022-10-10 10:25:09.491 | INFO     | uvicorn.protocols.http.httptools_impl:send:437 - 172.18.0.1:39860 - "GET /docs HTTP/1.1" 200
+2022-10-10 10:25:10.938 | INFO     | uvicorn.protocols.http.httptools_impl:send:437 - 172.18.0.1:39860 - "GET /openapi.json HTTP/1.1" 200
+2022-10-10 10:25:21.335 | DEBUG    | urllib3.connectionpool:_new_conn:1001 - Starting new HTTPS connection (1): api.hypixel.net:443
+2022-10-10 10:25:21.404 | DEBUG    | urllib3.connectionpool:_make_request:456 - https://api.hypixel.net:443 "GET /skyblock/auctions HTTP/1.1" 200 None
+2022-10-10 10:25:21.470 | DEBUG    | urllib3.connectionpool:_new_conn:1001 - Starting new HTTPS connection (1): api.hypixel.net:443
+2022-10-10 10:25:21.540 | DEBUG    | urllib3.connectionpool:_make_request:456 - https://api.hypixel.net:443 "GET /skyblock/auctions?page=0 HTTP/1.1" 200 None
+2022-10-10 10:25:21.610 | DEBUG    | urllib3.connectionpool:_new_conn:1001 - Starting new HTTPS connection (1): api.hypixel.net:443
+2022-10-10 10:25:21.677 | DEBUG    | urllib3.connectionpool:_make_request:456 - https://api.hypixel.net:443 "GET /skyblock/auctions?page=1 HTTP/1.1" 200 None
+2022-10-10 10:25:21.747 | DEBUG    | urllib3.connectionpool:_new_conn:1001 - Starting new HTTPS connection (1): api.hypixel.net:443
+2022-10-10 10:25:21.821 | DEBUG    | urllib3.connectionpool:_make_request:456 - https://api.hypixel.net:443 "GET /skyblock/auctions?page=2 HTTP/1.1" 200 None
+2022-10-10 10:25:21.886 | DEBUG    | urllib3.connectionpool:_new_conn:1001 - Starting new HTTPS connection (1): api.hypixel.net:443
+2022-10-10 10:25:21.961 | DEBUG    | urllib3.connectionpool:_make_request:456 - https://api.hypixel.net:443 "GET /skyblock/auctions?page=3 HTTP/1.1" 200 None
+2022-10-10 10:25:22.036 | DEBUG    | urllib3.connectionpool:_new_conn:1001 - Starting new HTTPS connection (1): api.hypixel.net:443
+2022-10-10 10:25:22.124 | DEBUG    | urllib3.connectionpool:_make_request:456 - https://api.hypixel.net:443 "GET /skyblock/auctions?page=4 HTTP/1.1" 200 None
+2022-10-10 10:25:22.192 | DEBUG    | urllib3.connectionpool:_new_conn:1001 - Starting new HTTPS connection (1): api.hypixel.net:443
+2022-10-10 10:25:22.261 | DEBUG    | urllib3.connectionpool:_make_request:456 - https://api.hypixel.net:443 "GET /skyblock/auctions?page=5 HTTP/1.1" 200 None
+2022-10-10 10:25:22.335 | DEBUG    | urllib3.connectionpool:_new_conn:1001 - Starting new HTTPS connection (1): api.hypixel.net:443
+2022-10-10 10:25:22.403 | DEBUG    | urllib3.connectionpool:_make_request:456 - https://api.hypixel.net:443 "GET /skyblock/auctions?page=6 HTTP/1.1" 200 None
+2022-10-10 10:25:22.471 | DEBUG    | urllib3.connectionpool:_new_conn:1001 - Starting new HTTPS connection (1): api.hypixel.net:443
+2022-10-10 10:25:22.546 | DEBUG    | urllib3.connectionpool:_make_request:456 - https://api.hypixel.net:443 "GET /skyblock/auctions?page=7 HTTP/1.1" 200 None
+2022-10-10 10:25:22.637 | DEBUG    | urllib3.connectionpool:_new_conn:1001 - Starting new HTTPS connection (1): api.hypixel.net:443
+2022-10-10 10:25:22.709 | DEBUG    | urllib3.connectionpool:_make_request:456 - https://api.hypixel.net:443 "GET /skyblock/auctions?page=8 HTTP/1.1" 200 None
+2022-10-10 10:25:22.777 | DEBUG    | urllib3.connectionpool:_new_conn:1001 - Starting new HTTPS connection (1): api.hypixel.net:443
+2022-10-10 10:25:22.859 | DEBUG    | urllib3.connectionpool:_make_request:456 - https://api.hypixel.net:443 "GET /skyblock/auctions?page=9 HTTP/1.1" 200 None
+2022-10-10 10:25:22.931 | DEBUG    | urllib3.connectionpool:_new_conn:1001 - Starting new HTTPS connection (1): api.hypixel.net:443
+2022-10-10 10:25:23.005 | DEBUG    | urllib3.connectionpool:_make_request:456 - https://api.hypixel.net:443 "GET /skyblock/auctions?page=10 HTTP/1.1" 200 None
+2022-10-10 10:25:23.079 | DEBUG    | urllib3.connectionpool:_new_conn:1001 - Starting new HTTPS connection (1): api.hypixel.net:443
+2022-10-10 10:25:23.156 | DEBUG    | urllib3.connectionpool:_make_request:456 - https://api.hypixel.net:443 "GET /skyblock/auctions?page=11 HTTP/1.1" 200 None
+2022-10-10 10:25:23.224 | DEBUG    | urllib3.connectionpool:_new_conn:1001 - Starting new HTTPS connection (1): api.hypixel.net:443
+2022-10-10 10:25:23.295 | DEBUG    | urllib3.connectionpool:_make_request:456 - https://api.hypixel.net:443 "GET /skyblock/auctions?page=12 HTTP/1.1" 200 None
+2022-10-10 10:25:23.504 | DEBUG    | urllib3.connectionpool:_new_conn:1001 - Starting new HTTPS connection (1): api.hypixel.net:443
+2022-10-10 10:25:23.581 | DEBUG    | urllib3.connectionpool:_make_request:456 - https://api.hypixel.net:443 "GET /skyblock/auctions?page=13 HTTP/1.1" 200 None
+2022-10-10 10:25:23.647 | DEBUG    | urllib3.connectionpool:_new_conn:1001 - Starting new HTTPS connection (1): api.hypixel.net:443
+2022-10-10 10:25:23.724 | DEBUG    | urllib3.connectionpool:_make_request:456 - https://api.hypixel.net:443 "GET /skyblock/auctions?page=14 HTTP/1.1" 200 None
+2022-10-10 10:25:23.797 | DEBUG    | urllib3.connectionpool:_new_conn:1001 - Starting new HTTPS connection (1): api.hypixel.net:443
+2022-10-10 10:25:23.873 | DEBUG    | urllib3.connectionpool:_make_request:456 - https://api.hypixel.net:443 "GET /skyblock/auctions?page=15 HTTP/1.1" 200 None
+2022-10-10 10:25:23.947 | DEBUG    | urllib3.connectionpool:_new_conn:1001 - Starting new HTTPS connection (1): api.hypixel.net:443
+2022-10-10 10:25:24.018 | DEBUG    | urllib3.connectionpool:_make_request:456 - https://api.hypixel.net:443 "GET /skyblock/auctions?page=16 HTTP/1.1" 200 None
+2022-10-10 10:25:24.090 | DEBUG    | urllib3.connectionpool:_new_conn:1001 - Starting new HTTPS connection (1): api.hypixel.net:443
+2022-10-10 10:25:24.160 | DEBUG    | urllib3.connectionpool:_make_request:456 - https://api.hypixel.net:443 "GET /skyblock/auctions?page=17 HTTP/1.1" 200 None
+2022-10-10 10:25:24.228 | DEBUG    | urllib3.connectionpool:_new_conn:1001 - Starting new HTTPS connection (1): api.hypixel.net:443
+2022-10-10 10:25:24.301 | DEBUG    | urllib3.connectionpool:_make_request:456 - https://api.hypixel.net:443 "GET /skyblock/auctions?page=18 HTTP/1.1" 200 None
+2022-10-10 10:25:24.380 | DEBUG    | urllib3.connectionpool:_new_conn:1001 - Starting new HTTPS connection (1): api.hypixel.net:443
+2022-10-10 10:25:24.455 | DEBUG    | urllib3.connectionpool:_make_request:456 - https://api.hypixel.net:443 "GET /skyblock/auctions?page=19 HTTP/1.1" 200 None
+2022-10-10 10:25:24.525 | DEBUG    | urllib3.connectionpool:_new_conn:1001 - Starting new HTTPS connection (1): api.hypixel.net:443
+2022-10-10 10:25:24.610 | DEBUG    | urllib3.connectionpool:_make_request:456 - https://api.hypixel.net:443 "GET /skyblock/auctions?page=20 HTTP/1.1" 200 None
+2022-10-10 10:25:24.681 | DEBUG    | urllib3.connectionpool:_new_conn:1001 - Starting new HTTPS connection (1): api.hypixel.net:443
+2022-10-10 10:25:24.754 | DEBUG    | urllib3.connectionpool:_make_request:456 - https://api.hypixel.net:443 "GET /skyblock/auctions?page=21 HTTP/1.1" 200 None
+2022-10-10 10:25:24.826 | DEBUG    | urllib3.connectionpool:_new_conn:1001 - Starting new HTTPS connection (1): api.hypixel.net:443
+2022-10-10 10:25:24.910 | DEBUG    | urllib3.connectionpool:_make_request:456 - https://api.hypixel.net:443 "GET /skyblock/auctions?page=22 HTTP/1.1" 200 None
+2022-10-10 10:25:24.981 | DEBUG    | urllib3.connectionpool:_new_conn:1001 - Starting new HTTPS connection (1): api.hypixel.net:443
+2022-10-10 10:25:25.058 | DEBUG    | urllib3.connectionpool:_make_request:456 - https://api.hypixel.net:443 "GET /skyblock/auctions?page=23 HTTP/1.1" 200 None
+2022-10-10 10:25:25.129 | DEBUG    | urllib3.connectionpool:_new_conn:1001 - Starting new HTTPS connection (1): api.hypixel.net:443
+2022-10-10 10:25:25.200 | DEBUG    | urllib3.connectionpool:_make_request:456 - https://api.hypixel.net:443 "GET /skyblock/auctions?page=24 HTTP/1.1" 200 None
+2022-10-10 10:25:25.266 | DEBUG    | urllib3.connectionpool:_new_conn:1001 - Starting new HTTPS connection (1): api.hypixel.net:443
+2022-10-10 10:25:25.639 | DEBUG    | urllib3.connectionpool:_make_request:456 - https://api.hypixel.net:443 "GET /skyblock/auctions?page=25 HTTP/1.1" 200 None
+2022-10-10 10:25:25.704 | DEBUG    | urllib3.connectionpool:_new_conn:1001 - Starting new HTTPS connection (1): api.hypixel.net:443
+2022-10-10 10:25:25.772 | DEBUG    | urllib3.connectionpool:_make_request:456 - https://api.hypixel.net:443 "GET /skyblock/auctions?page=26 HTTP/1.1" 200 None
+2022-10-10 10:25:25.847 | DEBUG    | urllib3.connectionpool:_new_conn:1001 - Starting new HTTPS connection (1): api.hypixel.net:443
+2022-10-10 10:25:25.927 | DEBUG    | urllib3.connectionpool:_make_request:456 - https://api.hypixel.net:443 "GET /skyblock/auctions?page=27 HTTP/1.1" 200 None
+2022-10-10 10:25:25.996 | DEBUG    | urllib3.connectionpool:_new_conn:1001 - Starting new HTTPS connection (1): api.hypixel.net:443
+2022-10-10 10:25:26.066 | DEBUG    | urllib3.connectionpool:_make_request:456 - https://api.hypixel.net:443 "GET /skyblock/auctions?page=28 HTTP/1.1" 200 None
+2022-10-10 10:25:26.133 | DEBUG    | urllib3.connectionpool:_new_conn:1001 - Starting new HTTPS connection (1): api.hypixel.net:443
+2022-10-10 10:25:26.203 | DEBUG    | urllib3.connectionpool:_make_request:456 - https://api.hypixel.net:443 "GET /skyblock/auctions?page=29 HTTP/1.1" 200 None
+2022-10-10 10:25:26.280 | DEBUG    | urllib3.connectionpool:_new_conn:1001 - Starting new HTTPS connection (1): api.hypixel.net:443
+2022-10-10 10:25:26.354 | DEBUG    | urllib3.connectionpool:_make_request:456 - https://api.hypixel.net:443 "GET /skyblock/auctions?page=30 HTTP/1.1" 200 None
+2022-10-10 10:25:26.434 | DEBUG    | urllib3.connectionpool:_new_conn:1001 - Starting new HTTPS connection (1): api.hypixel.net:443
+2022-10-10 10:25:26.511 | DEBUG    | urllib3.connectionpool:_make_request:456 - https://api.hypixel.net:443 "GET /skyblock/auctions?page=31 HTTP/1.1" 200 None
+2022-10-10 10:25:26.582 | DEBUG    | urllib3.connectionpool:_new_conn:1001 - Starting new HTTPS connection (1): api.hypixel.net:443
+2022-10-10 10:25:26.647 | DEBUG    | urllib3.connectionpool:_make_request:456 - https://api.hypixel.net:443 "GET /skyblock/auctions?page=32 HTTP/1.1" 200 None
+2022-10-10 10:25:26.721 | DEBUG    | urllib3.connectionpool:_new_conn:1001 - Starting new HTTPS connection (1): api.hypixel.net:443
+2022-10-10 10:25:26.797 | DEBUG    | urllib3.connectionpool:_make_request:456 - https://api.hypixel.net:443 "GET /skyblock/auctions?page=33 HTTP/1.1" 200 None
+2022-10-10 10:25:27.103 | DEBUG    | urllib3.connectionpool:_new_conn:1001 - Starting new HTTPS connection (1): api.hypixel.net:443
+2022-10-10 10:25:27.194 | DEBUG    | urllib3.connectionpool:_make_request:456 - https://api.hypixel.net:443 "GET /skyblock/auctions?page=34 HTTP/1.1" 200 None
+2022-10-10 10:25:27.263 | DEBUG    | urllib3.connectionpool:_new_conn:1001 - Starting new HTTPS connection (1): api.hypixel.net:443
+2022-10-10 10:25:27.342 | DEBUG    | urllib3.connectionpool:_make_request:456 - https://api.hypixel.net:443 "GET /skyblock/auctions?page=35 HTTP/1.1" 200 None
+2022-10-10 10:25:27.417 | DEBUG    | urllib3.connectionpool:_new_conn:1001 - Starting new HTTPS connection (1): api.hypixel.net:443
+2022-10-10 10:25:27.543 | DEBUG    | urllib3.connectionpool:_make_request:456 - https://api.hypixel.net:443 "GET /skyblock/auctions?page=36 HTTP/1.1" 200 None
+2022-10-10 10:25:27.615 | DEBUG    | urllib3.connectionpool:_new_conn:1001 - Starting new HTTPS connection (1): api.hypixel.net:443
+2022-10-10 10:25:27.691 | DEBUG    | urllib3.connectionpool:_make_request:456 - https://api.hypixel.net:443 "GET /skyblock/auctions?page=37 HTTP/1.1" 200 None
+2022-10-10 10:25:27.767 | DEBUG    | urllib3.connectionpool:_new_conn:1001 - Starting new HTTPS connection (1): api.hypixel.net:443
+2022-10-10 10:25:27.853 | DEBUG    | urllib3.connectionpool:_make_request:456 - https://api.hypixel.net:443 "GET /skyblock/auctions?page=38 HTTP/1.1" 200 None
+2022-10-10 10:25:27.930 | DEBUG    | urllib3.connectionpool:_new_conn:1001 - Starting new HTTPS connection (1): api.hypixel.net:443
+2022-10-10 10:25:28.004 | DEBUG    | urllib3.connectionpool:_make_request:456 - https://api.hypixel.net:443 "GET /skyblock/auctions?page=39 HTTP/1.1" 200 None
+2022-10-10 10:25:28.082 | DEBUG    | urllib3.connectionpool:_new_conn:1001 - Starting new HTTPS connection (1): api.hypixel.net:443
+2022-10-10 10:25:28.154 | DEBUG    | urllib3.connectionpool:_make_request:456 - https://api.hypixel.net:443 "GET /skyblock/auctions?page=40 HTTP/1.1" 200 None
+2022-10-10 10:25:28.224 | DEBUG    | urllib3.connectionpool:_new_conn:1001 - Starting new HTTPS connection (1): api.hypixel.net:443
+2022-10-10 10:25:28.300 | DEBUG    | urllib3.connectionpool:_make_request:456 - https://api.hypixel.net:443 "GET /skyblock/auctions?page=41 HTTP/1.1" 200 None
+2022-10-10 10:25:28.380 | DEBUG    | urllib3.connectionpool:_new_conn:1001 - Starting new HTTPS connection (1): api.hypixel.net:443
+2022-10-10 10:25:28.456 | DEBUG    | urllib3.connectionpool:_make_request:456 - https://api.hypixel.net:443 "GET /skyblock/auctions?page=42 HTTP/1.1" 200 None
+2022-10-10 10:25:28.549 | DEBUG    | urllib3.connectionpool:_new_conn:1001 - Starting new HTTPS connection (1): api.hypixel.net:443
+2022-10-10 10:25:28.623 | DEBUG    | urllib3.connectionpool:_make_request:456 - https://api.hypixel.net:443 "GET /skyblock/auctions?page=43 HTTP/1.1" 200 None
+2022-10-10 10:25:28.698 | DEBUG    | urllib3.connectionpool:_new_conn:1001 - Starting new HTTPS connection (1): api.hypixel.net:443
+2022-10-10 10:25:28.777 | DEBUG    | urllib3.connectionpool:_make_request:456 - https://api.hypixel.net:443 "GET /skyblock/auctions?page=44 HTTP/1.1" 200 None
+2022-10-10 10:25:28.846 | DEBUG    | urllib3.connectionpool:_new_conn:1001 - Starting new HTTPS connection (1): api.hypixel.net:443
+2022-10-10 10:25:28.913 | DEBUG    | urllib3.connectionpool:_make_request:456 - https://api.hypixel.net:443 "GET /skyblock/auctions?page=45 HTTP/1.1" 200 None
+2022-10-10 10:25:28.988 | DEBUG    | urllib3.connectionpool:_new_conn:1001 - Starting new HTTPS connection (1): api.hypixel.net:443
+2022-10-10 10:25:29.061 | DEBUG    | urllib3.connectionpool:_make_request:456 - https://api.hypixel.net:443 "GET /skyblock/auctions?page=46 HTTP/1.1" 200 None
+2022-10-10 10:25:29.131 | DEBUG    | urllib3.connectionpool:_new_conn:1001 - Starting new HTTPS connection (1): api.hypixel.net:443
+2022-10-10 10:25:29.204 | DEBUG    | urllib3.connectionpool:_make_request:456 - https://api.hypixel.net:443 "GET /skyblock/auctions?page=47 HTTP/1.1" 200 None
+2022-10-10 10:25:29.277 | DEBUG    | urllib3.connectionpool:_new_conn:1001 - Starting new HTTPS connection (1): api.hypixel.net:443
+2022-10-10 10:25:29.347 | DEBUG    | urllib3.connectionpool:_make_request:456 - https://api.hypixel.net:443 "GET /skyblock/auctions?page=48 HTTP/1.1" 200 None
+2022-10-10 10:25:29.422 | DEBUG    | urllib3.connectionpool:_new_conn:1001 - Starting new HTTPS connection (1): api.hypixel.net:443
+2022-10-10 10:25:29.494 | DEBUG    | urllib3.connectionpool:_make_request:456 - https://api.hypixel.net:443 "GET /skyblock/auctions?page=49 HTTP/1.1" 200 None
+2022-10-10 10:25:29.574 | DEBUG    | urllib3.connectionpool:_new_conn:1001 - Starting new HTTPS connection (1): api.hypixel.net:443
+2022-10-10 10:25:29.646 | DEBUG    | urllib3.connectionpool:_make_request:456 - https://api.hypixel.net:443 "GET /skyblock/auctions?page=50 HTTP/1.1" 200 None
+2022-10-10 10:25:29.726 | DEBUG    | urllib3.connectionpool:_new_conn:1001 - Starting new HTTPS connection (1): api.hypixel.net:443
+2022-10-10 10:25:29.794 | DEBUG    | urllib3.connectionpool:_make_request:456 - https://api.hypixel.net:443 "GET /skyblock/auctions?page=51 HTTP/1.1" 200 None
+2022-10-10 10:25:29.870 | DEBUG    | urllib3.connectionpool:_new_conn:1001 - Starting new HTTPS connection (1): api.hypixel.net:443
+2022-10-10 10:25:29.951 | DEBUG    | urllib3.connectionpool:_make_request:456 - https://api.hypixel.net:443 "GET /skyblock/auctions?page=52 HTTP/1.1" 200 None
+2022-10-10 10:26:05.576 | INFO     | uvicorn.protocols.http.httptools_impl:send:437 - 172.18.0.1:39824 - "GET /items/item/rotos/auctions/ HTTP/1.1" 500
+2022-10-10 10:26:05.578 | ERROR    | uvicorn.protocols.http.httptools_impl:run_asgi:375 - Exception in ASGI application
+
+Traceback (most recent call last):
+
+  File "app.py", line 287, in <module>
+    uvicorn.run("app:app", host='0.0.0.0', port=8080)
+    │       └ <function run at 0x7f974f6fbd30>
+    └ <module 'uvicorn' from '/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/uvicorn/__init__.py'>
+
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/uvicorn/main.py", line 463, in run
+    server.run()
+    │      └ <function Server.run at 0x7f974f6fb820>
+    └ <uvicorn.server.Server object at 0x7f97651152e0>
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/uvicorn/server.py", line 60, in run
+    return asyncio.run(self.serve(sockets=sockets))
+           │       │   │    │             └ None
+           │       │   │    └ <function Server.serve at 0x7f974f6fb8b0>
+           │       │   └ <uvicorn.server.Server object at 0x7f97651152e0>
+           │       └ <function run at 0x7f9766d68b80>
+           └ <module 'asyncio' from '/nix/store/p21fdyxqb3yqflpim7g8s1mymgpnqiv7-python3-3.8.12/lib/python3.8/asyncio/__init__.py'>
+  File "/nix/store/p21fdyxqb3yqflpim7g8s1mymgpnqiv7-python3-3.8.12/lib/python3.8/asyncio/runners.py", line 44, in run
+    return loop.run_until_complete(main)
+           │    │                  └ <coroutine object Server.serve at 0x7f974e92cb40>
+           │    └ <method 'run_until_complete' of 'uvloop.loop.Loop' objects>
+           └ <uvloop.Loop running=True closed=False debug=False>
+> File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/uvicorn/protocols/http/httptools_impl.py", line 372, in run_asgi
+    result = await app(self.scope, self.receive, self.send)
+                   │   │    │      │    │        │    └ <function RequestResponseCycle.send at 0x7f974e643940>
+                   │   │    │      │    │        └ <uvicorn.protocols.http.httptools_impl.RequestResponseCycle object at 0x7f974e1c6f70>
+                   │   │    │      │    └ <function RequestResponseCycle.receive at 0x7f974e6439d0>
+                   │   │    │      └ <uvicorn.protocols.http.httptools_impl.RequestResponseCycle object at 0x7f974e1c6f70>
+                   │   │    └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('172.18.0.196', 8080), ...
+                   │   └ <uvicorn.protocols.http.httptools_impl.RequestResponseCycle object at 0x7f974e1c6f70>
+                   └ <uvicorn.middleware.proxy_headers.ProxyHeadersMiddleware object at 0x7f9765115370>
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/uvicorn/middleware/proxy_headers.py", line 75, in __call__
+    return await self.app(scope, receive, send)
+                 │    │   │      │        └ <bound method RequestResponseCycle.send of <uvicorn.protocols.http.httptools_impl.RequestResponseCycle object at 0x7f974e1c6f...
+                 │    │   │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.httptools_impl.RequestResponseCycle object at 0x7f974e1...
+                 │    │   └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('172.18.0.196', 8080), ...
+                 │    └ <fastapi.applications.FastAPI object at 0x7f9765110370>
+                 └ <uvicorn.middleware.proxy_headers.ProxyHeadersMiddleware object at 0x7f9765115370>
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/fastapi/applications.py", line 269, in __call__
+    await super().__call__(scope, receive, send)
+                           │      │        └ <bound method RequestResponseCycle.send of <uvicorn.protocols.http.httptools_impl.RequestResponseCycle object at 0x7f974e1c6f...
+                           │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.httptools_impl.RequestResponseCycle object at 0x7f974e1...
+                           └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('172.18.0.196', 8080), ...
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/starlette/applications.py", line 124, in __call__
+    await self.middleware_stack(scope, receive, send)
+          │    │                │      │        └ <bound method RequestResponseCycle.send of <uvicorn.protocols.http.httptools_impl.RequestResponseCycle object at 0x7f974e1c6f...
+          │    │                │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.httptools_impl.RequestResponseCycle object at 0x7f974e1...
+          │    │                └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('172.18.0.196', 8080), ...
+          │    └ <starlette.middleware.errors.ServerErrorMiddleware object at 0x7f974e1b4df0>
+          └ <fastapi.applications.FastAPI object at 0x7f9765110370>
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/starlette/middleware/errors.py", line 184, in __call__
+    raise exc
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/starlette/middleware/errors.py", line 162, in __call__
+    await self.app(scope, receive, _send)
+          │    │   │      │        └ <function ServerErrorMiddleware.__call__.<locals>._send at 0x7f9746ff5040>
+          │    │   │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.httptools_impl.RequestResponseCycle object at 0x7f974e1...
+          │    │   └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('172.18.0.196', 8080), ...
+          │    └ <starlette.exceptions.ExceptionMiddleware object at 0x7f974e1b4d90>
+          └ <starlette.middleware.errors.ServerErrorMiddleware object at 0x7f974e1b4df0>
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/starlette/exceptions.py", line 93, in __call__
+    raise exc
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/starlette/exceptions.py", line 82, in __call__
+    await self.app(scope, receive, sender)
+          │    │   │      │        └ <function ExceptionMiddleware.__call__.<locals>.sender at 0x7f9746ff50d0>
+          │    │   │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.httptools_impl.RequestResponseCycle object at 0x7f974e1...
+          │    │   └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('172.18.0.196', 8080), ...
+          │    └ <fastapi.middleware.asyncexitstack.AsyncExitStackMiddleware object at 0x7f974e1b4d30>
+          └ <starlette.exceptions.ExceptionMiddleware object at 0x7f974e1b4d90>
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/fastapi/middleware/asyncexitstack.py", line 21, in __call__
+    raise e
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/fastapi/middleware/asyncexitstack.py", line 18, in __call__
+    await self.app(scope, receive, send)
+          │    │   │      │        └ <function ExceptionMiddleware.__call__.<locals>.sender at 0x7f9746ff50d0>
+          │    │   │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.httptools_impl.RequestResponseCycle object at 0x7f974e1...
+          │    │   └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('172.18.0.196', 8080), ...
+          │    └ <fastapi.routing.APIRouter object at 0x7f97651100a0>
+          └ <fastapi.middleware.asyncexitstack.AsyncExitStackMiddleware object at 0x7f974e1b4d30>
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/starlette/routing.py", line 670, in __call__
+    await route.handle(scope, receive, send)
+          │     │      │      │        └ <function ExceptionMiddleware.__call__.<locals>.sender at 0x7f9746ff50d0>
+          │     │      │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.httptools_impl.RequestResponseCycle object at 0x7f974e1...
+          │     │      └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('172.18.0.196', 8080), ...
+          │     └ <function Route.handle at 0x7f9765a48310>
+          └ <fastapi.routing.APIRoute object at 0x7f974e1d1c10>
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/starlette/routing.py", line 266, in handle
+    await self.app(scope, receive, send)
+          │    │   │      │        └ <function ExceptionMiddleware.__call__.<locals>.sender at 0x7f9746ff50d0>
+          │    │   │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.httptools_impl.RequestResponseCycle object at 0x7f974e1...
+          │    │   └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('172.18.0.196', 8080), ...
+          │    └ <function request_response.<locals>.app at 0x7f974e1b3ee0>
+          └ <fastapi.routing.APIRoute object at 0x7f974e1d1c10>
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/starlette/routing.py", line 65, in app
+    response = await func(request)
+                     │    └ <starlette.requests.Request object at 0x7f974e1be9a0>
+                     └ <function get_request_handler.<locals>.app at 0x7f974e1b3e50>
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/fastapi/routing.py", line 227, in app
+    raw_response = await run_endpoint_function(
+                         └ <function run_endpoint_function at 0x7f9765a3c1f0>
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/fastapi/routing.py", line 160, in run_endpoint_function
+    return await dependant.call(**values)
+                 │         │      └ {'item': 'rotos'}
+                 │         └ <function item_auctions at 0x7f974e1b3dc0>
+                 └ <fastapi.dependencies.models.Dependant object at 0x7f974e1d1c40>
+
+  File "/home/runner/Skyblock-Tools-FastAPI/app.py", line 134, in item_auctions
+    auctions = await main.get_auctions()
+                     │    └ <function get_auctions at 0x7f9765131550>
+                     └ <module 'main' from '/home/runner/Skyblock-Tools-FastAPI/main.py'>
+
+TypeError: object list can't be used in 'await' expression
+2022-10-10 10:40:25.903 | INFO     | uvicorn.protocols.http.httptools_impl:send:437 - 172.18.0.1:60146 - "GET / HTTP/1.1" 307
+2022-10-10 10:40:26.122 | INFO     | uvicorn.protocols.http.httptools_impl:send:437 - 172.18.0.1:60146 - "GET /docs HTTP/1.1" 200
+2022-10-10 10:40:27.046 | INFO     | uvicorn.protocols.http.httptools_impl:send:437 - 172.18.0.1:60146 - "GET /openapi.json HTTP/1.1" 200
+2022-10-10 13:38:07.421 | DEBUG    | git.cmd:execute:870 - Popen(['git', 'pull', '-v', 'origin'], cwd=/home/runner/Skyblock-Tools-FastAPI/neu-repo, universal_newlines=True, shell=None, istream=None)
+2022-10-10 13:38:08.300 | DEBUG    | git.cmd:execute:870 - Popen(['git', 'cat-file', '--batch-check'], cwd=/home/runner/Skyblock-Tools-FastAPI/neu-repo, universal_newlines=False, shell=None, istream=<valid stream>)
+2022-10-10 13:38:08.319 | DEBUG    | urllib3.connectionpool:_new_conn:1001 - Starting new HTTPS connection (1): api.hypixel.net:443
+2022-10-10 13:38:08.396 | DEBUG    | urllib3.connectionpool:_make_request:456 - https://api.hypixel.net:443 "GET /resources/skyblock/items HTTP/1.1" 200 None
+2022-10-10 13:38:10.113 | INFO     | uvicorn.server:serve:75 - Started server process [22]
+2022-10-10 13:38:10.113 | INFO     | uvicorn.lifespan.on:startup:45 - Waiting for application startup.
+2022-10-10 13:38:10.117 | ERROR    | uvicorn.lifespan.on:send:119 - Traceback (most recent call last):
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/starlette/routing.py", line 635, in lifespan
+    async with self.lifespan_context(app):
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/starlette/routing.py", line 530, in __aenter__
+    await self._router.startup()
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/starlette/routing.py", line 612, in startup
+    await handler()
+  File "/home/runner/Skyblock-Tools-FastAPI/app.py", line 278, in load_db
+    async with aiofiles.open("database.json", "r") as database:
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/aiofiles/base.py", line 78, in __aenter__
+    self._obj = await self._coro
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/aiofiles/threadpool/__init__.py", line 80, in _open
+    f = yield from loop.run_in_executor(executor, cb)
+  File "/nix/store/p21fdyxqb3yqflpim7g8s1mymgpnqiv7-python3-3.8.12/lib/python3.8/concurrent/futures/thread.py", line 57, in run
+    result = self.fn(*self.args, **self.kwargs)
+FileNotFoundError: [Errno 2] No such file or directory: 'database.json'
+
+2022-10-10 13:38:10.118 | ERROR    | uvicorn.lifespan.on:startup:56 - Application startup failed. Exiting.
+2022-10-10 14:16:16.951 | DEBUG    | git.cmd:execute:870 - Popen(['git', 'pull', '-v', 'origin'], cwd=/home/runner/Skyblock-Tools-FastAPI/neu-repo, universal_newlines=True, shell=None, istream=None)
+2022-10-10 14:16:17.225 | DEBUG    | urllib3.connectionpool:_new_conn:1001 - Starting new HTTPS connection (1): api.hypixel.net:443
+2022-10-10 14:16:17.308 | DEBUG    | urllib3.connectionpool:_make_request:456 - https://api.hypixel.net:443 "GET /resources/skyblock/items HTTP/1.1" 200 None
+2022-10-10 14:16:18.390 | INFO     | uvicorn.server:serve:75 - Started server process [22]
+2022-10-10 14:16:18.391 | INFO     | uvicorn.lifespan.on:startup:45 - Waiting for application startup.
+2022-10-10 14:16:18.396 | ERROR    | uvicorn.lifespan.on:send:119 - Traceback (most recent call last):
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/starlette/routing.py", line 635, in lifespan
+    async with self.lifespan_context(app):
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/starlette/routing.py", line 530, in __aenter__
+    await self._router.startup()
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/starlette/routing.py", line 612, in startup
+    await handler()
+  File "/home/runner/Skyblock-Tools-FastAPI/app.py", line 278, in load_db
+    async with aiofiles.open("database.json", "r") as database:
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/aiofiles/base.py", line 78, in __aenter__
+    self._obj = await self._coro
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/aiofiles/threadpool/__init__.py", line 80, in _open
+    f = yield from loop.run_in_executor(executor, cb)
+  File "/nix/store/p21fdyxqb3yqflpim7g8s1mymgpnqiv7-python3-3.8.12/lib/python3.8/concurrent/futures/thread.py", line 57, in run
+    result = self.fn(*self.args, **self.kwargs)
+FileNotFoundError: [Errno 2] No such file or directory: 'database.json'
+
+2022-10-10 14:16:18.397 | ERROR    | uvicorn.lifespan.on:startup:56 - Application startup failed. Exiting.
+2022-10-10 17:04:05.505 | DEBUG    | git.cmd:execute:870 - Popen(['git', 'pull', '-v', 'origin'], cwd=/home/runner/Skyblock-Tools-FastAPI/neu-repo, universal_newlines=True, shell=None, istream=None)
+2022-10-10 17:04:05.732 | DEBUG    | urllib3.connectionpool:_new_conn:1001 - Starting new HTTPS connection (1): api.hypixel.net:443
+2022-10-10 17:04:05.817 | DEBUG    | urllib3.connectionpool:_make_request:456 - https://api.hypixel.net:443 "GET /resources/skyblock/items HTTP/1.1" 200 None
+2022-10-10 17:04:06.928 | INFO     | uvicorn.server:serve:75 - Started server process [21]
+2022-10-10 17:04:06.929 | INFO     | uvicorn.lifespan.on:startup:45 - Waiting for application startup.
+2022-10-10 17:04:06.934 | ERROR    | uvicorn.lifespan.on:send:119 - Traceback (most recent call last):
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/starlette/routing.py", line 635, in lifespan
+    async with self.lifespan_context(app):
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/starlette/routing.py", line 530, in __aenter__
+    await self._router.startup()
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/starlette/routing.py", line 612, in startup
+    await handler()
+  File "/home/runner/Skyblock-Tools-FastAPI/app.py", line 278, in load_db
+    async with aiofiles.open("database.json", "r") as database:
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/aiofiles/base.py", line 78, in __aenter__
+    self._obj = await self._coro
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/aiofiles/threadpool/__init__.py", line 80, in _open
+    f = yield from loop.run_in_executor(executor, cb)
+  File "/nix/store/p21fdyxqb3yqflpim7g8s1mymgpnqiv7-python3-3.8.12/lib/python3.8/concurrent/futures/thread.py", line 57, in run
+    result = self.fn(*self.args, **self.kwargs)
+FileNotFoundError: [Errno 2] No such file or directory: 'database.json'
+
+2022-10-10 17:04:06.934 | ERROR    | uvicorn.lifespan.on:startup:56 - Application startup failed. Exiting.
+2022-10-10 17:38:33.205 | DEBUG    | git.cmd:execute:870 - Popen(['git', 'pull', '-v', 'origin'], cwd=/home/runner/Skyblock-Tools-FastAPI/neu-repo, universal_newlines=True, shell=None, istream=None)
+2022-10-10 17:38:33.446 | DEBUG    | urllib3.connectionpool:_new_conn:1001 - Starting new HTTPS connection (1): api.hypixel.net:443
+2022-10-10 17:38:33.507 | DEBUG    | urllib3.connectionpool:_make_request:456 - https://api.hypixel.net:443 "GET /resources/skyblock/items HTTP/1.1" 200 None
+2022-10-10 17:38:34.838 | INFO     | uvicorn.server:serve:75 - Started server process [22]
+2022-10-10 17:38:34.839 | INFO     | uvicorn.lifespan.on:startup:45 - Waiting for application startup.
+2022-10-10 17:38:34.842 | ERROR    | uvicorn.lifespan.on:send:119 - Traceback (most recent call last):
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/starlette/routing.py", line 635, in lifespan
+    async with self.lifespan_context(app):
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/starlette/routing.py", line 530, in __aenter__
+    await self._router.startup()
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/starlette/routing.py", line 612, in startup
+    await handler()
+  File "/home/runner/Skyblock-Tools-FastAPI/app.py", line 278, in load_db
+    async with aiofiles.open("database.json", "r") as database:
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/aiofiles/base.py", line 78, in __aenter__
+    self._obj = await self._coro
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/aiofiles/threadpool/__init__.py", line 80, in _open
+    f = yield from loop.run_in_executor(executor, cb)
+  File "/nix/store/p21fdyxqb3yqflpim7g8s1mymgpnqiv7-python3-3.8.12/lib/python3.8/concurrent/futures/thread.py", line 57, in run
+    result = self.fn(*self.args, **self.kwargs)
+FileNotFoundError: [Errno 2] No such file or directory: 'database.json'
+
+2022-10-10 17:38:34.842 | ERROR    | uvicorn.lifespan.on:startup:56 - Application startup failed. Exiting.
+2022-10-10 17:39:01.349 | DEBUG    | git.cmd:execute:870 - Popen(['git', 'pull', '-v', 'origin'], cwd=/home/runner/Skyblock-Tools-FastAPI/neu-repo, universal_newlines=True, shell=None, istream=None)
+2022-10-10 17:39:01.619 | DEBUG    | urllib3.connectionpool:_new_conn:1001 - Starting new HTTPS connection (1): api.hypixel.net:443
+2022-10-10 17:39:01.683 | DEBUG    | urllib3.connectionpool:_make_request:456 - https://api.hypixel.net:443 "GET /resources/skyblock/items HTTP/1.1" 200 None
+2022-10-10 17:39:01.997 | INFO     | uvicorn.server:serve:75 - Started server process [72]
+2022-10-10 17:39:01.998 | INFO     | uvicorn.lifespan.on:startup:45 - Waiting for application startup.
+2022-10-10 17:39:02.000 | ERROR    | uvicorn.lifespan.on:send:119 - Traceback (most recent call last):
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/starlette/routing.py", line 635, in lifespan
+    async with self.lifespan_context(app):
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/starlette/routing.py", line 530, in __aenter__
+    await self._router.startup()
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/starlette/routing.py", line 612, in startup
+    await handler()
+  File "/home/runner/Skyblock-Tools-FastAPI/app.py", line 278, in load_db
+    async with aiofiles.open("database.json", "r") as database:
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/aiofiles/base.py", line 78, in __aenter__
+    self._obj = await self._coro
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/aiofiles/threadpool/__init__.py", line 80, in _open
+    f = yield from loop.run_in_executor(executor, cb)
+  File "/nix/store/p21fdyxqb3yqflpim7g8s1mymgpnqiv7-python3-3.8.12/lib/python3.8/concurrent/futures/thread.py", line 57, in run
+    result = self.fn(*self.args, **self.kwargs)
+FileNotFoundError: [Errno 2] No such file or directory: 'database.json'
+
+2022-10-10 17:39:02.001 | ERROR    | uvicorn.lifespan.on:startup:56 - Application startup failed. Exiting.
+2022-10-10 17:40:06.499 | DEBUG    | git.cmd:execute:870 - Popen(['git', 'pull', '-v', 'origin'], cwd=/home/runner/Skyblock-Tools-FastAPI/neu-repo, universal_newlines=True, shell=None, istream=None)
+2022-10-10 17:40:06.739 | DEBUG    | urllib3.connectionpool:_new_conn:1001 - Starting new HTTPS connection (1): api.hypixel.net:443
+2022-10-10 17:40:06.794 | DEBUG    | urllib3.connectionpool:_make_request:456 - https://api.hypixel.net:443 "GET /resources/skyblock/items HTTP/1.1" 200 None
+2022-10-10 17:40:07.144 | INFO     | uvicorn.server:serve:75 - Started server process [244]
+2022-10-10 17:40:07.145 | INFO     | uvicorn.lifespan.on:startup:45 - Waiting for application startup.
+2022-10-10 17:40:07.148 | ERROR    | uvicorn.lifespan.on:send:119 - Traceback (most recent call last):
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/starlette/routing.py", line 635, in lifespan
+    async with self.lifespan_context(app):
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/starlette/routing.py", line 530, in __aenter__
+    await self._router.startup()
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/starlette/routing.py", line 612, in startup
+    await handler()
+  File "/home/runner/Skyblock-Tools-FastAPI/app.py", line 278, in load_db
+    async with aiofiles.open("database.json", "r") as database:
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/aiofiles/base.py", line 78, in __aenter__
+    self._obj = await self._coro
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/aiofiles/threadpool/__init__.py", line 80, in _open
+    f = yield from loop.run_in_executor(executor, cb)
+  File "/nix/store/p21fdyxqb3yqflpim7g8s1mymgpnqiv7-python3-3.8.12/lib/python3.8/concurrent/futures/thread.py", line 57, in run
+    result = self.fn(*self.args, **self.kwargs)
+FileNotFoundError: [Errno 2] No such file or directory: 'database.json'
+
+2022-10-10 17:40:07.149 | ERROR    | uvicorn.lifespan.on:startup:56 - Application startup failed. Exiting.
+2022-10-10 17:40:12.249 | DEBUG    | git.cmd:execute:870 - Popen(['git', 'pull', '-v', 'origin'], cwd=/home/runner/Skyblock-Tools-FastAPI/neu-repo, universal_newlines=True, shell=None, istream=None)
+2022-10-10 17:40:12.906 | DEBUG    | urllib3.connectionpool:_new_conn:1001 - Starting new HTTPS connection (1): api.hypixel.net:443
+2022-10-10 17:40:12.968 | DEBUG    | urllib3.connectionpool:_make_request:456 - https://api.hypixel.net:443 "GET /resources/skyblock/items HTTP/1.1" 200 None
+2022-10-10 17:40:13.318 | INFO     | uvicorn.server:serve:75 - Started server process [275]
+2022-10-10 17:40:13.319 | INFO     | uvicorn.lifespan.on:startup:45 - Waiting for application startup.
+2022-10-10 17:40:13.323 | ERROR    | uvicorn.lifespan.on:send:119 - Traceback (most recent call last):
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/starlette/routing.py", line 635, in lifespan
+    async with self.lifespan_context(app):
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/starlette/routing.py", line 530, in __aenter__
+    await self._router.startup()
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/starlette/routing.py", line 612, in startup
+    await handler()
+  File "/home/runner/Skyblock-Tools-FastAPI/app.py", line 278, in load_db
+    async with aiofiles.open("database.json", "r") as database:
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/aiofiles/base.py", line 78, in __aenter__
+    self._obj = await self._coro
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/aiofiles/threadpool/__init__.py", line 80, in _open
+    f = yield from loop.run_in_executor(executor, cb)
+  File "/nix/store/p21fdyxqb3yqflpim7g8s1mymgpnqiv7-python3-3.8.12/lib/python3.8/concurrent/futures/thread.py", line 57, in run
+    result = self.fn(*self.args, **self.kwargs)
+FileNotFoundError: [Errno 2] No such file or directory: 'database.json'
+
+2022-10-10 17:40:13.324 | ERROR    | uvicorn.lifespan.on:startup:56 - Application startup failed. Exiting.
+2022-10-10 17:41:11.041 | DEBUG    | git.cmd:execute:870 - Popen(['git', 'pull', '-v', 'origin'], cwd=/home/runner/Skyblock-Tools-FastAPI/neu-repo, universal_newlines=True, shell=None, istream=None)
+2022-10-10 17:41:11.262 | DEBUG    | urllib3.connectionpool:_new_conn:1001 - Starting new HTTPS connection (1): api.hypixel.net:443
+2022-10-10 17:41:11.315 | DEBUG    | urllib3.connectionpool:_make_request:456 - https://api.hypixel.net:443 "GET /resources/skyblock/items HTTP/1.1" 200 None
+2022-10-10 17:41:11.641 | INFO     | uvicorn.server:serve:75 - Started server process [374]
+2022-10-10 17:41:11.642 | INFO     | uvicorn.lifespan.on:startup:45 - Waiting for application startup.
+2022-10-10 17:41:11.646 | ERROR    | uvicorn.lifespan.on:send:119 - Traceback (most recent call last):
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/starlette/routing.py", line 635, in lifespan
+    async with self.lifespan_context(app):
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/starlette/routing.py", line 530, in __aenter__
+    await self._router.startup()
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/starlette/routing.py", line 612, in startup
+    await handler()
+  File "/home/runner/Skyblock-Tools-FastAPI/app.py", line 278, in load_db
+    async with aiofiles.open("database.json", "r") as database:
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/aiofiles/base.py", line 78, in __aenter__
+    self._obj = await self._coro
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/aiofiles/threadpool/__init__.py", line 80, in _open
+    f = yield from loop.run_in_executor(executor, cb)
+  File "/nix/store/p21fdyxqb3yqflpim7g8s1mymgpnqiv7-python3-3.8.12/lib/python3.8/concurrent/futures/thread.py", line 57, in run
+    result = self.fn(*self.args, **self.kwargs)
+FileNotFoundError: [Errno 2] No such file or directory: 'database.json'
+
+2022-10-10 17:41:11.646 | ERROR    | uvicorn.lifespan.on:startup:56 - Application startup failed. Exiting.
+2022-10-10 17:46:04.290 | DEBUG    | git.cmd:execute:870 - Popen(['git', 'pull', '-v', 'origin'], cwd=/home/runner/Skyblock-Tools-FastAPI/neu-repo, universal_newlines=True, shell=None, istream=None)
+2022-10-10 17:46:04.681 | DEBUG    | urllib3.connectionpool:_new_conn:1001 - Starting new HTTPS connection (1): api.hypixel.net:443
+2022-10-10 17:46:04.765 | DEBUG    | urllib3.connectionpool:_make_request:456 - https://api.hypixel.net:443 "GET /resources/skyblock/items HTTP/1.1" 200 None
+2022-10-10 17:46:05.952 | INFO     | uvicorn.server:serve:75 - Started server process [23]
+2022-10-10 17:46:05.953 | INFO     | uvicorn.lifespan.on:startup:45 - Waiting for application startup.
+2022-10-10 17:46:05.958 | ERROR    | uvicorn.lifespan.on:send:119 - Traceback (most recent call last):
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/starlette/routing.py", line 635, in lifespan
+    async with self.lifespan_context(app):
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/starlette/routing.py", line 530, in __aenter__
+    await self._router.startup()
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/starlette/routing.py", line 612, in startup
+    await handler()
+  File "/home/runner/Skyblock-Tools-FastAPI/app.py", line 278, in load_db
+    async with aiofiles.open("database.json", "r") as database:
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/aiofiles/base.py", line 78, in __aenter__
+    self._obj = await self._coro
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/aiofiles/threadpool/__init__.py", line 80, in _open
+    f = yield from loop.run_in_executor(executor, cb)
+  File "/nix/store/p21fdyxqb3yqflpim7g8s1mymgpnqiv7-python3-3.8.12/lib/python3.8/concurrent/futures/thread.py", line 57, in run
+    result = self.fn(*self.args, **self.kwargs)
+FileNotFoundError: [Errno 2] No such file or directory: 'database.json'
+
+2022-10-10 17:46:05.958 | ERROR    | uvicorn.lifespan.on:startup:56 - Application startup failed. Exiting.
+2022-10-10 17:48:39.403 | DEBUG    | git.cmd:execute:870 - Popen(['git', 'pull', '-v', 'origin'], cwd=/home/runner/Skyblock-Tools-FastAPI/neu-repo, universal_newlines=True, shell=None, istream=None)
+2022-10-10 17:48:39.703 | DEBUG    | urllib3.connectionpool:_new_conn:1001 - Starting new HTTPS connection (1): api.hypixel.net:443
+2022-10-10 17:48:39.762 | DEBUG    | urllib3.connectionpool:_make_request:456 - https://api.hypixel.net:443 "GET /resources/skyblock/items HTTP/1.1" 200 None
+2022-10-10 17:48:40.299 | INFO     | uvicorn.server:serve:75 - Started server process [22]
+2022-10-10 17:48:40.300 | INFO     | uvicorn.lifespan.on:startup:45 - Waiting for application startup.
+2022-10-10 17:48:40.305 | ERROR    | uvicorn.lifespan.on:send:119 - Traceback (most recent call last):
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/starlette/routing.py", line 635, in lifespan
+    async with self.lifespan_context(app):
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/starlette/routing.py", line 530, in __aenter__
+    await self._router.startup()
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/starlette/routing.py", line 612, in startup
+    await handler()
+  File "/home/runner/Skyblock-Tools-FastAPI/app.py", line 278, in load_db
+    async with aiofiles.open("database.json", "r") as database:
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/aiofiles/base.py", line 78, in __aenter__
+    self._obj = await self._coro
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/aiofiles/threadpool/__init__.py", line 80, in _open
+    f = yield from loop.run_in_executor(executor, cb)
+  File "/nix/store/p21fdyxqb3yqflpim7g8s1mymgpnqiv7-python3-3.8.12/lib/python3.8/concurrent/futures/thread.py", line 57, in run
+    result = self.fn(*self.args, **self.kwargs)
+FileNotFoundError: [Errno 2] No such file or directory: 'database.json'
+
+2022-10-10 17:48:40.305 | ERROR    | uvicorn.lifespan.on:startup:56 - Application startup failed. Exiting.
+2022-10-10 17:52:29.911 | DEBUG    | git.cmd:execute:870 - Popen(['git', 'pull', '-v', 'origin'], cwd=/home/runner/Skyblock-Tools-FastAPI/neu-repo, universal_newlines=True, shell=None, istream=None)
+2022-10-10 17:52:30.210 | DEBUG    | urllib3.connectionpool:_new_conn:1001 - Starting new HTTPS connection (1): api.hypixel.net:443
+2022-10-10 17:52:30.289 | DEBUG    | urllib3.connectionpool:_make_request:456 - https://api.hypixel.net:443 "GET /resources/skyblock/items HTTP/1.1" 200 None
+2022-10-10 17:52:31.483 | INFO     | uvicorn.server:serve:75 - Started server process [22]
+2022-10-10 17:52:31.484 | INFO     | uvicorn.lifespan.on:startup:45 - Waiting for application startup.
+2022-10-10 17:52:31.490 | ERROR    | uvicorn.lifespan.on:send:119 - Traceback (most recent call last):
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/starlette/routing.py", line 635, in lifespan
+    async with self.lifespan_context(app):
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/starlette/routing.py", line 530, in __aenter__
+    await self._router.startup()
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/starlette/routing.py", line 612, in startup
+    await handler()
+  File "/home/runner/Skyblock-Tools-FastAPI/app.py", line 278, in load_db
+    async with aiofiles.open("database.json", "r") as database:
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/aiofiles/base.py", line 78, in __aenter__
+    self._obj = await self._coro
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/aiofiles/threadpool/__init__.py", line 80, in _open
+    f = yield from loop.run_in_executor(executor, cb)
+  File "/nix/store/p21fdyxqb3yqflpim7g8s1mymgpnqiv7-python3-3.8.12/lib/python3.8/concurrent/futures/thread.py", line 57, in run
+    result = self.fn(*self.args, **self.kwargs)
+FileNotFoundError: [Errno 2] No such file or directory: 'database.json'
+
+2022-10-10 17:52:31.492 | ERROR    | uvicorn.lifespan.on:startup:56 - Application startup failed. Exiting.
+2022-10-10 17:57:49.314 | DEBUG    | git.cmd:execute:870 - Popen(['git', 'pull', '-v', 'origin'], cwd=/home/runner/Skyblock-Tools-FastAPI/neu-repo, universal_newlines=True, shell=None, istream=None)
+2022-10-10 17:57:49.606 | DEBUG    | urllib3.connectionpool:_new_conn:1001 - Starting new HTTPS connection (1): api.hypixel.net:443
+2022-10-10 17:57:49.670 | DEBUG    | urllib3.connectionpool:_make_request:456 - https://api.hypixel.net:443 "GET /resources/skyblock/items HTTP/1.1" 200 None
+2022-10-10 17:57:50.365 | INFO     | uvicorn.server:serve:75 - Started server process [22]
+2022-10-10 17:57:50.366 | INFO     | uvicorn.lifespan.on:startup:45 - Waiting for application startup.
+2022-10-10 17:57:50.371 | ERROR    | uvicorn.lifespan.on:send:119 - Traceback (most recent call last):
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/starlette/routing.py", line 635, in lifespan
+    async with self.lifespan_context(app):
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/starlette/routing.py", line 530, in __aenter__
+    await self._router.startup()
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/starlette/routing.py", line 612, in startup
+    await handler()
+  File "/home/runner/Skyblock-Tools-FastAPI/app.py", line 278, in load_db
+    async with aiofiles.open("database.json", "r") as database:
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/aiofiles/base.py", line 78, in __aenter__
+    self._obj = await self._coro
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/aiofiles/threadpool/__init__.py", line 80, in _open
+    f = yield from loop.run_in_executor(executor, cb)
+  File "/nix/store/p21fdyxqb3yqflpim7g8s1mymgpnqiv7-python3-3.8.12/lib/python3.8/concurrent/futures/thread.py", line 57, in run
+    result = self.fn(*self.args, **self.kwargs)
+FileNotFoundError: [Errno 2] No such file or directory: 'database.json'
+
+2022-10-10 17:57:50.372 | ERROR    | uvicorn.lifespan.on:startup:56 - Application startup failed. Exiting.
+2022-10-10 17:58:30.558 | DEBUG    | git.cmd:execute:870 - Popen(['git', 'pull', '-v', 'origin'], cwd=/home/runner/Skyblock-Tools-FastAPI/neu-repo, universal_newlines=True, shell=None, istream=None)
+2022-10-10 17:58:30.828 | DEBUG    | urllib3.connectionpool:_new_conn:1001 - Starting new HTTPS connection (1): api.hypixel.net:443
+2022-10-10 17:58:30.891 | DEBUG    | urllib3.connectionpool:_make_request:456 - https://api.hypixel.net:443 "GET /resources/skyblock/items HTTP/1.1" 200 None
+2022-10-10 17:58:31.337 | INFO     | uvicorn.server:serve:75 - Started server process [56]
+2022-10-10 17:58:31.338 | INFO     | uvicorn.lifespan.on:startup:45 - Waiting for application startup.
+2022-10-10 17:58:31.343 | ERROR    | uvicorn.lifespan.on:send:119 - Traceback (most recent call last):
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/starlette/routing.py", line 635, in lifespan
+    async with self.lifespan_context(app):
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/starlette/routing.py", line 530, in __aenter__
+    await self._router.startup()
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/starlette/routing.py", line 612, in startup
+    await handler()
+  File "/home/runner/Skyblock-Tools-FastAPI/app.py", line 278, in load_db
+    async with aiofiles.open("database.json", "r") as database:
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/aiofiles/base.py", line 78, in __aenter__
+    self._obj = await self._coro
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/aiofiles/threadpool/__init__.py", line 80, in _open
+    f = yield from loop.run_in_executor(executor, cb)
+  File "/nix/store/p21fdyxqb3yqflpim7g8s1mymgpnqiv7-python3-3.8.12/lib/python3.8/concurrent/futures/thread.py", line 57, in run
+    result = self.fn(*self.args, **self.kwargs)
+FileNotFoundError: [Errno 2] No such file or directory: 'database.json'
+
+2022-10-10 17:58:31.344 | ERROR    | uvicorn.lifespan.on:startup:56 - Application startup failed. Exiting.
+2022-10-10 18:01:10.871 | DEBUG    | git.cmd:execute:870 - Popen(['git', 'pull', '-v', 'origin'], cwd=/home/runner/Skyblock-Tools-FastAPI/neu-repo, universal_newlines=True, shell=None, istream=None)
+2022-10-10 18:01:11.225 | DEBUG    | urllib3.connectionpool:_new_conn:1001 - Starting new HTTPS connection (1): api.hypixel.net:443
+2022-10-10 18:01:11.307 | DEBUG    | urllib3.connectionpool:_make_request:456 - https://api.hypixel.net:443 "GET /resources/skyblock/items HTTP/1.1" 200 None
+2022-10-10 18:01:12.370 | INFO     | uvicorn.server:serve:75 - Started server process [21]
+2022-10-10 18:01:12.372 | INFO     | uvicorn.lifespan.on:startup:45 - Waiting for application startup.
+2022-10-10 18:01:12.378 | ERROR    | uvicorn.lifespan.on:send:119 - Traceback (most recent call last):
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/starlette/routing.py", line 635, in lifespan
+    async with self.lifespan_context(app):
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/starlette/routing.py", line 530, in __aenter__
+    await self._router.startup()
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/starlette/routing.py", line 612, in startup
+    await handler()
+  File "/home/runner/Skyblock-Tools-FastAPI/app.py", line 278, in load_db
+    async with aiofiles.open("database.json", "r") as database:
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/aiofiles/base.py", line 78, in __aenter__
+    self._obj = await self._coro
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/aiofiles/threadpool/__init__.py", line 80, in _open
+    f = yield from loop.run_in_executor(executor, cb)
+  File "/nix/store/p21fdyxqb3yqflpim7g8s1mymgpnqiv7-python3-3.8.12/lib/python3.8/concurrent/futures/thread.py", line 57, in run
+    result = self.fn(*self.args, **self.kwargs)
+FileNotFoundError: [Errno 2] No such file or directory: 'database.json'
+
+2022-10-10 18:01:12.379 | ERROR    | uvicorn.lifespan.on:startup:56 - Application startup failed. Exiting.
+2022-10-10 18:03:29.119 | DEBUG    | git.cmd:execute:870 - Popen(['git', 'pull', '-v', 'origin'], cwd=/home/runner/Skyblock-Tools-FastAPI/neu-repo, universal_newlines=True, shell=None, istream=None)
+2022-10-10 18:03:29.436 | DEBUG    | urllib3.connectionpool:_new_conn:1001 - Starting new HTTPS connection (1): api.hypixel.net:443
+2022-10-10 18:03:29.508 | DEBUG    | urllib3.connectionpool:_make_request:456 - https://api.hypixel.net:443 "GET /resources/skyblock/items HTTP/1.1" 200 None
+2022-10-10 18:03:32.096 | INFO     | uvicorn.server:serve:75 - Started server process [22]
+2022-10-10 18:03:32.096 | INFO     | uvicorn.lifespan.on:startup:45 - Waiting for application startup.
+2022-10-10 18:03:32.100 | ERROR    | uvicorn.lifespan.on:send:119 - Traceback (most recent call last):
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/starlette/routing.py", line 635, in lifespan
+    async with self.lifespan_context(app):
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/starlette/routing.py", line 530, in __aenter__
+    await self._router.startup()
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/starlette/routing.py", line 612, in startup
+    await handler()
+  File "/home/runner/Skyblock-Tools-FastAPI/app.py", line 278, in load_db
+    async with aiofiles.open("database.json", "r") as database:
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/aiofiles/base.py", line 78, in __aenter__
+    self._obj = await self._coro
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/aiofiles/threadpool/__init__.py", line 80, in _open
+    f = yield from loop.run_in_executor(executor, cb)
+  File "/nix/store/p21fdyxqb3yqflpim7g8s1mymgpnqiv7-python3-3.8.12/lib/python3.8/concurrent/futures/thread.py", line 57, in run
+    result = self.fn(*self.args, **self.kwargs)
+FileNotFoundError: [Errno 2] No such file or directory: 'database.json'
+
+2022-10-10 18:03:32.101 | ERROR    | uvicorn.lifespan.on:startup:56 - Application startup failed. Exiting.
+2022-10-10 18:06:40.483 | DEBUG    | git.cmd:execute:870 - Popen(['git', 'pull', '-v', 'origin'], cwd=/home/runner/Skyblock-Tools-FastAPI/neu-repo, universal_newlines=True, shell=None, istream=None)
+2022-10-10 18:06:40.773 | DEBUG    | urllib3.connectionpool:_new_conn:1001 - Starting new HTTPS connection (1): api.hypixel.net:443
+2022-10-10 18:06:40.852 | DEBUG    | urllib3.connectionpool:_make_request:456 - https://api.hypixel.net:443 "GET /resources/skyblock/items HTTP/1.1" 200 None
+2022-10-10 18:06:41.911 | INFO     | uvicorn.server:serve:75 - Started server process [26]
+2022-10-10 18:06:41.911 | INFO     | uvicorn.lifespan.on:startup:45 - Waiting for application startup.
+2022-10-10 18:06:41.915 | ERROR    | uvicorn.lifespan.on:send:119 - Traceback (most recent call last):
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/starlette/routing.py", line 635, in lifespan
+    async with self.lifespan_context(app):
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/starlette/routing.py", line 530, in __aenter__
+    await self._router.startup()
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/starlette/routing.py", line 612, in startup
+    await handler()
+  File "/home/runner/Skyblock-Tools-FastAPI/app.py", line 278, in load_db
+    async with aiofiles.open("database.json", "r") as database:
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/aiofiles/base.py", line 78, in __aenter__
+    self._obj = await self._coro
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/aiofiles/threadpool/__init__.py", line 80, in _open
+    f = yield from loop.run_in_executor(executor, cb)
+  File "/nix/store/p21fdyxqb3yqflpim7g8s1mymgpnqiv7-python3-3.8.12/lib/python3.8/concurrent/futures/thread.py", line 57, in run
+    result = self.fn(*self.args, **self.kwargs)
+FileNotFoundError: [Errno 2] No such file or directory: 'database.json'
+
+2022-10-10 18:06:41.916 | ERROR    | uvicorn.lifespan.on:startup:56 - Application startup failed. Exiting.
+2022-10-10 18:07:39.893 | DEBUG    | git.cmd:execute:870 - Popen(['git', 'pull', '-v', 'origin'], cwd=/home/runner/Skyblock-Tools-FastAPI/neu-repo, universal_newlines=True, shell=None, istream=None)
+2022-10-10 18:07:40.162 | DEBUG    | urllib3.connectionpool:_new_conn:1001 - Starting new HTTPS connection (1): api.hypixel.net:443
+2022-10-10 18:07:40.239 | DEBUG    | urllib3.connectionpool:_make_request:456 - https://api.hypixel.net:443 "GET /resources/skyblock/items HTTP/1.1" 200 None
+2022-10-10 18:07:40.635 | INFO     | uvicorn.server:serve:75 - Started server process [54]
+2022-10-10 18:07:40.636 | INFO     | uvicorn.lifespan.on:startup:45 - Waiting for application startup.
+2022-10-10 18:07:40.639 | ERROR    | uvicorn.lifespan.on:send:119 - Traceback (most recent call last):
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/starlette/routing.py", line 635, in lifespan
+    async with self.lifespan_context(app):
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/starlette/routing.py", line 530, in __aenter__
+    await self._router.startup()
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/starlette/routing.py", line 612, in startup
+    await handler()
+  File "/home/runner/Skyblock-Tools-FastAPI/app.py", line 278, in load_db
+    async with aiofiles.open("database.json", "r") as database:
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/aiofiles/base.py", line 78, in __aenter__
+    self._obj = await self._coro
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/aiofiles/threadpool/__init__.py", line 80, in _open
+    f = yield from loop.run_in_executor(executor, cb)
+  File "/nix/store/p21fdyxqb3yqflpim7g8s1mymgpnqiv7-python3-3.8.12/lib/python3.8/concurrent/futures/thread.py", line 57, in run
+    result = self.fn(*self.args, **self.kwargs)
+FileNotFoundError: [Errno 2] No such file or directory: 'database.json'
+
+2022-10-10 18:07:40.640 | ERROR    | uvicorn.lifespan.on:startup:56 - Application startup failed. Exiting.
+2022-10-10 18:08:40.183 | DEBUG    | git.cmd:execute:870 - Popen(['git', 'pull', '-v', 'origin'], cwd=/home/runner/Skyblock-Tools-FastAPI/neu-repo, universal_newlines=True, shell=None, istream=None)
+2022-10-10 18:08:40.434 | DEBUG    | urllib3.connectionpool:_new_conn:1001 - Starting new HTTPS connection (1): api.hypixel.net:443
+2022-10-10 18:08:40.513 | DEBUG    | urllib3.connectionpool:_make_request:456 - https://api.hypixel.net:443 "GET /resources/skyblock/items HTTP/1.1" 200 None
+2022-10-10 18:08:40.856 | INFO     | uvicorn.server:serve:75 - Started server process [82]
+2022-10-10 18:08:40.856 | INFO     | uvicorn.lifespan.on:startup:45 - Waiting for application startup.
+2022-10-10 18:08:40.860 | ERROR    | uvicorn.lifespan.on:send:119 - Traceback (most recent call last):
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/starlette/routing.py", line 635, in lifespan
+    async with self.lifespan_context(app):
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/starlette/routing.py", line 530, in __aenter__
+    await self._router.startup()
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/starlette/routing.py", line 612, in startup
+    await handler()
+  File "/home/runner/Skyblock-Tools-FastAPI/app.py", line 278, in load_db
+    async with aiofiles.open("database.json", "r") as database:
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/aiofiles/base.py", line 78, in __aenter__
+    self._obj = await self._coro
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/aiofiles/threadpool/__init__.py", line 80, in _open
+    f = yield from loop.run_in_executor(executor, cb)
+  File "/nix/store/p21fdyxqb3yqflpim7g8s1mymgpnqiv7-python3-3.8.12/lib/python3.8/concurrent/futures/thread.py", line 57, in run
+    result = self.fn(*self.args, **self.kwargs)
+FileNotFoundError: [Errno 2] No such file or directory: 'database.json'
+
+2022-10-10 18:08:40.860 | ERROR    | uvicorn.lifespan.on:startup:56 - Application startup failed. Exiting.
+2022-10-10 18:09:41.092 | DEBUG    | git.cmd:execute:870 - Popen(['git', 'pull', '-v', 'origin'], cwd=/home/runner/Skyblock-Tools-FastAPI/neu-repo, universal_newlines=True, shell=None, istream=None)
+2022-10-10 18:09:41.355 | DEBUG    | urllib3.connectionpool:_new_conn:1001 - Starting new HTTPS connection (1): api.hypixel.net:443
+2022-10-10 18:09:41.427 | DEBUG    | urllib3.connectionpool:_make_request:456 - https://api.hypixel.net:443 "GET /resources/skyblock/items HTTP/1.1" 200 None
+2022-10-10 18:09:41.779 | INFO     | uvicorn.server:serve:75 - Started server process [110]
+2022-10-10 18:09:41.780 | INFO     | uvicorn.lifespan.on:startup:45 - Waiting for application startup.
+2022-10-10 18:09:41.783 | ERROR    | uvicorn.lifespan.on:send:119 - Traceback (most recent call last):
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/starlette/routing.py", line 635, in lifespan
+    async with self.lifespan_context(app):
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/starlette/routing.py", line 530, in __aenter__
+    await self._router.startup()
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/starlette/routing.py", line 612, in startup
+    await handler()
+  File "/home/runner/Skyblock-Tools-FastAPI/app.py", line 278, in load_db
+    async with aiofiles.open("database.json", "r") as database:
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/aiofiles/base.py", line 78, in __aenter__
+    self._obj = await self._coro
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/aiofiles/threadpool/__init__.py", line 80, in _open
+    f = yield from loop.run_in_executor(executor, cb)
+  File "/nix/store/p21fdyxqb3yqflpim7g8s1mymgpnqiv7-python3-3.8.12/lib/python3.8/concurrent/futures/thread.py", line 57, in run
+    result = self.fn(*self.args, **self.kwargs)
+FileNotFoundError: [Errno 2] No such file or directory: 'database.json'
+
+2022-10-10 18:09:41.784 | ERROR    | uvicorn.lifespan.on:startup:56 - Application startup failed. Exiting.
+2022-10-10 18:10:41.391 | DEBUG    | git.cmd:execute:870 - Popen(['git', 'pull', '-v', 'origin'], cwd=/home/runner/Skyblock-Tools-FastAPI/neu-repo, universal_newlines=True, shell=None, istream=None)
+2022-10-10 18:10:41.730 | DEBUG    | urllib3.connectionpool:_new_conn:1001 - Starting new HTTPS connection (1): api.hypixel.net:443
+2022-10-10 18:10:41.953 | DEBUG    | urllib3.connectionpool:_make_request:456 - https://api.hypixel.net:443 "GET /resources/skyblock/items HTTP/1.1" 200 None
+2022-10-10 18:10:42.326 | INFO     | uvicorn.server:serve:75 - Started server process [138]
+2022-10-10 18:10:42.327 | INFO     | uvicorn.lifespan.on:startup:45 - Waiting for application startup.
+2022-10-10 18:10:42.330 | ERROR    | uvicorn.lifespan.on:send:119 - Traceback (most recent call last):
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/starlette/routing.py", line 635, in lifespan
+    async with self.lifespan_context(app):
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/starlette/routing.py", line 530, in __aenter__
+    await self._router.startup()
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/starlette/routing.py", line 612, in startup
+    await handler()
+  File "/home/runner/Skyblock-Tools-FastAPI/app.py", line 278, in load_db
+    async with aiofiles.open("database.json", "r") as database:
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/aiofiles/base.py", line 78, in __aenter__
+    self._obj = await self._coro
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/aiofiles/threadpool/__init__.py", line 80, in _open
+    f = yield from loop.run_in_executor(executor, cb)
+  File "/nix/store/p21fdyxqb3yqflpim7g8s1mymgpnqiv7-python3-3.8.12/lib/python3.8/concurrent/futures/thread.py", line 57, in run
+    result = self.fn(*self.args, **self.kwargs)
+FileNotFoundError: [Errno 2] No such file or directory: 'database.json'
+
+2022-10-10 18:10:42.331 | ERROR    | uvicorn.lifespan.on:startup:56 - Application startup failed. Exiting.
+2022-10-10 18:11:42.270 | DEBUG    | git.cmd:execute:870 - Popen(['git', 'pull', '-v', 'origin'], cwd=/home/runner/Skyblock-Tools-FastAPI/neu-repo, universal_newlines=True, shell=None, istream=None)
+2022-10-10 18:11:42.672 | DEBUG    | urllib3.connectionpool:_new_conn:1001 - Starting new HTTPS connection (1): api.hypixel.net:443
+2022-10-10 18:11:42.756 | DEBUG    | urllib3.connectionpool:_make_request:456 - https://api.hypixel.net:443 "GET /resources/skyblock/items HTTP/1.1" 200 None
+2022-10-10 18:11:43.146 | INFO     | uvicorn.server:serve:75 - Started server process [166]
+2022-10-10 18:11:43.147 | INFO     | uvicorn.lifespan.on:startup:45 - Waiting for application startup.
+2022-10-10 18:11:43.151 | ERROR    | uvicorn.lifespan.on:send:119 - Traceback (most recent call last):
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/starlette/routing.py", line 635, in lifespan
+    async with self.lifespan_context(app):
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/starlette/routing.py", line 530, in __aenter__
+    await self._router.startup()
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/starlette/routing.py", line 612, in startup
+    await handler()
+  File "/home/runner/Skyblock-Tools-FastAPI/app.py", line 278, in load_db
+    async with aiofiles.open("database.json", "r") as database:
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/aiofiles/base.py", line 78, in __aenter__
+    self._obj = await self._coro
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/aiofiles/threadpool/__init__.py", line 80, in _open
+    f = yield from loop.run_in_executor(executor, cb)
+  File "/nix/store/p21fdyxqb3yqflpim7g8s1mymgpnqiv7-python3-3.8.12/lib/python3.8/concurrent/futures/thread.py", line 57, in run
+    result = self.fn(*self.args, **self.kwargs)
+FileNotFoundError: [Errno 2] No such file or directory: 'database.json'
+
+2022-10-10 18:11:43.152 | ERROR    | uvicorn.lifespan.on:startup:56 - Application startup failed. Exiting.
+2022-10-10 18:12:42.568 | DEBUG    | git.cmd:execute:870 - Popen(['git', 'pull', '-v', 'origin'], cwd=/home/runner/Skyblock-Tools-FastAPI/neu-repo, universal_newlines=True, shell=None, istream=None)
+2022-10-10 18:12:42.822 | DEBUG    | urllib3.connectionpool:_new_conn:1001 - Starting new HTTPS connection (1): api.hypixel.net:443
+2022-10-10 18:12:42.901 | DEBUG    | urllib3.connectionpool:_make_request:456 - https://api.hypixel.net:443 "GET /resources/skyblock/items HTTP/1.1" 200 None
+2022-10-10 18:12:43.264 | INFO     | uvicorn.server:serve:75 - Started server process [194]
+2022-10-10 18:12:43.264 | INFO     | uvicorn.lifespan.on:startup:45 - Waiting for application startup.
+2022-10-10 18:12:43.268 | ERROR    | uvicorn.lifespan.on:send:119 - Traceback (most recent call last):
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/starlette/routing.py", line 635, in lifespan
+    async with self.lifespan_context(app):
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/starlette/routing.py", line 530, in __aenter__
+    await self._router.startup()
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/starlette/routing.py", line 612, in startup
+    await handler()
+  File "/home/runner/Skyblock-Tools-FastAPI/app.py", line 278, in load_db
+    async with aiofiles.open("database.json", "r") as database:
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/aiofiles/base.py", line 78, in __aenter__
+    self._obj = await self._coro
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/aiofiles/threadpool/__init__.py", line 80, in _open
+    f = yield from loop.run_in_executor(executor, cb)
+  File "/nix/store/p21fdyxqb3yqflpim7g8s1mymgpnqiv7-python3-3.8.12/lib/python3.8/concurrent/futures/thread.py", line 57, in run
+    result = self.fn(*self.args, **self.kwargs)
+FileNotFoundError: [Errno 2] No such file or directory: 'database.json'
+
+2022-10-10 18:12:43.268 | ERROR    | uvicorn.lifespan.on:startup:56 - Application startup failed. Exiting.
+2022-10-10 18:13:42.299 | DEBUG    | git.cmd:execute:870 - Popen(['git', 'pull', '-v', 'origin'], cwd=/home/runner/Skyblock-Tools-FastAPI/neu-repo, universal_newlines=True, shell=None, istream=None)
+2022-10-10 18:13:42.549 | DEBUG    | urllib3.connectionpool:_new_conn:1001 - Starting new HTTPS connection (1): api.hypixel.net:443
+2022-10-10 18:13:42.636 | DEBUG    | urllib3.connectionpool:_make_request:456 - https://api.hypixel.net:443 "GET /resources/skyblock/items HTTP/1.1" 200 None
+2022-10-10 18:13:42.987 | INFO     | uvicorn.server:serve:75 - Started server process [222]
+2022-10-10 18:13:42.988 | INFO     | uvicorn.lifespan.on:startup:45 - Waiting for application startup.
+2022-10-10 18:13:42.992 | ERROR    | uvicorn.lifespan.on:send:119 - Traceback (most recent call last):
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/starlette/routing.py", line 635, in lifespan
+    async with self.lifespan_context(app):
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/starlette/routing.py", line 530, in __aenter__
+    await self._router.startup()
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/starlette/routing.py", line 612, in startup
+    await handler()
+  File "/home/runner/Skyblock-Tools-FastAPI/app.py", line 278, in load_db
+    async with aiofiles.open("database.json", "r") as database:
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/aiofiles/base.py", line 78, in __aenter__
+    self._obj = await self._coro
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/aiofiles/threadpool/__init__.py", line 80, in _open
+    f = yield from loop.run_in_executor(executor, cb)
+  File "/nix/store/p21fdyxqb3yqflpim7g8s1mymgpnqiv7-python3-3.8.12/lib/python3.8/concurrent/futures/thread.py", line 57, in run
+    result = self.fn(*self.args, **self.kwargs)
+FileNotFoundError: [Errno 2] No such file or directory: 'database.json'
+
+2022-10-10 18:13:42.992 | ERROR    | uvicorn.lifespan.on:startup:56 - Application startup failed. Exiting.
+2022-10-10 18:14:43.268 | DEBUG    | git.cmd:execute:870 - Popen(['git', 'pull', '-v', 'origin'], cwd=/home/runner/Skyblock-Tools-FastAPI/neu-repo, universal_newlines=True, shell=None, istream=None)
+2022-10-10 18:14:43.525 | DEBUG    | urllib3.connectionpool:_new_conn:1001 - Starting new HTTPS connection (1): api.hypixel.net:443
+2022-10-10 18:14:43.608 | DEBUG    | urllib3.connectionpool:_make_request:456 - https://api.hypixel.net:443 "GET /resources/skyblock/items HTTP/1.1" 200 None
+2022-10-10 18:14:43.973 | INFO     | uvicorn.server:serve:75 - Started server process [250]
+2022-10-10 18:14:43.973 | INFO     | uvicorn.lifespan.on:startup:45 - Waiting for application startup.
+2022-10-10 18:14:43.976 | ERROR    | uvicorn.lifespan.on:send:119 - Traceback (most recent call last):
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/starlette/routing.py", line 635, in lifespan
+    async with self.lifespan_context(app):
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/starlette/routing.py", line 530, in __aenter__
+    await self._router.startup()
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/starlette/routing.py", line 612, in startup
+    await handler()
+  File "/home/runner/Skyblock-Tools-FastAPI/app.py", line 278, in load_db
+    async with aiofiles.open("database.json", "r") as database:
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/aiofiles/base.py", line 78, in __aenter__
+    self._obj = await self._coro
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/aiofiles/threadpool/__init__.py", line 80, in _open
+    f = yield from loop.run_in_executor(executor, cb)
+  File "/nix/store/p21fdyxqb3yqflpim7g8s1mymgpnqiv7-python3-3.8.12/lib/python3.8/concurrent/futures/thread.py", line 57, in run
+    result = self.fn(*self.args, **self.kwargs)
+FileNotFoundError: [Errno 2] No such file or directory: 'database.json'
+
+2022-10-10 18:14:43.977 | ERROR    | uvicorn.lifespan.on:startup:56 - Application startup failed. Exiting.
+2022-10-10 18:15:43.835 | DEBUG    | git.cmd:execute:870 - Popen(['git', 'pull', '-v', 'origin'], cwd=/home/runner/Skyblock-Tools-FastAPI/neu-repo, universal_newlines=True, shell=None, istream=None)
+2022-10-10 18:15:44.091 | DEBUG    | urllib3.connectionpool:_new_conn:1001 - Starting new HTTPS connection (1): api.hypixel.net:443
+2022-10-10 18:15:44.170 | DEBUG    | urllib3.connectionpool:_make_request:456 - https://api.hypixel.net:443 "GET /resources/skyblock/items HTTP/1.1" 200 None
+2022-10-10 18:15:44.560 | INFO     | uvicorn.server:serve:75 - Started server process [278]
+2022-10-10 18:15:44.561 | INFO     | uvicorn.lifespan.on:startup:45 - Waiting for application startup.
+2022-10-10 18:15:44.565 | ERROR    | uvicorn.lifespan.on:send:119 - Traceback (most recent call last):
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/starlette/routing.py", line 635, in lifespan
+    async with self.lifespan_context(app):
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/starlette/routing.py", line 530, in __aenter__
+    await self._router.startup()
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/starlette/routing.py", line 612, in startup
+    await handler()
+  File "/home/runner/Skyblock-Tools-FastAPI/app.py", line 278, in load_db
+    async with aiofiles.open("database.json", "r") as database:
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/aiofiles/base.py", line 78, in __aenter__
+    self._obj = await self._coro
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/aiofiles/threadpool/__init__.py", line 80, in _open
+    f = yield from loop.run_in_executor(executor, cb)
+  File "/nix/store/p21fdyxqb3yqflpim7g8s1mymgpnqiv7-python3-3.8.12/lib/python3.8/concurrent/futures/thread.py", line 57, in run
+    result = self.fn(*self.args, **self.kwargs)
+FileNotFoundError: [Errno 2] No such file or directory: 'database.json'
+
+2022-10-10 18:15:44.565 | ERROR    | uvicorn.lifespan.on:startup:56 - Application startup failed. Exiting.
+2022-10-10 18:16:44.636 | DEBUG    | git.cmd:execute:870 - Popen(['git', 'pull', '-v', 'origin'], cwd=/home/runner/Skyblock-Tools-FastAPI/neu-repo, universal_newlines=True, shell=None, istream=None)
+2022-10-10 18:16:44.897 | DEBUG    | urllib3.connectionpool:_new_conn:1001 - Starting new HTTPS connection (1): api.hypixel.net:443
+2022-10-10 18:16:45.279 | DEBUG    | urllib3.connectionpool:_make_request:456 - https://api.hypixel.net:443 "GET /resources/skyblock/items HTTP/1.1" 200 None
+2022-10-10 18:16:45.663 | INFO     | uvicorn.server:serve:75 - Started server process [306]
+2022-10-10 18:16:45.663 | INFO     | uvicorn.lifespan.on:startup:45 - Waiting for application startup.
+2022-10-10 18:16:45.667 | ERROR    | uvicorn.lifespan.on:send:119 - Traceback (most recent call last):
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/starlette/routing.py", line 635, in lifespan
+    async with self.lifespan_context(app):
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/starlette/routing.py", line 530, in __aenter__
+    await self._router.startup()
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/starlette/routing.py", line 612, in startup
+    await handler()
+  File "/home/runner/Skyblock-Tools-FastAPI/app.py", line 278, in load_db
+    async with aiofiles.open("database.json", "r") as database:
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/aiofiles/base.py", line 78, in __aenter__
+    self._obj = await self._coro
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/aiofiles/threadpool/__init__.py", line 80, in _open
+    f = yield from loop.run_in_executor(executor, cb)
+  File "/nix/store/p21fdyxqb3yqflpim7g8s1mymgpnqiv7-python3-3.8.12/lib/python3.8/concurrent/futures/thread.py", line 57, in run
+    result = self.fn(*self.args, **self.kwargs)
+FileNotFoundError: [Errno 2] No such file or directory: 'database.json'
+
+2022-10-10 18:16:45.668 | ERROR    | uvicorn.lifespan.on:startup:56 - Application startup failed. Exiting.
+2022-10-10 18:17:44.495 | DEBUG    | git.cmd:execute:870 - Popen(['git', 'pull', '-v', 'origin'], cwd=/home/runner/Skyblock-Tools-FastAPI/neu-repo, universal_newlines=True, shell=None, istream=None)
+2022-10-10 18:17:44.745 | DEBUG    | urllib3.connectionpool:_new_conn:1001 - Starting new HTTPS connection (1): api.hypixel.net:443
+2022-10-10 18:17:44.825 | DEBUG    | urllib3.connectionpool:_make_request:456 - https://api.hypixel.net:443 "GET /resources/skyblock/items HTTP/1.1" 200 None
+2022-10-10 18:17:45.188 | INFO     | uvicorn.server:serve:75 - Started server process [334]
+2022-10-10 18:17:45.188 | INFO     | uvicorn.lifespan.on:startup:45 - Waiting for application startup.
+2022-10-10 18:17:45.191 | ERROR    | uvicorn.lifespan.on:send:119 - Traceback (most recent call last):
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/starlette/routing.py", line 635, in lifespan
+    async with self.lifespan_context(app):
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/starlette/routing.py", line 530, in __aenter__
+    await self._router.startup()
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/starlette/routing.py", line 612, in startup
+    await handler()
+  File "/home/runner/Skyblock-Tools-FastAPI/app.py", line 278, in load_db
+    async with aiofiles.open("database.json", "r") as database:
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/aiofiles/base.py", line 78, in __aenter__
+    self._obj = await self._coro
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/aiofiles/threadpool/__init__.py", line 80, in _open
+    f = yield from loop.run_in_executor(executor, cb)
+  File "/nix/store/p21fdyxqb3yqflpim7g8s1mymgpnqiv7-python3-3.8.12/lib/python3.8/concurrent/futures/thread.py", line 57, in run
+    result = self.fn(*self.args, **self.kwargs)
+FileNotFoundError: [Errno 2] No such file or directory: 'database.json'
+
+2022-10-10 18:17:45.192 | ERROR    | uvicorn.lifespan.on:startup:56 - Application startup failed. Exiting.
+2022-10-10 18:18:48.249 | DEBUG    | git.cmd:execute:870 - Popen(['git', 'pull', '-v', 'origin'], cwd=/home/runner/Skyblock-Tools-FastAPI/neu-repo, universal_newlines=True, shell=None, istream=None)
+2022-10-10 18:18:48.502 | DEBUG    | urllib3.connectionpool:_new_conn:1001 - Starting new HTTPS connection (1): api.hypixel.net:443
+2022-10-10 18:18:48.594 | DEBUG    | urllib3.connectionpool:_make_request:456 - https://api.hypixel.net:443 "GET /resources/skyblock/items HTTP/1.1" 200 None
+2022-10-10 18:18:48.983 | INFO     | uvicorn.server:serve:75 - Started server process [362]
+2022-10-10 18:18:48.984 | INFO     | uvicorn.lifespan.on:startup:45 - Waiting for application startup.
+2022-10-10 18:18:48.987 | ERROR    | uvicorn.lifespan.on:send:119 - Traceback (most recent call last):
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/starlette/routing.py", line 635, in lifespan
+    async with self.lifespan_context(app):
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/starlette/routing.py", line 530, in __aenter__
+    await self._router.startup()
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/starlette/routing.py", line 612, in startup
+    await handler()
+  File "/home/runner/Skyblock-Tools-FastAPI/app.py", line 278, in load_db
+    async with aiofiles.open("database.json", "r") as database:
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/aiofiles/base.py", line 78, in __aenter__
+    self._obj = await self._coro
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/aiofiles/threadpool/__init__.py", line 80, in _open
+    f = yield from loop.run_in_executor(executor, cb)
+  File "/nix/store/p21fdyxqb3yqflpim7g8s1mymgpnqiv7-python3-3.8.12/lib/python3.8/concurrent/futures/thread.py", line 57, in run
+    result = self.fn(*self.args, **self.kwargs)
+FileNotFoundError: [Errno 2] No such file or directory: 'database.json'
+
+2022-10-10 18:18:48.988 | ERROR    | uvicorn.lifespan.on:startup:56 - Application startup failed. Exiting.
+2022-10-10 18:19:49.040 | DEBUG    | git.cmd:execute:870 - Popen(['git', 'pull', '-v', 'origin'], cwd=/home/runner/Skyblock-Tools-FastAPI/neu-repo, universal_newlines=True, shell=None, istream=None)
+2022-10-10 18:19:49.296 | DEBUG    | urllib3.connectionpool:_new_conn:1001 - Starting new HTTPS connection (1): api.hypixel.net:443
+2022-10-10 18:19:49.381 | DEBUG    | urllib3.connectionpool:_make_request:456 - https://api.hypixel.net:443 "GET /resources/skyblock/items HTTP/1.1" 200 None
+2022-10-10 18:19:49.741 | INFO     | uvicorn.server:serve:75 - Started server process [390]
+2022-10-10 18:19:49.742 | INFO     | uvicorn.lifespan.on:startup:45 - Waiting for application startup.
+2022-10-10 18:19:49.745 | ERROR    | uvicorn.lifespan.on:send:119 - Traceback (most recent call last):
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/starlette/routing.py", line 635, in lifespan
+    async with self.lifespan_context(app):
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/starlette/routing.py", line 530, in __aenter__
+    await self._router.startup()
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/starlette/routing.py", line 612, in startup
+    await handler()
+  File "/home/runner/Skyblock-Tools-FastAPI/app.py", line 278, in load_db
+    async with aiofiles.open("database.json", "r") as database:
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/aiofiles/base.py", line 78, in __aenter__
+    self._obj = await self._coro
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/aiofiles/threadpool/__init__.py", line 80, in _open
+    f = yield from loop.run_in_executor(executor, cb)
+  File "/nix/store/p21fdyxqb3yqflpim7g8s1mymgpnqiv7-python3-3.8.12/lib/python3.8/concurrent/futures/thread.py", line 57, in run
+    result = self.fn(*self.args, **self.kwargs)
+FileNotFoundError: [Errno 2] No such file or directory: 'database.json'
+
+2022-10-10 18:19:49.746 | ERROR    | uvicorn.lifespan.on:startup:56 - Application startup failed. Exiting.
+2022-10-10 18:20:48.861 | DEBUG    | git.cmd:execute:870 - Popen(['git', 'pull', '-v', 'origin'], cwd=/home/runner/Skyblock-Tools-FastAPI/neu-repo, universal_newlines=True, shell=None, istream=None)
+2022-10-10 18:20:49.120 | DEBUG    | urllib3.connectionpool:_new_conn:1001 - Starting new HTTPS connection (1): api.hypixel.net:443
+2022-10-10 18:20:49.202 | DEBUG    | urllib3.connectionpool:_make_request:456 - https://api.hypixel.net:443 "GET /resources/skyblock/items HTTP/1.1" 200 None
+2022-10-10 18:20:49.577 | INFO     | uvicorn.server:serve:75 - Started server process [418]
+2022-10-10 18:20:49.578 | INFO     | uvicorn.lifespan.on:startup:45 - Waiting for application startup.
+2022-10-10 18:20:49.581 | ERROR    | uvicorn.lifespan.on:send:119 - Traceback (most recent call last):
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/starlette/routing.py", line 635, in lifespan
+    async with self.lifespan_context(app):
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/starlette/routing.py", line 530, in __aenter__
+    await self._router.startup()
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/starlette/routing.py", line 612, in startup
+    await handler()
+  File "/home/runner/Skyblock-Tools-FastAPI/app.py", line 278, in load_db
+    async with aiofiles.open("database.json", "r") as database:
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/aiofiles/base.py", line 78, in __aenter__
+    self._obj = await self._coro
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/aiofiles/threadpool/__init__.py", line 80, in _open
+    f = yield from loop.run_in_executor(executor, cb)
+  File "/nix/store/p21fdyxqb3yqflpim7g8s1mymgpnqiv7-python3-3.8.12/lib/python3.8/concurrent/futures/thread.py", line 57, in run
+    result = self.fn(*self.args, **self.kwargs)
+FileNotFoundError: [Errno 2] No such file or directory: 'database.json'
+
+2022-10-10 18:20:49.582 | ERROR    | uvicorn.lifespan.on:startup:56 - Application startup failed. Exiting.
+2022-10-10 18:21:49.914 | DEBUG    | git.cmd:execute:870 - Popen(['git', 'pull', '-v', 'origin'], cwd=/home/runner/Skyblock-Tools-FastAPI/neu-repo, universal_newlines=True, shell=None, istream=None)
+2022-10-10 18:21:50.177 | DEBUG    | urllib3.connectionpool:_new_conn:1001 - Starting new HTTPS connection (1): api.hypixel.net:443
+2022-10-10 18:21:50.302 | DEBUG    | urllib3.connectionpool:_make_request:456 - https://api.hypixel.net:443 "GET /resources/skyblock/items HTTP/1.1" 200 None
+2022-10-10 18:21:50.692 | INFO     | uvicorn.server:serve:75 - Started server process [446]
+2022-10-10 18:21:50.693 | INFO     | uvicorn.lifespan.on:startup:45 - Waiting for application startup.
+2022-10-10 18:21:50.696 | ERROR    | uvicorn.lifespan.on:send:119 - Traceback (most recent call last):
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/starlette/routing.py", line 635, in lifespan
+    async with self.lifespan_context(app):
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/starlette/routing.py", line 530, in __aenter__
+    await self._router.startup()
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/starlette/routing.py", line 612, in startup
+    await handler()
+  File "/home/runner/Skyblock-Tools-FastAPI/app.py", line 278, in load_db
+    async with aiofiles.open("database.json", "r") as database:
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/aiofiles/base.py", line 78, in __aenter__
+    self._obj = await self._coro
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/aiofiles/threadpool/__init__.py", line 80, in _open
+    f = yield from loop.run_in_executor(executor, cb)
+  File "/nix/store/p21fdyxqb3yqflpim7g8s1mymgpnqiv7-python3-3.8.12/lib/python3.8/concurrent/futures/thread.py", line 57, in run
+    result = self.fn(*self.args, **self.kwargs)
+FileNotFoundError: [Errno 2] No such file or directory: 'database.json'
+
+2022-10-10 18:21:50.697 | ERROR    | uvicorn.lifespan.on:startup:56 - Application startup failed. Exiting.
+2022-10-10 18:22:49.816 | DEBUG    | git.cmd:execute:870 - Popen(['git', 'pull', '-v', 'origin'], cwd=/home/runner/Skyblock-Tools-FastAPI/neu-repo, universal_newlines=True, shell=None, istream=None)
+2022-10-10 18:22:50.073 | DEBUG    | urllib3.connectionpool:_new_conn:1001 - Starting new HTTPS connection (1): api.hypixel.net:443
+2022-10-10 18:22:50.150 | DEBUG    | urllib3.connectionpool:_make_request:456 - https://api.hypixel.net:443 "GET /resources/skyblock/items HTTP/1.1" 200 None
+2022-10-10 18:22:50.581 | INFO     | uvicorn.server:serve:75 - Started server process [474]
+2022-10-10 18:22:50.582 | INFO     | uvicorn.lifespan.on:startup:45 - Waiting for application startup.
+2022-10-10 18:22:50.585 | ERROR    | uvicorn.lifespan.on:send:119 - Traceback (most recent call last):
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/starlette/routing.py", line 635, in lifespan
+    async with self.lifespan_context(app):
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/starlette/routing.py", line 530, in __aenter__
+    await self._router.startup()
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/starlette/routing.py", line 612, in startup
+    await handler()
+  File "/home/runner/Skyblock-Tools-FastAPI/app.py", line 278, in load_db
+    async with aiofiles.open("database.json", "r") as database:
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/aiofiles/base.py", line 78, in __aenter__
+    self._obj = await self._coro
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/aiofiles/threadpool/__init__.py", line 80, in _open
+    f = yield from loop.run_in_executor(executor, cb)
+  File "/nix/store/p21fdyxqb3yqflpim7g8s1mymgpnqiv7-python3-3.8.12/lib/python3.8/concurrent/futures/thread.py", line 57, in run
+    result = self.fn(*self.args, **self.kwargs)
+FileNotFoundError: [Errno 2] No such file or directory: 'database.json'
+
+2022-10-10 18:22:50.586 | ERROR    | uvicorn.lifespan.on:startup:56 - Application startup failed. Exiting.
+2022-10-10 18:23:50.663 | DEBUG    | git.cmd:execute:870 - Popen(['git', 'pull', '-v', 'origin'], cwd=/home/runner/Skyblock-Tools-FastAPI/neu-repo, universal_newlines=True, shell=None, istream=None)
+2022-10-10 18:23:50.927 | DEBUG    | urllib3.connectionpool:_new_conn:1001 - Starting new HTTPS connection (1): api.hypixel.net:443
+2022-10-10 18:23:51.031 | DEBUG    | urllib3.connectionpool:_make_request:456 - https://api.hypixel.net:443 "GET /resources/skyblock/items HTTP/1.1" 200 None
+2022-10-10 18:23:51.399 | INFO     | uvicorn.server:serve:75 - Started server process [503]
+2022-10-10 18:23:51.400 | INFO     | uvicorn.lifespan.on:startup:45 - Waiting for application startup.
+2022-10-10 18:23:51.404 | ERROR    | uvicorn.lifespan.on:send:119 - Traceback (most recent call last):
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/starlette/routing.py", line 635, in lifespan
+    async with self.lifespan_context(app):
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/starlette/routing.py", line 530, in __aenter__
+    await self._router.startup()
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/starlette/routing.py", line 612, in startup
+    await handler()
+  File "/home/runner/Skyblock-Tools-FastAPI/app.py", line 278, in load_db
+    async with aiofiles.open("database.json", "r") as database:
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/aiofiles/base.py", line 78, in __aenter__
+    self._obj = await self._coro
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/aiofiles/threadpool/__init__.py", line 80, in _open
+    f = yield from loop.run_in_executor(executor, cb)
+  File "/nix/store/p21fdyxqb3yqflpim7g8s1mymgpnqiv7-python3-3.8.12/lib/python3.8/concurrent/futures/thread.py", line 57, in run
+    result = self.fn(*self.args, **self.kwargs)
+FileNotFoundError: [Errno 2] No such file or directory: 'database.json'
+
+2022-10-10 18:23:51.405 | ERROR    | uvicorn.lifespan.on:startup:56 - Application startup failed. Exiting.
+2022-10-10 18:24:51.125 | DEBUG    | git.cmd:execute:870 - Popen(['git', 'pull', '-v', 'origin'], cwd=/home/runner/Skyblock-Tools-FastAPI/neu-repo, universal_newlines=True, shell=None, istream=None)
+2022-10-10 18:24:51.591 | DEBUG    | urllib3.connectionpool:_new_conn:1001 - Starting new HTTPS connection (1): api.hypixel.net:443
+2022-10-10 18:24:51.667 | DEBUG    | urllib3.connectionpool:_make_request:456 - https://api.hypixel.net:443 "GET /resources/skyblock/items HTTP/1.1" 200 None
+2022-10-10 18:24:52.016 | INFO     | uvicorn.server:serve:75 - Started server process [531]
+2022-10-10 18:24:52.017 | INFO     | uvicorn.lifespan.on:startup:45 - Waiting for application startup.
+2022-10-10 18:24:52.021 | ERROR    | uvicorn.lifespan.on:send:119 - Traceback (most recent call last):
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/starlette/routing.py", line 635, in lifespan
+    async with self.lifespan_context(app):
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/starlette/routing.py", line 530, in __aenter__
+    await self._router.startup()
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/starlette/routing.py", line 612, in startup
+    await handler()
+  File "/home/runner/Skyblock-Tools-FastAPI/app.py", line 278, in load_db
+    async with aiofiles.open("database.json", "r") as database:
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/aiofiles/base.py", line 78, in __aenter__
+    self._obj = await self._coro
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/aiofiles/threadpool/__init__.py", line 80, in _open
+    f = yield from loop.run_in_executor(executor, cb)
+  File "/nix/store/p21fdyxqb3yqflpim7g8s1mymgpnqiv7-python3-3.8.12/lib/python3.8/concurrent/futures/thread.py", line 57, in run
+    result = self.fn(*self.args, **self.kwargs)
+FileNotFoundError: [Errno 2] No such file or directory: 'database.json'
+
+2022-10-10 18:24:52.022 | ERROR    | uvicorn.lifespan.on:startup:56 - Application startup failed. Exiting.
+2022-10-10 18:25:51.590 | DEBUG    | git.cmd:execute:870 - Popen(['git', 'pull', '-v', 'origin'], cwd=/home/runner/Skyblock-Tools-FastAPI/neu-repo, universal_newlines=True, shell=None, istream=None)
+2022-10-10 18:25:51.891 | DEBUG    | urllib3.connectionpool:_new_conn:1001 - Starting new HTTPS connection (1): api.hypixel.net:443
+2022-10-10 18:25:52.033 | DEBUG    | urllib3.connectionpool:_make_request:456 - https://api.hypixel.net:443 "GET /resources/skyblock/items HTTP/1.1" 200 None
+2022-10-10 18:25:52.445 | INFO     | uvicorn.server:serve:75 - Started server process [559]
+2022-10-10 18:25:52.445 | INFO     | uvicorn.lifespan.on:startup:45 - Waiting for application startup.
+2022-10-10 18:25:52.449 | ERROR    | uvicorn.lifespan.on:send:119 - Traceback (most recent call last):
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/starlette/routing.py", line 635, in lifespan
+    async with self.lifespan_context(app):
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/starlette/routing.py", line 530, in __aenter__
+    await self._router.startup()
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/starlette/routing.py", line 612, in startup
+    await handler()
+  File "/home/runner/Skyblock-Tools-FastAPI/app.py", line 278, in load_db
+    async with aiofiles.open("database.json", "r") as database:
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/aiofiles/base.py", line 78, in __aenter__
+    self._obj = await self._coro
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/aiofiles/threadpool/__init__.py", line 80, in _open
+    f = yield from loop.run_in_executor(executor, cb)
+  File "/nix/store/p21fdyxqb3yqflpim7g8s1mymgpnqiv7-python3-3.8.12/lib/python3.8/concurrent/futures/thread.py", line 57, in run
+    result = self.fn(*self.args, **self.kwargs)
+FileNotFoundError: [Errno 2] No such file or directory: 'database.json'
+
+2022-10-10 18:25:52.450 | ERROR    | uvicorn.lifespan.on:startup:56 - Application startup failed. Exiting.
+2022-10-10 18:26:52.446 | DEBUG    | git.cmd:execute:870 - Popen(['git', 'pull', '-v', 'origin'], cwd=/home/runner/Skyblock-Tools-FastAPI/neu-repo, universal_newlines=True, shell=None, istream=None)
+2022-10-10 18:26:52.695 | DEBUG    | urllib3.connectionpool:_new_conn:1001 - Starting new HTTPS connection (1): api.hypixel.net:443
+2022-10-10 18:26:52.789 | DEBUG    | urllib3.connectionpool:_make_request:456 - https://api.hypixel.net:443 "GET /resources/skyblock/items HTTP/1.1" 200 None
+2022-10-10 18:26:53.177 | INFO     | uvicorn.server:serve:75 - Started server process [587]
+2022-10-10 18:26:53.178 | INFO     | uvicorn.lifespan.on:startup:45 - Waiting for application startup.
+2022-10-10 18:26:53.182 | ERROR    | uvicorn.lifespan.on:send:119 - Traceback (most recent call last):
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/starlette/routing.py", line 635, in lifespan
+    async with self.lifespan_context(app):
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/starlette/routing.py", line 530, in __aenter__
+    await self._router.startup()
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/starlette/routing.py", line 612, in startup
+    await handler()
+  File "/home/runner/Skyblock-Tools-FastAPI/app.py", line 278, in load_db
+    async with aiofiles.open("database.json", "r") as database:
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/aiofiles/base.py", line 78, in __aenter__
+    self._obj = await self._coro
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/aiofiles/threadpool/__init__.py", line 80, in _open
+    f = yield from loop.run_in_executor(executor, cb)
+  File "/nix/store/p21fdyxqb3yqflpim7g8s1mymgpnqiv7-python3-3.8.12/lib/python3.8/concurrent/futures/thread.py", line 57, in run
+    result = self.fn(*self.args, **self.kwargs)
+FileNotFoundError: [Errno 2] No such file or directory: 'database.json'
+
+2022-10-10 18:26:53.183 | ERROR    | uvicorn.lifespan.on:startup:56 - Application startup failed. Exiting.
+2022-10-10 18:27:52.833 | DEBUG    | git.cmd:execute:870 - Popen(['git', 'pull', '-v', 'origin'], cwd=/home/runner/Skyblock-Tools-FastAPI/neu-repo, universal_newlines=True, shell=None, istream=None)
+2022-10-10 18:27:53.092 | DEBUG    | urllib3.connectionpool:_new_conn:1001 - Starting new HTTPS connection (1): api.hypixel.net:443
+2022-10-10 18:27:53.178 | DEBUG    | urllib3.connectionpool:_make_request:456 - https://api.hypixel.net:443 "GET /resources/skyblock/items HTTP/1.1" 200 None
+2022-10-10 18:27:53.526 | INFO     | uvicorn.server:serve:75 - Started server process [615]
+2022-10-10 18:27:53.526 | INFO     | uvicorn.lifespan.on:startup:45 - Waiting for application startup.
+2022-10-10 18:27:53.530 | ERROR    | uvicorn.lifespan.on:send:119 - Traceback (most recent call last):
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/starlette/routing.py", line 635, in lifespan
+    async with self.lifespan_context(app):
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/starlette/routing.py", line 530, in __aenter__
+    await self._router.startup()
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/starlette/routing.py", line 612, in startup
+    await handler()
+  File "/home/runner/Skyblock-Tools-FastAPI/app.py", line 278, in load_db
+    async with aiofiles.open("database.json", "r") as database:
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/aiofiles/base.py", line 78, in __aenter__
+    self._obj = await self._coro
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/aiofiles/threadpool/__init__.py", line 80, in _open
+    f = yield from loop.run_in_executor(executor, cb)
+  File "/nix/store/p21fdyxqb3yqflpim7g8s1mymgpnqiv7-python3-3.8.12/lib/python3.8/concurrent/futures/thread.py", line 57, in run
+    result = self.fn(*self.args, **self.kwargs)
+FileNotFoundError: [Errno 2] No such file or directory: 'database.json'
+
+2022-10-10 18:27:53.530 | ERROR    | uvicorn.lifespan.on:startup:56 - Application startup failed. Exiting.
+2022-10-10 18:28:52.812 | DEBUG    | git.cmd:execute:870 - Popen(['git', 'pull', '-v', 'origin'], cwd=/home/runner/Skyblock-Tools-FastAPI/neu-repo, universal_newlines=True, shell=None, istream=None)
+2022-10-10 18:28:53.061 | DEBUG    | urllib3.connectionpool:_new_conn:1001 - Starting new HTTPS connection (1): api.hypixel.net:443
+2022-10-10 18:28:53.149 | DEBUG    | urllib3.connectionpool:_make_request:456 - https://api.hypixel.net:443 "GET /resources/skyblock/items HTTP/1.1" 200 None
+2022-10-10 18:28:53.522 | INFO     | uvicorn.server:serve:75 - Started server process [643]
+2022-10-10 18:28:53.522 | INFO     | uvicorn.lifespan.on:startup:45 - Waiting for application startup.
+2022-10-10 18:28:53.525 | ERROR    | uvicorn.lifespan.on:send:119 - Traceback (most recent call last):
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/starlette/routing.py", line 635, in lifespan
+    async with self.lifespan_context(app):
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/starlette/routing.py", line 530, in __aenter__
+    await self._router.startup()
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/starlette/routing.py", line 612, in startup
+    await handler()
+  File "/home/runner/Skyblock-Tools-FastAPI/app.py", line 278, in load_db
+    async with aiofiles.open("database.json", "r") as database:
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/aiofiles/base.py", line 78, in __aenter__
+    self._obj = await self._coro
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/aiofiles/threadpool/__init__.py", line 80, in _open
+    f = yield from loop.run_in_executor(executor, cb)
+  File "/nix/store/p21fdyxqb3yqflpim7g8s1mymgpnqiv7-python3-3.8.12/lib/python3.8/concurrent/futures/thread.py", line 57, in run
+    result = self.fn(*self.args, **self.kwargs)
+FileNotFoundError: [Errno 2] No such file or directory: 'database.json'
+
+2022-10-10 18:28:53.526 | ERROR    | uvicorn.lifespan.on:startup:56 - Application startup failed. Exiting.
+2022-10-10 18:29:53.547 | DEBUG    | git.cmd:execute:870 - Popen(['git', 'pull', '-v', 'origin'], cwd=/home/runner/Skyblock-Tools-FastAPI/neu-repo, universal_newlines=True, shell=None, istream=None)
+2022-10-10 18:29:53.813 | DEBUG    | urllib3.connectionpool:_new_conn:1001 - Starting new HTTPS connection (1): api.hypixel.net:443
+2022-10-10 18:29:53.939 | DEBUG    | urllib3.connectionpool:_make_request:456 - https://api.hypixel.net:443 "GET /resources/skyblock/items HTTP/1.1" 200 None
+2022-10-10 18:29:54.286 | INFO     | uvicorn.server:serve:75 - Started server process [671]
+2022-10-10 18:29:54.286 | INFO     | uvicorn.lifespan.on:startup:45 - Waiting for application startup.
+2022-10-10 18:29:54.290 | ERROR    | uvicorn.lifespan.on:send:119 - Traceback (most recent call last):
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/starlette/routing.py", line 635, in lifespan
+    async with self.lifespan_context(app):
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/starlette/routing.py", line 530, in __aenter__
+    await self._router.startup()
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/starlette/routing.py", line 612, in startup
+    await handler()
+  File "/home/runner/Skyblock-Tools-FastAPI/app.py", line 278, in load_db
+    async with aiofiles.open("database.json", "r") as database:
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/aiofiles/base.py", line 78, in __aenter__
+    self._obj = await self._coro
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/aiofiles/threadpool/__init__.py", line 80, in _open
+    f = yield from loop.run_in_executor(executor, cb)
+  File "/nix/store/p21fdyxqb3yqflpim7g8s1mymgpnqiv7-python3-3.8.12/lib/python3.8/concurrent/futures/thread.py", line 57, in run
+    result = self.fn(*self.args, **self.kwargs)
+FileNotFoundError: [Errno 2] No such file or directory: 'database.json'
+
+2022-10-10 18:29:54.291 | ERROR    | uvicorn.lifespan.on:startup:56 - Application startup failed. Exiting.
+2022-10-10 18:30:53.711 | DEBUG    | git.cmd:execute:870 - Popen(['git', 'pull', '-v', 'origin'], cwd=/home/runner/Skyblock-Tools-FastAPI/neu-repo, universal_newlines=True, shell=None, istream=None)
+2022-10-10 18:30:53.984 | DEBUG    | urllib3.connectionpool:_new_conn:1001 - Starting new HTTPS connection (1): api.hypixel.net:443
+2022-10-10 18:30:54.080 | DEBUG    | urllib3.connectionpool:_make_request:456 - https://api.hypixel.net:443 "GET /resources/skyblock/items HTTP/1.1" 200 None
+2022-10-10 18:30:54.502 | INFO     | uvicorn.server:serve:75 - Started server process [699]
+2022-10-10 18:30:54.503 | INFO     | uvicorn.lifespan.on:startup:45 - Waiting for application startup.
+2022-10-10 18:30:54.506 | ERROR    | uvicorn.lifespan.on:send:119 - Traceback (most recent call last):
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/starlette/routing.py", line 635, in lifespan
+    async with self.lifespan_context(app):
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/starlette/routing.py", line 530, in __aenter__
+    await self._router.startup()
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/starlette/routing.py", line 612, in startup
+    await handler()
+  File "/home/runner/Skyblock-Tools-FastAPI/app.py", line 278, in load_db
+    async with aiofiles.open("database.json", "r") as database:
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/aiofiles/base.py", line 78, in __aenter__
+    self._obj = await self._coro
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/aiofiles/threadpool/__init__.py", line 80, in _open
+    f = yield from loop.run_in_executor(executor, cb)
+  File "/nix/store/p21fdyxqb3yqflpim7g8s1mymgpnqiv7-python3-3.8.12/lib/python3.8/concurrent/futures/thread.py", line 57, in run
+    result = self.fn(*self.args, **self.kwargs)
+FileNotFoundError: [Errno 2] No such file or directory: 'database.json'
+
+2022-10-10 18:30:54.507 | ERROR    | uvicorn.lifespan.on:startup:56 - Application startup failed. Exiting.
+2022-10-10 18:31:53.966 | DEBUG    | git.cmd:execute:870 - Popen(['git', 'pull', '-v', 'origin'], cwd=/home/runner/Skyblock-Tools-FastAPI/neu-repo, universal_newlines=True, shell=None, istream=None)
+2022-10-10 18:31:54.221 | DEBUG    | urllib3.connectionpool:_new_conn:1001 - Starting new HTTPS connection (1): api.hypixel.net:443
+2022-10-10 18:31:54.310 | DEBUG    | urllib3.connectionpool:_make_request:456 - https://api.hypixel.net:443 "GET /resources/skyblock/items HTTP/1.1" 200 None
+2022-10-10 18:31:54.689 | INFO     | uvicorn.server:serve:75 - Started server process [727]
+2022-10-10 18:31:54.689 | INFO     | uvicorn.lifespan.on:startup:45 - Waiting for application startup.
+2022-10-10 18:31:54.693 | ERROR    | uvicorn.lifespan.on:send:119 - Traceback (most recent call last):
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/starlette/routing.py", line 635, in lifespan
+    async with self.lifespan_context(app):
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/starlette/routing.py", line 530, in __aenter__
+    await self._router.startup()
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/starlette/routing.py", line 612, in startup
+    await handler()
+  File "/home/runner/Skyblock-Tools-FastAPI/app.py", line 278, in load_db
+    async with aiofiles.open("database.json", "r") as database:
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/aiofiles/base.py", line 78, in __aenter__
+    self._obj = await self._coro
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/aiofiles/threadpool/__init__.py", line 80, in _open
+    f = yield from loop.run_in_executor(executor, cb)
+  File "/nix/store/p21fdyxqb3yqflpim7g8s1mymgpnqiv7-python3-3.8.12/lib/python3.8/concurrent/futures/thread.py", line 57, in run
+    result = self.fn(*self.args, **self.kwargs)
+FileNotFoundError: [Errno 2] No such file or directory: 'database.json'
+
+2022-10-10 18:31:54.693 | ERROR    | uvicorn.lifespan.on:startup:56 - Application startup failed. Exiting.
+2022-10-10 18:32:54.810 | DEBUG    | git.cmd:execute:870 - Popen(['git', 'pull', '-v', 'origin'], cwd=/home/runner/Skyblock-Tools-FastAPI/neu-repo, universal_newlines=True, shell=None, istream=None)

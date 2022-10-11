@@ -1,0 +1,253 @@
+2022-10-11 07:40:57.317 | DEBUG    | git.cmd:execute:870 - Popen(['git', 'pull', '-v', 'origin'], cwd=/home/runner/Skyblock-Tools-FastAPI/neu-repo, universal_newlines=True, shell=None, istream=None)
+2022-10-11 07:40:57.591 | DEBUG    | urllib3.connectionpool:_new_conn:1001 - Starting new HTTPS connection (1): api.hypixel.net:443
+2022-10-11 07:40:57.661 | DEBUG    | urllib3.connectionpool:_make_request:456 - https://api.hypixel.net:443 "GET /resources/skyblock/items HTTP/1.1" 200 None
+2022-10-11 07:40:58.140 | INFO     | uvicorn.server:serve:75 - Started server process [106]
+2022-10-11 07:40:58.141 | INFO     | uvicorn.lifespan.on:startup:45 - Waiting for application startup.
+2022-10-11 07:40:58.145 | ERROR    | uvicorn.lifespan.on:send:119 - Traceback (most recent call last):
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/starlette/routing.py", line 635, in lifespan
+    async with self.lifespan_context(app):
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/starlette/routing.py", line 530, in __aenter__
+    await self._router.startup()
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/starlette/routing.py", line 612, in startup
+    await handler()
+  File "/home/runner/Skyblock-Tools-FastAPI/app.py", line 278, in load_db
+    async with aiofiles.open("database.json", "r") as database:
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/aiofiles/base.py", line 78, in __aenter__
+    self._obj = await self._coro
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/aiofiles/threadpool/__init__.py", line 80, in _open
+    f = yield from loop.run_in_executor(executor, cb)
+  File "/nix/store/p21fdyxqb3yqflpim7g8s1mymgpnqiv7-python3-3.8.12/lib/python3.8/concurrent/futures/thread.py", line 57, in run
+    result = self.fn(*self.args, **self.kwargs)
+FileNotFoundError: [Errno 2] No such file or directory: 'database.json'
+
+2022-10-11 07:40:58.146 | ERROR    | uvicorn.lifespan.on:startup:56 - Application startup failed. Exiting.
+2022-10-11 07:41:32.218 | DEBUG    | git.cmd:execute:870 - Popen(['git', 'pull', '-v', 'origin'], cwd=/home/runner/Skyblock-Tools-FastAPI/neu-repo, universal_newlines=True, shell=None, istream=None)
+2022-10-11 07:41:32.472 | DEBUG    | urllib3.connectionpool:_new_conn:1001 - Starting new HTTPS connection (1): api.hypixel.net:443
+2022-10-11 07:41:32.543 | DEBUG    | urllib3.connectionpool:_make_request:456 - https://api.hypixel.net:443 "GET /resources/skyblock/items HTTP/1.1" 200 None
+2022-10-11 07:41:32.911 | INFO     | uvicorn.server:serve:75 - Started server process [285]
+2022-10-11 07:41:32.912 | INFO     | uvicorn.lifespan.on:startup:45 - Waiting for application startup.
+2022-10-11 07:41:32.974 | INFO     | uvicorn.lifespan.on:startup:59 - Application startup complete.
+2022-10-11 07:41:32.975 | INFO     | uvicorn.server:_log_started_message:206 - Uvicorn running on http://0.0.0.0:8080 (Press CTRL+C to quit)
+2022-10-11 07:41:33.019 | INFO     | uvicorn.protocols.http.httptools_impl:send:437 - 172.18.0.1:60060 - "GET / HTTP/1.1" 307
+2022-10-11 07:41:33.021 | INFO     | uvicorn.protocols.http.httptools_impl:send:437 - 172.18.0.1:60060 - "GET /docs HTTP/1.1" 200
+2022-10-11 07:41:33.487 | INFO     | uvicorn.protocols.http.httptools_impl:send:437 - 172.18.0.1:60066 - "GET / HTTP/1.1" 307
+2022-10-11 07:41:33.676 | INFO     | uvicorn.protocols.http.httptools_impl:send:437 - 172.18.0.1:60066 - "GET /docs HTTP/1.1" 200
+2022-10-11 07:41:33.912 | INFO     | uvicorn.protocols.http.httptools_impl:send:437 - 172.18.0.1:60066 - "GET / HTTP/1.1" 307
+2022-10-11 07:41:34.076 | INFO     | uvicorn.protocols.http.httptools_impl:send:437 - 172.18.0.1:60066 - "GET /docs HTTP/1.1" 200
+2022-10-11 07:41:34.622 | INFO     | uvicorn.protocols.http.httptools_impl:send:437 - 172.18.0.1:60066 - "GET /openapi.json HTTP/1.1" 200
+2022-10-11 07:41:43.973 | INFO     | uvicorn.protocols.http.httptools_impl:send:437 - 172.18.0.1:42468 - "GET / HTTP/1.1" 307
+2022-10-11 07:41:44.137 | INFO     | uvicorn.protocols.http.httptools_impl:send:437 - 172.18.0.1:42468 - "GET /docs HTTP/1.1" 200
+2022-10-11 07:41:44.616 | INFO     | uvicorn.protocols.http.httptools_impl:send:437 - 172.18.0.1:42468 - "GET /openapi.json HTTP/1.1" 200
+2022-10-11 07:44:28.649 | INFO     | uvicorn.protocols.http.httptools_impl:send:437 - 172.18.0.1:37950 - "GET / HTTP/1.1" 307
+2022-10-11 07:44:28.765 | INFO     | uvicorn.protocols.http.httptools_impl:send:437 - 172.18.0.1:37950 - "GET /docs HTTP/1.1" 200
+2022-10-11 07:44:29.053 | INFO     | uvicorn.protocols.http.httptools_impl:send:437 - 172.18.0.1:37950 - "GET /openapi.json HTTP/1.1" 200
+2022-10-11 07:44:59.201 | DEBUG    | urllib3.connectionpool:_new_conn:1001 - Starting new HTTPS connection (1): api.hypixel.net:443
+2022-10-11 07:44:59.276 | DEBUG    | urllib3.connectionpool:_make_request:456 - https://api.hypixel.net:443 "GET /skyblock/auctions HTTP/1.1" 200 None
+2022-10-11 07:44:59.335 | DEBUG    | urllib3.connectionpool:_new_conn:1001 - Starting new HTTPS connection (1): api.hypixel.net:443
+2022-10-11 07:44:59.400 | DEBUG    | urllib3.connectionpool:_make_request:456 - https://api.hypixel.net:443 "GET /skyblock/auctions?page=0 HTTP/1.1" 200 None
+2022-10-11 07:44:59.469 | DEBUG    | urllib3.connectionpool:_new_conn:1001 - Starting new HTTPS connection (1): api.hypixel.net:443
+2022-10-11 07:44:59.546 | DEBUG    | urllib3.connectionpool:_make_request:456 - https://api.hypixel.net:443 "GET /skyblock/auctions?page=1 HTTP/1.1" 200 None
+2022-10-11 07:44:59.611 | DEBUG    | urllib3.connectionpool:_new_conn:1001 - Starting new HTTPS connection (1): api.hypixel.net:443
+2022-10-11 07:44:59.679 | DEBUG    | urllib3.connectionpool:_make_request:456 - https://api.hypixel.net:443 "GET /skyblock/auctions?page=2 HTTP/1.1" 200 None
+2022-10-11 07:44:59.743 | DEBUG    | urllib3.connectionpool:_new_conn:1001 - Starting new HTTPS connection (1): api.hypixel.net:443
+2022-10-11 07:44:59.811 | DEBUG    | urllib3.connectionpool:_make_request:456 - https://api.hypixel.net:443 "GET /skyblock/auctions?page=3 HTTP/1.1" 200 None
+2022-10-11 07:44:59.875 | DEBUG    | urllib3.connectionpool:_new_conn:1001 - Starting new HTTPS connection (1): api.hypixel.net:443
+2022-10-11 07:44:59.939 | DEBUG    | urllib3.connectionpool:_make_request:456 - https://api.hypixel.net:443 "GET /skyblock/auctions?page=4 HTTP/1.1" 200 None
+2022-10-11 07:44:59.997 | DEBUG    | urllib3.connectionpool:_new_conn:1001 - Starting new HTTPS connection (1): api.hypixel.net:443
+2022-10-11 07:45:00.070 | DEBUG    | urllib3.connectionpool:_make_request:456 - https://api.hypixel.net:443 "GET /skyblock/auctions?page=5 HTTP/1.1" 200 None
+2022-10-11 07:45:00.222 | DEBUG    | urllib3.connectionpool:_new_conn:1001 - Starting new HTTPS connection (1): api.hypixel.net:443
+2022-10-11 07:45:00.299 | DEBUG    | urllib3.connectionpool:_make_request:456 - https://api.hypixel.net:443 "GET /skyblock/auctions?page=6 HTTP/1.1" 200 None
+2022-10-11 07:45:00.365 | DEBUG    | urllib3.connectionpool:_new_conn:1001 - Starting new HTTPS connection (1): api.hypixel.net:443
+2022-10-11 07:45:00.441 | DEBUG    | urllib3.connectionpool:_make_request:456 - https://api.hypixel.net:443 "GET /skyblock/auctions?page=7 HTTP/1.1" 200 None
+2022-10-11 07:45:00.508 | DEBUG    | urllib3.connectionpool:_new_conn:1001 - Starting new HTTPS connection (1): api.hypixel.net:443
+2022-10-11 07:45:00.578 | DEBUG    | urllib3.connectionpool:_make_request:456 - https://api.hypixel.net:443 "GET /skyblock/auctions?page=8 HTTP/1.1" 200 None
+2022-10-11 07:45:00.640 | DEBUG    | urllib3.connectionpool:_new_conn:1001 - Starting new HTTPS connection (1): api.hypixel.net:443
+2022-10-11 07:45:00.709 | DEBUG    | urllib3.connectionpool:_make_request:456 - https://api.hypixel.net:443 "GET /skyblock/auctions?page=9 HTTP/1.1" 200 None
+2022-10-11 07:45:00.768 | DEBUG    | urllib3.connectionpool:_new_conn:1001 - Starting new HTTPS connection (1): api.hypixel.net:443
+2022-10-11 07:45:00.838 | DEBUG    | urllib3.connectionpool:_make_request:456 - https://api.hypixel.net:443 "GET /skyblock/auctions?page=10 HTTP/1.1" 200 None
+2022-10-11 07:45:00.899 | DEBUG    | urllib3.connectionpool:_new_conn:1001 - Starting new HTTPS connection (1): api.hypixel.net:443
+2022-10-11 07:45:00.975 | DEBUG    | urllib3.connectionpool:_make_request:456 - https://api.hypixel.net:443 "GET /skyblock/auctions?page=11 HTTP/1.1" 200 None
+2022-10-11 07:45:01.039 | DEBUG    | urllib3.connectionpool:_new_conn:1001 - Starting new HTTPS connection (1): api.hypixel.net:443
+2022-10-11 07:45:01.127 | DEBUG    | urllib3.connectionpool:_make_request:456 - https://api.hypixel.net:443 "GET /skyblock/auctions?page=12 HTTP/1.1" 200 None
+2022-10-11 07:45:01.190 | DEBUG    | urllib3.connectionpool:_new_conn:1001 - Starting new HTTPS connection (1): api.hypixel.net:443
+2022-10-11 07:45:01.277 | DEBUG    | urllib3.connectionpool:_make_request:456 - https://api.hypixel.net:443 "GET /skyblock/auctions?page=13 HTTP/1.1" 200 None
+2022-10-11 07:45:01.341 | DEBUG    | urllib3.connectionpool:_new_conn:1001 - Starting new HTTPS connection (1): api.hypixel.net:443
+2022-10-11 07:45:01.419 | DEBUG    | urllib3.connectionpool:_make_request:456 - https://api.hypixel.net:443 "GET /skyblock/auctions?page=14 HTTP/1.1" 200 None
+2022-10-11 07:45:01.483 | DEBUG    | urllib3.connectionpool:_new_conn:1001 - Starting new HTTPS connection (1): api.hypixel.net:443
+2022-10-11 07:45:01.555 | DEBUG    | urllib3.connectionpool:_make_request:456 - https://api.hypixel.net:443 "GET /skyblock/auctions?page=15 HTTP/1.1" 200 None
+2022-10-11 07:45:01.621 | DEBUG    | urllib3.connectionpool:_new_conn:1001 - Starting new HTTPS connection (1): api.hypixel.net:443
+2022-10-11 07:45:01.692 | DEBUG    | urllib3.connectionpool:_make_request:456 - https://api.hypixel.net:443 "GET /skyblock/auctions?page=16 HTTP/1.1" 200 None
+2022-10-11 07:45:01.757 | DEBUG    | urllib3.connectionpool:_new_conn:1001 - Starting new HTTPS connection (1): api.hypixel.net:443
+2022-10-11 07:45:01.832 | DEBUG    | urllib3.connectionpool:_make_request:456 - https://api.hypixel.net:443 "GET /skyblock/auctions?page=17 HTTP/1.1" 200 None
+2022-10-11 07:45:01.897 | DEBUG    | urllib3.connectionpool:_new_conn:1001 - Starting new HTTPS connection (1): api.hypixel.net:443
+2022-10-11 07:45:01.978 | DEBUG    | urllib3.connectionpool:_make_request:456 - https://api.hypixel.net:443 "GET /skyblock/auctions?page=18 HTTP/1.1" 200 None
+2022-10-11 07:45:02.033 | DEBUG    | urllib3.connectionpool:_new_conn:1001 - Starting new HTTPS connection (1): api.hypixel.net:443
+2022-10-11 07:45:02.131 | DEBUG    | urllib3.connectionpool:_make_request:456 - https://api.hypixel.net:443 "GET /skyblock/auctions?page=19 HTTP/1.1" 200 None
+2022-10-11 07:45:02.201 | DEBUG    | urllib3.connectionpool:_new_conn:1001 - Starting new HTTPS connection (1): api.hypixel.net:443
+2022-10-11 07:45:02.289 | DEBUG    | urllib3.connectionpool:_make_request:456 - https://api.hypixel.net:443 "GET /skyblock/auctions?page=20 HTTP/1.1" 200 None
+2022-10-11 07:45:02.353 | DEBUG    | urllib3.connectionpool:_new_conn:1001 - Starting new HTTPS connection (1): api.hypixel.net:443
+2022-10-11 07:45:02.425 | DEBUG    | urllib3.connectionpool:_make_request:456 - https://api.hypixel.net:443 "GET /skyblock/auctions?page=21 HTTP/1.1" 200 None
+2022-10-11 07:45:02.494 | DEBUG    | urllib3.connectionpool:_new_conn:1001 - Starting new HTTPS connection (1): api.hypixel.net:443
+2022-10-11 07:45:02.563 | DEBUG    | urllib3.connectionpool:_make_request:456 - https://api.hypixel.net:443 "GET /skyblock/auctions?page=22 HTTP/1.1" 200 None
+2022-10-11 07:45:02.633 | DEBUG    | urllib3.connectionpool:_new_conn:1001 - Starting new HTTPS connection (1): api.hypixel.net:443
+2022-10-11 07:45:02.704 | DEBUG    | urllib3.connectionpool:_make_request:456 - https://api.hypixel.net:443 "GET /skyblock/auctions?page=23 HTTP/1.1" 200 None
+2022-10-11 07:45:02.780 | DEBUG    | urllib3.connectionpool:_new_conn:1001 - Starting new HTTPS connection (1): api.hypixel.net:443
+2022-10-11 07:45:02.857 | DEBUG    | urllib3.connectionpool:_make_request:456 - https://api.hypixel.net:443 "GET /skyblock/auctions?page=24 HTTP/1.1" 200 None
+2022-10-11 07:45:02.928 | DEBUG    | urllib3.connectionpool:_new_conn:1001 - Starting new HTTPS connection (1): api.hypixel.net:443
+2022-10-11 07:45:02.996 | DEBUG    | urllib3.connectionpool:_make_request:456 - https://api.hypixel.net:443 "GET /skyblock/auctions?page=25 HTTP/1.1" 200 None
+2022-10-11 07:45:03.064 | DEBUG    | urllib3.connectionpool:_new_conn:1001 - Starting new HTTPS connection (1): api.hypixel.net:443
+2022-10-11 07:45:03.144 | DEBUG    | urllib3.connectionpool:_make_request:456 - https://api.hypixel.net:443 "GET /skyblock/auctions?page=26 HTTP/1.1" 200 None
+2022-10-11 07:45:03.338 | DEBUG    | urllib3.connectionpool:_new_conn:1001 - Starting new HTTPS connection (1): api.hypixel.net:443
+2022-10-11 07:45:03.408 | DEBUG    | urllib3.connectionpool:_make_request:456 - https://api.hypixel.net:443 "GET /skyblock/auctions?page=27 HTTP/1.1" 200 None
+2022-10-11 07:45:03.476 | DEBUG    | urllib3.connectionpool:_new_conn:1001 - Starting new HTTPS connection (1): api.hypixel.net:443
+2022-10-11 07:45:03.550 | DEBUG    | urllib3.connectionpool:_make_request:456 - https://api.hypixel.net:443 "GET /skyblock/auctions?page=28 HTTP/1.1" 200 None
+2022-10-11 07:45:03.619 | DEBUG    | urllib3.connectionpool:_new_conn:1001 - Starting new HTTPS connection (1): api.hypixel.net:443
+2022-10-11 07:45:03.688 | DEBUG    | urllib3.connectionpool:_make_request:456 - https://api.hypixel.net:443 "GET /skyblock/auctions?page=29 HTTP/1.1" 200 None
+2022-10-11 07:45:03.755 | DEBUG    | urllib3.connectionpool:_new_conn:1001 - Starting new HTTPS connection (1): api.hypixel.net:443
+2022-10-11 07:45:03.824 | DEBUG    | urllib3.connectionpool:_make_request:456 - https://api.hypixel.net:443 "GET /skyblock/auctions?page=30 HTTP/1.1" 200 None
+2022-10-11 07:45:03.891 | DEBUG    | urllib3.connectionpool:_new_conn:1001 - Starting new HTTPS connection (1): api.hypixel.net:443
+2022-10-11 07:45:03.963 | DEBUG    | urllib3.connectionpool:_make_request:456 - https://api.hypixel.net:443 "GET /skyblock/auctions?page=31 HTTP/1.1" 200 None
+2022-10-11 07:45:04.026 | DEBUG    | urllib3.connectionpool:_new_conn:1001 - Starting new HTTPS connection (1): api.hypixel.net:443
+2022-10-11 07:45:04.094 | DEBUG    | urllib3.connectionpool:_make_request:456 - https://api.hypixel.net:443 "GET /skyblock/auctions?page=32 HTTP/1.1" 200 None
+2022-10-11 07:45:04.162 | DEBUG    | urllib3.connectionpool:_new_conn:1001 - Starting new HTTPS connection (1): api.hypixel.net:443
+2022-10-11 07:45:04.234 | DEBUG    | urllib3.connectionpool:_make_request:456 - https://api.hypixel.net:443 "GET /skyblock/auctions?page=33 HTTP/1.1" 200 None
+2022-10-11 07:45:04.303 | DEBUG    | urllib3.connectionpool:_new_conn:1001 - Starting new HTTPS connection (1): api.hypixel.net:443
+2022-10-11 07:45:04.371 | DEBUG    | urllib3.connectionpool:_make_request:456 - https://api.hypixel.net:443 "GET /skyblock/auctions?page=34 HTTP/1.1" 200 None
+2022-10-11 07:45:04.436 | DEBUG    | urllib3.connectionpool:_new_conn:1001 - Starting new HTTPS connection (1): api.hypixel.net:443
+2022-10-11 07:45:04.509 | DEBUG    | urllib3.connectionpool:_make_request:456 - https://api.hypixel.net:443 "GET /skyblock/auctions?page=35 HTTP/1.1" 200 None
+2022-10-11 07:45:04.576 | DEBUG    | urllib3.connectionpool:_new_conn:1001 - Starting new HTTPS connection (1): api.hypixel.net:443
+2022-10-11 07:45:04.642 | DEBUG    | urllib3.connectionpool:_make_request:456 - https://api.hypixel.net:443 "GET /skyblock/auctions?page=36 HTTP/1.1" 200 None
+2022-10-11 07:45:04.712 | DEBUG    | urllib3.connectionpool:_new_conn:1001 - Starting new HTTPS connection (1): api.hypixel.net:443
+2022-10-11 07:45:04.786 | DEBUG    | urllib3.connectionpool:_make_request:456 - https://api.hypixel.net:443 "GET /skyblock/auctions?page=37 HTTP/1.1" 200 None
+2022-10-11 07:45:04.852 | DEBUG    | urllib3.connectionpool:_new_conn:1001 - Starting new HTTPS connection (1): api.hypixel.net:443
+2022-10-11 07:45:04.925 | DEBUG    | urllib3.connectionpool:_make_request:456 - https://api.hypixel.net:443 "GET /skyblock/auctions?page=38 HTTP/1.1" 200 None
+2022-10-11 07:45:04.991 | DEBUG    | urllib3.connectionpool:_new_conn:1001 - Starting new HTTPS connection (1): api.hypixel.net:443
+2022-10-11 07:45:05.071 | DEBUG    | urllib3.connectionpool:_make_request:456 - https://api.hypixel.net:443 "GET /skyblock/auctions?page=39 HTTP/1.1" 200 None
+2022-10-11 07:45:05.139 | DEBUG    | urllib3.connectionpool:_new_conn:1001 - Starting new HTTPS connection (1): api.hypixel.net:443
+2022-10-11 07:45:05.213 | DEBUG    | urllib3.connectionpool:_make_request:456 - https://api.hypixel.net:443 "GET /skyblock/auctions?page=40 HTTP/1.1" 200 None
+2022-10-11 07:45:05.284 | DEBUG    | urllib3.connectionpool:_new_conn:1001 - Starting new HTTPS connection (1): api.hypixel.net:443
+2022-10-11 07:45:05.348 | DEBUG    | urllib3.connectionpool:_make_request:456 - https://api.hypixel.net:443 "GET /skyblock/auctions?page=41 HTTP/1.1" 200 None
+2022-10-11 07:45:05.411 | DEBUG    | urllib3.connectionpool:_new_conn:1001 - Starting new HTTPS connection (1): api.hypixel.net:443
+2022-10-11 07:45:05.491 | DEBUG    | urllib3.connectionpool:_make_request:456 - https://api.hypixel.net:443 "GET /skyblock/auctions?page=42 HTTP/1.1" 200 None
+2022-10-11 07:45:05.557 | DEBUG    | urllib3.connectionpool:_new_conn:1001 - Starting new HTTPS connection (1): api.hypixel.net:443
+2022-10-11 07:45:05.624 | DEBUG    | urllib3.connectionpool:_make_request:456 - https://api.hypixel.net:443 "GET /skyblock/auctions?page=43 HTTP/1.1" 200 None
+2022-10-11 07:45:05.690 | DEBUG    | urllib3.connectionpool:_new_conn:1001 - Starting new HTTPS connection (1): api.hypixel.net:443
+2022-10-11 07:45:05.758 | DEBUG    | urllib3.connectionpool:_make_request:456 - https://api.hypixel.net:443 "GET /skyblock/auctions?page=44 HTTP/1.1" 200 None
+2022-10-11 07:45:05.832 | DEBUG    | urllib3.connectionpool:_new_conn:1001 - Starting new HTTPS connection (1): api.hypixel.net:443
+2022-10-11 07:45:05.899 | DEBUG    | urllib3.connectionpool:_make_request:456 - https://api.hypixel.net:443 "GET /skyblock/auctions?page=45 HTTP/1.1" 200 None
+2022-10-11 07:45:05.977 | DEBUG    | urllib3.connectionpool:_new_conn:1001 - Starting new HTTPS connection (1): api.hypixel.net:443
+2022-10-11 07:45:06.049 | DEBUG    | urllib3.connectionpool:_make_request:456 - https://api.hypixel.net:443 "GET /skyblock/auctions?page=46 HTTP/1.1" 200 None
+2022-10-11 07:45:06.116 | DEBUG    | urllib3.connectionpool:_new_conn:1001 - Starting new HTTPS connection (1): api.hypixel.net:443
+2022-10-11 07:45:06.188 | DEBUG    | urllib3.connectionpool:_make_request:456 - https://api.hypixel.net:443 "GET /skyblock/auctions?page=47 HTTP/1.1" 200 None
+2022-10-11 07:45:06.259 | DEBUG    | urllib3.connectionpool:_new_conn:1001 - Starting new HTTPS connection (1): api.hypixel.net:443
+2022-10-11 07:45:06.325 | DEBUG    | urllib3.connectionpool:_make_request:456 - https://api.hypixel.net:443 "GET /skyblock/auctions?page=48 HTTP/1.1" 200 None
+2022-10-11 07:45:30.982 | INFO     | uvicorn.protocols.http.httptools_impl:send:437 - 172.18.0.1:42952 - "GET /simplified/auctions/?page=12 HTTP/1.1" 500
+2022-10-11 07:45:30.983 | ERROR    | uvicorn.protocols.http.httptools_impl:run_asgi:375 - Exception in ASGI application
+
+Traceback (most recent call last):
+
+  File "app.py", line 287, in <module>
+
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/uvicorn/main.py", line 463, in run
+    server.run()
+    │      └ <function Server.run at 0x7f718c8f5820>
+    └ <uvicorn.server.Server object at 0x7f718e2912e0>
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/uvicorn/server.py", line 60, in run
+    return asyncio.run(self.serve(sockets=sockets))
+           │       │   │    │             └ None
+           │       │   │    └ <function Server.serve at 0x7f718c8f58b0>
+           │       │   └ <uvicorn.server.Server object at 0x7f718e2912e0>
+           │       └ <function run at 0x7f719c1f0b80>
+           └ <module 'asyncio' from '/nix/store/p21fdyxqb3yqflpim7g8s1mymgpnqiv7-python3-3.8.12/lib/python3.8/asyncio/__init__.py'>
+  File "/nix/store/p21fdyxqb3yqflpim7g8s1mymgpnqiv7-python3-3.8.12/lib/python3.8/asyncio/runners.py", line 44, in run
+    return loop.run_until_complete(main)
+           │    │                  └ <coroutine object Server.serve at 0x7f717facab40>
+           │    └ <method 'run_until_complete' of 'uvloop.loop.Loop' objects>
+           └ <uvloop.Loop running=True closed=False debug=False>
+> File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/uvicorn/protocols/http/httptools_impl.py", line 372, in run_asgi
+    result = await app(self.scope, self.receive, self.send)
+                   │   │    │      │    │        │    └ <function RequestResponseCycle.send at 0x7f717f7e1940>
+                   │   │    │      │    │        └ <uvicorn.protocols.http.httptools_impl.RequestResponseCycle object at 0x7f717eaf3190>
+                   │   │    │      │    └ <function RequestResponseCycle.receive at 0x7f717f7e19d0>
+                   │   │    │      └ <uvicorn.protocols.http.httptools_impl.RequestResponseCycle object at 0x7f717eaf3190>
+                   │   │    └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('172.18.0.8', 8080), 'c...
+                   │   └ <uvicorn.protocols.http.httptools_impl.RequestResponseCycle object at 0x7f717eaf3190>
+                   └ <uvicorn.middleware.proxy_headers.ProxyHeadersMiddleware object at 0x7f718e291370>
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/uvicorn/middleware/proxy_headers.py", line 75, in __call__
+    return await self.app(scope, receive, send)
+                 │    │   │      │        └ <bound method RequestResponseCycle.send of <uvicorn.protocols.http.httptools_impl.RequestResponseCycle object at 0x7f717eaf31...
+                 │    │   │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.httptools_impl.RequestResponseCycle object at 0x7f717ea...
+                 │    │   └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('172.18.0.8', 8080), 'c...
+                 │    └ <fastapi.applications.FastAPI object at 0x7f718e28c370>
+                 └ <uvicorn.middleware.proxy_headers.ProxyHeadersMiddleware object at 0x7f718e291370>
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/fastapi/applications.py", line 269, in __call__
+    await super().__call__(scope, receive, send)
+                           │      │        └ <bound method RequestResponseCycle.send of <uvicorn.protocols.http.httptools_impl.RequestResponseCycle object at 0x7f717eaf31...
+                           │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.httptools_impl.RequestResponseCycle object at 0x7f717ea...
+                           └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('172.18.0.8', 8080), 'c...
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/starlette/applications.py", line 124, in __call__
+    await self.middleware_stack(scope, receive, send)
+          │    │                │      │        └ <bound method RequestResponseCycle.send of <uvicorn.protocols.http.httptools_impl.RequestResponseCycle object at 0x7f717eaf31...
+          │    │                │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.httptools_impl.RequestResponseCycle object at 0x7f717ea...
+          │    │                └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('172.18.0.8', 8080), 'c...
+          │    └ <starlette.middleware.errors.ServerErrorMiddleware object at 0x7f717f352df0>
+          └ <fastapi.applications.FastAPI object at 0x7f718e28c370>
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/starlette/middleware/errors.py", line 184, in __call__
+    raise exc
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/starlette/middleware/errors.py", line 162, in __call__
+    await self.app(scope, receive, _send)
+          │    │   │      │        └ <function ServerErrorMiddleware.__call__.<locals>._send at 0x7f717eada8b0>
+          │    │   │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.httptools_impl.RequestResponseCycle object at 0x7f717ea...
+          │    │   └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('172.18.0.8', 8080), 'c...
+          │    └ <starlette.exceptions.ExceptionMiddleware object at 0x7f717f352d90>
+          └ <starlette.middleware.errors.ServerErrorMiddleware object at 0x7f717f352df0>
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/starlette/exceptions.py", line 93, in __call__
+    raise exc
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/starlette/exceptions.py", line 82, in __call__
+    await self.app(scope, receive, sender)
+          │    │   │      │        └ <function ExceptionMiddleware.__call__.<locals>.sender at 0x7f717eadaa60>
+          │    │   │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.httptools_impl.RequestResponseCycle object at 0x7f717ea...
+          │    │   └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('172.18.0.8', 8080), 'c...
+          │    └ <fastapi.middleware.asyncexitstack.AsyncExitStackMiddleware object at 0x7f717f352d30>
+          └ <starlette.exceptions.ExceptionMiddleware object at 0x7f717f352d90>
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/fastapi/middleware/asyncexitstack.py", line 21, in __call__
+    raise e
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/fastapi/middleware/asyncexitstack.py", line 18, in __call__
+    await self.app(scope, receive, send)
+          │    │   │      │        └ <function ExceptionMiddleware.__call__.<locals>.sender at 0x7f717eadaa60>
+          │    │   │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.httptools_impl.RequestResponseCycle object at 0x7f717ea...
+          │    │   └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('172.18.0.8', 8080), 'c...
+          │    └ <fastapi.routing.APIRouter object at 0x7f718e28c0a0>
+          └ <fastapi.middleware.asyncexitstack.AsyncExitStackMiddleware object at 0x7f717f352d30>
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/starlette/routing.py", line 670, in __call__
+    await route.handle(scope, receive, send)
+          │     │      │      │        └ <function ExceptionMiddleware.__call__.<locals>.sender at 0x7f717eadaa60>
+          │     │      │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.httptools_impl.RequestResponseCycle object at 0x7f717ea...
+          │     │      └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('172.18.0.8', 8080), 'c...
+          │     └ <function Route.handle at 0x7f718ebb1310>
+          └ <fastapi.routing.APIRoute object at 0x7f717f2dc670>
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/starlette/routing.py", line 266, in handle
+    await self.app(scope, receive, send)
+          │    │   │      │        └ <function ExceptionMiddleware.__call__.<locals>.sender at 0x7f717eadaa60>
+          │    │   │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.httptools_impl.RequestResponseCycle object at 0x7f717ea...
+          │    │   └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('172.18.0.8', 8080), 'c...
+          │    └ <function request_response.<locals>.app at 0x7f717f2cfca0>
+          └ <fastapi.routing.APIRoute object at 0x7f717f2dc670>
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/starlette/routing.py", line 65, in app
+    response = await func(request)
+                     │    └ <starlette.requests.Request object at 0x7f717eaf3a30>
+                     └ <function get_request_handler.<locals>.app at 0x7f717f2cfc10>
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/fastapi/routing.py", line 227, in app
+    raw_response = await run_endpoint_function(
+                         └ <function run_endpoint_function at 0x7f718eba61f0>
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/fastapi/routing.py", line 160, in run_endpoint_function
+    return await dependant.call(**values)
+                 │         │      └ {'page': 12}
+                 │         └ <function auctions at 0x7f717f2cfb80>
+                 └ <fastapi.dependencies.models.Dependant object at 0x7f717f2dc6d0>
+
+  File "/home/runner/Skyblock-Tools-FastAPI/app.py", line 215, in auctions
+    return auctionables
+           └ <function auctionables at 0x7f717f2cf670>
+
+TypeError: object list can't be used in 'await' expression

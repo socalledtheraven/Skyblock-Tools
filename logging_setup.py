@@ -10,19 +10,19 @@ from pydantic import BaseSettings
 
 
 class LoggingLevel(str, Enum):
-  """
+    """
   Allowed log levels for the application
   """
 
-  CRITICAL: str = "CRITICAL"
-  ERROR: str = "ERROR"
-  WARNING: str = "WARNING"
-  INFO: str = "INFO"
-  DEBUG: str = "DEBUG"
+    CRITICAL: str = "CRITICAL"
+    ERROR: str = "ERROR"
+    WARNING: str = "WARNING"
+    INFO: str = "INFO"
+    DEBUG: str = "DEBUG"
 
 
 class LoggingSettings(BaseSettings):
-  """Configure your service logging using a LoggingSettings instance.
+    """Configure your service logging using a LoggingSettings instance.
 
   All arguments are optional.
 
@@ -35,43 +35,40 @@ class LoggingSettings(BaseSettings):
     retention (str): when to remove logfiles. (default: "1 months")
   """
 
-  level: LoggingLevel = "INFO"
-  format: str = "<blue><bold>{time:YYYY-MM-DD at HH:mm:ss}</></> - <level>{level}</level> - <green>{name}.py</>: {message}"
-  filepath: Optional[Path] = None
-  rotation: str = "1 week"
-  retention: str = "1 months"
+    level: LoggingLevel = "INFO"
+    format: str = "<blue><bold>{time:YYYY-MM-DD at HH:mm:ss}</></> - <level>{level}</level> - <green>{name}.py</>: {message}"
+    filepath: Optional[Path] = None
+    rotation: str = "1 week"
+    retention: str = "1 months"
 
-  class Config:
-    env_prefix = "logging_"
+    class Config:
+        env_prefix = "logging_"
 
 
 class InterceptHandler(logging.Handler):
-  def emit(self, record):
-    # Get corresponding Loguru level if it exists
-    try:
-      level = logger.level(record.levelname).name
-    except ValueError:
-      level = record.levelno
-  
-    # Find caller from where originated the logged message
-    frame, depth = logging.currentframe(), 2
-    while frame.f_code.co_filename == logging.__file__:
-      frame = frame.f_back
-      depth += 1
-  
-    logger.opt(depth=depth, exception=record.exc_info).log(
-      level, record.getMessage()
-    )
+    def emit(self, record):
+        # Get corresponding Loguru level if it exists
+        try:
+            level = logger.level(record.levelname).name
+        except ValueError:
+            level = record.levelno
+
+        # Find caller from where originated the logged message
+        frame, depth = logging.currentframe(), 2
+        while frame.f_code.co_filename == logging.__file__:
+            frame = frame.f_back
+            depth += 1
+
+        logger.opt(depth=depth,
+                   exception=record.exc_info).log(level, record.getMessage())
 
 
-def setup_logger(
-  level: str,
-  format: str,
-  filepath: Optional[Path] = None,
-  rotation: Optional[str] = None,
-  retention: Optional[str] = None
-) -> Logger:
-  """Define the global logger to be used by your entire service.
+def setup_logger(level: str,
+                 format: str,
+                 filepath: Optional[Path] = None,
+                 rotation: Optional[str] = None,
+                 retention: Optional[str] = None) -> Logger:
+    """Define the global logger to be used by your entire service.
 
   Arguments:
 
@@ -90,45 +87,48 @@ def setup_logger(
     - [Loguru: Intercepting logging logs #247](https://github.com/Delgan/loguru/issues/247)
     - [Gunicorn: generic logging options #1572](https://github.com/benoitc/gunicorn/issues/1572#issuecomment-638391953)
   """
-  # Remove loguru default logger
-  logger.remove()
-  # Cath all existing loggers
-  LOGGERS = [logging.getLogger(name) for name in logging.root.manager.loggerDict]
-  # Add stdout logger
-  logger.add(
-    sys.stdout,
-    enqueue=True,
-    colorize=True,
-    backtrace=True,
-    level=level.upper(),
-    format=format,
-  )
-  # Optionally add filepath logger
-  if filepath:
-    Path(filepath).parent.mkdir(parents=True, exist_ok=True)
+    # Remove loguru default logger
+    logger.remove()
+    # Cath all existing loggers
+    LOGGERS = [
+        logging.getLogger(name) for name in logging.root.manager.loggerDict
+    ]
+    # Add stdout logger
     logger.add(
-      str(filepath),
-      rotation=rotation,
-      retention=retention,
-      enqueue=True,
-      colorize=False,
-      backtrace=True,
-      level=level.upper(),
-      format=format,
+        sys.stdout,
+        enqueue=True,
+        colorize=True,
+        backtrace=True,
+        level=level.upper(),
+        format=format,
     )
-      
-  # Overwrite config of standard library root logger
-  logging.basicConfig(handlers=[InterceptHandler()], level=0)
-  # Overwrite handlers of all existing loggers from standard library logging
-  for _logger in LOGGERS:
-    _logger.handlers = [InterceptHandler()]
-    _logger.propagate = False
+    # Optionally add filepath logger
+    if filepath:
+        Path(filepath).parent.mkdir(parents=True, exist_ok=True)
+        logger.add(
+            str(filepath),
+            rotation=rotation,
+            retention=retention,
+            enqueue=True,
+            colorize=False,
+            backtrace=True,
+            level=level.upper(),
+            format=format,
+        )
 
-  return logger
+    # Overwrite config of standard library root logger
+    logging.basicConfig(handlers=[InterceptHandler()], level=0)
+    # Overwrite handlers of all existing loggers from standard library logging
+    for _logger in LOGGERS:
+        _logger.handlers = [InterceptHandler()]
+        _logger.propagate = False
+
+    return logger
 
 
-def setup_logger_from_settings(settings: Optional[LoggingSettings] = None) -> Logger:
-  """Define the global logger to be used by your entire service.
+def setup_logger_from_settings(
+        settings: Optional[LoggingSettings] = None) -> Logger:
+    """Define the global logger to be used by your entire service.
 
   Arguments:
 
@@ -138,24 +138,24 @@ def setup_logger_from_settings(settings: Optional[LoggingSettings] = None) -> Lo
 
     the logger instance.
   """
-  # Parse from env when no settings are given
-  if not settings:
-    settings = LoggingSettings()
-  # Return logger even though it's not necessary
-  return setup_logger(
-    settings.level,
-    settings.format,
-    settings.filepath,
-    settings.rotation,
-    settings.retention,
-  )
+    # Parse from env when no settings are given
+    if not settings:
+        settings = LoggingSettings()
+    # Return logger even though it's not necessary
+    return setup_logger(
+        settings.level,
+        settings.format,
+        settings.filepath,
+        settings.rotation,
+        settings.retention,
+    )
 
 
 def setup():
-  logger = setup_logger_from_settings()
-  # logger.add("./logs/{time:YYYY-MM-DD}.log", filter=lambda record: record["level"] == "WARNING")
-  # logger.add("./logs/{time:YYYY-MM-DD}.log", filter=lambda record: record["level"] == "ERROR")
-  # logger.add("./logs/{time:YYYY-MM-DD}.log", filter=lambda record: record["level"] == "CRITICAL")
-  logger.add("./logs/{time:YYYY-MM-DD}.log")
-  
-  return logger
+    logger = setup_logger_from_settings()
+    # logger.add("./logs/{time:YYYY-MM-DD}.log", filter=lambda record: record["level"] == "WARNING")
+    # logger.add("./logs/{time:YYYY-MM-DD}.log", filter=lambda record: record["level"] == "ERROR")
+    # logger.add("./logs/{time:YYYY-MM-DD}.log", filter=lambda record: record["level"] == "CRITICAL")
+    logger.add("./logs/{time:YYYY-MM-DD}.log")
+
+    return logger
