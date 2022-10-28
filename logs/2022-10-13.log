@@ -1,0 +1,7 @@
+2022-10-13 21:48:22.586 | DEBUG    | git.cmd:execute:870 - Popen(['git', 'pull', '-v', 'origin'], cwd=/home/runner/Skyblock-Tools-FastAPI/neu-repo, universal_newlines=True, shell=None, istream=None)
+2022-10-13 21:48:22.871 | DEBUG    | urllib3.connectionpool:_new_conn:1001 - Starting new HTTPS connection (1): api.hypixel.net:443
+2022-10-13 21:48:22.933 | DEBUG    | urllib3.connectionpool:_make_request:456 - https://api.hypixel.net:443 "GET /resources/skyblock/items HTTP/1.1" 200 None
+2022-10-13 21:48:23.994 | INFO     | uvicorn.server:serve:75 - Started server process [22]
+2022-10-13 21:48:23.995 | INFO     | uvicorn.lifespan.on:startup:45 - Waiting for application startup.
+2022-10-13 21:48:24.071 | INFO     | uvicorn.lifespan.on:startup:59 - Application startup complete.
+2022-10-13 21:48:24.074 | INFO     | uvicorn.server:_log_started_message:206 - Uvicorn running on http://0.0.0.0:8080 (Press CTRL+C to quit)

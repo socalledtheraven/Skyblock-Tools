@@ -1,0 +1,14 @@
+2022-10-25 21:35:38.133 | DEBUG    | git.cmd:execute:870 - Popen(['git', 'pull', '-v', 'origin'], cwd=/home/runner/Skyblock-Tools-FastAPI/neu-repo, universal_newlines=True, shell=None, istream=None)
+2022-10-25 21:35:38.461 | DEBUG    | urllib3.connectionpool:_new_conn:1001 - Starting new HTTPS connection (1): api.hypixel.net:443
+2022-10-25 21:35:38.534 | DEBUG    | urllib3.connectionpool:_make_request:456 - https://api.hypixel.net:443 "GET /resources/skyblock/items HTTP/1.1" 200 None
+2022-10-25 21:35:39.205 | INFO     | uvicorn.server:serve:75 - Started server process [21]
+2022-10-25 21:35:39.206 | INFO     | uvicorn.lifespan.on:startup:45 - Waiting for application startup.
+2022-10-25 21:35:39.290 | INFO     | uvicorn.lifespan.on:startup:59 - Application startup complete.
+2022-10-25 21:35:39.292 | INFO     | uvicorn.server:_log_started_message:206 - Uvicorn running on http://0.0.0.0:8080 (Press CTRL+C to quit)
+2022-10-25 21:35:39.554 | INFO     | uvicorn.protocols.http.httptools_impl:send:437 - 172.18.0.1:56092 - "OPTIONS %2A HTTP/1.1" 404
+2022-10-25 22:53:43.918 | INFO     | uvicorn.protocols.http.httptools_impl:send:437 - 172.18.0.1:47860 - "GET /robots.txt HTTP/1.1" 404
+2022-10-25 22:54:14.860 | INFO     | uvicorn.protocols.http.httptools_impl:send:437 - 172.18.0.1:46812 - "GET /robots.txt HTTP/1.1" 404
+2022-10-25 22:54:19.157 | INFO     | uvicorn.protocols.http.httptools_impl:send:437 - 172.18.0.1:39990 - "GET / HTTP/1.1" 307
+2022-10-25 22:55:11.798 | INFO     | uvicorn.protocols.http.httptools_impl:send:437 - 172.18.0.1:58570 - "GET /docs HTTP/1.1" 200
+2022-10-26 02:45:01.854 | INFO     | uvicorn.protocols.http.httptools_impl:send:437 - 172.18.0.1:56968 - "GET /robots.txt HTTP/1.1" 404
+2022-10-26 02:56:22.549 | INFO     | uvicorn.protocols.http.httptools_impl:send:437 - 172.18.0.1:35586 - "GET /docs HTTP/1.1" 200

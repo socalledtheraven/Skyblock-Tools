@@ -1,0 +1,966 @@
+2022-10-16 03:21:11.917 | DEBUG    | git.cmd:execute:870 - Popen(['git', 'pull', '-v', 'origin'], cwd=/home/runner/Skyblock-Tools-FastAPI/neu-repo, universal_newlines=True, shell=None, istream=None)
+2022-10-16 03:21:12.246 | DEBUG    | urllib3.connectionpool:_new_conn:1001 - Starting new HTTPS connection (1): api.hypixel.net:443
+2022-10-16 03:21:12.322 | DEBUG    | urllib3.connectionpool:_make_request:456 - https://api.hypixel.net:443 "GET /resources/skyblock/items HTTP/1.1" 200 None
+2022-10-16 03:21:13.564 | INFO     | uvicorn.server:serve:75 - Started server process [22]
+2022-10-16 03:21:13.565 | INFO     | uvicorn.lifespan.on:startup:45 - Waiting for application startup.
+2022-10-16 03:21:13.636 | INFO     | uvicorn.lifespan.on:startup:59 - Application startup complete.
+2022-10-16 03:21:13.642 | INFO     | uvicorn.server:_log_started_message:206 - Uvicorn running on http://0.0.0.0:8080 (Press CTRL+C to quit)
+2022-10-16 03:21:41.715 | INFO     | uvicorn.protocols.http.httptools_impl:send:437 - 172.18.0.1:52232 - "GET / HTTP/1.1" 307
+2022-10-16 03:21:41.763 | INFO     | uvicorn.protocols.http.httptools_impl:send:437 - 172.18.0.1:52232 - "GET /docs HTTP/1.1" 200
+2022-10-16 03:21:42.372 | INFO     | uvicorn.protocols.http.httptools_impl:send:437 - 172.18.0.1:52232 - "GET /openapi.json HTTP/1.1" 200
+2022-10-16 03:23:37.994 | INFO     | uvicorn.protocols.http.httptools_impl:send:437 - 172.18.0.1:43246 - "GET /robots.txt HTTP/1.1" 404
+2022-10-16 03:23:38.355 | INFO     | uvicorn.protocols.http.httptools_impl:send:437 - 172.18.0.1:50832 - "GET /docs HTTP/1.1" 200
+2022-10-16 03:23:40.874 | INFO     | uvicorn.protocols.http.httptools_impl:send:437 - 172.18.0.1:34280 - "GET /sitemap.xml HTTP/1.1" 404
+2022-10-16 11:56:45.060 | INFO     | uvicorn.protocols.http.httptools_impl:send:437 - 172.18.0.1:60236 - "GET /flippers/bin/html HTTP/1.1" 307
+2022-10-16 11:56:45.350 | INFO     | uvicorn.protocols.http.httptools_impl:send:437 - 172.18.0.1:60236 - "GET /flippers/bin/html/ HTTP/1.1" 500
+2022-10-16 11:56:45.351 | ERROR    | uvicorn.protocols.http.httptools_impl:run_asgi:375 - Exception in ASGI application
+
+Traceback (most recent call last):
+
+  File "app.py", line 315, in <module>
+    uvicorn.run("app:app", host='0.0.0.0', port=8080)
+    │       └ <function run at 0x7ff822996f70>
+    └ <module 'uvicorn' from '/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/uvicorn/__init__.py'>
+
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/uvicorn/main.py", line 463, in run
+    server.run()
+    │      └ <function Server.run at 0x7ff822996a60>
+    └ <uvicorn.server.Server object at 0x7ff824334220>
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/uvicorn/server.py", line 60, in run
+    return asyncio.run(self.serve(sockets=sockets))
+           │       │   │    │             └ None
+           │       │   │    └ <function Server.serve at 0x7ff822996af0>
+           │       │   └ <uvicorn.server.Server object at 0x7ff824334220>
+           │       └ <function run at 0x7ff825fd1b80>
+           └ <module 'asyncio' from '/nix/store/p21fdyxqb3yqflpim7g8s1mymgpnqiv7-python3-3.8.12/lib/python3.8/asyncio/__init__.py'>
+  File "/nix/store/p21fdyxqb3yqflpim7g8s1mymgpnqiv7-python3-3.8.12/lib/python3.8/asyncio/runners.py", line 44, in run
+    return loop.run_until_complete(main)
+           │    │                  └ <coroutine object Server.serve at 0x7ff821b7dbc0>
+           │    └ <method 'run_until_complete' of 'uvloop.loop.Loop' objects>
+           └ <uvloop.Loop running=True closed=False debug=False>
+> File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/uvicorn/protocols/http/httptools_impl.py", line 372, in run_asgi
+    result = await app(self.scope, self.receive, self.send)
+                   │   │    │      │    │        │    └ <function RequestResponseCycle.send at 0x7ff821894b80>
+                   │   │    │      │    │        └ <uvicorn.protocols.http.httptools_impl.RequestResponseCycle object at 0x7ff82032f370>
+                   │   │    │      │    └ <function RequestResponseCycle.receive at 0x7ff821894c10>
+                   │   │    │      └ <uvicorn.protocols.http.httptools_impl.RequestResponseCycle object at 0x7ff82032f370>
+                   │   │    └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('172.18.0.50', 8080), '...
+                   │   └ <uvicorn.protocols.http.httptools_impl.RequestResponseCycle object at 0x7ff82032f370>
+                   └ <uvicorn.middleware.proxy_headers.ProxyHeadersMiddleware object at 0x7ff8243342b0>
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/uvicorn/middleware/proxy_headers.py", line 75, in __call__
+    return await self.app(scope, receive, send)
+                 │    │   │      │        └ <bound method RequestResponseCycle.send of <uvicorn.protocols.http.httptools_impl.RequestResponseCycle object at 0x7ff82032f3...
+                 │    │   │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.httptools_impl.RequestResponseCycle object at 0x7ff8203...
+                 │    │   └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('172.18.0.50', 8080), '...
+                 │    └ <fastapi.applications.FastAPI object at 0x7ff82432f0d0>
+                 └ <uvicorn.middleware.proxy_headers.ProxyHeadersMiddleware object at 0x7ff8243342b0>
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/fastapi/applications.py", line 269, in __call__
+    await super().__call__(scope, receive, send)
+                           │      │        └ <bound method RequestResponseCycle.send of <uvicorn.protocols.http.httptools_impl.RequestResponseCycle object at 0x7ff82032f3...
+                           │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.httptools_impl.RequestResponseCycle object at 0x7ff8203...
+                           └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('172.18.0.50', 8080), '...
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/starlette/applications.py", line 124, in __call__
+    await self.middleware_stack(scope, receive, send)
+          │    │                │      │        └ <bound method RequestResponseCycle.send of <uvicorn.protocols.http.httptools_impl.RequestResponseCycle object at 0x7ff82032f3...
+          │    │                │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.httptools_impl.RequestResponseCycle object at 0x7ff8203...
+          │    │                └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('172.18.0.50', 8080), '...
+          │    └ <starlette.middleware.errors.ServerErrorMiddleware object at 0x7ff8214047c0>
+          └ <fastapi.applications.FastAPI object at 0x7ff82432f0d0>
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/starlette/middleware/errors.py", line 184, in __call__
+    raise exc
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/starlette/middleware/errors.py", line 162, in __call__
+    await self.app(scope, receive, _send)
+          │    │   │      │        └ <function ServerErrorMiddleware.__call__.<locals>._send at 0x7ff820b88ca0>
+          │    │   │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.httptools_impl.RequestResponseCycle object at 0x7ff8203...
+          │    │   └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('172.18.0.50', 8080), '...
+          │    └ <starlette.exceptions.ExceptionMiddleware object at 0x7ff821404760>
+          └ <starlette.middleware.errors.ServerErrorMiddleware object at 0x7ff8214047c0>
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/starlette/exceptions.py", line 93, in __call__
+    raise exc
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/starlette/exceptions.py", line 82, in __call__
+    await self.app(scope, receive, sender)
+          │    │   │      │        └ <function ExceptionMiddleware.__call__.<locals>.sender at 0x7ff820b88d30>
+          │    │   │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.httptools_impl.RequestResponseCycle object at 0x7ff8203...
+          │    │   └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('172.18.0.50', 8080), '...
+          │    └ <fastapi.middleware.asyncexitstack.AsyncExitStackMiddleware object at 0x7ff821404700>
+          └ <starlette.exceptions.ExceptionMiddleware object at 0x7ff821404760>
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/fastapi/middleware/asyncexitstack.py", line 21, in __call__
+    raise e
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/fastapi/middleware/asyncexitstack.py", line 18, in __call__
+    await self.app(scope, receive, send)
+          │    │   │      │        └ <function ExceptionMiddleware.__call__.<locals>.sender at 0x7ff820b88d30>
+          │    │   │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.httptools_impl.RequestResponseCycle object at 0x7ff8203...
+          │    │   └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('172.18.0.50', 8080), '...
+          │    └ <fastapi.routing.APIRouter object at 0x7ff821404460>
+          └ <fastapi.middleware.asyncexitstack.AsyncExitStackMiddleware object at 0x7ff821404700>
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/starlette/routing.py", line 670, in __call__
+    await route.handle(scope, receive, send)
+          │     │      │      │        └ <function ExceptionMiddleware.__call__.<locals>.sender at 0x7ff820b88d30>
+          │     │      │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.httptools_impl.RequestResponseCycle object at 0x7ff8203...
+          │     │      └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('172.18.0.50', 8080), '...
+          │     └ <function Route.handle at 0x7ff824c65310>
+          └ <fastapi.routing.APIRoute object at 0x7ff8213e4e50>
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/starlette/routing.py", line 266, in handle
+    await self.app(scope, receive, send)
+          │    │   │      │        └ <function ExceptionMiddleware.__call__.<locals>.sender at 0x7ff820b88d30>
+          │    │   │      └ <bound method RequestResponseCycle.receive of <uvicorn.protocols.http.httptools_impl.RequestResponseCycle object at 0x7ff8203...
+          │    │   └ {'type': 'http', 'asgi': {'version': '3.0', 'spec_version': '2.3'}, 'http_version': '1.1', 'server': ('172.18.0.50', 8080), '...
+          │    └ <function request_response.<locals>.app at 0x7ff8213deca0>
+          └ <fastapi.routing.APIRoute object at 0x7ff8213e4e50>
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/starlette/routing.py", line 65, in app
+    response = await func(request)
+                     │    └ <starlette.requests.Request object at 0x7ff82032f1c0>
+                     └ <function get_request_handler.<locals>.app at 0x7ff8213dec10>
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/fastapi/routing.py", line 227, in app
+    raw_response = await run_endpoint_function(
+                         └ <function run_endpoint_function at 0x7ff824c5a1f0>
+  File "/home/runner/Skyblock-Tools-FastAPI/venv/lib/python3.8/site-packages/fastapi/routing.py", line 160, in run_endpoint_function
+    return await dependant.call(**values)
+                 │         │      └ {}
+                 │         └ <function bin_flipper_html at 0x7ff8213deb80>
+                 └ <fastapi.dependencies.models.Dependant object at 0x7ff8213e4e80>
+
+  File "/home/runner/Skyblock-Tools-FastAPI/app.py", line 283, in bin_flipper_html
+    return main.build_table(main.bin_flipper()[0],
+           │    │           │    └ <function bin_flipper at 0x7ff82434f280>
+           │    │           └ <module 'main' from '/home/runner/Skyblock-Tools-FastAPI/main.py'>
+           │    └ <function build_table at 0x7ff82432dc10>
+           └ <module 'main' from '/home/runner/Skyblock-Tools-FastAPI/main.py'>
+
+  File "/home/runner/Skyblock-Tools-FastAPI/main.py", line 1184, in bin_flipper
+    flips[i]["profit"] = commaify(current_item_data["bin_profit"])
+    │     │              │        └ {'recipe': '', 'craft_cost': 0, 'ingredients': {}, 'name': 'Abiphone XIII Pro Giga', 'id': 'ABIPHONE_XIII_PRO_GIGA', 'image_l...
+    │     │              └ <function commaify at 0x7ff82434f4c0>
+    │     └ 0
+    └ [{'id': 'ABIPHONE_XIII_PRO_GIGA', 'image': '<img src=https://raw.githubusercontent.com/QuintBrit/images/main/furf/ABIPHONE_XI...
+
+KeyError: 'bin_profit'
+2022-10-16 13:29:30.061 | INFO     | uvicorn.protocols.http.httptools_impl:send:437 - 172.18.0.1:37256 - "GET /flippers/bazaar/html HTTP/1.1" 307
+2022-10-16 13:29:30.332 | INFO     | main:bazaar_flipper:981 - Item: Absolute Ender Pearl
+2022-10-16 13:29:30.333 | INFO     | main:bazaar_flipper:981 - Item: Acacia Birdhouse
+2022-10-16 13:29:30.334 | INFO     | main:bazaar_flipper:981 - Item: Amalgamated Crimsonite
+2022-10-16 13:29:30.334 | INFO     | main:bazaar_flipper:981 - Item: Amber Material
+2022-10-16 13:29:30.334 | INFO     | main:bazaar_flipper:981 - Item: Ancient Claw
+2022-10-16 13:29:30.335 | INFO     | main:bazaar_flipper:981 - Item: Warped Stone
+2022-10-16 13:29:30.336 | INFO     | main:bazaar_flipper:981 - Item: Arachne's Keeper Fragment
+2022-10-16 13:29:30.336 | INFO     | main:bazaar_flipper:981 - Item: Beating Heart
+2022-10-16 13:29:30.337 | INFO     | main:bazaar_flipper:981 - Item: Blaze Rod
+2022-10-16 13:29:30.338 | INFO     | main:bazaar_flipper:981 - Item: Blaze Rod Distillate
+2022-10-16 13:29:30.338 | INFO     | main:bazaar_flipper:981 - Item: Blaze Wax
+2022-10-16 13:29:30.339 | INFO     | main:bazaar_flipper:981 - Item: Blessed Bait
+2022-10-16 13:29:30.340 | INFO     | main:bazaar_flipper:981 - Item: Blessed Fruit
+2022-10-16 13:29:30.341 | INFO     | main:bazaar_flipper:981 - Item: Blue Shark Tooth
+2022-10-16 13:29:30.341 | INFO     | main:bazaar_flipper:981 - Item: Bone
+2022-10-16 13:29:30.342 | INFO     | main:bazaar_flipper:981 - Item: Booster Cookie
+2022-10-16 13:29:30.342 | INFO     | main:bazaar_flipper:981 - Item: Brown Mushroom
+2022-10-16 13:29:30.343 | INFO     | main:bazaar_flipper:981 - Item: Bulky Stone
+2022-10-16 13:29:30.343 | INFO     | main:bazaar_flipper:981 - Item: Cactus
+2022-10-16 13:29:30.344 | INFO     | main:bazaar_flipper:981 - Item: Candy Corn
+2022-10-16 13:29:30.344 | INFO     | main:bazaar_flipper:981 - Item: Carrot Bait
+2022-10-16 13:29:30.345 | INFO     | main:bazaar_flipper:981 - Item: Carrot
+2022-10-16 13:29:30.346 | INFO     | main:bazaar_flipper:981 - Item: Catalyst
+2022-10-16 13:29:30.346 | INFO     | main:bazaar_flipper:981 - Item: Tasty Cheese
+2022-10-16 13:29:30.347 | INFO     | main:bazaar_flipper:981 - Item: Clay
+2022-10-16 13:29:30.347 | INFO     | main:bazaar_flipper:981 - Item: Coal
+2022-10-16 13:29:30.348 | INFO     | main:bazaar_flipper:981 - Item: Cobblestone
+2022-10-16 13:29:30.348 | INFO     | main:bazaar_flipper:981 - Item: Colossal Experience Bottle
+2022-10-16 13:29:30.348 | INFO     | main:bazaar_flipper:981 - Item: Compactor
+2022-10-16 13:29:30.349 | INFO     | main:bazaar_flipper:981 - Item: Concentrated Stone
+2022-10-16 13:29:30.349 | INFO     | main:bazaar_flipper:981 - Item: Corrupted Bait
+2022-10-16 13:29:30.350 | INFO     | main:bazaar_flipper:981 - Item: Crude Gabagool
+2022-10-16 13:29:30.351 | INFO     | main:bazaar_flipper:981 - Item: Gabagool Distillate
+2022-10-16 13:29:30.352 | INFO     | main:bazaar_flipper:981 - Item: Daedalus Stick
+2022-10-16 13:29:30.352 | INFO     | main:bazaar_flipper:981 - Item: Dark Bait
+2022-10-16 13:29:30.353 | INFO     | main:bazaar_flipper:981 - Item: Dark Orb
+2022-10-16 13:29:30.353 | INFO     | main:bazaar_flipper:981 - Item: Deep Sea Orb
+2022-10-16 13:29:30.354 | INFO     | main:bazaar_flipper:981 - Item: Derelict Ashe
+2022-10-16 13:29:30.354 | INFO     | main:bazaar_flipper:981 - Item: Diamond
+2022-10-16 13:29:30.355 | INFO     | main:bazaar_flipper:981 - Item: Diamond Atom
+2022-10-16 13:29:30.356 | INFO     | main:bazaar_flipper:981 - Item: Diamonite
+2022-10-16 13:29:30.356 | INFO     | main:bazaar_flipper:981 - Item: Dragon Claw
+2022-10-16 13:29:30.357 | INFO     | main:bazaar_flipper:981 - Item: Dragon Horn
+2022-10-16 13:29:30.358 | INFO     | main:bazaar_flipper:981 - Item: Dragon Scale
+2022-10-16 13:29:30.358 | INFO     | main:bazaar_flipper:981 - Item: Dwarven Super Compactor
+2022-10-16 13:29:30.359 | INFO     | main:bazaar_flipper:981 - Item: Eccentric Painting
+2022-10-16 13:29:30.359 | INFO     | main:bazaar_flipper:981 - Item: Ectoplasm
+2022-10-16 13:29:30.360 | INFO     | main:bazaar_flipper:981 - Item: Emerald
+2022-10-16 13:29:30.360 | INFO     | main:bazaar_flipper:981 - Item: Enchanted Acacia Wood
+2022-10-16 13:29:30.361 | INFO     | main:bazaar_flipper:981 - Item: Enchanted Ancient Claw
+2022-10-16 13:29:30.361 | INFO     | main:bazaar_flipper:981 - Item: Enchanted Baked Potato
+2022-10-16 13:29:30.362 | INFO     | main:bazaar_flipper:981 - Item: Enchanted Birch Wood
+2022-10-16 13:29:30.363 | INFO     | main:bazaar_flipper:981 - Item: Enchanted Blaze Powder
+2022-10-16 13:29:30.363 | INFO     | main:bazaar_flipper:981 - Item: Enchanted Blaze Rod
+2022-10-16 13:29:30.364 | INFO     | main:bazaar_flipper:981 - Item: Enchanted Bone
+2022-10-16 13:29:30.364 | INFO     | main:bazaar_flipper:981 - Item: Enchanted Bone Block
+2022-10-16 13:29:30.365 | INFO     | main:bazaar_flipper:981 - Item: Enchanted Bread
+2022-10-16 13:29:30.365 | INFO     | main:bazaar_flipper:981 - Item: Enchanted Brown Mushroom
+2022-10-16 13:29:30.366 | INFO     | main:bazaar_flipper:981 - Item: Enchanted Cactus
+2022-10-16 13:29:30.366 | INFO     | main:bazaar_flipper:981 - Item: Enchanted Cactus Green
+2022-10-16 13:29:30.366 | INFO     | main:bazaar_flipper:981 - Item: Enchanted Cake
+2022-10-16 13:29:30.367 | INFO     | main:bazaar_flipper:981 - Item: Enchanted Carrot
+2022-10-16 13:29:30.368 | INFO     | main:bazaar_flipper:981 - Item: Enchanted Carrot on a Stick
+2022-10-16 13:29:30.368 | INFO     | main:bazaar_flipper:981 - Item: Enchanted Charcoal
+2022-10-16 13:29:30.370 | INFO     | main:bazaar_flipper:981 - Item: Enchanted Clay
+2022-10-16 13:29:30.370 | INFO     | main:bazaar_flipper:981 - Item: Enchanted Clownfish
+2022-10-16 13:29:30.371 | INFO     | main:bazaar_flipper:981 - Item: Enchanted Coal
+2022-10-16 13:29:30.372 | INFO     | main:bazaar_flipper:981 - Item: Enchanted Block of Coal
+2022-10-16 13:29:30.372 | INFO     | main:bazaar_flipper:981 - Item: Enchanted Cobblestone
+2022-10-16 13:29:30.373 | INFO     | main:bazaar_flipper:981 - Item: Enchanted Cocoa Bean
+2022-10-16 13:29:30.376 | INFO     | main:bazaar_flipper:981 - Item: Enchanted Cooked Fish
+2022-10-16 13:29:30.376 | INFO     | main:bazaar_flipper:981 - Item: Enchanted Cooked Mutton
+2022-10-16 13:29:30.377 | INFO     | main:bazaar_flipper:981 - Item: Enchanted Cooked Salmon
+2022-10-16 13:29:30.378 | INFO     | main:bazaar_flipper:981 - Item: Enchanted Cookie
+2022-10-16 13:29:30.379 | INFO     | main:bazaar_flipper:981 - Item: Enchanted Dark Oak Wood
+2022-10-16 13:29:30.379 | INFO     | main:bazaar_flipper:981 - Item: Enchanted Diamond
+2022-10-16 13:29:30.380 | INFO     | main:bazaar_flipper:981 - Item: Enchanted Diamond Block
+2022-10-16 13:29:30.380 | INFO     | main:bazaar_flipper:981 - Item: Enchanted Egg
+2022-10-16 13:29:30.381 | INFO     | main:bazaar_flipper:981 - Item: Enchanted Emerald
+2022-10-16 13:29:30.382 | INFO     | main:bazaar_flipper:981 - Item: Enchanted Emerald Block
+2022-10-16 13:29:30.383 | INFO     | main:bazaar_flipper:981 - Item: Enchanted Ender Pearl
+2022-10-16 13:29:30.383 | INFO     | main:bazaar_flipper:981 - Item: Enchanted End Stone
+2022-10-16 13:29:30.384 | INFO     | main:bazaar_flipper:981 - Item: Enchanted Eye of Ender
+2022-10-16 13:29:30.384 | INFO     | main:bazaar_flipper:981 - Item: Enchanted Feather
+2022-10-16 13:29:30.385 | INFO     | main:bazaar_flipper:981 - Item: Enchanted Fermented Spider Eye
+2022-10-16 13:29:30.385 | INFO     | main:bazaar_flipper:981 - Item: Enchanted Firework Rocket
+2022-10-16 13:29:30.386 | INFO     | main:bazaar_flipper:981 - Item: Enchanted Flint
+2022-10-16 13:29:30.386 | INFO     | main:bazaar_flipper:981 - Item: Enchanted Ghast Tear
+2022-10-16 13:29:30.386 | INFO     | main:bazaar_flipper:981 - Item: Enchanted Glistering Melon
+2022-10-16 13:29:30.387 | INFO     | main:bazaar_flipper:981 - Item: Enchanted Glowstone
+2022-10-16 13:29:30.387 | INFO     | main:bazaar_flipper:981 - Item: Enchanted Glowstone Dust
+2022-10-16 13:29:30.387 | INFO     | main:bazaar_flipper:981 - Item: Enchanted Gold
+2022-10-16 13:29:30.388 | INFO     | main:bazaar_flipper:981 - Item: Enchanted Golden Carrot
+2022-10-16 13:29:30.388 | INFO     | main:bazaar_flipper:981 - Item: Enchanted Gold Block
+2022-10-16 13:29:30.388 | INFO     | main:bazaar_flipper:981 - Item: Enchanted Grilled Pork
+2022-10-16 13:29:30.389 | INFO     | main:bazaar_flipper:981 - Item: Enchanted Gunpowder
+2022-10-16 13:29:30.389 | INFO     | main:bazaar_flipper:981 - Item: Enchanted Hard Stone
+2022-10-16 13:29:30.390 | INFO     | main:bazaar_flipper:981 - Item: Enchanted Hay Bale
+2022-10-16 13:29:30.390 | INFO     | main:bazaar_flipper:981 - Item: Enchanted Brown Mushroom Block
+2022-10-16 13:29:30.391 | INFO     | main:bazaar_flipper:981 - Item: Enchanted Red Mushroom Block
+2022-10-16 13:29:30.392 | INFO     | main:bazaar_flipper:981 - Item: Enchanted Ice
+2022-10-16 13:29:30.393 | INFO     | main:bazaar_flipper:981 - Item: Enchanted Ink Sack
+2022-10-16 13:29:30.393 | INFO     | main:bazaar_flipper:981 - Item: Enchanted Iron
+2022-10-16 13:29:30.394 | INFO     | main:bazaar_flipper:981 - Item: Enchanted Iron Block
+2022-10-16 13:29:30.394 | INFO     | main:bazaar_flipper:981 - Item: Enchanted Jungle Wood
+2022-10-16 13:29:30.395 | INFO     | main:bazaar_flipper:981 - Item: Enchanted Lapis Lazuli
+2022-10-16 13:29:30.396 | INFO     | main:bazaar_flipper:981 - Item: Enchanted Lapis Block
+2022-10-16 13:29:30.396 | INFO     | main:bazaar_flipper:981 - Item: Enchanted Lava Bucket
+2022-10-16 13:29:30.397 | INFO     | main:bazaar_flipper:981 - Item: Enchanted Leather
+2022-10-16 13:29:30.397 | INFO     | main:bazaar_flipper:981 - Item: Enchanted Magma Cream
+2022-10-16 13:29:30.398 | INFO     | main:bazaar_flipper:981 - Item: Enchanted Melon
+2022-10-16 13:29:30.398 | INFO     | main:bazaar_flipper:981 - Item: Enchanted Melon Block
+2022-10-16 13:29:30.399 | INFO     | main:bazaar_flipper:981 - Item: Enchanted Mithril
+2022-10-16 13:29:30.400 | INFO     | main:bazaar_flipper:981 - Item: Enchanted Mutton
+2022-10-16 13:29:30.400 | INFO     | main:bazaar_flipper:981 - Item: Enchanted Mycelium
+2022-10-16 13:29:30.401 | INFO     | main:bazaar_flipper:981 - Item: Enchanted Mycelium Cube
+2022-10-16 13:29:30.401 | INFO     | main:bazaar_flipper:981 - Item: Enchanted Netherrack
+2022-10-16 13:29:30.402 | INFO     | main:bazaar_flipper:981 - Item: Enchanted Nether Wart
+2022-10-16 13:29:30.402 | INFO     | main:bazaar_flipper:981 - Item: Enchanted Oak Wood
+2022-10-16 13:29:30.403 | INFO     | main:bazaar_flipper:981 - Item: Enchanted Obsidian
+2022-10-16 13:29:30.403 | INFO     | main:bazaar_flipper:981 - Item: Enchanted Packed Ice
+2022-10-16 13:29:30.404 | INFO     | main:bazaar_flipper:981 - Item: Enchanted Paper
+2022-10-16 13:29:30.404 | INFO     | main:bazaar_flipper:981 - Item: Enchanted Pork
+2022-10-16 13:29:30.405 | INFO     | main:bazaar_flipper:981 - Item: Enchanted Potato
+2022-10-16 13:29:30.406 | INFO     | main:bazaar_flipper:981 - Item: Enchanted Prismarine Crystals
+2022-10-16 13:29:30.406 | INFO     | main:bazaar_flipper:981 - Item: Enchanted Prismarine Shard
+2022-10-16 13:29:30.407 | INFO     | main:bazaar_flipper:981 - Item: Enchanted Pufferfish
+2022-10-16 13:29:30.407 | INFO     | main:bazaar_flipper:981 - Item: Enchanted Pumpkin
+2022-10-16 13:29:30.408 | INFO     | main:bazaar_flipper:981 - Item: Enchanted Quartz
+2022-10-16 13:29:30.409 | INFO     | main:bazaar_flipper:981 - Item: Enchanted Quartz Block
+2022-10-16 13:29:30.409 | INFO     | main:bazaar_flipper:981 - Item: Enchanted Raw Rabbit
+2022-10-16 13:29:30.410 | INFO     | main:bazaar_flipper:981 - Item: Enchanted Rabbit Foot
+2022-10-16 13:29:30.410 | INFO     | main:bazaar_flipper:981 - Item: Enchanted Rabbit Hide
+2022-10-16 13:29:30.411 | INFO     | main:bazaar_flipper:981 - Item: Enchanted Raw Beef
+2022-10-16 13:29:30.411 | INFO     | main:bazaar_flipper:981 - Item: Enchanted Raw Chicken
+2022-10-16 13:29:30.412 | INFO     | main:bazaar_flipper:981 - Item: Enchanted Raw Fish
+2022-10-16 13:29:30.412 | INFO     | main:bazaar_flipper:981 - Item: Enchanted Raw Salmon
+2022-10-16 13:29:30.413 | INFO     | main:bazaar_flipper:981 - Item: Enchanted Redstone
+2022-10-16 13:29:30.413 | INFO     | main:bazaar_flipper:981 - Item: Enchanted Redstone Block
+2022-10-16 13:29:30.414 | INFO     | main:bazaar_flipper:981 - Item: Enchanted Redstone Lamp
+2022-10-16 13:29:30.414 | INFO     | main:bazaar_flipper:981 - Item: Enchanted Red Mushroom
+2022-10-16 13:29:30.416 | INFO     | main:bazaar_flipper:981 - Item: Enchanted Red Sand
+2022-10-16 13:29:30.416 | INFO     | main:bazaar_flipper:981 - Item: Enchanted Red Sand Cube
+2022-10-16 13:29:30.417 | INFO     | main:bazaar_flipper:981 - Item: Enchanted Rotten Flesh
+2022-10-16 13:29:30.417 | INFO     | main:bazaar_flipper:981 - Item: Enchanted Sand
+2022-10-16 13:29:30.418 | INFO     | main:bazaar_flipper:981 - Item: Enchanted Seeds
+2022-10-16 13:29:30.418 | INFO     | main:bazaar_flipper:981 - Item: Enchanted Shark Fin
+2022-10-16 13:29:30.419 | INFO     | main:bazaar_flipper:981 - Item: Enchanted Slimeball
+2022-10-16 13:29:30.419 | INFO     | main:bazaar_flipper:981 - Item: Enchanted Slime Block
+2022-10-16 13:29:30.419 | INFO     | main:bazaar_flipper:981 - Item: Enchanted Snow Block
+2022-10-16 13:29:30.420 | INFO     | main:bazaar_flipper:981 - Item: Enchanted Spider Eye
+2022-10-16 13:29:30.420 | INFO     | main:bazaar_flipper:981 - Item: Enchanted Sponge
+2022-10-16 13:29:30.421 | INFO     | main:bazaar_flipper:981 - Item: Enchanted Spruce Wood
+2022-10-16 13:29:30.421 | INFO     | main:bazaar_flipper:981 - Item: Enchanted String
+2022-10-16 13:29:30.422 | INFO     | main:bazaar_flipper:981 - Item: Enchanted Sugar
+2022-10-16 13:29:30.422 | INFO     | main:bazaar_flipper:981 - Item: Enchanted Sugar Cane
+2022-10-16 13:29:30.423 | INFO     | main:bazaar_flipper:981 - Item: Enchanted Sulphur
+2022-10-16 13:29:30.423 | INFO     | main:bazaar_flipper:981 - Item: Enchanted Sulphur Cube
+2022-10-16 13:29:30.424 | INFO     | main:bazaar_flipper:981 - Item: Enchanted Titanium
+2022-10-16 13:29:30.425 | INFO     | main:bazaar_flipper:981 - Item: Enchanted Lily Pad
+2022-10-16 13:29:30.425 | INFO     | main:bazaar_flipper:981 - Item: Enchanted Wet Sponge
+2022-10-16 13:29:30.426 | INFO     | main:bazaar_flipper:981 - Item: Ender Monocle
+2022-10-16 13:29:30.426 | INFO     | main:bazaar_flipper:981 - Item: Ender Pearl
+2022-10-16 13:29:30.427 | INFO     | main:bazaar_flipper:981 - Item: End Stone
+2022-10-16 13:29:30.428 | INFO     | main:bazaar_flipper:981 - Item: End Stone Geode
+2022-10-16 13:29:30.428 | INFO     | main:bazaar_flipper:981 - Item: End Stone Shulker
+2022-10-16 13:29:30.429 | INFO     | main:bazaar_flipper:981 - Item: Experience Bottle
+2022-10-16 13:29:30.429 | INFO     | main:bazaar_flipper:981 - Item: Feather
+2022-10-16 13:29:30.429 | INFO     | main:bazaar_flipper:981 - Item: Fine Amber Gemstone
+2022-10-16 13:29:30.430 | INFO     | main:bazaar_flipper:981 - Item: Fine Amethyst Gemstone
+2022-10-16 13:29:30.430 | INFO     | main:bazaar_flipper:981 - Item: Fine Jade Gemstone
+2022-10-16 13:29:30.430 | INFO     | main:bazaar_flipper:981 - Item: Fine Jasper Gemstone
+2022-10-16 13:29:30.431 | INFO     | main:bazaar_flipper:981 - Item: Fine Opal Gemstone
+2022-10-16 13:29:30.431 | INFO     | main:bazaar_flipper:981 - Item: Fine Ruby Gemstone
+2022-10-16 13:29:30.432 | INFO     | main:bazaar_flipper:981 - Item: Fine Sapphire Gemstone
+2022-10-16 13:29:30.432 | INFO     | main:bazaar_flipper:981 - Item: Fine Topaz Gemstone
+2022-10-16 13:29:30.433 | INFO     | main:bazaar_flipper:981 - Item: Fish Bait
+2022-10-16 13:29:30.433 | INFO     | main:bazaar_flipper:981 - Item: Flawed Amber Gemstone
+2022-10-16 13:29:30.434 | INFO     | main:bazaar_flipper:981 - Item: Flawed Amethyst Gemstone
+2022-10-16 13:29:30.434 | INFO     | main:bazaar_flipper:981 - Item: Flawed Jade Gemstone
+2022-10-16 13:29:30.435 | INFO     | main:bazaar_flipper:981 - Item: Flawed Jasper Gemstone
+2022-10-16 13:29:30.435 | INFO     | main:bazaar_flipper:981 - Item: Flawed Opal Gemstone
+2022-10-16 13:29:30.436 | INFO     | main:bazaar_flipper:981 - Item: Flawed Ruby Gemstone
+2022-10-16 13:29:30.436 | INFO     | main:bazaar_flipper:981 - Item: Flawed Sapphire Gemstone
+2022-10-16 13:29:30.437 | INFO     | main:bazaar_flipper:981 - Item: Flawed Topaz Gemstone
+2022-10-16 13:29:30.437 | INFO     | main:bazaar_flipper:981 - Item: Flawless Amber Gemstone
+2022-10-16 13:29:30.438 | INFO     | main:bazaar_flipper:981 - Item: Flawless Amethyst Gemstone
+2022-10-16 13:29:30.438 | INFO     | main:bazaar_flipper:981 - Item: Flawless Jade Gemstone
+2022-10-16 13:29:30.439 | INFO     | main:bazaar_flipper:981 - Item: Flawless Jasper Gemstone
+2022-10-16 13:29:30.439 | INFO     | main:bazaar_flipper:981 - Item: Flawless Opal Gemstone
+2022-10-16 13:29:30.440 | INFO     | main:bazaar_flipper:981 - Item: Flawless Ruby Gemstone
+2022-10-16 13:29:30.440 | INFO     | main:bazaar_flipper:981 - Item: Flawless Sapphire Gemstone
+2022-10-16 13:29:30.441 | INFO     | main:bazaar_flipper:981 - Item: Flawless Topaz Gemstone
+2022-10-16 13:29:30.442 | INFO     | main:bazaar_flipper:981 - Item: Flint
+2022-10-16 13:29:30.442 | INFO     | main:bazaar_flipper:981 - Item: Foul Flesh
+2022-10-16 13:29:30.444 | INFO     | main:bazaar_flipper:981 - Item: Fuel Gabagool
+2022-10-16 13:29:30.444 | INFO     | main:bazaar_flipper:981 - Item: Fuming Potato Book
+2022-10-16 13:29:30.445 | INFO     | main:bazaar_flipper:981 - Item: Furball
+2022-10-16 13:29:30.445 | INFO     | main:bazaar_flipper:981 - Item: Ghast Tear
+2022-10-16 13:29:30.446 | INFO     | main:bazaar_flipper:981 - Item: Giant Tooth
+2022-10-16 13:29:30.446 | INFO     | main:bazaar_flipper:981 - Item: Glowstone Dust
+2022-10-16 13:29:30.446 | INFO     | main:bazaar_flipper:981 - Item: Glowstone Distillate
+2022-10-16 13:29:30.447 | INFO     | main:bazaar_flipper:981 - Item: Goblin Egg
+2022-10-16 13:29:30.448 | INFO     | main:bazaar_flipper:981 - Item: Blue Goblin Egg
+2022-10-16 13:29:30.449 | INFO     | main:bazaar_flipper:981 - Item: Green Goblin Egg
+2022-10-16 13:29:30.449 | INFO     | main:bazaar_flipper:981 - Item: Red Goblin Egg
+2022-10-16 13:29:30.450 | INFO     | main:bazaar_flipper:981 - Item: Yellow Goblin Egg
+2022-10-16 13:29:30.450 | INFO     | main:bazaar_flipper:981 - Item: Golden Ball
+2022-10-16 13:29:30.451 | INFO     | main:bazaar_flipper:981 - Item: Golden Tooth
+2022-10-16 13:29:30.451 | INFO     | main:bazaar_flipper:981 - Item: Gold Ingot
+2022-10-16 13:29:30.452 | INFO     | main:bazaar_flipper:981 - Item: Grand Experience Bottle
+2022-10-16 13:29:30.452 | INFO     | main:bazaar_flipper:981 - Item: Gravel
+2022-10-16 13:29:30.453 | INFO     | main:bazaar_flipper:981 - Item: Great White Shark Tooth
+2022-10-16 13:29:30.455 | INFO     | main:bazaar_flipper:981 - Item: Green Candy
+2022-10-16 13:29:30.455 | INFO     | main:bazaar_flipper:981 - Item: Green Gift
+2022-10-16 13:29:30.456 | INFO     | main:bazaar_flipper:981 - Item: Griffin Feather
+2022-10-16 13:29:30.457 | INFO     | main:bazaar_flipper:981 - Item: Hamster Wheel
+2022-10-16 13:29:30.458 | INFO     | main:bazaar_flipper:981 - Item: Hardened Wood
+2022-10-16 13:29:30.458 | INFO     | main:bazaar_flipper:981 - Item: Hard Stone
+2022-10-16 13:29:30.459 | INFO     | main:bazaar_flipper:981 - Item: Hay Bale
+2022-10-16 13:29:30.459 | INFO     | main:bazaar_flipper:981 - Item: Hazmat Enderman
+2022-10-16 13:29:30.460 | INFO     | main:bazaar_flipper:981 - Item: Heavy Gabagool
+2022-10-16 13:29:30.460 | INFO     | main:bazaar_flipper:981 - Item: Holy Dragon Fragment
+2022-10-16 13:29:30.461 | INFO     | main:bazaar_flipper:981 - Item: Horns of Torment
+2022-10-16 13:29:30.461 | INFO     | main:bazaar_flipper:981 - Item: Hot Bait
+2022-10-16 13:29:30.462 | INFO     | main:bazaar_flipper:981 - Item: Hot Potato Book
+2022-10-16 13:29:30.462 | INFO     | main:bazaar_flipper:981 - Item: Hot Stuff
+2022-10-16 13:29:30.463 | INFO     | main:bazaar_flipper:981 - Item: Brown Mushroom Block
+2022-10-16 13:29:30.463 | INFO     | main:bazaar_flipper:981 - Item: Red Mushroom Block
+2022-10-16 13:29:30.464 | INFO     | main:bazaar_flipper:981 - Item: Hypergolic Gabagool
+2022-10-16 13:29:30.464 | INFO     | main:bazaar_flipper:981 - Item: Hyper Catalyst
+2022-10-16 13:29:30.465 | INFO     | main:bazaar_flipper:981 - Item: Ice
+2022-10-16 13:29:30.465 | INFO     | main:bazaar_flipper:981 - Item: Ice Bait
+2022-10-16 13:29:30.466 | INFO     | main:bazaar_flipper:981 - Item: Inferno Vertex
+2022-10-16 13:29:30.466 | INFO     | main:bazaar_flipper:981 - Item: Ink Sac
+2022-10-16 13:29:30.467 | INFO     | main:bazaar_flipper:981 - Item: Cocoa Beans
+2022-10-16 13:29:30.467 | INFO     | main:bazaar_flipper:981 - Item: Lapis Lazuli
+2022-10-16 13:29:30.468 | INFO     | main:bazaar_flipper:981 - Item: Iron Ingot
+2022-10-16 13:29:30.468 | INFO     | main:bazaar_flipper:981 - Item: Jacob's Ticket
+2022-10-16 13:29:30.468 | INFO     | main:bazaar_flipper:981 - Item: Jaderald
+2022-10-16 13:29:30.469 | INFO     | main:bazaar_flipper:981 - Item: Blue Jerry Box
+2022-10-16 13:29:30.469 | INFO     | main:bazaar_flipper:981 - Item: Golden Jerry Box
+2022-10-16 13:29:30.470 | INFO     | main:bazaar_flipper:981 - Item: Green Jerry Box
+2022-10-16 13:29:30.470 | INFO     | main:bazaar_flipper:981 - Item: Purple Jerry Box
+2022-10-16 13:29:30.471 | INFO     | main:bazaar_flipper:981 - Item: Jerry Stone
+2022-10-16 13:29:30.471 | INFO     | main:bazaar_flipper:981 - Item: Lapis Crystal
+2022-10-16 13:29:30.472 | INFO     | main:bazaar_flipper:981 - Item: Leather
+2022-10-16 13:29:30.472 | INFO     | main:bazaar_flipper:981 - Item: Light Bait
+2022-10-16 13:29:30.472 | INFO     | main:bazaar_flipper:981 - Item: Oak Wood
+2022-10-16 13:29:30.473 | INFO     | main:bazaar_flipper:981 - Item: Spruce Wood
+2022-10-16 13:29:30.474 | INFO     | main:bazaar_flipper:981 - Item: Birch Wood
+2022-10-16 13:29:30.474 | INFO     | main:bazaar_flipper:981 - Item: Jungle Wood
+2022-10-16 13:29:30.475 | INFO     | main:bazaar_flipper:981 - Item: Acacia Wood
+2022-10-16 13:29:30.475 | INFO     | main:bazaar_flipper:981 - Item: Dark Oak Wood
+2022-10-16 13:29:30.476 | INFO     | main:bazaar_flipper:981 - Item: Lucky Dice
+2022-10-16 13:29:30.477 | INFO     | main:bazaar_flipper:981 - Item: Luxurious Spool
+2022-10-16 13:29:30.478 | INFO     | main:bazaar_flipper:981 - Item: Magma Bucket
+2022-10-16 13:29:30.478 | INFO     | main:bazaar_flipper:981 - Item: Magma Cream
+2022-10-16 13:29:30.479 | INFO     | main:bazaar_flipper:981 - Item: Magma Cream Distillate
+2022-10-16 13:29:30.479 | INFO     | main:bazaar_flipper:981 - Item: Magmafish
+2022-10-16 13:29:30.480 | INFO     | main:bazaar_flipper:981 - Item: Diamond Magmafish
+2022-10-16 13:29:30.480 | INFO     | main:bazaar_flipper:981 - Item: Gold Magmafish
+2022-10-16 13:29:30.480 | INFO     | main:bazaar_flipper:981 - Item: Silver Magmafish
+2022-10-16 13:29:30.481 | INFO     | main:bazaar_flipper:981 - Item: Magma Urchin
+2022-10-16 13:29:30.481 | INFO     | main:bazaar_flipper:981 - Item: Melon
+2022-10-16 13:29:30.482 | INFO     | main:bazaar_flipper:981 - Item: Melon
+2022-10-16 13:29:30.482 | INFO     | main:bazaar_flipper:981 - Item: Meteor Shard
+2022-10-16 13:29:30.483 | INFO     | main:bazaar_flipper:981 - Item: Midas Jewel
+2022-10-16 13:29:30.483 | INFO     | main:bazaar_flipper:981 - Item: Minnow Bait
+2022-10-16 13:29:30.484 | INFO     | main:bazaar_flipper:981 - Item: Mithril
+2022-10-16 13:29:30.484 | INFO     | main:bazaar_flipper:981 - Item: Molten Cube
+2022-10-16 13:29:30.485 | INFO     | main:bazaar_flipper:981 - Item: Molten Powder
+2022-10-16 13:29:30.485 | INFO     | main:bazaar_flipper:981 - Item: Mutant Nether Wart
+2022-10-16 13:29:30.486 | INFO     | main:bazaar_flipper:981 - Item: Mutton
+2022-10-16 13:29:30.487 | INFO     | main:bazaar_flipper:981 - Item: Mycelium
+2022-10-16 13:29:30.487 | INFO     | main:bazaar_flipper:981 - Item: Necromancer's Brooch
+2022-10-16 13:29:30.488 | INFO     | main:bazaar_flipper:981 - Item: Netherrack
+2022-10-16 13:29:30.488 | INFO     | main:bazaar_flipper:981 - Item: Nether Wart
+2022-10-16 13:29:30.489 | INFO     | main:bazaar_flipper:981 - Item: Nether Wart Distillate
+2022-10-16 13:29:30.489 | INFO     | main:bazaar_flipper:981 - Item: Null Atom
+2022-10-16 13:29:30.490 | INFO     | main:bazaar_flipper:981 - Item: Null Ovoid
+2022-10-16 13:29:30.490 | INFO     | main:bazaar_flipper:981 - Item: Null Sphere
+2022-10-16 13:29:30.490 | INFO     | main:bazaar_flipper:981 - Item: Nurse Shark Tooth
+2022-10-16 13:29:30.491 | INFO     | main:bazaar_flipper:981 - Item: Obsidian
+2022-10-16 13:29:30.491 | INFO     | main:bazaar_flipper:981 - Item: Obsidian Tablet
+2022-10-16 13:29:30.492 | INFO     | main:bazaar_flipper:981 - Item: Old Dragon Fragment
+2022-10-16 13:29:30.493 | INFO     | main:bazaar_flipper:981 - Item: Omega Enchanted Egg
+2022-10-16 13:29:30.493 | INFO     | main:bazaar_flipper:981 - Item: Onyx
+2022-10-16 13:29:30.494 | INFO     | main:bazaar_flipper:981 - Item: Optical Lens
+2022-10-16 13:29:30.494 | INFO     | main:bazaar_flipper:981 - Item: Packed Ice
+2022-10-16 13:29:30.495 | INFO     | main:bazaar_flipper:981 - Item: Perfect Amber Gemstone
+2022-10-16 13:29:30.495 | INFO     | main:bazaar_flipper:981 - Item: Perfect Amethyst Gemstone
+2022-10-16 13:29:30.496 | INFO     | main:bazaar_flipper:981 - Item: Perfect Jade Gemstone
+2022-10-16 13:29:30.497 | INFO     | main:bazaar_flipper:981 - Item: Perfect Jasper Gemstone
+2022-10-16 13:29:30.497 | INFO     | main:bazaar_flipper:981 - Item: Perfect Opal Gemstone
+2022-10-16 13:29:30.498 | INFO     | main:bazaar_flipper:981 - Item: Perfect Ruby Gemstone
+2022-10-16 13:29:30.498 | INFO     | main:bazaar_flipper:981 - Item: Perfect Sapphire Gemstone
+2022-10-16 13:29:30.499 | INFO     | main:bazaar_flipper:981 - Item: Perfect Topaz Gemstone
+2022-10-16 13:29:30.499 | INFO     | main:bazaar_flipper:981 - Item: Petrified Starfall
+2022-10-16 13:29:30.500 | INFO     | main:bazaar_flipper:981 - Item: Plasma Bucket
+2022-10-16 13:29:30.500 | INFO     | main:bazaar_flipper:981 - Item: Polished Pumpkin
+2022-10-16 13:29:30.501 | INFO     | main:bazaar_flipper:981 - Item: Raw Porkchop
+2022-10-16 13:29:30.501 | INFO     | main:bazaar_flipper:981 - Item: Potato
+2022-10-16 13:29:30.502 | INFO     | main:bazaar_flipper:981 - Item: Power Crystal
+2022-10-16 13:29:30.503 | INFO     | main:bazaar_flipper:981 - Item: Precious Pearl
+2022-10-16 13:29:30.503 | INFO     | main:bazaar_flipper:981 - Item: Precursor Gear
+2022-10-16 13:29:30.504 | INFO     | main:bazaar_flipper:981 - Item: Premium Flesh
+2022-10-16 13:29:30.506 | INFO     | main:bazaar_flipper:981 - Item: Prismarine Crystals
+2022-10-16 13:29:30.506 | INFO     | main:bazaar_flipper:981 - Item: Prismarine Shard
+2022-10-16 13:29:30.506 | INFO     | main:bazaar_flipper:981 - Item: Protector Dragon Fragment
+2022-10-16 13:29:30.507 | INFO     | main:bazaar_flipper:981 - Item: Pumpkin
+2022-10-16 13:29:30.508 | INFO     | main:bazaar_flipper:981 - Item: Pumpkin Guts
+2022-10-16 13:29:30.508 | INFO     | main:bazaar_flipper:981 - Item: Pure Mithril
+2022-10-16 13:29:30.509 | INFO     | main:bazaar_flipper:981 - Item: Purple Candy
+2022-10-16 13:29:30.509 | INFO     | main:bazaar_flipper:981 - Item: Nether Quartz
+2022-10-16 13:29:30.509 | INFO     | main:bazaar_flipper:981 - Item: Raw Rabbit
+2022-10-16 13:29:30.510 | INFO     | main:bazaar_flipper:981 - Item: Rabbit's Foot
+2022-10-16 13:29:30.510 | INFO     | main:bazaar_flipper:981 - Item: Rabbit Hide
+2022-10-16 13:29:30.511 | INFO     | main:bazaar_flipper:981 - Item: Rare Diamond
+2022-10-16 13:29:30.511 | INFO     | main:bazaar_flipper:981 - Item: Raw Beef
+2022-10-16 13:29:30.512 | INFO     | main:bazaar_flipper:981 - Item: Raw Chicken
+2022-10-16 13:29:30.512 | INFO     | main:bazaar_flipper:981 - Item: Raw Fish
+2022-10-16 13:29:30.512 | INFO     | main:bazaar_flipper:981 - Item: Raw Salmon
+2022-10-16 13:29:30.513 | INFO     | main:bazaar_flipper:981 - Item: Clownfish
+2022-10-16 13:29:30.513 | INFO     | main:bazaar_flipper:981 - Item: Pufferfish
+2022-10-16 13:29:30.514 | INFO     | main:bazaar_flipper:981 - Item: Raw Soulflow
+2022-10-16 13:29:30.514 | INFO     | main:bazaar_flipper:981 - Item: Reaper Pepper
+2022-10-16 13:29:30.515 | INFO     | main:bazaar_flipper:981 - Item: Recombobulator 3000
+2022-10-16 13:29:30.517 | INFO     | main:bazaar_flipper:981 - Item: Redstone
+2022-10-16 13:29:30.518 | INFO     | main:bazaar_flipper:981 - Item: Red Gift
+2022-10-16 13:29:30.518 | INFO     | main:bazaar_flipper:981 - Item: Red Mushroom
+2022-10-16 13:29:30.519 | INFO     | main:bazaar_flipper:981 - Item: Red Nose
+2022-10-16 13:29:30.519 | INFO     | main:bazaar_flipper:981 - Item: Red Scarf
+2022-10-16 13:29:30.520 | INFO     | main:bazaar_flipper:981 - Item: Refined Amber
+2022-10-16 13:29:30.521 | INFO     | main:bazaar_flipper:981 - Item: Refined Diamond
+2022-10-16 13:29:30.521 | INFO     | main:bazaar_flipper:981 - Item: Refined Mineral
+2022-10-16 13:29:30.522 | INFO     | main:bazaar_flipper:981 - Item: Refined Mithril
+2022-10-16 13:29:30.522 | INFO     | main:bazaar_flipper:981 - Item: Refined Titanium
+2022-10-16 13:29:30.522 | INFO     | main:bazaar_flipper:981 - Item: Revenant Flesh
+2022-10-16 13:29:30.523 | INFO     | main:bazaar_flipper:981 - Item: Revenant Viscera
+2022-10-16 13:29:30.523 | INFO     | main:bazaar_flipper:981 - Item: Rock Candy
+2022-10-16 13:29:30.523 | INFO     | main:bazaar_flipper:981 - Item: Rock Gemstone
+2022-10-16 13:29:30.524 | INFO     | main:bazaar_flipper:981 - Item: Rotten Flesh
+2022-10-16 13:29:30.524 | INFO     | main:bazaar_flipper:981 - Item: Rough Amber Gemstone
+2022-10-16 13:29:30.525 | INFO     | main:bazaar_flipper:981 - Item: Rough Amethyst Gemstone
+2022-10-16 13:29:30.525 | INFO     | main:bazaar_flipper:981 - Item: Rough Jade Gemstone
+2022-10-16 13:29:30.525 | INFO     | main:bazaar_flipper:981 - Item: Rough Jasper Gemstone
+2022-10-16 13:29:30.526 | INFO     | main:bazaar_flipper:981 - Item: Rough Opal Gemstone
+2022-10-16 13:29:30.526 | INFO     | main:bazaar_flipper:981 - Item: Rough Ruby Gemstone
+2022-10-16 13:29:30.527 | INFO     | main:bazaar_flipper:981 - Item: Rough Sapphire Gemstone
+2022-10-16 13:29:30.527 | INFO     | main:bazaar_flipper:981 - Item: Rough Topaz Gemstone
+2022-10-16 13:29:30.527 | INFO     | main:bazaar_flipper:981 - Item: Sadan's Brooch
+2022-10-16 13:29:30.528 | INFO     | main:bazaar_flipper:981 - Item: Salmon Opal
+2022-10-16 13:29:30.528 | INFO     | main:bazaar_flipper:981 - Item: Sand
+2022-10-16 13:29:30.529 | INFO     | main:bazaar_flipper:981 - Item: Red Sand
+2022-10-16 13:29:30.529 | INFO     | main:bazaar_flipper:981 - Item: Scorched Books
+2022-10-16 13:29:30.530 | INFO     | main:bazaar_flipper:981 - Item: Searing Stone
+2022-10-16 13:29:30.531 | INFO     | main:bazaar_flipper:981 - Item: Seeds
+2022-10-16 13:29:30.531 | INFO     | main:bazaar_flipper:981 - Item: Shark Bait
+2022-10-16 13:29:30.532 | INFO     | main:bazaar_flipper:981 - Item: Shark Fin
+2022-10-16 13:29:30.533 | INFO     | main:bazaar_flipper:981 - Item: Shiny Prism
+2022-10-16 13:29:30.533 | INFO     | main:bazaar_flipper:981 - Item: Slimeball
+2022-10-16 13:29:30.534 | INFO     | main:bazaar_flipper:981 - Item: Sludge Juice
+2022-10-16 13:29:30.535 | INFO     | main:bazaar_flipper:981 - Item: Snowball
+2022-10-16 13:29:30.535 | INFO     | main:bazaar_flipper:981 - Item: Snow Block
+2022-10-16 13:29:30.535 | INFO     | main:bazaar_flipper:981 - Item: Soulflow
+2022-10-16 13:29:30.536 | INFO     | main:bazaar_flipper:981 - Item: Soul Fragment
+2022-10-16 13:29:30.536 | INFO     | main:bazaar_flipper:981 - Item: Soul String
+2022-10-16 13:29:30.537 | INFO     | main:bazaar_flipper:981 - Item: Spider Eye
+2022-10-16 13:29:30.537 | INFO     | main:bazaar_flipper:981 - Item: Spiked Bait
+2022-10-16 13:29:30.537 | INFO     | main:bazaar_flipper:981 - Item: Spirit Stone
+2022-10-16 13:29:30.537 | INFO     | main:bazaar_flipper:981 - Item: Sponge
+2022-10-16 13:29:30.538 | INFO     | main:bazaar_flipper:981 - Item: Spooky Bait
+2022-10-16 13:29:30.538 | INFO     | main:bazaar_flipper:981 - Item: Spooky Shard
+2022-10-16 13:29:30.539 | INFO     | main:bazaar_flipper:981 - Item: Starfall
+2022-10-16 13:29:30.539 | INFO     | main:bazaar_flipper:981 - Item: Stock of Stonks
+2022-10-16 13:29:30.539 | INFO     | main:bazaar_flipper:981 - Item: String
+2022-10-16 13:29:30.540 | INFO     | main:bazaar_flipper:981 - Item: Strong Dragon Fragment
+2022-10-16 13:29:30.540 | INFO     | main:bazaar_flipper:981 - Item: Sugar Cane
+2022-10-16 13:29:30.541 | INFO     | main:bazaar_flipper:981 - Item: Gunpowder
+2022-10-16 13:29:30.541 | INFO     | main:bazaar_flipper:981 - Item: Sulphur
+2022-10-16 13:29:30.541 | INFO     | main:bazaar_flipper:981 - Item: Summoning Eye
+2022-10-16 13:29:30.544 | INFO     | main:bazaar_flipper:981 - Item: Superior Dragon Fragment
+2022-10-16 13:29:30.545 | INFO     | main:bazaar_flipper:981 - Item: Super Compactor 3000
+2022-10-16 13:29:30.545 | INFO     | main:bazaar_flipper:981 - Item: Super Enchanted Egg
+2022-10-16 13:29:30.546 | INFO     | main:bazaar_flipper:981 - Item: Suspicious Vial
+2022-10-16 13:29:30.546 | INFO     | main:bazaar_flipper:981 - Item: Tarantula Silk
+2022-10-16 13:29:30.547 | INFO     | main:bazaar_flipper:981 - Item: Tarantula Web
+2022-10-16 13:29:30.547 | INFO     | main:bazaar_flipper:981 - Item: Tiger Shark Tooth
+2022-10-16 13:29:30.547 | INFO     | main:bazaar_flipper:981 - Item: Tightly-Tied Hay Bale
+2022-10-16 13:29:30.548 | INFO     | main:bazaar_flipper:981 - Item: Titanic Experience Bottle
+2022-10-16 13:29:30.548 | INFO     | main:bazaar_flipper:981 - Item: Titanium
+2022-10-16 13:29:30.549 | INFO     | main:bazaar_flipper:981 - Item: Treasurite
+2022-10-16 13:29:30.549 | INFO     | main:bazaar_flipper:981 - Item: Unstable Dragon Fragment
+2022-10-16 13:29:30.549 | INFO     | main:bazaar_flipper:981 - Item: Vitamin Death
+2022-10-16 13:29:30.550 | INFO     | main:bazaar_flipper:981 - Item: Lily Pad
+2022-10-16 13:29:30.550 | INFO     | main:bazaar_flipper:981 - Item: Werewolf Skin
+2022-10-16 13:29:30.550 | INFO     | main:bazaar_flipper:981 - Item: Whale Bait
+2022-10-16 13:29:30.551 | INFO     | main:bazaar_flipper:981 - Item: Wheat
+2022-10-16 13:29:30.551 | INFO     | main:bazaar_flipper:981 - Item: White Gift
+2022-10-16 13:29:30.552 | INFO     | main:bazaar_flipper:981 - Item: Wise Dragon Fragment
+2022-10-16 13:29:30.552 | INFO     | main:bazaar_flipper:981 - Item: Wither Blood
+2022-10-16 13:29:30.553 | INFO     | main:bazaar_flipper:981 - Item: Wolf Tooth
+2022-10-16 13:29:30.553 | INFO     | main:bazaar_flipper:981 - Item: Worm Membrane
+2022-10-16 13:29:30.553 | INFO     | main:bazaar_flipper:981 - Item: Yoggie
+2022-10-16 13:29:30.554 | INFO     | main:bazaar_flipper:981 - Item: Young Dragon Fragment
+2022-10-16 13:29:30.557 | INFO     | main:bazaar_flipper:981 - Item: Absolute Ender Pearl
+2022-10-16 13:29:30.557 | INFO     | main:bazaar_flipper:981 - Item: Acacia Birdhouse
+2022-10-16 13:29:30.558 | INFO     | main:bazaar_flipper:981 - Item: Amalgamated Crimsonite
+2022-10-16 13:29:30.558 | INFO     | main:bazaar_flipper:981 - Item: Amber Material
+2022-10-16 13:29:30.558 | INFO     | main:bazaar_flipper:981 - Item: Ancient Claw
+2022-10-16 13:29:30.559 | INFO     | main:bazaar_flipper:981 - Item: Warped Stone
+2022-10-16 13:29:30.559 | INFO     | main:bazaar_flipper:981 - Item: Arachne's Keeper Fragment
+2022-10-16 13:29:30.559 | INFO     | main:bazaar_flipper:981 - Item: Beating Heart
+2022-10-16 13:29:30.560 | INFO     | main:bazaar_flipper:981 - Item: Blaze Rod
+2022-10-16 13:29:30.560 | INFO     | main:bazaar_flipper:981 - Item: Blaze Rod Distillate
+2022-10-16 13:29:30.560 | INFO     | main:bazaar_flipper:981 - Item: Blaze Wax
+2022-10-16 13:29:30.561 | INFO     | main:bazaar_flipper:981 - Item: Blessed Bait
+2022-10-16 13:29:30.561 | INFO     | main:bazaar_flipper:981 - Item: Blessed Fruit
+2022-10-16 13:29:30.561 | INFO     | main:bazaar_flipper:981 - Item: Blue Shark Tooth
+2022-10-16 13:29:30.562 | INFO     | main:bazaar_flipper:981 - Item: Bone
+2022-10-16 13:29:30.562 | INFO     | main:bazaar_flipper:981 - Item: Booster Cookie
+2022-10-16 13:29:30.562 | INFO     | main:bazaar_flipper:981 - Item: Brown Mushroom
+2022-10-16 13:29:30.562 | INFO     | main:bazaar_flipper:981 - Item: Bulky Stone
+2022-10-16 13:29:30.563 | INFO     | main:bazaar_flipper:981 - Item: Cactus
+2022-10-16 13:29:30.563 | INFO     | main:bazaar_flipper:981 - Item: Candy Corn
+2022-10-16 13:29:30.563 | INFO     | main:bazaar_flipper:981 - Item: Carrot Bait
+2022-10-16 13:29:30.564 | INFO     | main:bazaar_flipper:981 - Item: Carrot
+2022-10-16 13:29:30.564 | INFO     | main:bazaar_flipper:981 - Item: Catalyst
+2022-10-16 13:29:30.564 | INFO     | main:bazaar_flipper:981 - Item: Tasty Cheese
+2022-10-16 13:29:30.565 | INFO     | main:bazaar_flipper:981 - Item: Clay
+2022-10-16 13:29:30.565 | INFO     | main:bazaar_flipper:981 - Item: Coal
+2022-10-16 13:29:30.566 | INFO     | main:bazaar_flipper:981 - Item: Cobblestone
+2022-10-16 13:29:30.566 | INFO     | main:bazaar_flipper:981 - Item: Colossal Experience Bottle
+2022-10-16 13:29:30.566 | INFO     | main:bazaar_flipper:981 - Item: Compactor
+2022-10-16 13:29:30.567 | INFO     | main:bazaar_flipper:981 - Item: Concentrated Stone
+2022-10-16 13:29:30.567 | INFO     | main:bazaar_flipper:981 - Item: Corrupted Bait
+2022-10-16 13:29:30.567 | INFO     | main:bazaar_flipper:981 - Item: Crude Gabagool
+2022-10-16 13:29:30.567 | INFO     | main:bazaar_flipper:981 - Item: Gabagool Distillate
+2022-10-16 13:29:30.568 | INFO     | main:bazaar_flipper:981 - Item: Daedalus Stick
+2022-10-16 13:29:30.568 | INFO     | main:bazaar_flipper:981 - Item: Dark Bait
+2022-10-16 13:29:30.568 | INFO     | main:bazaar_flipper:981 - Item: Dark Orb
+2022-10-16 13:29:30.569 | INFO     | main:bazaar_flipper:981 - Item: Deep Sea Orb
+2022-10-16 13:29:30.569 | INFO     | main:bazaar_flipper:981 - Item: Derelict Ashe
+2022-10-16 13:29:30.569 | INFO     | main:bazaar_flipper:981 - Item: Diamond
+2022-10-16 13:29:30.570 | INFO     | main:bazaar_flipper:981 - Item: Diamond Atom
+2022-10-16 13:29:30.570 | INFO     | main:bazaar_flipper:981 - Item: Diamonite
+2022-10-16 13:29:30.570 | INFO     | main:bazaar_flipper:981 - Item: Dragon Claw
+2022-10-16 13:29:30.571 | INFO     | main:bazaar_flipper:981 - Item: Dragon Horn
+2022-10-16 13:29:30.571 | INFO     | main:bazaar_flipper:981 - Item: Dragon Scale
+2022-10-16 13:29:30.571 | INFO     | main:bazaar_flipper:981 - Item: Dwarven Super Compactor
+2022-10-16 13:29:30.572 | INFO     | main:bazaar_flipper:981 - Item: Eccentric Painting
+2022-10-16 13:29:30.572 | INFO     | main:bazaar_flipper:981 - Item: Ectoplasm
+2022-10-16 13:29:30.573 | INFO     | main:bazaar_flipper:981 - Item: Emerald
+2022-10-16 13:29:30.573 | INFO     | main:bazaar_flipper:981 - Item: Enchanted Acacia Wood
+2022-10-16 13:29:30.573 | INFO     | main:bazaar_flipper:981 - Item: Enchanted Ancient Claw
+2022-10-16 13:29:30.574 | INFO     | main:bazaar_flipper:981 - Item: Enchanted Baked Potato
+2022-10-16 13:29:30.574 | INFO     | main:bazaar_flipper:981 - Item: Enchanted Birch Wood
+2022-10-16 13:29:30.574 | INFO     | main:bazaar_flipper:981 - Item: Enchanted Blaze Powder
+2022-10-16 13:29:30.575 | INFO     | main:bazaar_flipper:981 - Item: Enchanted Blaze Rod
+2022-10-16 13:29:30.575 | INFO     | main:bazaar_flipper:981 - Item: Enchanted Bone
+2022-10-16 13:29:30.575 | INFO     | main:bazaar_flipper:981 - Item: Enchanted Bone Block
+2022-10-16 13:29:30.576 | INFO     | main:bazaar_flipper:981 - Item: Enchanted Bread
+2022-10-16 13:29:30.576 | INFO     | main:bazaar_flipper:981 - Item: Enchanted Brown Mushroom
+2022-10-16 13:29:30.595 | INFO     | main:bazaar_flipper:981 - Item: Enchanted Cactus
+2022-10-16 13:29:30.595 | INFO     | main:bazaar_flipper:981 - Item: Enchanted Cactus Green
+2022-10-16 13:29:30.596 | INFO     | main:bazaar_flipper:981 - Item: Enchanted Cake
+2022-10-16 13:29:30.596 | INFO     | main:bazaar_flipper:981 - Item: Enchanted Carrot
+2022-10-16 13:29:30.596 | INFO     | main:bazaar_flipper:981 - Item: Enchanted Carrot on a Stick
+2022-10-16 13:29:30.597 | INFO     | main:bazaar_flipper:981 - Item: Enchanted Charcoal
+2022-10-16 13:29:30.597 | INFO     | main:bazaar_flipper:981 - Item: Enchanted Clay
+2022-10-16 13:29:30.598 | INFO     | main:bazaar_flipper:981 - Item: Enchanted Clownfish
+2022-10-16 13:29:30.598 | INFO     | main:bazaar_flipper:981 - Item: Enchanted Coal
+2022-10-16 13:29:30.599 | INFO     | main:bazaar_flipper:981 - Item: Enchanted Block of Coal
+2022-10-16 13:29:30.599 | INFO     | main:bazaar_flipper:981 - Item: Enchanted Cobblestone
+2022-10-16 13:29:30.599 | INFO     | main:bazaar_flipper:981 - Item: Enchanted Cocoa Bean
+2022-10-16 13:29:30.600 | INFO     | main:bazaar_flipper:981 - Item: Enchanted Cooked Fish
+2022-10-16 13:29:30.600 | INFO     | main:bazaar_flipper:981 - Item: Enchanted Cooked Mutton
+2022-10-16 13:29:30.601 | INFO     | main:bazaar_flipper:981 - Item: Enchanted Cooked Salmon
+2022-10-16 13:29:30.601 | INFO     | main:bazaar_flipper:981 - Item: Enchanted Cookie
+2022-10-16 13:29:30.601 | INFO     | main:bazaar_flipper:981 - Item: Enchanted Dark Oak Wood
+2022-10-16 13:29:30.602 | INFO     | main:bazaar_flipper:981 - Item: Enchanted Diamond
+2022-10-16 13:29:30.602 | INFO     | main:bazaar_flipper:981 - Item: Enchanted Diamond Block
+2022-10-16 13:29:30.603 | INFO     | main:bazaar_flipper:981 - Item: Enchanted Egg
+2022-10-16 13:29:30.603 | INFO     | main:bazaar_flipper:981 - Item: Enchanted Emerald
+2022-10-16 13:29:30.604 | INFO     | main:bazaar_flipper:981 - Item: Enchanted Emerald Block
+2022-10-16 13:29:30.604 | INFO     | main:bazaar_flipper:981 - Item: Enchanted Ender Pearl
+2022-10-16 13:29:30.605 | INFO     | main:bazaar_flipper:981 - Item: Enchanted End Stone
+2022-10-16 13:29:30.605 | INFO     | main:bazaar_flipper:981 - Item: Enchanted Eye of Ender
+2022-10-16 13:29:30.605 | INFO     | main:bazaar_flipper:981 - Item: Enchanted Feather
+2022-10-16 13:29:30.606 | INFO     | main:bazaar_flipper:981 - Item: Enchanted Fermented Spider Eye
+2022-10-16 13:29:30.606 | INFO     | main:bazaar_flipper:981 - Item: Enchanted Firework Rocket
+2022-10-16 13:29:30.606 | INFO     | main:bazaar_flipper:981 - Item: Enchanted Flint
+2022-10-16 13:29:30.607 | INFO     | main:bazaar_flipper:981 - Item: Enchanted Ghast Tear
+2022-10-16 13:29:30.607 | INFO     | main:bazaar_flipper:981 - Item: Enchanted Glistering Melon
+2022-10-16 13:29:30.608 | INFO     | main:bazaar_flipper:981 - Item: Enchanted Glowstone
+2022-10-16 13:29:30.608 | INFO     | main:bazaar_flipper:981 - Item: Enchanted Glowstone Dust
+2022-10-16 13:29:30.608 | INFO     | main:bazaar_flipper:981 - Item: Enchanted Gold
+2022-10-16 13:29:30.609 | INFO     | main:bazaar_flipper:981 - Item: Enchanted Golden Carrot
+2022-10-16 13:29:30.697 | INFO     | main:bazaar_flipper:981 - Item: Enchanted Gold Block
+2022-10-16 13:29:30.699 | INFO     | main:bazaar_flipper:981 - Item: Enchanted Grilled Pork
+2022-10-16 13:29:30.699 | INFO     | main:bazaar_flipper:981 - Item: Enchanted Gunpowder
+2022-10-16 13:29:30.700 | INFO     | main:bazaar_flipper:981 - Item: Enchanted Hard Stone
+2022-10-16 13:29:30.700 | INFO     | main:bazaar_flipper:981 - Item: Enchanted Hay Bale
+2022-10-16 13:29:30.701 | INFO     | main:bazaar_flipper:981 - Item: Enchanted Brown Mushroom Block
+2022-10-16 13:29:30.701 | INFO     | main:bazaar_flipper:981 - Item: Enchanted Red Mushroom Block
+2022-10-16 13:29:30.701 | INFO     | main:bazaar_flipper:981 - Item: Enchanted Ice
+2022-10-16 13:29:30.702 | INFO     | main:bazaar_flipper:981 - Item: Enchanted Ink Sack
+2022-10-16 13:29:30.702 | INFO     | main:bazaar_flipper:981 - Item: Enchanted Iron
+2022-10-16 13:29:30.703 | INFO     | main:bazaar_flipper:981 - Item: Enchanted Iron Block
+2022-10-16 13:29:30.703 | INFO     | main:bazaar_flipper:981 - Item: Enchanted Jungle Wood
+2022-10-16 13:29:30.704 | INFO     | main:bazaar_flipper:981 - Item: Enchanted Lapis Lazuli
+2022-10-16 13:29:30.704 | INFO     | main:bazaar_flipper:981 - Item: Enchanted Lapis Block
+2022-10-16 13:29:30.704 | INFO     | main:bazaar_flipper:981 - Item: Enchanted Lava Bucket
+2022-10-16 13:29:30.705 | INFO     | main:bazaar_flipper:981 - Item: Enchanted Leather
+2022-10-16 13:29:30.705 | INFO     | main:bazaar_flipper:981 - Item: Enchanted Magma Cream
+2022-10-16 13:29:30.705 | INFO     | main:bazaar_flipper:981 - Item: Enchanted Melon
+2022-10-16 13:29:30.706 | INFO     | main:bazaar_flipper:981 - Item: Enchanted Melon Block
+2022-10-16 13:29:30.706 | INFO     | main:bazaar_flipper:981 - Item: Enchanted Mithril
+2022-10-16 13:29:30.706 | INFO     | main:bazaar_flipper:981 - Item: Enchanted Mutton
+2022-10-16 13:29:30.707 | INFO     | main:bazaar_flipper:981 - Item: Enchanted Mycelium
+2022-10-16 13:29:30.707 | INFO     | main:bazaar_flipper:981 - Item: Enchanted Mycelium Cube
+2022-10-16 13:29:30.708 | INFO     | main:bazaar_flipper:981 - Item: Enchanted Netherrack
+2022-10-16 13:29:30.708 | INFO     | main:bazaar_flipper:981 - Item: Enchanted Nether Wart
+2022-10-16 13:29:30.709 | INFO     | main:bazaar_flipper:981 - Item: Enchanted Oak Wood
+2022-10-16 13:29:30.709 | INFO     | main:bazaar_flipper:981 - Item: Enchanted Obsidian
+2022-10-16 13:29:30.710 | INFO     | main:bazaar_flipper:981 - Item: Enchanted Packed Ice
+2022-10-16 13:29:30.710 | INFO     | main:bazaar_flipper:981 - Item: Enchanted Paper
+2022-10-16 13:29:30.710 | INFO     | main:bazaar_flipper:981 - Item: Enchanted Pork
+2022-10-16 13:29:30.710 | INFO     | main:bazaar_flipper:981 - Item: Enchanted Potato
+2022-10-16 13:29:30.711 | INFO     | main:bazaar_flipper:981 - Item: Enchanted Prismarine Crystals
+2022-10-16 13:29:30.711 | INFO     | main:bazaar_flipper:981 - Item: Enchanted Prismarine Shard
+2022-10-16 13:29:30.712 | INFO     | main:bazaar_flipper:981 - Item: Enchanted Pufferfish
+2022-10-16 13:29:30.712 | INFO     | main:bazaar_flipper:981 - Item: Enchanted Pumpkin
+2022-10-16 13:29:30.712 | INFO     | main:bazaar_flipper:981 - Item: Enchanted Quartz
+2022-10-16 13:29:30.713 | INFO     | main:bazaar_flipper:981 - Item: Enchanted Quartz Block
+2022-10-16 13:29:30.713 | INFO     | main:bazaar_flipper:981 - Item: Enchanted Raw Rabbit
+2022-10-16 13:29:30.714 | INFO     | main:bazaar_flipper:981 - Item: Enchanted Rabbit Foot
+2022-10-16 13:29:30.714 | INFO     | main:bazaar_flipper:981 - Item: Enchanted Rabbit Hide
+2022-10-16 13:29:30.714 | INFO     | main:bazaar_flipper:981 - Item: Enchanted Raw Beef
+2022-10-16 13:29:30.715 | INFO     | main:bazaar_flipper:981 - Item: Enchanted Raw Chicken
+2022-10-16 13:29:30.715 | INFO     | main:bazaar_flipper:981 - Item: Enchanted Raw Fish
+2022-10-16 13:29:30.715 | INFO     | main:bazaar_flipper:981 - Item: Enchanted Raw Salmon
+2022-10-16 13:29:30.716 | INFO     | main:bazaar_flipper:981 - Item: Enchanted Redstone
+2022-10-16 13:29:30.716 | INFO     | main:bazaar_flipper:981 - Item: Enchanted Redstone Block
+2022-10-16 13:29:30.717 | INFO     | main:bazaar_flipper:981 - Item: Enchanted Redstone Lamp
+2022-10-16 13:29:30.717 | INFO     | main:bazaar_flipper:981 - Item: Enchanted Red Mushroom
+2022-10-16 13:29:30.717 | INFO     | main:bazaar_flipper:981 - Item: Enchanted Red Sand
+2022-10-16 13:29:30.718 | INFO     | main:bazaar_flipper:981 - Item: Enchanted Red Sand Cube
+2022-10-16 13:29:30.718 | INFO     | main:bazaar_flipper:981 - Item: Enchanted Rotten Flesh
+2022-10-16 13:29:30.718 | INFO     | main:bazaar_flipper:981 - Item: Enchanted Sand
+2022-10-16 13:29:30.719 | INFO     | main:bazaar_flipper:981 - Item: Enchanted Seeds
+2022-10-16 13:29:30.719 | INFO     | main:bazaar_flipper:981 - Item: Enchanted Shark Fin
+2022-10-16 13:29:30.719 | INFO     | main:bazaar_flipper:981 - Item: Enchanted Slimeball
+2022-10-16 13:29:30.720 | INFO     | main:bazaar_flipper:981 - Item: Enchanted Slime Block
+2022-10-16 13:29:30.720 | INFO     | main:bazaar_flipper:981 - Item: Enchanted Snow Block
+2022-10-16 13:29:30.721 | INFO     | main:bazaar_flipper:981 - Item: Enchanted Spider Eye
+2022-10-16 13:29:30.721 | INFO     | main:bazaar_flipper:981 - Item: Enchanted Sponge
+2022-10-16 13:29:30.721 | INFO     | main:bazaar_flipper:981 - Item: Enchanted Spruce Wood
+2022-10-16 13:29:30.722 | INFO     | main:bazaar_flipper:981 - Item: Enchanted String
+2022-10-16 13:29:30.722 | INFO     | main:bazaar_flipper:981 - Item: Enchanted Sugar
+2022-10-16 13:29:30.723 | INFO     | main:bazaar_flipper:981 - Item: Enchanted Sugar Cane
+2022-10-16 13:29:30.723 | INFO     | main:bazaar_flipper:981 - Item: Enchanted Sulphur
+2022-10-16 13:29:30.723 | INFO     | main:bazaar_flipper:981 - Item: Enchanted Sulphur Cube
+2022-10-16 13:29:30.724 | INFO     | main:bazaar_flipper:981 - Item: Enchanted Titanium
+2022-10-16 13:29:30.724 | INFO     | main:bazaar_flipper:981 - Item: Enchanted Lily Pad
+2022-10-16 13:29:30.724 | INFO     | main:bazaar_flipper:981 - Item: Enchanted Wet Sponge
+2022-10-16 13:29:30.725 | INFO     | main:bazaar_flipper:981 - Item: Ender Monocle
+2022-10-16 13:29:30.725 | INFO     | main:bazaar_flipper:981 - Item: Ender Pearl
+2022-10-16 13:29:30.726 | INFO     | main:bazaar_flipper:981 - Item: End Stone
+2022-10-16 13:29:30.726 | INFO     | main:bazaar_flipper:981 - Item: End Stone Geode
+2022-10-16 13:29:30.726 | INFO     | main:bazaar_flipper:981 - Item: End Stone Shulker
+2022-10-16 13:29:30.727 | INFO     | main:bazaar_flipper:981 - Item: Experience Bottle
+2022-10-16 13:29:30.727 | INFO     | main:bazaar_flipper:981 - Item: Feather
+2022-10-16 13:29:30.727 | INFO     | main:bazaar_flipper:981 - Item: Fine Amber Gemstone
+2022-10-16 13:29:30.728 | INFO     | main:bazaar_flipper:981 - Item: Fine Amethyst Gemstone
+2022-10-16 13:29:30.728 | INFO     | main:bazaar_flipper:981 - Item: Fine Jade Gemstone
+2022-10-16 13:29:30.728 | INFO     | main:bazaar_flipper:981 - Item: Fine Jasper Gemstone
+2022-10-16 13:29:30.729 | INFO     | main:bazaar_flipper:981 - Item: Fine Opal Gemstone
+2022-10-16 13:29:30.742 | INFO     | main:bazaar_flipper:981 - Item: Fine Ruby Gemstone
+2022-10-16 13:29:30.742 | INFO     | main:bazaar_flipper:981 - Item: Fine Sapphire Gemstone
+2022-10-16 13:29:30.743 | INFO     | main:bazaar_flipper:981 - Item: Fine Topaz Gemstone
+2022-10-16 13:29:30.744 | INFO     | main:bazaar_flipper:981 - Item: Fish Bait
+2022-10-16 13:29:30.744 | INFO     | main:bazaar_flipper:981 - Item: Flawed Amber Gemstone
+2022-10-16 13:29:30.745 | INFO     | main:bazaar_flipper:981 - Item: Flawed Amethyst Gemstone
+2022-10-16 13:29:30.745 | INFO     | main:bazaar_flipper:981 - Item: Flawed Jade Gemstone
+2022-10-16 13:29:30.748 | INFO     | main:bazaar_flipper:981 - Item: Flawed Jasper Gemstone
+2022-10-16 13:29:30.748 | INFO     | main:bazaar_flipper:981 - Item: Flawed Opal Gemstone
+2022-10-16 13:29:30.749 | INFO     | main:bazaar_flipper:981 - Item: Flawed Ruby Gemstone
+2022-10-16 13:29:30.749 | INFO     | main:bazaar_flipper:981 - Item: Flawed Sapphire Gemstone
+2022-10-16 13:29:30.749 | INFO     | main:bazaar_flipper:981 - Item: Flawed Topaz Gemstone
+2022-10-16 13:29:30.750 | INFO     | main:bazaar_flipper:981 - Item: Flawless Amber Gemstone
+2022-10-16 13:29:30.750 | INFO     | main:bazaar_flipper:981 - Item: Flawless Amethyst Gemstone
+2022-10-16 13:29:30.751 | INFO     | main:bazaar_flipper:981 - Item: Flawless Jade Gemstone
+2022-10-16 13:29:30.751 | INFO     | main:bazaar_flipper:981 - Item: Flawless Jasper Gemstone
+2022-10-16 13:29:30.751 | INFO     | main:bazaar_flipper:981 - Item: Flawless Opal Gemstone
+2022-10-16 13:29:30.752 | INFO     | main:bazaar_flipper:981 - Item: Flawless Ruby Gemstone
+2022-10-16 13:29:30.752 | INFO     | main:bazaar_flipper:981 - Item: Flawless Sapphire Gemstone
+2022-10-16 13:29:30.753 | INFO     | main:bazaar_flipper:981 - Item: Flawless Topaz Gemstone
+2022-10-16 13:29:30.753 | INFO     | main:bazaar_flipper:981 - Item: Flint
+2022-10-16 13:29:30.754 | INFO     | main:bazaar_flipper:981 - Item: Foul Flesh
+2022-10-16 13:29:30.754 | INFO     | main:bazaar_flipper:981 - Item: Fuel Gabagool
+2022-10-16 13:29:30.754 | INFO     | main:bazaar_flipper:981 - Item: Fuming Potato Book
+2022-10-16 13:29:30.755 | INFO     | main:bazaar_flipper:981 - Item: Furball
+2022-10-16 13:29:30.755 | INFO     | main:bazaar_flipper:981 - Item: Ghast Tear
+2022-10-16 13:29:30.755 | INFO     | main:bazaar_flipper:981 - Item: Giant Tooth
+2022-10-16 13:29:30.756 | INFO     | main:bazaar_flipper:981 - Item: Glowstone Dust
+2022-10-16 13:29:30.756 | INFO     | main:bazaar_flipper:981 - Item: Glowstone Distillate
+2022-10-16 13:29:30.756 | INFO     | main:bazaar_flipper:981 - Item: Goblin Egg
+2022-10-16 13:29:30.795 | INFO     | main:bazaar_flipper:981 - Item: Blue Goblin Egg
+2022-10-16 13:29:30.795 | INFO     | main:bazaar_flipper:981 - Item: Green Goblin Egg
+2022-10-16 13:29:30.796 | INFO     | main:bazaar_flipper:981 - Item: Red Goblin Egg
+2022-10-16 13:29:30.796 | INFO     | main:bazaar_flipper:981 - Item: Yellow Goblin Egg
+2022-10-16 13:29:30.796 | INFO     | main:bazaar_flipper:981 - Item: Golden Ball
+2022-10-16 13:29:30.797 | INFO     | main:bazaar_flipper:981 - Item: Golden Tooth
+2022-10-16 13:29:30.797 | INFO     | main:bazaar_flipper:981 - Item: Gold Ingot
+2022-10-16 13:29:30.797 | INFO     | main:bazaar_flipper:981 - Item: Grand Experience Bottle
+2022-10-16 13:29:30.798 | INFO     | main:bazaar_flipper:981 - Item: Gravel
+2022-10-16 13:29:30.798 | INFO     | main:bazaar_flipper:981 - Item: Great White Shark Tooth
+2022-10-16 13:29:30.798 | INFO     | main:bazaar_flipper:981 - Item: Green Candy
+2022-10-16 13:29:30.799 | INFO     | main:bazaar_flipper:981 - Item: Green Gift
+2022-10-16 13:29:30.799 | INFO     | main:bazaar_flipper:981 - Item: Griffin Feather
+2022-10-16 13:29:30.799 | INFO     | main:bazaar_flipper:981 - Item: Hamster Wheel
+2022-10-16 13:29:30.800 | INFO     | main:bazaar_flipper:981 - Item: Hardened Wood
+2022-10-16 13:29:30.800 | INFO     | main:bazaar_flipper:981 - Item: Hard Stone
+2022-10-16 13:29:30.801 | INFO     | main:bazaar_flipper:981 - Item: Hay Bale
+2022-10-16 13:29:30.801 | INFO     | main:bazaar_flipper:981 - Item: Hazmat Enderman
+2022-10-16 13:29:30.801 | INFO     | main:bazaar_flipper:981 - Item: Heavy Gabagool
+2022-10-16 13:29:30.802 | INFO     | main:bazaar_flipper:981 - Item: Holy Dragon Fragment
+2022-10-16 13:29:30.802 | INFO     | main:bazaar_flipper:981 - Item: Horns of Torment
+2022-10-16 13:29:30.802 | INFO     | main:bazaar_flipper:981 - Item: Hot Bait
+2022-10-16 13:29:30.803 | INFO     | main:bazaar_flipper:981 - Item: Hot Potato Book
+2022-10-16 13:29:30.803 | INFO     | main:bazaar_flipper:981 - Item: Hot Stuff
+2022-10-16 13:29:30.804 | INFO     | main:bazaar_flipper:981 - Item: Brown Mushroom Block
+2022-10-16 13:29:30.804 | INFO     | main:bazaar_flipper:981 - Item: Red Mushroom Block
+2022-10-16 13:29:30.804 | INFO     | main:bazaar_flipper:981 - Item: Hypergolic Gabagool
+2022-10-16 13:29:30.805 | INFO     | main:bazaar_flipper:981 - Item: Hyper Catalyst
+2022-10-16 13:29:30.805 | INFO     | main:bazaar_flipper:981 - Item: Ice
+2022-10-16 13:29:30.805 | INFO     | main:bazaar_flipper:981 - Item: Ice Bait
+2022-10-16 13:29:30.806 | INFO     | main:bazaar_flipper:981 - Item: Inferno Vertex
+2022-10-16 13:29:30.806 | INFO     | main:bazaar_flipper:981 - Item: Ink Sac
+2022-10-16 13:29:30.806 | INFO     | main:bazaar_flipper:981 - Item: Cocoa Beans
+2022-10-16 13:29:30.807 | INFO     | main:bazaar_flipper:981 - Item: Lapis Lazuli
+2022-10-16 13:29:30.808 | INFO     | main:bazaar_flipper:981 - Item: Iron Ingot
+2022-10-16 13:29:30.898 | INFO     | main:bazaar_flipper:981 - Item: Jacob's Ticket
+2022-10-16 13:29:30.899 | INFO     | main:bazaar_flipper:981 - Item: Jaderald
+2022-10-16 13:29:30.899 | INFO     | main:bazaar_flipper:981 - Item: Blue Jerry Box
+2022-10-16 13:29:30.900 | INFO     | main:bazaar_flipper:981 - Item: Golden Jerry Box
+2022-10-16 13:29:30.901 | INFO     | main:bazaar_flipper:981 - Item: Green Jerry Box
+2022-10-16 13:29:30.901 | INFO     | main:bazaar_flipper:981 - Item: Purple Jerry Box
+2022-10-16 13:29:30.902 | INFO     | main:bazaar_flipper:981 - Item: Jerry Stone
+2022-10-16 13:29:30.902 | INFO     | main:bazaar_flipper:981 - Item: Lapis Crystal
+2022-10-16 13:29:30.903 | INFO     | main:bazaar_flipper:981 - Item: Leather
+2022-10-16 13:29:30.904 | INFO     | main:bazaar_flipper:981 - Item: Light Bait
+2022-10-16 13:29:30.905 | INFO     | main:bazaar_flipper:981 - Item: Oak Wood
+2022-10-16 13:29:30.905 | INFO     | main:bazaar_flipper:981 - Item: Spruce Wood
+2022-10-16 13:29:30.905 | INFO     | main:bazaar_flipper:981 - Item: Birch Wood
+2022-10-16 13:29:30.906 | INFO     | main:bazaar_flipper:981 - Item: Jungle Wood
+2022-10-16 13:29:30.906 | INFO     | main:bazaar_flipper:981 - Item: Acacia Wood
+2022-10-16 13:29:30.907 | INFO     | main:bazaar_flipper:981 - Item: Dark Oak Wood
+2022-10-16 13:29:30.907 | INFO     | main:bazaar_flipper:981 - Item: Lucky Dice
+2022-10-16 13:29:30.907 | INFO     | main:bazaar_flipper:981 - Item: Luxurious Spool
+2022-10-16 13:29:30.908 | INFO     | main:bazaar_flipper:981 - Item: Magma Bucket
+2022-10-16 13:29:30.908 | INFO     | main:bazaar_flipper:981 - Item: Magma Cream
+2022-10-16 13:29:30.909 | INFO     | main:bazaar_flipper:981 - Item: Magma Cream Distillate
+2022-10-16 13:29:30.909 | INFO     | main:bazaar_flipper:981 - Item: Magmafish
+2022-10-16 13:29:30.909 | INFO     | main:bazaar_flipper:981 - Item: Diamond Magmafish
+2022-10-16 13:29:30.910 | INFO     | main:bazaar_flipper:981 - Item: Gold Magmafish
+2022-10-16 13:29:30.910 | INFO     | main:bazaar_flipper:981 - Item: Silver Magmafish
+2022-10-16 13:29:30.911 | INFO     | main:bazaar_flipper:981 - Item: Magma Urchin
+2022-10-16 13:29:30.911 | INFO     | main:bazaar_flipper:981 - Item: Melon
+2022-10-16 13:29:30.911 | INFO     | main:bazaar_flipper:981 - Item: Melon
+2022-10-16 13:29:30.912 | INFO     | main:bazaar_flipper:981 - Item: Meteor Shard
+2022-10-16 13:29:30.912 | INFO     | main:bazaar_flipper:981 - Item: Midas Jewel
+2022-10-16 13:29:30.913 | INFO     | main:bazaar_flipper:981 - Item: Minnow Bait
+2022-10-16 13:29:30.913 | INFO     | main:bazaar_flipper:981 - Item: Mithril
+2022-10-16 13:29:30.914 | INFO     | main:bazaar_flipper:981 - Item: Molten Cube
+2022-10-16 13:29:30.914 | INFO     | main:bazaar_flipper:981 - Item: Molten Powder
+2022-10-16 13:29:30.915 | INFO     | main:bazaar_flipper:981 - Item: Mutant Nether Wart
+2022-10-16 13:29:30.915 | INFO     | main:bazaar_flipper:981 - Item: Mutton
+2022-10-16 13:29:30.915 | INFO     | main:bazaar_flipper:981 - Item: Mycelium
+2022-10-16 13:29:30.916 | INFO     | main:bazaar_flipper:981 - Item: Necromancer's Brooch
+2022-10-16 13:29:30.916 | INFO     | main:bazaar_flipper:981 - Item: Netherrack
+2022-10-16 13:29:30.916 | INFO     | main:bazaar_flipper:981 - Item: Nether Wart
+2022-10-16 13:29:30.917 | INFO     | main:bazaar_flipper:981 - Item: Nether Wart Distillate
+2022-10-16 13:29:30.917 | INFO     | main:bazaar_flipper:981 - Item: Null Atom
+2022-10-16 13:29:30.917 | INFO     | main:bazaar_flipper:981 - Item: Null Ovoid
+2022-10-16 13:29:30.918 | INFO     | main:bazaar_flipper:981 - Item: Null Sphere
+2022-10-16 13:29:30.918 | INFO     | main:bazaar_flipper:981 - Item: Nurse Shark Tooth
+2022-10-16 13:29:30.919 | INFO     | main:bazaar_flipper:981 - Item: Obsidian
+2022-10-16 13:29:30.919 | INFO     | main:bazaar_flipper:981 - Item: Obsidian Tablet
+2022-10-16 13:29:30.919 | INFO     | main:bazaar_flipper:981 - Item: Old Dragon Fragment
+2022-10-16 13:29:30.919 | INFO     | main:bazaar_flipper:981 - Item: Omega Enchanted Egg
+2022-10-16 13:29:30.920 | INFO     | main:bazaar_flipper:981 - Item: Onyx
+2022-10-16 13:29:30.920 | INFO     | main:bazaar_flipper:981 - Item: Optical Lens
+2022-10-16 13:29:30.921 | INFO     | main:bazaar_flipper:981 - Item: Packed Ice
+2022-10-16 13:29:30.921 | INFO     | main:bazaar_flipper:981 - Item: Perfect Amber Gemstone
+2022-10-16 13:29:30.922 | INFO     | main:bazaar_flipper:981 - Item: Perfect Amethyst Gemstone
+2022-10-16 13:29:30.922 | INFO     | main:bazaar_flipper:981 - Item: Perfect Jade Gemstone
+2022-10-16 13:29:30.923 | INFO     | main:bazaar_flipper:981 - Item: Perfect Jasper Gemstone
+2022-10-16 13:29:30.923 | INFO     | main:bazaar_flipper:981 - Item: Perfect Opal Gemstone
+2022-10-16 13:29:30.924 | INFO     | main:bazaar_flipper:981 - Item: Perfect Ruby Gemstone
+2022-10-16 13:29:30.924 | INFO     | main:bazaar_flipper:981 - Item: Perfect Sapphire Gemstone
+2022-10-16 13:29:30.925 | INFO     | main:bazaar_flipper:981 - Item: Perfect Topaz Gemstone
+2022-10-16 13:29:30.925 | INFO     | main:bazaar_flipper:981 - Item: Petrified Starfall
+2022-10-16 13:29:30.925 | INFO     | main:bazaar_flipper:981 - Item: Plasma Bucket
+2022-10-16 13:29:30.926 | INFO     | main:bazaar_flipper:981 - Item: Polished Pumpkin
+2022-10-16 13:29:30.926 | INFO     | main:bazaar_flipper:981 - Item: Raw Porkchop
+2022-10-16 13:29:30.927 | INFO     | main:bazaar_flipper:981 - Item: Potato
+2022-10-16 13:29:30.927 | INFO     | main:bazaar_flipper:981 - Item: Power Crystal
+2022-10-16 13:29:30.927 | INFO     | main:bazaar_flipper:981 - Item: Precious Pearl
+2022-10-16 13:29:30.928 | INFO     | main:bazaar_flipper:981 - Item: Precursor Gear
+2022-10-16 13:29:30.928 | INFO     | main:bazaar_flipper:981 - Item: Premium Flesh
+2022-10-16 13:29:30.928 | INFO     | main:bazaar_flipper:981 - Item: Prismarine Crystals
+2022-10-16 13:29:30.929 | INFO     | main:bazaar_flipper:981 - Item: Prismarine Shard
+2022-10-16 13:29:30.929 | INFO     | main:bazaar_flipper:981 - Item: Protector Dragon Fragment
+2022-10-16 13:29:30.929 | INFO     | main:bazaar_flipper:981 - Item: Pumpkin
+2022-10-16 13:29:30.930 | INFO     | main:bazaar_flipper:981 - Item: Pumpkin Guts
+2022-10-16 13:29:30.930 | INFO     | main:bazaar_flipper:981 - Item: Pure Mithril
+2022-10-16 13:29:30.930 | INFO     | main:bazaar_flipper:981 - Item: Purple Candy
+2022-10-16 13:29:30.931 | INFO     | main:bazaar_flipper:981 - Item: Nether Quartz
+2022-10-16 13:29:30.931 | INFO     | main:bazaar_flipper:981 - Item: Raw Rabbit
+2022-10-16 13:29:30.932 | INFO     | main:bazaar_flipper:981 - Item: Rabbit's Foot
+2022-10-16 13:29:30.932 | INFO     | main:bazaar_flipper:981 - Item: Rabbit Hide
+2022-10-16 13:29:30.932 | INFO     | main:bazaar_flipper:981 - Item: Rare Diamond
+2022-10-16 13:29:30.933 | INFO     | main:bazaar_flipper:981 - Item: Raw Beef
+2022-10-16 13:29:30.933 | INFO     | main:bazaar_flipper:981 - Item: Raw Chicken
+2022-10-16 13:29:30.934 | INFO     | main:bazaar_flipper:981 - Item: Raw Fish
+2022-10-16 13:29:30.934 | INFO     | main:bazaar_flipper:981 - Item: Raw Salmon
+2022-10-16 13:29:30.934 | INFO     | main:bazaar_flipper:981 - Item: Clownfish
+2022-10-16 13:29:30.935 | INFO     | main:bazaar_flipper:981 - Item: Pufferfish
+2022-10-16 13:29:30.935 | INFO     | main:bazaar_flipper:981 - Item: Raw Soulflow
+2022-10-16 13:29:30.935 | INFO     | main:bazaar_flipper:981 - Item: Reaper Pepper
+2022-10-16 13:29:30.936 | INFO     | main:bazaar_flipper:981 - Item: Recombobulator 3000
+2022-10-16 13:29:30.936 | INFO     | main:bazaar_flipper:981 - Item: Redstone
+2022-10-16 13:29:30.996 | INFO     | main:bazaar_flipper:981 - Item: Red Gift
+2022-10-16 13:29:30.997 | INFO     | main:bazaar_flipper:981 - Item: Red Mushroom
+2022-10-16 13:29:30.998 | INFO     | main:bazaar_flipper:981 - Item: Red Nose
+2022-10-16 13:29:30.999 | INFO     | main:bazaar_flipper:981 - Item: Red Scarf
+2022-10-16 13:29:30.999 | INFO     | main:bazaar_flipper:981 - Item: Refined Amber
+2022-10-16 13:29:30.999 | INFO     | main:bazaar_flipper:981 - Item: Refined Diamond
+2022-10-16 13:29:30.999 | INFO     | main:bazaar_flipper:981 - Item: Refined Mineral
+2022-10-16 13:29:31.000 | INFO     | main:bazaar_flipper:981 - Item: Refined Mithril
+2022-10-16 13:29:31.001 | INFO     | main:bazaar_flipper:981 - Item: Refined Titanium
+2022-10-16 13:29:31.003 | INFO     | main:bazaar_flipper:981 - Item: Revenant Flesh
+2022-10-16 13:29:31.003 | INFO     | main:bazaar_flipper:981 - Item: Revenant Viscera
+2022-10-16 13:29:31.003 | INFO     | main:bazaar_flipper:981 - Item: Rock Candy
+2022-10-16 13:29:31.004 | INFO     | main:bazaar_flipper:981 - Item: Rock Gemstone
+2022-10-16 13:29:31.006 | INFO     | main:bazaar_flipper:981 - Item: Rotten Flesh
+2022-10-16 13:29:31.006 | INFO     | main:bazaar_flipper:981 - Item: Rough Amber Gemstone
+2022-10-16 13:29:31.007 | INFO     | main:bazaar_flipper:981 - Item: Rough Amethyst Gemstone
+2022-10-16 13:29:31.007 | INFO     | main:bazaar_flipper:981 - Item: Rough Jade Gemstone
+2022-10-16 13:29:31.007 | INFO     | main:bazaar_flipper:981 - Item: Rough Jasper Gemstone
+2022-10-16 13:29:31.008 | INFO     | main:bazaar_flipper:981 - Item: Rough Opal Gemstone
+2022-10-16 13:29:31.008 | INFO     | main:bazaar_flipper:981 - Item: Rough Ruby Gemstone
+2022-10-16 13:29:31.009 | INFO     | main:bazaar_flipper:981 - Item: Rough Sapphire Gemstone
+2022-10-16 13:29:31.009 | INFO     | main:bazaar_flipper:981 - Item: Rough Topaz Gemstone
+2022-10-16 13:29:31.009 | INFO     | main:bazaar_flipper:981 - Item: Sadan's Brooch
+2022-10-16 13:29:31.010 | INFO     | main:bazaar_flipper:981 - Item: Salmon Opal
+2022-10-16 13:29:31.010 | INFO     | main:bazaar_flipper:981 - Item: Sand
+2022-10-16 13:29:31.010 | INFO     | main:bazaar_flipper:981 - Item: Red Sand
+2022-10-16 13:29:31.011 | INFO     | main:bazaar_flipper:981 - Item: Scorched Books
+2022-10-16 13:29:31.011 | INFO     | main:bazaar_flipper:981 - Item: Searing Stone
+2022-10-16 13:29:31.011 | INFO     | main:bazaar_flipper:981 - Item: Seeds
+2022-10-16 13:29:31.012 | INFO     | main:bazaar_flipper:981 - Item: Shark Bait
+2022-10-16 13:29:31.012 | INFO     | main:bazaar_flipper:981 - Item: Shark Fin
+2022-10-16 13:29:31.013 | INFO     | main:bazaar_flipper:981 - Item: Shiny Prism
+2022-10-16 13:29:31.013 | INFO     | main:bazaar_flipper:981 - Item: Slimeball
+2022-10-16 13:29:31.013 | INFO     | main:bazaar_flipper:981 - Item: Sludge Juice
+2022-10-16 13:29:31.014 | INFO     | main:bazaar_flipper:981 - Item: Snowball
+2022-10-16 13:29:31.014 | INFO     | main:bazaar_flipper:981 - Item: Snow Block
+2022-10-16 13:29:31.014 | INFO     | main:bazaar_flipper:981 - Item: Soulflow
+2022-10-16 13:29:31.015 | INFO     | main:bazaar_flipper:981 - Item: Soul Fragment
+2022-10-16 13:29:31.015 | INFO     | main:bazaar_flipper:981 - Item: Soul String
+2022-10-16 13:29:31.016 | INFO     | main:bazaar_flipper:981 - Item: Spider Eye
+2022-10-16 13:29:31.016 | INFO     | main:bazaar_flipper:981 - Item: Spiked Bait
+2022-10-16 13:29:31.016 | INFO     | main:bazaar_flipper:981 - Item: Spirit Stone
+2022-10-16 13:29:31.017 | INFO     | main:bazaar_flipper:981 - Item: Sponge
+2022-10-16 13:29:31.017 | INFO     | main:bazaar_flipper:981 - Item: Spooky Bait
+2022-10-16 13:29:31.017 | INFO     | main:bazaar_flipper:981 - Item: Spooky Shard
+2022-10-16 13:29:31.017 | INFO     | main:bazaar_flipper:981 - Item: Starfall
+2022-10-16 13:29:31.018 | INFO     | main:bazaar_flipper:981 - Item: Stock of Stonks
+2022-10-16 13:29:31.018 | INFO     | main:bazaar_flipper:981 - Item: String
+2022-10-16 13:29:31.018 | INFO     | main:bazaar_flipper:981 - Item: Strong Dragon Fragment
+2022-10-16 13:29:31.019 | INFO     | main:bazaar_flipper:981 - Item: Sugar Cane
+2022-10-16 13:29:31.019 | INFO     | main:bazaar_flipper:981 - Item: Gunpowder
+2022-10-16 13:29:31.019 | INFO     | main:bazaar_flipper:981 - Item: Sulphur
+2022-10-16 13:29:31.020 | INFO     | main:bazaar_flipper:981 - Item: Summoning Eye
+2022-10-16 13:29:31.020 | INFO     | main:bazaar_flipper:981 - Item: Superior Dragon Fragment
+2022-10-16 13:29:31.020 | INFO     | main:bazaar_flipper:981 - Item: Super Compactor 3000
+2022-10-16 13:29:31.020 | INFO     | main:bazaar_flipper:981 - Item: Super Enchanted Egg
+2022-10-16 13:29:31.021 | INFO     | main:bazaar_flipper:981 - Item: Suspicious Vial
+2022-10-16 13:29:31.021 | INFO     | main:bazaar_flipper:981 - Item: Tarantula Silk
+2022-10-16 13:29:31.022 | INFO     | main:bazaar_flipper:981 - Item: Tarantula Web
+2022-10-16 13:29:31.022 | INFO     | main:bazaar_flipper:981 - Item: Tiger Shark Tooth
+2022-10-16 13:29:31.022 | INFO     | main:bazaar_flipper:981 - Item: Tightly-Tied Hay Bale
+2022-10-16 13:29:31.023 | INFO     | main:bazaar_flipper:981 - Item: Titanic Experience Bottle
+2022-10-16 13:29:31.023 | INFO     | main:bazaar_flipper:981 - Item: Titanium
+2022-10-16 13:29:31.023 | INFO     | main:bazaar_flipper:981 - Item: Treasurite
+2022-10-16 13:29:31.023 | INFO     | main:bazaar_flipper:981 - Item: Unstable Dragon Fragment
+2022-10-16 13:29:31.024 | INFO     | main:bazaar_flipper:981 - Item: Vitamin Death
+2022-10-16 13:29:31.024 | INFO     | main:bazaar_flipper:981 - Item: Lily Pad
+2022-10-16 13:29:31.025 | INFO     | main:bazaar_flipper:981 - Item: Werewolf Skin
+2022-10-16 13:29:31.025 | INFO     | main:bazaar_flipper:981 - Item: Whale Bait
+2022-10-16 13:29:31.025 | INFO     | main:bazaar_flipper:981 - Item: Wheat
+2022-10-16 13:29:31.026 | INFO     | main:bazaar_flipper:981 - Item: White Gift
+2022-10-16 13:29:31.026 | INFO     | main:bazaar_flipper:981 - Item: Wise Dragon Fragment
+2022-10-16 13:29:31.026 | INFO     | main:bazaar_flipper:981 - Item: Wither Blood
+2022-10-16 13:29:31.027 | INFO     | main:bazaar_flipper:981 - Item: Wolf Tooth
+2022-10-16 13:29:31.027 | INFO     | main:bazaar_flipper:981 - Item: Worm Membrane
+2022-10-16 13:29:31.027 | INFO     | main:bazaar_flipper:981 - Item: Yoggie
+2022-10-16 13:29:31.028 | INFO     | main:bazaar_flipper:981 - Item: Young Dragon Fragment
+2022-10-16 13:29:31.032 | INFO     | uvicorn.protocols.http.httptools_impl:send:437 - 172.18.0.1:37256 - "GET /flippers/bazaar/html/ HTTP/1.1" 200
+2022-10-16 15:39:22.256 | INFO     | uvicorn.protocols.http.httptools_impl:send:437 - 172.18.0.1:52368 - "GET /robots.txt HTTP/1.1" 404
+2022-10-16 15:39:23.771 | INFO     | uvicorn.protocols.http.httptools_impl:send:437 - 172.18.0.1:59422 - "GET / HTTP/1.1" 307
+2022-10-16 17:09:22.418 | INFO     | uvicorn.protocols.http.httptools_impl:send:437 - 172.18.0.1:34384 - "GET /flippers/craft/html HTTP/1.1" 307
+2022-10-16 17:09:22.695 | INFO     | uvicorn.protocols.http.httptools_impl:send:437 - 172.18.0.1:34384 - "GET /flippers/craft/html/ HTTP/1.1" 200
+2022-10-16 20:58:45.131 | DEBUG    | git.cmd:execute:870 - Popen(['git', 'pull', '-v', 'origin'], cwd=/home/runner/Skyblock-Tools-FastAPI/neu-repo, universal_newlines=True, shell=None, istream=None)
+2022-10-16 20:58:45.373 | DEBUG    | urllib3.connectionpool:_new_conn:1001 - Starting new HTTPS connection (1): api.hypixel.net:443
+2022-10-16 20:58:45.449 | DEBUG    | urllib3.connectionpool:_make_request:456 - https://api.hypixel.net:443 "GET /resources/skyblock/items HTTP/1.1" 200 None
+2022-10-16 20:58:46.813 | INFO     | uvicorn.server:serve:75 - Started server process [22]
+2022-10-16 20:58:46.814 | INFO     | uvicorn.lifespan.on:startup:45 - Waiting for application startup.
+2022-10-16 20:58:46.884 | INFO     | uvicorn.lifespan.on:startup:59 - Application startup complete.
+2022-10-16 20:58:46.886 | INFO     | uvicorn.server:_log_started_message:206 - Uvicorn running on http://0.0.0.0:8080 (Press CTRL+C to quit)
+2022-10-16 20:58:47.085 | INFO     | uvicorn.protocols.http.httptools_impl:send:437 - 172.18.0.1:46838 - "GET / HTTP/1.1" 307
+2022-10-16 20:58:47.117 | INFO     | uvicorn.protocols.http.httptools_impl:send:437 - 172.18.0.1:46838 - "GET /docs HTTP/1.1" 200
+2022-10-16 20:58:47.181 | INFO     | uvicorn.protocols.http.httptools_impl:send:437 - 172.18.0.1:46852 - "GET /flippers/forge/html HTTP/1.1" 307
+2022-10-16 20:58:47.635 | INFO     | uvicorn.protocols.http.httptools_impl:send:437 - 172.18.0.1:46852 - "GET /flippers/forge/html/ HTTP/1.1" 200

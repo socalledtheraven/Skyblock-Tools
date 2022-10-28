@@ -1,0 +1,26 @@
+2022-10-17 00:47:47.316 | DEBUG    | git.cmd:execute:870 - Popen(['git', 'pull', '-v', 'origin'], cwd=/home/runner/Skyblock-Tools-FastAPI/neu-repo, universal_newlines=True, shell=None, istream=None)
+2022-10-17 00:47:47.586 | DEBUG    | urllib3.connectionpool:_new_conn:1001 - Starting new HTTPS connection (1): api.hypixel.net:443
+2022-10-17 00:47:47.673 | DEBUG    | urllib3.connectionpool:_make_request:456 - https://api.hypixel.net:443 "GET /resources/skyblock/items HTTP/1.1" 200 None
+2022-10-17 00:47:48.449 | INFO     | uvicorn.server:serve:75 - Started server process [22]
+2022-10-17 00:47:48.450 | INFO     | uvicorn.lifespan.on:startup:45 - Waiting for application startup.
+2022-10-17 00:47:48.525 | INFO     | uvicorn.lifespan.on:startup:59 - Application startup complete.
+2022-10-17 00:47:48.528 | INFO     | uvicorn.server:_log_started_message:206 - Uvicorn running on http://0.0.0.0:8080 (Press CTRL+C to quit)
+2022-10-17 05:27:33.202 | INFO     | uvicorn.protocols.http.httptools_impl:send:437 - 172.18.0.1:54890 - "GET /flippers/forge/html HTTP/1.1" 307
+2022-10-17 05:27:33.360 | INFO     | uvicorn.protocols.http.httptools_impl:send:437 - 172.18.0.1:54890 - "GET /flippers/forge/html/ HTTP/1.1" 200
+2022-10-17 22:59:07.210 | DEBUG    | git.cmd:execute:870 - Popen(['git', 'pull', '-v', 'origin'], cwd=/home/runner/Skyblock-Tools-FastAPI/neu-repo, universal_newlines=True, shell=None, istream=None)
+2022-10-17 22:59:07.502 | DEBUG    | urllib3.connectionpool:_new_conn:1001 - Starting new HTTPS connection (1): api.hypixel.net:443
+2022-10-17 22:59:07.573 | DEBUG    | urllib3.connectionpool:_make_request:456 - https://api.hypixel.net:443 "GET /resources/skyblock/items HTTP/1.1" 200 None
+2022-10-17 22:59:08.333 | INFO     | uvicorn.server:serve:75 - Started server process [22]
+2022-10-17 22:59:08.334 | INFO     | uvicorn.lifespan.on:startup:45 - Waiting for application startup.
+2022-10-17 22:59:08.409 | INFO     | uvicorn.lifespan.on:startup:59 - Application startup complete.
+2022-10-17 22:59:08.411 | INFO     | uvicorn.server:_log_started_message:206 - Uvicorn running on http://0.0.0.0:8080 (Press CTRL+C to quit)
+2022-10-17 22:59:15.486 | INFO     | uvicorn.protocols.http.httptools_impl:send:437 - 172.18.0.1:58464 - "GET /docs HTTP/1.1" 200
+2022-10-17 23:41:02.876 | INFO     | uvicorn.protocols.http.httptools_impl:send:437 - 172.18.0.1:36550 - "GET / HTTP/1.1" 307
+2022-10-18 01:02:07.641 | INFO     | uvicorn.protocols.http.httptools_impl:send:437 - 172.18.0.1:42282 - "GET /robots.txt HTTP/1.1" 404
+2022-10-18 01:02:11.457 | INFO     | uvicorn.protocols.http.httptools_impl:send:437 - 172.18.0.1:35042 - "GET /docs HTTP/1.1" 200
+2022-10-18 06:02:36.516 | INFO     | uvicorn.protocols.http.httptools_impl:send:437 - 172.18.0.1:43618 - "GET /robots.txt HTTP/1.1" 404
+2022-10-18 06:02:41.649 | INFO     | uvicorn.protocols.http.httptools_impl:send:437 - 172.18.0.1:43578 - "GET /robots.txt HTTP/1.1" 404
+2022-10-18 06:02:45.431 | INFO     | uvicorn.protocols.http.httptools_impl:send:437 - 172.18.0.1:48770 - "GET / HTTP/1.1" 307
+2022-10-18 06:02:49.345 | INFO     | uvicorn.protocols.http.httptools_impl:send:437 - 172.18.0.1:35674 - "GET /docs HTTP/1.1" 200
+2022-10-18 06:47:39.164 | INFO     | uvicorn.protocols.http.httptools_impl:send:437 - 172.18.0.1:35874 - "GET / HTTP/1.1" 307
+2022-10-18 06:47:42.659 | INFO     | uvicorn.protocols.http.httptools_impl:send:437 - 172.18.0.1:57976 - "GET /docs HTTP/1.1" 200

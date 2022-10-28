@@ -251,3 +251,65 @@ Traceback (most recent call last):
            └ <function auctionables at 0x7f717f2cf670>
 
 TypeError: object list can't be used in 'await' expression
+2022-10-11 07:49:24.973 | INFO     | uvicorn.protocols.http.httptools_impl:send:437 - 172.18.0.1:37324 - "GET / HTTP/1.1" 307
+2022-10-11 07:49:25.128 | INFO     | uvicorn.protocols.http.httptools_impl:send:437 - 172.18.0.1:37324 - "GET /docs HTTP/1.1" 200
+2022-10-11 07:49:25.569 | INFO     | uvicorn.protocols.http.httptools_impl:send:437 - 172.18.0.1:37324 - "GET /openapi.json HTTP/1.1" 200
+2022-10-11 07:49:26.814 | INFO     | uvicorn.protocols.http.httptools_impl:send:437 - 172.18.0.1:37324 - "GET / HTTP/1.1" 307
+2022-10-11 07:49:26.967 | INFO     | uvicorn.protocols.http.httptools_impl:send:437 - 172.18.0.1:37324 - "GET /docs HTTP/1.1" 200
+2022-10-11 07:49:27.689 | INFO     | uvicorn.protocols.http.httptools_impl:send:437 - 172.18.0.1:37324 - "GET /openapi.json HTTP/1.1" 200
+2022-10-11 07:49:29.114 | INFO     | uvicorn.protocols.http.httptools_impl:send:437 - 172.18.0.1:37324 - "GET / HTTP/1.1" 307
+2022-10-11 07:49:29.270 | INFO     | uvicorn.protocols.http.httptools_impl:send:437 - 172.18.0.1:37324 - "GET /docs HTTP/1.1" 200
+2022-10-11 07:49:29.718 | INFO     | uvicorn.protocols.http.httptools_impl:send:437 - 172.18.0.1:37324 - "GET /openapi.json HTTP/1.1" 200
+2022-10-11 07:49:30.930 | INFO     | uvicorn.protocols.http.httptools_impl:send:437 - 172.18.0.1:37324 - "GET / HTTP/1.1" 307
+2022-10-11 07:49:31.083 | INFO     | uvicorn.protocols.http.httptools_impl:send:437 - 172.18.0.1:37324 - "GET /docs HTTP/1.1" 200
+2022-10-11 07:49:31.539 | INFO     | uvicorn.protocols.http.httptools_impl:send:437 - 172.18.0.1:37324 - "GET /openapi.json HTTP/1.1" 200
+2022-10-11 08:05:18.377 | INFO     | uvicorn.protocols.http.httptools_impl:send:437 - 172.18.0.1:43482 - "GET / HTTP/1.1" 307
+2022-10-11 08:05:18.526 | INFO     | uvicorn.protocols.http.httptools_impl:send:437 - 172.18.0.1:43482 - "GET /docs HTTP/1.1" 200
+2022-10-11 08:05:18.958 | INFO     | uvicorn.protocols.http.httptools_impl:send:437 - 172.18.0.1:43482 - "GET /openapi.json HTTP/1.1" 200
+2022-10-11 08:08:36.470 | INFO     | uvicorn.protocols.http.httptools_impl:send:437 - 172.18.0.1:50676 - "GET / HTTP/1.1" 307
+2022-10-11 08:08:36.656 | INFO     | uvicorn.protocols.http.httptools_impl:send:437 - 172.18.0.1:50676 - "GET /docs HTTP/1.1" 200
+2022-10-11 08:08:37.107 | INFO     | uvicorn.protocols.http.httptools_impl:send:437 - 172.18.0.1:50676 - "GET /openapi.json HTTP/1.1" 200
+2022-10-11 08:12:31.294 | INFO     | uvicorn.protocols.http.httptools_impl:send:437 - 172.18.0.1:49316 - "GET / HTTP/1.1" 307
+2022-10-11 08:12:31.454 | INFO     | uvicorn.protocols.http.httptools_impl:send:437 - 172.18.0.1:49316 - "GET /docs HTTP/1.1" 200
+2022-10-11 08:12:31.881 | INFO     | uvicorn.protocols.http.httptools_impl:send:437 - 172.18.0.1:49316 - "GET /openapi.json HTTP/1.1" 200
+2022-10-11 08:12:33.193 | INFO     | uvicorn.protocols.http.httptools_impl:send:437 - 172.18.0.1:49316 - "GET / HTTP/1.1" 307
+2022-10-11 08:12:33.348 | INFO     | uvicorn.protocols.http.httptools_impl:send:437 - 172.18.0.1:49316 - "GET /docs HTTP/1.1" 200
+2022-10-11 08:12:33.803 | INFO     | uvicorn.protocols.http.httptools_impl:send:437 - 172.18.0.1:49316 - "GET /openapi.json HTTP/1.1" 200
+2022-10-11 08:16:59.187 | INFO     | uvicorn.protocols.http.httptools_impl:send:437 - 172.18.0.1:44452 - "GET / HTTP/1.1" 307
+2022-10-11 08:16:59.366 | INFO     | uvicorn.protocols.http.httptools_impl:send:437 - 172.18.0.1:44452 - "GET /docs HTTP/1.1" 200
+2022-10-11 08:16:59.807 | INFO     | uvicorn.protocols.http.httptools_impl:send:437 - 172.18.0.1:44452 - "GET /openapi.json HTTP/1.1" 200
+2022-10-11 08:19:44.627 | INFO     | uvicorn.protocols.http.httptools_impl:send:437 - 172.18.0.1:54078 - "GET / HTTP/1.1" 307
+2022-10-11 08:19:44.807 | INFO     | uvicorn.protocols.http.httptools_impl:send:437 - 172.18.0.1:54078 - "GET /docs HTTP/1.1" 200
+2022-10-11 08:19:45.235 | INFO     | uvicorn.protocols.http.httptools_impl:send:437 - 172.18.0.1:54078 - "GET /openapi.json HTTP/1.1" 200
+2022-10-11 08:21:22.312 | INFO     | uvicorn.protocols.http.httptools_impl:send:437 - 172.18.0.1:36380 - "GET / HTTP/1.1" 307
+2022-10-11 08:21:22.473 | INFO     | uvicorn.protocols.http.httptools_impl:send:437 - 172.18.0.1:36380 - "GET /docs HTTP/1.1" 200
+2022-10-11 08:21:22.969 | INFO     | uvicorn.protocols.http.httptools_impl:send:437 - 172.18.0.1:36380 - "GET /openapi.json HTTP/1.1" 200
+2022-10-11 08:25:15.272 | INFO     | uvicorn.protocols.http.httptools_impl:send:437 - 172.18.0.1:36784 - "GET / HTTP/1.1" 307
+2022-10-11 08:25:15.478 | INFO     | uvicorn.protocols.http.httptools_impl:send:437 - 172.18.0.1:36784 - "GET /docs HTTP/1.1" 200
+2022-10-11 08:25:15.935 | INFO     | uvicorn.protocols.http.httptools_impl:send:437 - 172.18.0.1:36784 - "GET /openapi.json HTTP/1.1" 200
+2022-10-11 08:27:08.886 | INFO     | uvicorn.protocols.http.httptools_impl:send:437 - 172.18.0.1:53756 - "GET / HTTP/1.1" 307
+2022-10-11 08:27:09.036 | INFO     | uvicorn.protocols.http.httptools_impl:send:437 - 172.18.0.1:53756 - "GET /docs HTTP/1.1" 200
+2022-10-11 08:27:09.499 | INFO     | uvicorn.protocols.http.httptools_impl:send:437 - 172.18.0.1:53756 - "GET /openapi.json HTTP/1.1" 200
+2022-10-11 08:27:23.324 | INFO     | uvicorn.protocols.http.httptools_impl:send:437 - 172.18.0.1:42702 - "GET / HTTP/1.1" 307
+2022-10-11 08:27:23.481 | INFO     | uvicorn.protocols.http.httptools_impl:send:437 - 172.18.0.1:42702 - "GET /docs HTTP/1.1" 200
+2022-10-11 08:27:23.910 | INFO     | uvicorn.protocols.http.httptools_impl:send:437 - 172.18.0.1:42702 - "GET /openapi.json HTTP/1.1" 200
+2022-10-11 08:27:31.281 | INFO     | uvicorn.protocols.http.httptools_impl:send:437 - 172.18.0.1:54982 - "GET / HTTP/1.1" 307
+2022-10-11 08:27:31.430 | INFO     | uvicorn.protocols.http.httptools_impl:send:437 - 172.18.0.1:54982 - "GET /docs HTTP/1.1" 200
+2022-10-11 08:27:31.897 | INFO     | uvicorn.protocols.http.httptools_impl:send:437 - 172.18.0.1:54982 - "GET /openapi.json HTTP/1.1" 200
+2022-10-11 08:32:41.998 | INFO     | uvicorn.protocols.http.httptools_impl:send:437 - 172.18.0.1:45566 - "GET / HTTP/1.1" 307
+2022-10-11 08:32:42.153 | INFO     | uvicorn.protocols.http.httptools_impl:send:437 - 172.18.0.1:45566 - "GET /docs HTTP/1.1" 200
+2022-10-11 08:32:42.703 | INFO     | uvicorn.protocols.http.httptools_impl:send:437 - 172.18.0.1:45566 - "GET /openapi.json HTTP/1.1" 200
+2022-10-11 16:02:35.246 | DEBUG    | git.cmd:execute:870 - Popen(['git', 'pull', '-v', 'origin'], cwd=/home/runner/Skyblock-Tools-FastAPI/neu-repo, universal_newlines=True, shell=None, istream=None)
+2022-10-11 16:02:35.774 | DEBUG    | git.cmd:execute:870 - Popen(['git', 'cat-file', '--batch-check'], cwd=/home/runner/Skyblock-Tools-FastAPI/neu-repo, universal_newlines=False, shell=None, istream=<valid stream>)
+2022-10-11 16:02:35.794 | DEBUG    | urllib3.connectionpool:_new_conn:1001 - Starting new HTTPS connection (1): api.hypixel.net:443
+2022-10-11 16:02:35.861 | DEBUG    | urllib3.connectionpool:_make_request:456 - https://api.hypixel.net:443 "GET /resources/skyblock/items HTTP/1.1" 200 None
+2022-10-11 16:02:37.941 | INFO     | uvicorn.server:serve:75 - Started server process [21]
+2022-10-11 16:02:37.942 | INFO     | uvicorn.lifespan.on:startup:45 - Waiting for application startup.
+2022-10-11 16:02:38.065 | INFO     | uvicorn.lifespan.on:startup:59 - Application startup complete.
+2022-10-11 16:02:38.070 | INFO     | uvicorn.server:_log_started_message:206 - Uvicorn running on http://0.0.0.0:8080 (Press CTRL+C to quit)
+2022-10-11 16:02:38.897 | INFO     | uvicorn.protocols.http.httptools_impl:send:437 - 172.18.0.1:47704 - "GET / HTTP/1.1" 307
+2022-10-11 16:02:38.937 | INFO     | uvicorn.protocols.http.httptools_impl:send:437 - 172.18.0.1:47704 - "GET /docs HTTP/1.1" 200
+2022-10-11 16:02:39.304 | INFO     | uvicorn.protocols.http.httptools_impl:send:437 - 172.18.0.1:47712 - "GET / HTTP/1.1" 307
+2022-10-11 16:02:39.705 | INFO     | uvicorn.protocols.http.httptools_impl:send:437 - 172.18.0.1:47712 - "GET /docs HTTP/1.1" 200
+2022-10-11 16:02:42.499 | INFO     | uvicorn.protocols.http.httptools_impl:send:437 - 172.18.0.1:47712 - "GET /openapi.json HTTP/1.1" 200
+2022-10-11 19:22:51.334 | INFO     | uvicorn.protocols.http.httptools_impl:send:437 - 172.18.0.1:50400 - "GET /robots.txt HTTP/1.1" 404

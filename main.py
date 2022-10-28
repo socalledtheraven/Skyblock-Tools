@@ -25,13 +25,17 @@ def static_database_updater(names):
     db = {}
     items = get_json(
         "https://api.hypixel.net/resources/skyblock/items"
-    )  # gets the items from the resources endpoint via aiohttp
+    )
+    
     items = sorted(items["items"], key=lambda d: d["id"])
+    
     bazaar_data = get_json(
         "https://api.hypixel.net/skyblock/bazaar")["products"]
+    
     bazaar_products = [
         item for item in bazaar_data
-    ]  # aquires bz data from asyncpixel and formats it to also get the bazaarables
+    ]
+    
     auctions = get_auctions()
     bins = list(filter(lambda d: d["bin"] == True, auctions))
     logger.info("Setup finished")
@@ -45,36 +49,20 @@ def static_database_updater(names):
             continue
         else:
             current_item_data["vanilla"] = False
-        current_item_data["craft_cost"] = 0
-        current_item_data["ingredients"] = {}
-        total_ingredients = []
         file = "./neu-repo/items/" + current_item_name + ".json"
         current_item_data["name"] = remove_formatting(current_item["name"])
         current_item_data["id"] = current_item_name
-        current_item_data[
-            "image_link"] = f"https://gitcdn.link/cdn/QuintBrit/Skyblock-Tools/fastAPI/static/assets/{current_item_name}.png"
-        current_item_data[
-            "alt_image_link"] = f"https://sky.shiiyu.moe/item/{current_item_name}"
+        current_item_data["image_link"] = f"https://gitcdn.link/cdn/QuintBrit/Skyblock-Tools/fastAPI/static/assets/{current_item_name}.png"
+        current_item_data["alt_image_link"] = f"https://sky.shiiyu.moe/item/{current_item_name}"
         current_item_data["material"] = current_item["material"]
         if "skin" in current_item:
             current_item_data["skin_data"] = json.loads(
-                base64.urlsafe_b64decode(current_item["skin"] + '=='))
-        if "dungeon_item_conversion_cost" in current_item and "upgrade_costs" in current_item and "catacombs_requirements" in current_item:
-            current_item_data["dungeons"] = {
-                "dungeon_item_conversion_cost":
-                current_item["dungeon_item_conversion_cost"],
-                "upgrade_costs": {
-                    "first": current_item["upgrade_costs"][0][0],
-                    "second": current_item["upgrade_costs"][1][0],
-                    "third": current_item["upgrade_costs"][2][0],
-                    "fourth": current_item["upgrade_costs"][3][0],
-                    "fifth": current_item["upgrade_costs"][4][0]
-                },
-                "cata_reqs":
-                current_item["catacombs_requirements"][0],
-                "pretty_cata_reqs":
-                f'{current_item["catacombs_requirements"][0]["dungeon_type"].title()} {current_item["catacombs_requirements"][0]["level"]}'
-            }
+                base64.urlsafe_b64decode(current_item["skin"] + '==')
+            )
+
+        dungeons_data = dungeons(current_item)
+        if dungeons_data != {}:
+            current_item_data["dungeons"] = dungeons_data
 
         if "gemstone_slots" in current_item:
             current_item_data["gemstones"] = gemstones(
@@ -91,39 +79,15 @@ def static_database_updater(names):
             current_item_data["npc_salable"] = False
 
         if "requirements" in current_item:
-            current_item_data["requirements"] = current_item["requirements"][0]
-            current_item_data["pretty_requirements"] = ""
-
-            if current_item_data["requirements"]["type"] == "SLAYER":
-                current_item_data[
-                    "pretty_requirements"] += f'{current_item["requirements"][0]["slayer_boss_type"].title()} {current_item["requirements"][0]["level"]}'
-            elif current_item_data["requirements"]["type"] == "SKILL":
-                current_item_data[
-                    "pretty_requirements"] += f'{current_item_data["requirements"]["skill"].title()} {current_item_data["requirements"]["level"]}'
-            elif current_item_data["requirements"]["type"] == "DUNGEON_TIER":
-                current_item_data[
-                    "pretty_requirements"] = f'{current_item_data["requirements"]["dungeon_type"].title()} Floor {current_item_data["requirements"]["tier"]}'
+            requirements_data, pretty_requirements_data = requirements(current_item)
+            current_item_data["requirements"] = requirements_data
+            if pretty_requirements_data != "":
+                current_item_data["pretty_requirements"] = pretty_requirements_data
 
         # simple easy declarations
         if current_item_name in bazaar_products:
             current_item_data["bazaarable"] = True
-            current_item_bazaar_data = bazaar_data[current_item_name][
-                "quick_status"]
-            current_item_data["bazaar_buy_price"] = round(
-                current_item_bazaar_data["buyPrice"], 1)
-            current_item_data["bazaar_sell_price"] = round(
-                current_item_bazaar_data["sellPrice"], 1)
-            current_item_data["bazaar_profit"] = float(
-                round(
-                    current_item_data["bazaar_sell_price"] -
-                    current_item_data["bazaar_buy_price"], 1))
-            try:
-                current_item_data["bazaar_percentage_profit"] = round(
-                    current_item_data["bazaar_profit"] /
-                    current_item_data["bazaar_buy_price"], 2)
-            except ZeroDivisionError:
-                logger.warning(f"{current_item_name}'s bz price is 0")
-                current_item_data["bazaar_percentage_profit"] = 0
+            
         # checks bazaarability and adds any relevant bazaar data
 
         elif current_item_name not in bazaar_products:
@@ -1445,7 +1409,58 @@ def gemstones(gemstone_slots):
 
     return gemstones
 
+def dungeons(current_item):
+    dungeons = {}
+    if "dungeon_item_conversion_cost" in current_item:
+        dungeons["dungeon_item_conversion_cost"] = current_item["dungeon_item_conversion_cost"]
+    elif "upgrade_costs" in current_item:
+        dungeons["upgrade_costs"] = {
+            "first": current_item["upgrade_costs"][0][0],
+            "second": current_item["upgrade_costs"][1][0],
+            "third": current_item["upgrade_costs"][2][0],
+            "fourth": current_item["upgrade_costs"][3][0],
+            "fifth": current_item["upgrade_costs"][4][0]
+        }
+    elif "catacombs_requirements" in current_item:
+        dungeons["cata_reqs"] = current_item["catacombs_requirements"][0]
+        dungeons["pretty_cata_reqs"] = f'{current_item["catacombs_requirements"][0]["dungeon_type"].title()} {current_item["catacombs_requirements"][0]["level"]}'
+        
+    return dungeons
 
+def requirements(current_item):
+    requirements = current_item["requirements"][0]
+    pretty_requirements = ""
+
+    if requirements["type"] == "SLAYER":
+        pretty_requirements += f'{current_item["requirements"][0]["slayer_boss_type"].title()} {current_item["requirements"][0]["level"]}'
+        
+    elif requirements["type"] == "SKILL":
+        pretty_requirements += f'{current_item["requirements"]["skill"].title()} {current_item["requirements"]["level"]}'
+        
+    elif current_item["requirements"][0]["type"] == "DUNGEON_TIER":
+        pretty_requirements = f'{current_item["requirements"][0]["dungeon_type"].title()} Floor {current_item["requirements"][0]["tier"]}'
+
+    elif current_item["requirements"][0]["type"] == "CRIMSON_ISLE_REPUTATION":
+        pretty_requirements = f'{current_item["requirements"][0]["reputation"]} {current_item["requirements"][0]["factions"].title()} reputation'
+
+    return requirements, pretty_requirements
+
+def bazaar_update(bazaar_data, current_item_name):
+    current_item_bazaar_data = bazaar_data[current_item_name][
+                "quick_status"]
+    bazaar_buy_price = round(
+        current_item_bazaar_data["buyPrice"], 1)
+    bazaar_sell_price = round(
+        current_item_bazaar_data["sellPrice"], 1)
+    bazaar_profit = float(
+        round(
+            bazaar_sell_price - bazaar_buy_price, 1))
+    try:
+        bazaar_percentage_profit = round(
+bazaar_profit /
+            bazaar_buy_price, 2)
+    except ZeroDivisionError:
+        logger.warning(f"{current_item_name}'s bz price is 0")
 #---------------------------------------------------------------------------------------------------------
 #                                           SUBPROGRAMS
 #---------------------------------------------------------------------------------------------------------
@@ -1465,6 +1480,8 @@ except:
 # deletion_time(db)
 # p.stop()
 # p.print()
+
+    
 '''TODO:
 Fix various exceptions
 Deal with the mess of dungeons data
